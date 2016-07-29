@@ -1,3 +1,4 @@
+package swissRunner;
 
 public class Battle {
 

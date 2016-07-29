@@ -1,3 +1,4 @@
+package swissRunner;
 import java.util.ArrayList;
 
 public class Player implements Comparable<Player> { 

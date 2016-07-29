@@ -1,3 +1,4 @@
+package swissRunner;
 import java.util.Scanner;
 
 public class RunTourney {
