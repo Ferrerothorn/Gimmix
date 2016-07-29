@@ -2,8 +2,9 @@ package snakeDraftManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Table {
 
@@ -70,7 +71,7 @@ public class Table {
 
 	private static void printEachPlayersArsenal() {
 		for (Player p : players) {
-			System.out.println(p.getName() + ": " +  p.getPoolAsString());
+			System.out.println(p.getName() + ": " + p.getPoolAsString());
 		}
 		System.out.println();
 	}
@@ -85,7 +86,7 @@ public class Table {
 			p.claimsPick(tier.remove(pick-1));
 		}
 		catch (Exception e) {
-			System.out.println("Well that's just wrong, you ham-fisted slatgap.");
+			System.out.println("Well that's just wrong, you ham-fisted waste of oxygen.");
 			askPlayerToPickOne(p, tier);
 		}
 	}
@@ -94,29 +95,29 @@ public class Table {
 		String line = "";
 		if (tier.size() % 2 == 0) {
 			for (int i = 0; i < tier.size(); i++) {
-				line += rpad("" + (i+1) + ") " + tier.get(i), 60);
+				line += rpad("" + (i+1) + ") " + tier.get(i), 65);
 				i++;
-				line += rpad("" + (i+1) + ") " + tier.get(i), 60);
+				line += "" + (i+1) + ") " + tier.get(i);
 				System.out.println(line);
 				line = "";
 			}
 		}
 		else {
 			for (int i = 0; i < tier.size()-1; i++) {
-				line += rpad("" + (i+1) + ") " + tier.get(i), 60);
+				line += rpad("" + (i+1) + ") " + tier.get(i), 65);
 				i++;
-				line += rpad("" + (i+1) + ") " + tier.get(i), 60);
+				line += "" + (i+1) + ") " + tier.get(i);
 				System.out.println(line);
 				line = "";
 			}
-			line += rpad("" + (tier.size()) + ") " + tier.get(tier.size()-1), 60);
+			line += "" + (tier.size()) + ") " + tier.get(tier.size()-1);
 			System.out.println(line);
 		}
 	} 
 	
 	public static String rpad(String inStr, int finalLength)
 	{
-	    return (inStr + "                                                                                           "
+	    return (inStr + "                                                                                                                          "
 	        ).substring(0, finalLength);
 	}
 
@@ -126,13 +127,13 @@ public class Table {
 		ouPool.add("Bisharp");
 		ouPool.add("Breloom");
 		ouPool.add("Chansey");
-		ouPool.add("Charizard (Regular, M-X, and M-Y)");
+		ouPool.add("Charizard (*)");
 		ouPool.add("Clefable");
-		ouPool.add("Diancie (Regular, and Mega)");
+		ouPool.add("Diancie (*)");
 		ouPool.add("Excadrill");
 		ouPool.add("Ferrothorn");
-		ouPool.add("Garchomp (Regular, and Mega)");
-		ouPool.add("Gardevoir (Regular, and Mega)");
+		ouPool.add("Garchomp (*)");
+		ouPool.add("Gardevoir (*)");
 		ouPool.add("Gengar");
 		ouPool.add("Gliscor");
 		ouPool.add("Heatran");
@@ -140,59 +141,59 @@ public class Table {
 		ouPool.add("Jirachi");
 		ouPool.add("Keldeo");
 		ouPool.add("Klefki");
-		ouPool.add("Kyurem (Regular, and Black)");
+		ouPool.add("Kyurem (*)");
 		ouPool.add("Landorus-T");
-		ouPool.add("Latias (Regular, and Mega)");
-		ouPool.add("Latios (Regular, and Mega)");
-		ouPool.add("Lopunny (Regular, and Mega)");
+		ouPool.add("Latias (*)");
+		ouPool.add("Latios (*)");
+		ouPool.add("Lopunny (*)");
 		ouPool.add("Magnezone");
 		ouPool.add("Manaphy");
-		ouPool.add("Manectric (Regular, and Mega)");
-		ouPool.add("Medicham (Regular, and Mega)");
+		ouPool.add("Manectric (*)");
+		ouPool.add("Medicham (*)");
 		ouPool.add("Metagross");
 		ouPool.add("Mew");
-		ouPool.add("Pinsir (Regular, and Mega)");
+		ouPool.add("Pinsir (*)");
 		ouPool.add("Quagsire");
 		ouPool.add("Raikou");
 		ouPool.add("Rotom (Plus each forme)");
-		ouPool.add("Sableye (Regular, and Mega)");
-		ouPool.add("Scizor (Regular, and Mega)");
+		ouPool.add("Sableye (*) [Dark/Ghost/");
+		ouPool.add("Scizor (*)");
 		ouPool.add("Serperior");
 		ouPool.add("Skarmory");
-		ouPool.add("Slowbro (Regular, and Mega)");
+		ouPool.add("Slowbro (*)");
 		ouPool.add("Starmie");
-		ouPool.add("Thundurus (Regular, and -T)");
-		ouPool.add("Tornadus (Regular, and -T)");
-		ouPool.add("Tyranitar (Regular, and Mega)");
-		ouPool.add("Venusaur (Regular, and Mega)");
+		ouPool.add("Thundurus (*)");
+		ouPool.add("Tornadus (*)");
+		ouPool.add("Tyranitar (*)");
+		ouPool.add("Venusaur (*)");
 		ouPool.add("Volcanion");
 		ouPool.add("Weavile");
 		ouPool.add("Zapdos");
 
-		blPool.add("Alakazam (Regular, and Mega)");
-		blPool.add("Altaria (Regular, and Mega)");
+		blPool.add("Alakazam (*)");
+		blPool.add("Altaria (*)");
 		blPool.add("Diggersby");
-		blPool.add("Gallade (Regular, and Mega)");
-		blPool.add("Gyarados (Regular, and Mega)");
+		blPool.add("Gallade (*)");
+		blPool.add("Gyarados (*)");
 		blPool.add("Hawlucha");
-		blPool.add("Heracross (Regular, and Mega)");
-		blPool.add("Pidgeot (Regular, and Mega)");
+		blPool.add("Heracross (*)");
+		blPool.add("Pidgeot (*)");
 		blPool.add("Scolipede");
 		blPool.add("Staraptor");
-		blPool.add("Terrakon");
+		blPool.add("Terrakion");
 		blPool.add("Togekiss");
 		blPool.add("Victini");
 		blPool.add("Volcarona");
 		blPool.add("Zygarde");
 		
-		uuPool.add("Absol (Regular, and Mega)");
-		uuPool.add("Aerodactyl (Regular, and Mega)");
-		uuPool.add("Aggron (Regular, and Mega)");
-		uuPool.add("Ampharos (Regular, and Mega)");
+		uuPool.add("Absol (*)");
+		uuPool.add("Aerodactyl (*)");
+		uuPool.add("Aggron (*)");
+		uuPool.add("Ampharos (*)");
 		uuPool.add("Arcanine");
 		uuPool.add("Azelf");
-		uuPool.add("Beedrill (Regular, and Mega)");
-		uuPool.add("Blastoise (Regular, and Mega)");
+		uuPool.add("Beedrill (*)");
+		uuPool.add("Blastoise (*)");
 		uuPool.add("Blissey");
 		uuPool.add("Celebi");
 		uuPool.add("Chandelure");
@@ -220,7 +221,7 @@ public class Table {
 		uuPool.add("Hydreigon");
 		uuPool.add("Infernape");
 		uuPool.add("Krookodile");
-		uuPool.add("Lucario (No Mega)");
+		uuPool.add("Lucario");
 		uuPool.add("Machamp");
 		uuPool.add("Mamoswine");
 		uuPool.add("Mandibuzz");
@@ -233,12 +234,12 @@ public class Table {
 		uuPool.add("Reuniclus");
 		uuPool.add("Roserade");
 		uuPool.add("Salamence");
-		uuPool.add("Sceptile");
+		uuPool.add("Sceptile (*)");
 		uuPool.add("Shaymin");
 		uuPool.add("Slurpuff");
 		uuPool.add("Snorlax");
 		uuPool.add("Suicune");
-		uuPool.add("Swampert");
+		uuPool.add("Swampert (*)");
 		uuPool.add("Sylveon");
 		uuPool.add("Tentacruel");
 		uuPool.add("Toxicroak");

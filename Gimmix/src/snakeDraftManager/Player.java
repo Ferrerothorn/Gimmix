@@ -20,6 +20,7 @@ public class Player {
 	}
 
 	public String getPoolAsString() {
-		return pPool.toString();
+		return  pPool.toString();
 	}	
+
 }
