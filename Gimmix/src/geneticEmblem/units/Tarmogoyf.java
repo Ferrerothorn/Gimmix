@@ -1,6 +1,6 @@
 package geneticEmblem.units;
 
-import Weapons.SharpClaw;
+import geneticEmblem.weapons.*;
 
 public class Tarmogoyf extends Unit {
 

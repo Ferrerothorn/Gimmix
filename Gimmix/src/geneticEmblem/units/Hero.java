@@ -1,7 +1,6 @@
 package geneticEmblem.units;
 
-import Weapons.IronSword;
-
+import geneticEmblem.weapons.*;
 public class Hero extends Unit {
 
 	public Hero() {

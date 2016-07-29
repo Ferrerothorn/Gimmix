@@ -1,6 +1,6 @@
 package geneticEmblem.units;
 
-import Weapons.IronBow;
+import geneticEmblem.weapons.*;
 
 public class Sniper extends Unit {
 

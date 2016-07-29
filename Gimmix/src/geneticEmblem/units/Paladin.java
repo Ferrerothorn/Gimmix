@@ -1,6 +1,6 @@
 package geneticEmblem.units;
 
-import Weapons.IronLance;
+import geneticEmblem.weapons.*;
 
 public class Paladin extends Unit {
 

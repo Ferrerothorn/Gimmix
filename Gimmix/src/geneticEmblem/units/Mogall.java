@@ -1,12 +1,12 @@
 package geneticEmblem.units;
 
-import Weapons.Luna;
+import geneticEmblem.weapons.*;
 
 public class Mogall extends Unit {
 
 	public Mogall() {
 		this.setJob("Mogall");
-		this.setWeapon(new Luna());
+		this.setWeapon(new Flux());
 		this.setHpBase(20);
 		this.setCurrentHp(this.getHpBase());
 		this.setBaseCrit(0);

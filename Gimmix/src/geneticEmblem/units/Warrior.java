@@ -1,6 +1,6 @@
 package geneticEmblem.units;
 
-import Weapons.IronAxe;
+import geneticEmblem.weapons.*;
 
 public class Warrior extends Unit {
 

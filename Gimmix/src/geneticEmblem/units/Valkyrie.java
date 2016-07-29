@@ -1,6 +1,6 @@
 package geneticEmblem.units;
 
-import Weapons.Lightning;
+import geneticEmblem.weapons.*;
 
 public class Valkyrie extends Unit {
 

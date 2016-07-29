@@ -1,6 +1,6 @@
 package geneticEmblem.units;
 
-import Weapons.Divine;
+import geneticEmblem.weapons.*;
 
 public class Bishop extends Unit {
 

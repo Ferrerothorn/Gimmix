@@ -1,6 +1,6 @@
 package geneticEmblem.units;
 
-import Weapons.Thunder;
+import geneticEmblem.weapons.*;
 
 public class Sage extends Unit {
 

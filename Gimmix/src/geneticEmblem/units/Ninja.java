@@ -1,6 +1,6 @@
 package geneticEmblem.units;
 
-import Weapons.IronShuriken;
+import geneticEmblem.weapons.*;
 
 public class Ninja extends Unit {
 

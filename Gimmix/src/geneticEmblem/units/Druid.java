@@ -1,6 +1,6 @@
 package geneticEmblem.units;
 
-import Weapons.Nosferatu;
+import geneticEmblem.weapons.*;
 
 public class Druid extends Unit {
 
