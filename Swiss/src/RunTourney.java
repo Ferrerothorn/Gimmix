@@ -6,7 +6,6 @@ public class RunTourney {
 
 	public static void main(String[] args) {
 
-
 		boolean allParticipantsIn = false;
 		Scanner sc = new Scanner(System.in);
 
@@ -15,8 +14,7 @@ public class RunTourney {
 			String name = sc.nextLine();
 			if (name.equals("no") && name.length() > 0) { 
 				allParticipantsIn = true;
-			} else { // Otherwise, make a new Player object with the name
-						// entered previously.
+			} else { 
 				tourney.addPlayer(new Player(name));
 			}
 		}
@@ -25,27 +23,19 @@ public class RunTourney {
 
 		int numberOfRounds = tourney.logBase2(tourney.numberOfPlayers());
 
-
-		int i = 1; // Here, i is basically just a banner that displays the round
-					// number.
-		while (i <= numberOfRounds) { // Each round consists of:
-			System.out.println("-=-=-=-Round " + i + "!-=-=-=-"); // Announcing
-																	// the Round
-																	// number...
+		int i = 1;
+		while (i <= numberOfRounds) {
+			System.out.println("-=-=-=-Round " + i + "!-=-=-=-");
 			System.out.println();
 			tourney.shufflePlayers();
-			tourney.sortRankings(); // Sorting the players into points order...
+			tourney.sortRankings(); 
 			tourney.updateParticipantStats(); 
 			tourney.generatePairings(); 
-			tourney.pollForResults(); // Wait until each player or pair reports
-										// the results of their game...
-			tourney.updateParticipantStats(); // Update each player's score
-												// again with the new results...
-			tourney.sortRankings(); // Re-sort the players after this round...
-			tourney.displayInDepthRankings(); // Then display the current
-												// "league" standings before the
-												// next round.
-			i++; // Move into next round.
+			tourney.pollForResults(); 
+			tourney.updateParticipantStats(); 
+			tourney.sortRankings();
+			tourney.displayInDepthRankings();
+			i++;
 		}
 
 		System.out.println("And that's it over!");

@@ -5,8 +5,6 @@ import org.junit.Test;
 
 public class JUnit {
 	
-	//Tests for the core functionality of tourneys.
-
 	public Tournament t = new Tournament();
 	public Player p1;
 	public Player p2;

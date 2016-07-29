@@ -1,71 +1,28 @@
 import java.util.ArrayList;
 
-public class Player implements Comparable<Player> { // Code that models the
-													// actions and behavious of
-													// a Player in a tourney.
-	// Implementing "Comparable" means that we can compare and sort Players by
-	// their scores.
-
-	/*
-	 * The stuff listed below is the kind of stuff that every player needs. A
-	 * name, a way of tracking their score, and a list of who they've already
-	 * played so you don't ever replay someone.
-	 */
+public class Player implements Comparable<Player> { 
 
 	String name;
 	int score = 0;
-	int tb = 0; // How many people we've beaten who now share a score with us.
-	double opps = 0; // How our previous opponents are doing. Useful for
-						// tiebreakers.
-	double oppsOpps = 0; //// How all our opponents' opponents are doing. Useful
-							//// for tiebreakers.
-	int lastDocumentedPosition = 0; // Where we last were in the rankings.
-	ArrayList<Player> previousRounds = new ArrayList<Player>(); // This stores
-																// the names of
-																// everyone we
-																// played so
-																// far.
-	ArrayList<Player> victories = new ArrayList<Player>(); //// This stores the
-															//// names of
-															//// everyone we
-															//// beat so far.
+	int tb = 0;
+	double opps = 0;
+	double oppsOpps = 0;
+	int lastDocumentedPosition = 0;
+	ArrayList<Player> previousRounds = new ArrayList<Player>();
+	ArrayList<Player> victories = new ArrayList<Player>();
 
-	public Player(String string) { // When we make a new player, usually we just
-									// need a name. Every stat/score defaults to
-									// 0.
+	public Player(String string) {
 		name = string;
 	}
 
-	public Player(String myName, int myScore, int myTb, double myOpps) { // We
-																			// can
-																			// create
-																			// a
-																			// player
-																			// with
-																			// a
-																			// starting
-																			// score
-																			// if
-																			// we
-																			// want.
-																			// Useful
-																			// for
-																			// testing.
+	public Player(String myName, int myScore, int myTb, double myOpps) {
 		name = myName;
 		score = myScore;
 		tb = myTb;
 		opps = myOpps;
 	}
 
-	public void updatePositionInRankings(ArrayList<Player> players) { // Utility
-																		// subprogram.
-																		// Checks
-																		// where
-																		// this
-																		// player
-																		// is in
-																		// the
-																		// rankings.
+	public void updatePositionInRankings(ArrayList<Player> players) {
 		for (int i = 0; i < players.size(); i++) {
 			if (this == players.get(i)) {
 				lastDocumentedPosition = i + 1;
@@ -73,8 +30,7 @@ public class Player implements Comparable<Player> { // Code that models the
 		}
 	}
 
-	public void recalculateOpps() { // Utility subprogram. Recalculates how well
-									// all our previous opponents have done.
+	public void recalculateOpps() { 
 		opps = 0;
 		for (Player p : previousRounds) {
 			opps += (double) p.victories.size() / p.previousRounds.size();
@@ -83,9 +39,7 @@ public class Player implements Comparable<Player> { // Code that models the
 		opps *= 100;
 	}
 
-	public void recalculateOppsOpps() { // Utility subprogram. Recalculates how
-										// well our opponents' opponents are
-										// doing.
+	public void recalculateOppsOpps() {
 		oppsOpps = 0;
 		int people = 0;
 		for (Player p : previousRounds) {
@@ -141,18 +95,14 @@ public class Player implements Comparable<Player> { // Code that models the
 		return score;
 	}
 
-	public void beats(Player p2) { // Code that symbolises one player beating
-									// another. Give the winner three points,
-									// and remind both players that they played
-									// each other.
+	public void beats(Player p2) {
 		this.score = this.score + 3;
 		this.logOpponent(p2);
 		p2.logOpponent(this);
 		this.victories.add(p2);
 	}
 
-	public void tied(Player opponent) { // Log ties. Both players get one point.
-										// Otherwise similar to logging a win.
+	public void tied(Player opponent) {
 		this.score = this.score + 1;
 		this.logOpponent(opponent);
 		opponent.logOpponent(this);

@@ -3,8 +3,6 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class Tournament {
-	// Clusterfuck of code that models a tournament, which is really just an
-	// ordered list of Players.
 
 	public ArrayList<Player> players = new ArrayList<Player>();
 	public ArrayList<Battle> currentBattles = new ArrayList<Battle>();
@@ -20,11 +18,11 @@ public class Tournament {
 		playerCap++;
 	}
 
-	public int participants() { // Tells us how many players we have.
+	public int participants() { 
 		return players.size();
 	}
 
-	public void newTourney() { // Kills all data. Used in testing.
+	public void newTourney() { 
 		players.clear();
 	}
 
@@ -32,7 +30,7 @@ public class Tournament {
 		Collections.sort(ps);
 	}
 
-	public String rankingsToOneBigString() { // Test subprogram. Deprecated.
+	public String rankingsToOneBigString() { 
 		int i = players.size();
 		i--;
 		String output = "";
@@ -127,49 +125,21 @@ public class Tournament {
 					playerIndex++;
 				}
 			}
-		} catch (Exception e) { // If we hit the exception zone, we're in deep
-								// shit. We've run out of suitable players.
+		} catch (Exception e) {
 			System.out.println("We had a spot of bother finding " + p1.getName() + " a partner.");
-			disseminateBattles(currentBattles); // We then need to break apart
-												// all pairings to re-pair
-												// everyone. Balls.
-			players.add(p1); // Start by keeping a track of the dick that messed
-								// up the last pairings.
-			sortRankings(players); // Sort all the players back into points
-									// order before we try again.
-			// boolean found = false;
-			// while (found == false) { //This loop means we'll start off by
-			// pairing the unpairable douche from before.
-			// if (players.get(0) != p1) {
-			// Player p = players.remove(0);
-			// players.add(p);
-			// found = true;
-			// }
-			// }
-			players.remove(p1); // The unpairable player from before will always
-								// have a really low score. (Trust me, they
-								// will.)
+			disseminateBattles(currentBattles);
+			players.add(p1);
+			sortRankings(players);
+			players.remove(p1);
 			if (p1.getLastDocumentedPosition() > players.size() / 2) {
-				Collections.reverse(players); // ...So we should reverse the
-												// list of players to start off
-												// with other low scorers.
+				Collections.reverse(players);
 			}
-			pairThisGuyUp(p1, totallyKosherPairings); // if we find them a buddy
-														// this time, keep them
-														// aside in a separate
-														// collection.
-			sortRankings(players); // Put the list back in order to continue
-									// pairing the people who aren't retarded.
+			pairThisGuyUp(p1, totallyKosherPairings);
+			sortRankings(players);
 		}
 	}
 
-	private void disseminateBattles(ArrayList<Battle> battles) { // Breaks apart
-																	// pairings
-																	// we
-																	// generated.
-																	// Used for
-																	// emergency
-																	// repairings.
+	private void disseminateBattles(ArrayList<Battle> battles) {
 		for (Battle b : battles) {
 			Player p1 = b.getP1();
 			Player p2 = b.getP2();
@@ -180,8 +150,7 @@ public class Tournament {
 		battles.clear();
 	}
 
-	private void printCurrentBattles() { // Prints out who's playing who each
-											// round.
+	private void printCurrentBattles() {
 		int index = 0;
 		for (Battle b : currentBattles) {
 			index++;
@@ -190,17 +159,14 @@ public class Tournament {
 		}
 	}
 
-	public void pollForResults() { // This code presents the pairings for a
-									// round, then waits on the players and
-									// users to report scores.
+	public void pollForResults() {
 		sc = new Scanner(System.in);
 		System.out.println("-=-=-=-BATTLES IN PROGRESS-=-=-=-");
 
 		while (currentBattles.size() > 0) {
 			try {
 				printCurrentBattles();
-				int reportUpon = sc.nextInt(); // Choose which Table's results
-												// we want to report upon.
+				int reportUpon = sc.nextInt();
 				Battle b = currentBattles.remove(reportUpon - 1);
 				System.out.println("And who won in " + b.getP1().getName() + " vs. " + b.getP2().getName() + "?");
 				System.out.println("1) " + b.getP1().getName());
@@ -210,8 +176,7 @@ public class Tournament {
 				int winner = 0;
 				winner = sc.nextInt();
 
-				if (winner == 1) { // Enter a 1, 2, or 3 depending on whether
-									// Player 1 Won, Lost, or Tied.
+				if (winner == 1) {
 					b.getP1().beats(b.getP2());
 				} else if (winner == 2) {
 					b.getP2().beats(b.getP1());
@@ -228,8 +193,7 @@ public class Tournament {
 		}
 	}
 
-	int logBase2(int x) { // Does mathsy shit to work out how many rounds we
-							// need.
+	int logBase2(int x) {
 		return (int) Math.ceil(Math.log(x) / Math.log(2));
 	}
 
@@ -241,12 +205,11 @@ public class Tournament {
 		return players;
 	}
 
-	public void closeScanner() { // Solves magic memory problems.
+	public void closeScanner() {
 		sc.close();
 	}
 
-	public void sortRankings() { // Allows the controller Class to sort the
-									// player list from externally.
+	public void sortRankings() {
 		sortRankings(players);
 	}
 
