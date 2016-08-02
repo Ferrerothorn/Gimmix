@@ -122,6 +122,7 @@ public class Table {
 	}
 
 	private static void fillPools() {
+		
 		ouPool.add("Amoonguss");
 		ouPool.add("Azumarill");
 		ouPool.add("Bisharp");
@@ -130,6 +131,7 @@ public class Table {
 		ouPool.add("Charizard (*)");
 		ouPool.add("Clefable");
 		ouPool.add("Diancie (*)");
+		ouPool.add("Dragonite");
 		ouPool.add("Excadrill");
 		ouPool.add("Ferrothorn");
 		ouPool.add("Garchomp (*)");
@@ -150,13 +152,13 @@ public class Table {
 		ouPool.add("Manaphy");
 		ouPool.add("Manectric (*)");
 		ouPool.add("Medicham (*)");
-		ouPool.add("Metagross");
+		uuPool.add("Metagross");
 		ouPool.add("Mew");
 		ouPool.add("Pinsir (*)");
 		ouPool.add("Quagsire");
 		ouPool.add("Raikou");
-		ouPool.add("Rotom (Plus each forme)");
-		ouPool.add("Sableye (*) [Dark/Ghost/");
+		ouPool.add("Rotom (*)");
+		ouPool.add("Sableye (*)");
 		ouPool.add("Scizor (*)");
 		ouPool.add("Serperior");
 		ouPool.add("Skarmory");
