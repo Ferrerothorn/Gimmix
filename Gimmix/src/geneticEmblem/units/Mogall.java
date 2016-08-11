@@ -9,7 +9,7 @@ public class Mogall extends Unit {
 		this.setWeapon(new Flux());
 		this.setHpBase(20);
 		this.setCurrentHp(this.getHpBase());
-		this.setBaseCrit(0);
+		this.setBaseCrit(15);
 
 		this.setStrBase(8);
 		this.setSkillBase(4);

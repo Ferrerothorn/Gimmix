@@ -224,7 +224,6 @@ public class List {
 			arena.add(new WyvernLord());
 			arena.add(new Druid());
 			arena.add(new AxeLord());
-			arena.add(new Ninja());
 			arena.add(new LanceLord());
 			arena.add(new General());
 			arena.add(new Tarmogoyf());

@@ -14,7 +14,7 @@ public class Assassin extends Unit {
 		this.setStrBase(6);
 		this.setSkillBase(10);
 		this.setSpeedBase(10);
-		this.setLuckBase(7);
+		this.setLuckBase(6);
 		this.setDefBase(5);
 		this.setResBase(2);
 

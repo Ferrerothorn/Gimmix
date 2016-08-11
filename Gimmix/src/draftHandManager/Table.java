@@ -47,7 +47,6 @@ public class Table {
 			rotatePacks();
 			printEachPlayersArsenal();
 		}
-	
 	}
 
 	private static void rotatePacks() {

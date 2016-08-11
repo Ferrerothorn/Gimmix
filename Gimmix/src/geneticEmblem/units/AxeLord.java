@@ -15,7 +15,7 @@ public class AxeLord extends Unit {
 		this.setSkillBase(6);
 		this.setSpeedBase(6);
 		this.setLuckBase(4);
-		this.setDefBase(9);
+		this.setDefBase(8);
 		this.setResBase(2);
 
 		this.setHpGr(75);
