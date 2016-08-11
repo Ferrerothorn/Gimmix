@@ -6,7 +6,7 @@ public class DivineShield extends Weapon {
 		super.setTrinity("Shield");
 		super.setPow(3);
 		super.setAcc(110);
-		super.setPhys(true);
+		super.setPhys(false);
 		super.addTrait("Shield");
 	}
 

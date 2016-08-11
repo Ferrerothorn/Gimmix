@@ -9,7 +9,7 @@ public class ReflectorMage extends Unit {
 		this.setWeapon(new DivineShield());
 		this.setHpBase(28);
 		this.setCurrentHp(this.getHpBase());
-		this.setBaseCrit(0);
+		this.setBaseCrit(20);
 
 		this.setStrBase(7);
 		this.setSkillBase(8);

@@ -6,7 +6,7 @@ public class Druid extends Unit {
 
 	public Druid() {
 		this.setJob("Druid");
-		this.setWeapon(new Nosferatu());
+		this.setWeapon(new Luna());
 		this.setHpBase(20);
 		this.setCurrentHp(this.getHpBase());
 		this.setBaseCrit(0);
@@ -14,7 +14,7 @@ public class Druid extends Unit {
 		this.setStrBase(8);
 		this.setSkillBase(7);
 		this.setSpeedBase(6);
-		this.setLuckBase(5);
+		this.setLuckBase(6);
 		this.setDefBase(4);
 		this.setResBase(6);
 
