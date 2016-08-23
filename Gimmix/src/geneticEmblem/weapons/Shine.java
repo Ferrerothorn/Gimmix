@@ -7,6 +7,7 @@ public class Shine extends Weapon {
 		super.setPow(6);
 		super.setAcc(90);
 		super.setPhys(false);
+		super.setName("Shine");
 		super.setCrit(8);
 	}
 

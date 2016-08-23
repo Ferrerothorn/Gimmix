@@ -7,6 +7,7 @@ public class SteelSword extends Weapon {
 		super.setPow(8);
 		super.setAcc(75);
 		super.setPhys(true);
+		super.setName("SteelSword");
 	}
 
 }

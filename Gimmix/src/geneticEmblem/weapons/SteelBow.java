@@ -8,6 +8,7 @@ public class SteelBow extends Weapon {
 		super.setAcc(70);
 		super.setPhys(true);
 		super.addTrait("Arrow");
+		super.setName("SteelBow");
 	}
 
 }

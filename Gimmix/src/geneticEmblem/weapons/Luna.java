@@ -9,6 +9,7 @@ public class Luna extends Weapon {
 		super.setPhys(false);
 		super.setCrit(20);
 		super.addTrait("Luna");
+		super.setName("Luna");
 	}
 
 }

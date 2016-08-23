@@ -8,6 +8,7 @@ public class Lightning extends Weapon {
 		super.setAcc(95);
 		super.setPhys(false);
 		super.setCrit(5);
+		super.setName("Lightning");
 	}
 
 }

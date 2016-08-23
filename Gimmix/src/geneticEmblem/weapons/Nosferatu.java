@@ -8,6 +8,7 @@ public class Nosferatu extends Weapon {
 		super.setAcc(70);
 		super.setPhys(false);
 		super.addTrait("Lifelink");
+		super.setName("Nosferatu");
 	}
 
 }

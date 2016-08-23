@@ -7,6 +7,7 @@ public class Fire extends Weapon {
 		super.setPow(5);
 		super.setAcc(90);
 		super.setPhys(false);
+		super.setName("Fire");
 	}
 
 }

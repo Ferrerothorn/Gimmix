@@ -10,7 +10,7 @@ public Lancemaster() {
 
 	    this.setWeapon(new IronLance());
 	    this.setHpBase(23);
-	    this.setBaseCrit(15);
+	    this.setBaseCrit(10);
 	    this.setCurrentHp(this.getHpBase());
 	    this.setStrBase(8);
 	    this.setSkillBase(7);

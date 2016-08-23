@@ -2,8 +2,11 @@ package geneticEmblem.main;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
@@ -17,6 +20,7 @@ public class List {
 	static ArrayList<Unit> arena = new ArrayList<Unit>();
 	static Boolean on = true;
 	static Scanner input = new Scanner(System.in);
+	static int maxArenaSize;
 
 	static int baseHP;
 	static int strBase;
@@ -45,22 +49,22 @@ public class List {
 	public static void main(String[] args) {
 
 		while (on) {
-			 System.out.println();
-			 System.out.println("===Choose a command===");
-			 System.out.println("0: The usual (25k each, 1024 remain, report).");
-			 System.out.println("1: Add a number of each class to the arena.");
-			 System.out.println("11: Add 3333 of each class to the arena.");
-			 System.out.println("2: View a single match.");
-			 System.out.println("22: Run until 2048 number remain.");
-			 System.out.println("222: Run until specified number remain.");
-			 System.out.println("3: See the top 8 in the arena.");
-			 System.out.println("5: Report on the surviving units.");
-			 System.out.println("55: Report statistics on surviving race.");
-			 System.out.println("69: Genetically modify a new unit.");
-			 System.out.println("999: Quit.");
-			 System.out.println();
-			 int choice = input.nextInt();
-	//	int choice = 69;
+			System.out.println();
+			System.out.println("===Choose a command===");
+			System.out.println("0: The usual (25k each, 1024 remain, report).");
+			System.out.println("1: Add a number of each class to the arena.");
+			System.out.println("11: Add 3333 of each class to the arena.");
+			System.out.println("2: View a single match.");
+			System.out.println("22: Run until 2048 number remain.");
+			System.out.println("222: Run until specified number remain.");
+			System.out.println("3: See the top 8 in the arena.");
+			System.out.println("5: Report on the surviving units.");
+			System.out.println("55: Report statistics on surviving race.");
+			System.out.println("69: Genetically modify a new unit.");
+			System.out.println("999: Quit.");
+			System.out.println();
+			int choice = input.nextInt();
+			// int choice = 69;
 
 			switch (choice) {
 
@@ -118,61 +122,19 @@ public class List {
 				System.out.println("Leveling population up.");
 				levelTheDudesTo(10, arena);
 				System.out.println("Commencing deathmatch.");
-				deathmatch(512);
+				deathmatch(1024);
 				System.out.println();
 				double initialStDev = calcStDev(arena);
-				
+
 				String weaponPreference = getWeaponMetagame(arena);
 				System.out.println("The metagame is tending towards " + weaponPreference + ".");
-				
+
 				boolean foundNewGuy = false;
 
 				ArrayList<Weapon> armory = new ArrayList<Weapon>();
-				if (weaponPreference.equals("Axe")) {
-					armory.add(new IronSword());
-				}
-				else if (weaponPreference.equals("Sword")) {
-					armory.add(new IronLance());
-				}
-				else if (weaponPreference.equals("Lance")) {
-					armory.add(new IronAxe());
-				}
-				else if (weaponPreference.equals("Dark")) {
-					armory.add(new Lightning());
-					armory.add(new Shine());
-				}
-				else if (weaponPreference.equals("Light")) {
-					armory.add(new Fire());
-					armory.add(new Thunder());
-				}
-				else if (weaponPreference.equals("Anima")) {
-					armory.add(new Flux());
-				}
-				else if (weaponPreference.equals("Claw")) {
-					armory.add(new SteelBow());
-					armory.add(new IronBow());
-				}
-				else if (weaponPreference.equals("Shield")) {
-					armory.add(new SharpClaw());
-				}
-				else if (weaponPreference.equals("Bow")) {
-					armory.add(new DivineShield());
-				}
-				else {
-					armory.add(new DivineShield());
-					armory.add(new Fire());
-					armory.add(new Flux());
-					armory.add(new IronAxe());
-					armory.add(new IronBow());
-					armory.add(new IronLance());
-					armory.add(new IronSword());
-					armory.add(new LightBrand());
-					armory.add(new Lightning());
-					armory.add(new SharpClaw());
-					armory.add(new SteelBow());
-					armory.add(new Thunder());
-				}
 				
+				populateArmory(weaponPreference, armory);
+
 				while (!foundNewGuy) {
 					System.out.println("The target to beat is " + initialStDev + ".");
 					arena.clear();
@@ -191,7 +153,7 @@ public class List {
 					}
 
 					levelTheDudesTo(10, arena);
-					deathmatch(512);
+					deathmatch(1024);
 					double newStDev = calcStDev(arena);
 					System.out.println("The new balance measure is " + newStDev + ".");
 
@@ -201,7 +163,7 @@ public class List {
 						System.out.println("public class XXX extends Unit { " + '\n');
 						System.out.println("public XXX() {" + '\n');
 						System.out.println("    this.setJob();" + '\n');
-						System.out.println("    this.setWeapon(new " + newWeapon + "());");
+						System.out.println("    this.setWeapon(new " + newWeapon.getName() + "());");
 						System.out.println("    this.setHpBase(" + baseHP + ");");
 						System.out.println("    this.setCurrentHp(this.getHpBase());");
 						System.out.println("    this.setStrBase(" + strBase + ");");
@@ -228,7 +190,7 @@ public class List {
 						System.out.println("}");
 						System.out.println();
 						System.out.println();
-						//foundNewGuy = true;
+						// foundNewGuy = true;
 						// on = false;
 					}
 				}
@@ -242,6 +204,116 @@ public class List {
 		}
 	}
 
+	private static void populateArmory(String weaponPreference, ArrayList<Weapon> armory) {
+		if (weaponPreference.equals("Axe")) {
+			armory.add(new IronSword());
+			armory.add(new Lightning());
+			armory.add(new Shine());
+			armory.add(new Fire());
+			armory.add(new SteelSword());
+			armory.add(new Thunder());
+			armory.add(new Flux());
+			armory.add(new DivineShield());
+			armory.add(new SharpClaw());
+			armory.add(new SteelBow());
+			armory.add(new IronBow());
+			armory.add(new IronGun());
+		} else if (weaponPreference.equals("Sword")) {
+			armory.add(new IronLance());
+			armory.add(new Lightning());
+			armory.add(new IronGun());
+			armory.add(new Shine());
+			armory.add(new Fire());
+			armory.add(new Thunder());
+			armory.add(new Flux());
+			armory.add(new DivineShield());
+			armory.add(new SharpClaw());
+			armory.add(new SteelBow());
+			armory.add(new IronBow());
+		} else if (weaponPreference.equals("Lance")) {
+			armory.add(new IronAxe());
+			armory.add(new Lightning());
+			armory.add(new IronGun());
+			armory.add(new Shine());
+			armory.add(new Fire());
+			armory.add(new Thunder());
+			armory.add(new Flux());
+			armory.add(new DivineShield());
+			armory.add(new SharpClaw());
+			armory.add(new SteelBow());
+			armory.add(new IronBow());
+		} else if (weaponPreference.equals("Dark")) {
+			armory.add(new IronAxe());
+			armory.add(new IronLance());
+			armory.add(new SteelSword());
+			armory.add(new IronGun());
+			armory.add(new IronSword());
+			armory.add(new Lightning());
+			armory.add(new Shine());
+			armory.add(new DivineShield());
+			armory.add(new SharpClaw());
+			armory.add(new SteelBow());
+			armory.add(new IronBow());
+		} else if (weaponPreference.equals("Light")) {
+			armory.add(new IronAxe());
+			armory.add(new IronLance());
+			armory.add(new IronSword());
+			armory.add(new SteelSword());
+			armory.add(new DivineShield());
+			armory.add(new SharpClaw());
+			armory.add(new SteelBow());
+			armory.add(new IronBow());
+			armory.add(new Fire());
+			armory.add(new Thunder());
+		} else if (weaponPreference.equals("Anima")) {
+			armory.add(new Flux());
+			armory.add(new IronAxe());
+			armory.add(new IronLance());
+			armory.add(new IronSword());
+			armory.add(new DivineShield());
+			armory.add(new SteelSword());
+			armory.add(new SharpClaw());
+			armory.add(new SteelBow());
+			armory.add(new IronBow());
+		} else if (weaponPreference.equals("Claw")) {
+			armory.add(new IronAxe());
+			armory.add(new IronLance());
+			armory.add(new IronSword());
+			armory.add(new Lightning());
+			armory.add(new SteelSword());
+			armory.add(new Shine());
+			armory.add(new Flux());
+			armory.add(new Fire());
+			armory.add(new Thunder());
+			armory.add(new SteelBow());
+			armory.add(new IronBow());
+		} else if (weaponPreference.equals("Shield")) {
+			armory.add(new IronAxe());
+			armory.add(new IronLance());
+			armory.add(new IronSword());
+			armory.add(new SteelSword());
+			armory.add(new Lightning());
+			armory.add(new Shine());
+			armory.add(new Flux());
+			armory.add(new Fire());
+			armory.add(new Thunder());
+			armory.add(new SharpClaw());
+		} else if (weaponPreference.equals("Bow")) {
+			armory.add(new DivineShield());
+			armory.add(new IronAxe());
+			armory.add(new IronLance());
+			armory.add(new IronSword());
+			armory.add(new SteelSword());
+			armory.add(new Lightning());
+			armory.add(new Shine());
+			armory.add(new Flux());
+			armory.add(new Fire());
+			armory.add(new Thunder());
+		} else {
+			armory.add(new IronGun());
+		}
+	}
+
 	private static String getWeaponMetagame(ArrayList<Unit> arena2) {
 		int axe = 0;
 		int lance = 0;
@@ -252,9 +324,10 @@ public class List {
 		int shield = 0;
 		int claw = 0;
 		int bow = 0;
+		int gun = 0;
 		for (Unit u : arena) {
 			String s = u.getWeapon().getTrinity();
-			switch(s) {
+			switch (s) {
 			case "Axe":
 				axe++;
 				break;
@@ -282,64 +355,63 @@ public class List {
 			case "Shield":
 				shield++;
 				break;
+			case "Gun":
+				gun++;
+				break;
 			}
 		}
-		if ( sword == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw) ) {
+		if (sword == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw, gun)) {
 			return "Sword";
 		}
-		if ( lance == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw) ) {
+		if (lance == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw, gun)) {
 			return "Lance";
 		}
-		if ( axe == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw) ) {
+		if (axe == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw, gun)) {
 			return "Axe";
 		}
-		if ( anima == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw) ) {
+		if (anima == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw, gun)) {
 			return "Anima";
 		}
-		if ( dark == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw) ) {
+		if (dark == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw, gun)) {
 			return "Dark";
 		}
-		if ( light == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw) ) {
+		if (light == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw, gun)) {
 			return "Light";
 		}
-		if ( shield == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw) ) {
+		if (shield == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw, gun)) {
 			return "Shield";
 		}
-		if ( claw == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw) ) {
+		if (claw == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw, gun)) {
 			return "Claw";
+		}
+		if (gun == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw, gun)) {
+			return "Sword";
 		}
 		return "Bow";
 	}
 
 	private static int isMostPrevalent(int sword, int axe, int lance, int anima, int dark, int light, int bow,
-			int shield, int claw) {
-		if (sword > axe && sword > lance && sword > light && sword > dark && 
-				sword > anima && sword > shield && sword > bow && sword > claw) {
+			int shield, int claw, int gun) {
+		if (sword > axe && sword > lance && sword > light && sword > dark && sword > anima && sword > shield
+				&& sword > bow && sword > claw && sword > gun) {
 			return sword;
-		}
-		else if ( lance > axe && lance > anima && lance > dark && lance > light && 
-				lance > shield && lance > claw && lance > bow) {
+		} else if (lance > axe && lance > anima && lance > dark && lance > light && lance > shield && lance > claw
+				&& lance > bow && lance > gun) {
 			return lance;
-		}
-		else if ( axe > anima && axe > dark && axe > light && 
-				axe > shield && axe > claw && axe > bow) {
+		} else if (axe > anima && axe > dark && axe > light && axe > shield && axe > claw && axe > bow && axe > gun) {
 			return axe;
-		}
-		else if (anima > dark && anima > light && 
-				anima > shield && anima > claw && anima > bow) {
+		} else if (anima > dark && anima > light && anima > shield && anima > claw && anima > bow && anima > gun) {
 			return anima;
-		}
-		else if (light > dark && light > shield && light > claw && light > bow) {
+		} else if (light > dark && light > shield && light > claw && light > bow && light > gun) {
 			return light;
-		}
-		else if (dark  > shield && dark > claw && dark > bow) {
+		} else if (dark > shield && dark > claw && dark > bow && dark > gun) {
 			return dark;
-		}
-		else if (bow  > shield && bow > claw) {
+		} else if (bow > shield && bow > claw && bow > gun) {
 			return bow;
-		}
-		else if (claw > shield) {
+		} else if (claw > shield && claw > gun) {
 			return claw;
+		} else if (gun > shield) {
+			return gun;
 		}
 		return shield;
 	}
@@ -349,7 +421,7 @@ public class List {
 		generateBases(r);
 		generateGrowthRates(r);
 		generateCaps(r);
-		
+
 		if ((defBase > resBase && resGr > defGr) || (resBase > defBase && defGr > resGr)) {
 			generateNewUnitStats();
 		}
@@ -363,15 +435,15 @@ public class List {
 
 	private static void generateCaps(Random r) {
 
-		strCap = r.nextInt(10);
+		strCap = r.nextInt(11);
 		strCap += 20;
-		speedCap = r.nextInt(10);
+		speedCap = r.nextInt(11);
 		speedCap += 20;
-		skillCap = r.nextInt(10);
+		skillCap = r.nextInt(11);
 		skillCap += 20;
-		defCap = r.nextInt(10);
+		defCap = r.nextInt(11);
 		defCap += 20;
-		resCap = r.nextInt(10);
+		resCap = r.nextInt(11);
 		resCap += 20;
 
 		int sumCaps = strCap + speedCap + skillCap + defCap + resCap;
@@ -482,7 +554,11 @@ public class List {
 		return survivors;
 	}
 
+	@SuppressWarnings("unchecked")
 	private static void printMap(HashMap<String, Integer> survivors) {
+
+		survivors = sortByValues(survivors);
+
 		@SuppressWarnings("rawtypes")
 		Iterator it = survivors.entrySet().iterator();
 		while (it.hasNext()) {
@@ -493,112 +569,32 @@ public class List {
 	}
 
 	private static void deathmatch(int i) {
+		maxArenaSize = arena.size();
+
 		while (arena.size() > i && i > 0) {
 			Unit unit1 = arena.remove(0);
 			Unit unit2 = arena.remove(0);
-			Unit victor = fight(unit1, unit2);
+			Unit victor = unit1.fight(unit2);
 
 			victor.levelUp();
 			arena.add(victor);
 			// System.out.println("We have our winner! " + victor.getName() + "
 			// the Lv" + victor.getLv() + " "
 			// + victor.getJob() + "!");
+		//	System.out.println(maxArenaSize - (maxArenaSize - arena.size()));
 		}
-	}
-
-	private static Unit fight(Unit unit1, Unit unit2) {
-
-		// System.out.println("Behold, " + unit1.getName() + " the Lv" +
-		// unit1.getLv() + " " + unit1.getJob() + "!");
-		// System.out.println("Versus " + unit2.getName() + " the Lv" +
-		// unit2.getLv() + " " + unit2.getJob() + "!");
-		Unit victor = null;
-
-		if (unit1.getJob().equals(unit2.getJob())) {
-			int unit1total = unit1.getHpBase() + unit1.getStrBase() + unit1.getSkillBase() + unit1.getLuckBase()
-					+ unit1.getSpeedBase() + unit1.getDefBase() + unit1.getResBase();
-			int unit2total = unit2.getHpBase() + unit2.getStrBase() + unit2.getSkillBase() + unit2.getLuckBase()
-					+ unit2.getSpeedBase() + unit2.getDefBase() + unit2.getResBase();
-			if (unit2total > unit1total) {
-				victor = unit2;
-			} else {
-				victor = unit1;
-			}
-		} else {
-			int turnCounter = 1;
-			while (isAlive(unit1) && isAlive(unit2) && turnCounter < 51) {
-				if (isAlive(unit1) && isAlive(unit2)) {
-					// System.out.println(unit1.getName() + " swings at " +
-					// unit2.getName() + "!");
-					unit1.swingAt(unit2);
-				}
-				if (isAlive(unit1) && isAlive(unit2)) {
-					// System.out.println(unit2.getName() + " swings at " +
-					// unit1.getName() + "!");
-					unit2.swingAt(unit1);
-				}
-				if (isAlive(unit1) && isAlive(unit2) && unit1.greatlyOutspeeds(unit2)
-						&& !unit2.greatlyOutspeeds(unit1)) {
-					// System.out.println(unit1.getName() + " swings at " +
-					// unit2.getName() + "!");
-					unit1.swingAt(unit2);
-				} else if (isAlive(unit1) && isAlive(unit2) && !unit1.greatlyOutspeeds(unit2)
-						&& unit2.greatlyOutspeeds(unit1)) {
-					// System.out.println(unit2.getName() + " swings at " +
-					// unit1.getName() + "!");
-					unit2.swingAt(unit1);
-				}
-				turnCounter++;
-			}
-
-			if (isAlive(unit1) && !isAlive(unit2)) {
-				victor = unit1;
-			} else if (!isAlive(unit1) && isAlive(unit2)) {
-				victor = unit2;
-			} else {
-				int unit1total = unit1.getHpBase() + unit1.getStrBase() + unit1.getSkillBase() + unit1.getLuckBase()
-						+ unit1.getSpeedBase() + unit1.getDefBase() + unit1.getResBase();
-				int unit2total = unit2.getHpBase() + unit2.getStrBase() + unit2.getSkillBase() + unit2.getLuckBase()
-						+ unit2.getSpeedBase() + unit2.getDefBase() + unit2.getResBase();
-				if (unit2total > unit1total) {
-					victor = unit2;
-				} else {
-					victor = unit1;
-				}
-			}
-		}
-		// System.out.println(arena.size());
-		return victor;
-	}
-
-	private static boolean isAlive(Unit unit) {
-		if (unit.getCurrentHp() > 0) {
-			return true;
-		}
-		return false;
 	}
 
 	private static void scry(int i) {
 		for (int x = 0; x < i && x < arena.size(); x++) {
-			printDetailedUnitDescription(arena.get(x), x + 1);
+			arena.get(x).printDetailedUnitDescription(x + 1);
 		}
-	}
-
-	private static void printDetailedUnitDescription(Unit unit, int i) {
-		// System.out.println("" + i + ": " + unit.getName() + " the " +
-		// unit.getJob() + ". " + "Lv: " + unit.getLv()
-		// + ", HP: " + unit.getHpBase() + ", Str: " + unit.getStrBase() + ",
-		// Skill: " + unit.getSkillBase()
-		// + ", Speed: " + unit.getSpeedBase() + ", Luck: " + unit.getLuckBase()
-		// + ", Def: " + unit.getDefBase()
-		// + ", Res: " + unit.getResBase() + ".");
 	}
 
 	private static void addEachClass(int i) {
 		for (int x = 0; x < i; x++) {
 			arena.add(new Soldier());
 			arena.add(new Hero());
-			arena.add(new Valkyrie());
 			arena.add(new Warrior());
 			arena.add(new Berserker());
 			arena.add(new Sniper());
@@ -632,7 +628,11 @@ public class List {
 			arena.add(new BurnMage());
 			arena.add(new Saint());
 			arena.add(new Lancemaster());
-			
+			arena.add(new Raider());
+			arena.add(new Crossbowman());
+			arena.add(new Duke());
+			arena.add(new Gunslinger());
+
 		}
 		Collections.shuffle(arena);
 	}
@@ -643,5 +643,21 @@ public class List {
 				u.levelUp();
 			}
 		}
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private static HashMap sortByValues(HashMap map) {
+		LinkedList list = new LinkedList(map.entrySet());
+		Collections.sort(list, new Comparator() {
+			public int compare(Object o1, Object o2) {
+				return ((Comparable) ((Map.Entry) (o2)).getValue()).compareTo(((Map.Entry) (o1)).getValue());
+			}
+		});
+		HashMap sortedHashMap = new LinkedHashMap();
+		for (Iterator it = list.iterator(); it.hasNext();) {
+			Map.Entry entry = (Map.Entry) it.next();
+			sortedHashMap.put(entry.getKey(), entry.getValue());
+		}
+		return sortedHashMap;
 	}
 }

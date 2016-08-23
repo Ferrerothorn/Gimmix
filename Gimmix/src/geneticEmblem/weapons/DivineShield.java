@@ -8,6 +8,7 @@ public class DivineShield extends Weapon {
 		super.setAcc(110);
 		super.setPhys(false);
 		super.addTrait("Shield");
+		super.setName("DivineShield");
 	}
-
+	
 }

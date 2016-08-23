@@ -7,6 +7,6 @@ public class LightBrand extends Weapon {
 		super.setPow(7);
 		super.setAcc(90);
 		super.setPhys(true);
-		super.setCrit(0);
+		super.setName("LightBrand");
 	}
 }
