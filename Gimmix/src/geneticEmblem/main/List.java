@@ -70,7 +70,7 @@ public class List {
 
 			case 0:
 				addEachClass(25000);
-				levelTheDudesTo(10, arena);
+				levelTheDudesTo(15, arena);
 				deathmatch(2048);
 				System.out.println();
 				showSurvivors();
@@ -120,7 +120,7 @@ public class List {
 				System.out.println("Adding initial population to the arena.");
 				addEachClass(20000);
 				System.out.println("Leveling population up.");
-				levelTheDudesTo(10, arena);
+				levelTheDudesTo(15, arena);
 				System.out.println("Commencing deathmatch.");
 				deathmatch(1024);
 				System.out.println();
@@ -152,7 +152,7 @@ public class List {
 						arena.add(custom);
 					}
 
-					levelTheDudesTo(10, arena);
+					levelTheDudesTo(15, arena);
 					deathmatch(1024);
 					double newStDev = calcStDev(arena);
 					System.out.println("The new balance measure is " + newStDev + ".");
@@ -209,21 +209,31 @@ public class List {
 			armory.add(new IronSword());
 			armory.add(new SteelSword());
 			armory.add(new IronGun());
+			armory.add(new Lightning());
+			armory.add(new Shine());
 		} else if (weaponPreference.equals("Sword")) {
 			armory.add(new IronLance());
 			armory.add(new IronGun());
+			armory.add(new Thunder());
+			armory.add(new Fire());
 		} else if (weaponPreference.equals("Lance")) {
 			armory.add(new IronAxe());
 			armory.add(new IronGun());
+			armory.add(new Flux());
 		} else if (weaponPreference.equals("Dark")) {
 			armory.add(new IronGun());
 			armory.add(new Shine());
 			armory.add(new Lightning());
+			armory.add(new IronLance());
 		} else if (weaponPreference.equals("Light")) {
 			armory.add(new Fire());
+			armory.add(new IronLance());
 			armory.add(new Thunder());
+			armory.add(new IronSword());
+			armory.add(new SteelSword());
 		} else if (weaponPreference.equals("Anima")) {
 			armory.add(new Flux());
+			armory.add(new IronLance());
 		} else if (weaponPreference.equals("Claw")) {
 			armory.add(new SteelBow());
 			armory.add(new IronBow());
@@ -344,6 +354,12 @@ public class List {
 		generateGrowthRates(r);
 		generateCaps(r);
 
+		if (resGr < speedGr && speedCap < resCap) {
+			generateNewUnitStats();
+		}
+		if (defGr < speedGr && speedCap < defCap) {
+			generateNewUnitStats();
+		}
 		if (skillBase > strBase && skillCap < strCap) {
 			generateNewUnitStats();
 		}
@@ -576,10 +592,10 @@ public class List {
 			arena.add(new SnapcasterMage());
 			arena.add(new Saint());
 			arena.add(new Lancemaster());
-			arena.add(new Raider());
 			arena.add(new Crossbowman());
 			arena.add(new Gunslinger());
 			arena.add(new Page());
+			arena.add(new Pirate());
 
 		}
 		Collections.shuffle(arena);
@@ -587,7 +603,7 @@ public class List {
 
 	public static void levelTheDudesTo(int lv, ArrayList<Unit> dudes) {
 		for (Unit u : dudes) {
-			for (int i = 0; i < lv - 1; i++) {
+			for (int i = 1; i < lv; i++) {
 				u.levelUp();
 			}
 		}
