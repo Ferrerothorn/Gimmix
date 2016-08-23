@@ -594,15 +594,11 @@ public class List {
 	private static void addEachClass(int i) {
 		for (int x = 0; x < i; x++) {
 			arena.add(new Soldier());
-			arena.add(new Hero());
 			arena.add(new Warrior());
 			arena.add(new Berserker());
 			arena.add(new Sniper());
 			arena.add(new Falcoknight());
-			arena.add(new WyvernLord());
 			arena.add(new Druid());
-			arena.add(new AxeLord());
-			arena.add(new LanceLord());
 			arena.add(new General());
 			arena.add(new Tarmogoyf());
 			arena.add(new Bishop());
@@ -611,7 +607,6 @@ public class List {
 			arena.add(new Sage());
 			arena.add(new Necromancer());
 			arena.add(new Crusader());
-			arena.add(new Paladin());
 			arena.add(new Mogall());
 			arena.add(new ReflectorMage());
 			arena.add(new Cleric());
@@ -630,7 +625,6 @@ public class List {
 			arena.add(new Lancemaster());
 			arena.add(new Raider());
 			arena.add(new Crossbowman());
-			arena.add(new Duke());
 			arena.add(new Gunslinger());
 
 		}
