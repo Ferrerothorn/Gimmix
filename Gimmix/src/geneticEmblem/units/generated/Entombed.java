@@ -9,7 +9,7 @@ public Entombed() {
     this.setJob("Entombed");
     this.setWeapon(new SharpClaw());
     this.setBaseCrit(10);
-    this.setHpBase(23);
+    this.setHpBase(24);
     this.setCurrentHp(this.getHpBase());
     this.setStrBase(6);
     this.setSkillBase(4);
@@ -21,9 +21,9 @@ public Entombed() {
     this.setHpGr(45);
     this.setStrGr(70);
     this.setSkillGr(40);
-    this.setSpeedGr(45);
+    this.setSpeedGr(55);
     this.setLuckGr(25);
-    this.setDefGr(55);
+    this.setDefGr(45);
     this.setResGr(30);
 
     this.setStrCap(29);

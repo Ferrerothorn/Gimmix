@@ -126,14 +126,14 @@ public class List {
 				System.out.println();
 				double initialStDev = calcStDev(arena);
 
-				String weaponPreference = getWeaponMetagame(arena);
-				System.out.println("The metagame is trending towards " + weaponPreference + ".");
+				String mostCommonWeapon = getWeaponMetagame(arena);
+				System.out.println("The metagame is trending towards " + mostCommonWeapon + ".");
 
 				boolean foundNewGuy = false;
 
 				ArrayList<Weapon> armory = new ArrayList<Weapon>();
-				
-				populateArmory(weaponPreference, armory);
+
+				populateArmory(mostCommonWeapon, armory);
 
 				while (!foundNewGuy) {
 					System.out.println("The target to beat is " + initialStDev + ".");
@@ -344,11 +344,28 @@ public class List {
 		generateGrowthRates(r);
 		generateCaps(r);
 
+		if (skillBase > strBase && skillCap < strCap) {
+			generateNewUnitStats();
+		}
+		if (strBase > skillBase && strCap < skillCap) {
+			generateNewUnitStats();
+		}
+		if ((luckBase >= strBase || luckBase >= skillBase || luckBase >= speedBase || luckBase >= defBase
+				|| luckBase >= resBase)
+				&& (luckGr < strGr || luckGr < skillGr || luckGr < speedGr || luckGr < defGr || luckGr < resGr)) {
+			generateNewUnitStats();
+		}
+		if (skillGr > speedGr && speedCap > skillCap) {
+			generateNewUnitStats();
+		}
+		if (strGr > defGr && defCap > strCap) {
+			generateNewUnitStats();
+		}
 		if (skillBase > strBase && skillBase > speedBase && (skillGr < strGr || skillGr < speedGr)) {
 			generateNewUnitStats();
 		}
 		if (strBase > speedBase && speedGr > strGr) {
-				generateNewUnitStats();
+			generateNewUnitStats();
 		}
 		if (strBase > skillBase && skillGr > strGr) {
 			generateNewUnitStats();
@@ -519,7 +536,7 @@ public class List {
 			// System.out.println("We have our winner! " + victor.getName() + "
 			// the Lv" + victor.getLv() + " "
 			// + victor.getJob() + "!");
-		//	System.out.println(maxArenaSize - (maxArenaSize - arena.size()));
+			// System.out.println(maxArenaSize - (maxArenaSize - arena.size()));
 		}
 	}
 
@@ -552,18 +569,17 @@ public class List {
 			arena.add(new Assassin());
 
 			arena.add(new Entombed());
-			arena.add(new IceLightning());
 			arena.add(new FirePoison());
 			arena.add(new Noble());
 			arena.add(new Brigand());
 			arena.add(new Reaper());
 			arena.add(new SnapcasterMage());
-			arena.add(new BurnMage());
 			arena.add(new Saint());
 			arena.add(new Lancemaster());
 			arena.add(new Raider());
 			arena.add(new Crossbowman());
 			arena.add(new Gunslinger());
+			arena.add(new Page());
 
 		}
 		Collections.shuffle(arena);

@@ -18,13 +18,13 @@ public Brigand() {
     this.setDefBase(5);
     this.setResBase(2);
 
-    this.setHpGr(35);
+    this.setHpGr(30);
     this.setStrGr(40);
-    this.setSkillGr(25);
+    this.setSkillGr(35);
     this.setSpeedGr(75);
     this.setLuckGr(50);
     this.setDefGr(55);
-    this.setResGr(30);
+    this.setResGr(25);
 
     this.setStrCap(22);
     this.setSkillCap(26);
