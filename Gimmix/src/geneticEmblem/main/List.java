@@ -207,108 +207,30 @@ public class List {
 	private static void populateArmory(String weaponPreference, ArrayList<Weapon> armory) {
 		if (weaponPreference.equals("Axe")) {
 			armory.add(new IronSword());
-			armory.add(new Lightning());
-			armory.add(new Shine());
-			armory.add(new Fire());
 			armory.add(new SteelSword());
-			armory.add(new Thunder());
-			armory.add(new Flux());
-			armory.add(new DivineShield());
-			armory.add(new SharpClaw());
-			armory.add(new SteelBow());
-			armory.add(new IronBow());
 			armory.add(new IronGun());
 		} else if (weaponPreference.equals("Sword")) {
 			armory.add(new IronLance());
-			armory.add(new Lightning());
 			armory.add(new IronGun());
-			armory.add(new Shine());
-			armory.add(new Fire());
-			armory.add(new Thunder());
-			armory.add(new Flux());
-			armory.add(new DivineShield());
-			armory.add(new SharpClaw());
-			armory.add(new SteelBow());
-			armory.add(new IronBow());
 		} else if (weaponPreference.equals("Lance")) {
 			armory.add(new IronAxe());
-			armory.add(new Lightning());
 			armory.add(new IronGun());
-			armory.add(new Shine());
-			armory.add(new Fire());
-			armory.add(new Thunder());
-			armory.add(new Flux());
-			armory.add(new DivineShield());
-			armory.add(new SharpClaw());
-			armory.add(new SteelBow());
-			armory.add(new IronBow());
 		} else if (weaponPreference.equals("Dark")) {
-			armory.add(new IronAxe());
-			armory.add(new IronLance());
-			armory.add(new SteelSword());
 			armory.add(new IronGun());
-			armory.add(new IronSword());
-			armory.add(new Lightning());
 			armory.add(new Shine());
-			armory.add(new DivineShield());
-			armory.add(new SharpClaw());
-			armory.add(new SteelBow());
-			armory.add(new IronBow());
+			armory.add(new Lightning());
 		} else if (weaponPreference.equals("Light")) {
-			armory.add(new IronAxe());
-			armory.add(new IronLance());
-			armory.add(new IronSword());
-			armory.add(new SteelSword());
-			armory.add(new DivineShield());
-			armory.add(new SharpClaw());
-			armory.add(new SteelBow());
-			armory.add(new IronBow());
 			armory.add(new Fire());
 			armory.add(new Thunder());
 		} else if (weaponPreference.equals("Anima")) {
 			armory.add(new Flux());
-			armory.add(new IronAxe());
-			armory.add(new IronLance());
-			armory.add(new IronSword());
-			armory.add(new DivineShield());
-			armory.add(new SteelSword());
-			armory.add(new SharpClaw());
-			armory.add(new SteelBow());
-			armory.add(new IronBow());
 		} else if (weaponPreference.equals("Claw")) {
-			armory.add(new IronAxe());
-			armory.add(new IronLance());
-			armory.add(new IronSword());
-			armory.add(new Lightning());
-			armory.add(new SteelSword());
-			armory.add(new Shine());
-			armory.add(new Flux());
-			armory.add(new Fire());
-			armory.add(new Thunder());
 			armory.add(new SteelBow());
 			armory.add(new IronBow());
 		} else if (weaponPreference.equals("Shield")) {
-			armory.add(new IronAxe());
-			armory.add(new IronLance());
-			armory.add(new IronSword());
-			armory.add(new SteelSword());
-			armory.add(new Lightning());
-			armory.add(new Shine());
-			armory.add(new Flux());
-			armory.add(new Fire());
-			armory.add(new Thunder());
 			armory.add(new SharpClaw());
 		} else if (weaponPreference.equals("Bow")) {
 			armory.add(new DivineShield());
-			armory.add(new IronAxe());
-			armory.add(new IronLance());
-			armory.add(new IronSword());
-			armory.add(new SteelSword());
-			armory.add(new Lightning());
-			armory.add(new Shine());
-			armory.add(new Flux());
-			armory.add(new Fire());
-			armory.add(new Thunder());
 		} else {
 			armory.add(new IronGun());
 		}
