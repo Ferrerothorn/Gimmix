@@ -127,7 +127,7 @@ public class List {
 				double initialStDev = calcStDev(arena);
 
 				String weaponPreference = getWeaponMetagame(arena);
-				System.out.println("The metagame is tending towards " + weaponPreference + ".");
+				System.out.println("The metagame is trending towards " + weaponPreference + ".");
 
 				boolean foundNewGuy = false;
 
@@ -344,6 +344,21 @@ public class List {
 		generateGrowthRates(r);
 		generateCaps(r);
 
+		if (skillBase > strBase && skillBase > speedBase && (skillGr < strGr || skillGr < speedGr)) {
+			generateNewUnitStats();
+		}
+		if (strBase > speedBase && speedGr > strGr) {
+				generateNewUnitStats();
+		}
+		if (strBase > skillBase && skillGr > strGr) {
+			generateNewUnitStats();
+		}
+		if (speedBase > defBase && defGr > speedGr) {
+			generateNewUnitStats();
+		}
+		if (speedBase > resBase && resGr > speedGr) {
+			generateNewUnitStats();
+		}
 		if ((defBase > resBase && resGr > defGr) || (resBase > defBase && defGr > resGr)) {
 			generateNewUnitStats();
 		}
@@ -353,6 +368,7 @@ public class List {
 		if ((defBase > resBase && resCap > defCap) || (resBase > defBase && defCap > resCap)) {
 			generateNewUnitStats();
 		}
+
 	}
 
 	private static void generateCaps(Random r) {
