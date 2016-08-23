@@ -9,6 +9,7 @@ public class HealStaff extends Weapon {
 		super.setPhys(false);
 		super.setCrit(5);
 		super.addTrait("Lifelink");
+		super.setName("HealStaff");
 	}
 
 }

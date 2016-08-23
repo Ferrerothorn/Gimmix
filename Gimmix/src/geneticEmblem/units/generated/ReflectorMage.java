@@ -1,5 +1,6 @@
-package geneticEmblem.units.ootb;
+package geneticEmblem.units.generated;
 
+import geneticEmblem.units.ootb.Unit;
 import geneticEmblem.weapons.*;
 
 public class ReflectorMage extends Unit {

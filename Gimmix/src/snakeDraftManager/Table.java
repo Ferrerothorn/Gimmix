@@ -3,8 +3,6 @@ package snakeDraftManager;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Table {
 
@@ -29,6 +27,7 @@ public class Table {
 	}
 	
 	private static void capturePlayers() throws Exception {
+		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 		try {
 			System.out.println("Enter the number of players in this draft!");
@@ -41,6 +40,7 @@ public class Table {
 		}
 	}
 	
+	@SuppressWarnings("resource")
 	private static void generatePlayers(int numberOfPlayers) {
 		Scanner scanner = new Scanner(System.in);
 		for (int i = 0; i < numberOfPlayers && i <=8; i++) {
@@ -77,6 +77,7 @@ public class Table {
 	}
 
 	private static void askPlayerToPickOne(Player p, ArrayList<String> tier) {
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		try {
 			System.out.println(p.getName() + ", your picks are as follows! (Already in your arsenal: " + p.getPoolAsString() +")");

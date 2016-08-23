@@ -7,6 +7,7 @@ public class Flux extends Weapon {
 		super.setPow(7);
 		super.setAcc(80);
 		super.setPhys(false);
+		super.setName("Flux");
 	}
 
 }

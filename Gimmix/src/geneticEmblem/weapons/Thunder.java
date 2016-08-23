@@ -8,6 +8,7 @@ public class Thunder extends Weapon {
 		super.setAcc(80);
 		super.setPhys(false);
 		super.setCrit(5);
+		super.setName("Thunder");
 	}
 
 }

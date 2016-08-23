@@ -36,6 +36,7 @@ public class Main {
 		return s;
 	}
 
+	@SuppressWarnings("resource")
 	private static void pollForPairings() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("-=-=-=-BATTLES IN PROGRESS-=-=-=-");

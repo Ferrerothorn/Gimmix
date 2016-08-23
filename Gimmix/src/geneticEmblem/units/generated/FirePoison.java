@@ -11,11 +11,11 @@ public FirePoison() {
     this.setHpBase(20);
     this.setCurrentHp(this.getHpBase());
     this.setStrBase(9);
-    this.setSkillBase(9);
+    this.setSkillBase(7);
     this.setSpeedBase(9);
     this.setLuckBase(3);
-    this.setDefBase(2);
-    this.setResBase(5);
+    this.setDefBase(3);
+    this.setResBase(6);
 
     this.setHpGr(50);
     this.setStrGr(55);

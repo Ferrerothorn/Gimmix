@@ -9,7 +9,7 @@ public class Berserker extends Unit {
 		this.setWeapon(new IronAxe());
 		this.setHpBase(26);
 		this.setCurrentHp(this.getHpBase());
-		this.setBaseCrit(15);
+		this.setBaseCrit(10);
 
 		this.setStrBase(10);
 		this.setSkillBase(7);
