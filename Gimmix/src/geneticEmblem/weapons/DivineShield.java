@@ -10,5 +10,5 @@ public class DivineShield extends Weapon {
 		super.addTrait("Shield");
 		super.setName("DivineShield");
 	}
-	
+
 }

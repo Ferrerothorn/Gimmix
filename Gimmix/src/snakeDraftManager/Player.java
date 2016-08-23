@@ -6,7 +6,7 @@ public class Player {
 
 	public String name;
 	private ArrayList<String> pPool = new ArrayList<String>();
-	
+
 	public Player(String myName) {
 		name = myName;
 	}
@@ -20,7 +20,7 @@ public class Player {
 	}
 
 	public String getPoolAsString() {
-		return  pPool.toString();
-	}	
+		return pPool.toString();
+	}
 
 }

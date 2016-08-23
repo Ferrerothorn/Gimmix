@@ -1,6 +1,6 @@
 package geneticEmblem.units.ootb;
-import geneticEmblem.weapons.*;
 
+import geneticEmblem.weapons.*;
 
 public class MageKnight extends Unit {
 

@@ -10,22 +10,22 @@ public class Table {
 	public static ArrayList<String> ouPool = new ArrayList<String>();
 	public static ArrayList<String> blPool = new ArrayList<String>();
 	public static ArrayList<String> uuPool = new ArrayList<String>();
-	
+
 	static int ouLimit = 0;
 	static int uuLimit = 0;
 	static int blLimit = 0;
 
-	public static void main (String[] args) throws Exception {
-		
+	public static void main(String[] args) throws Exception {
+
 		fillPools();
 		capturePlayers();
 		draftManager(ouPool, ouLimit, "OU");
 		draftManager(uuPool, uuLimit, "UU");
 		draftManager(blPool, blLimit, "BL");
 		printEachPlayersArsenal();
-		
+
 	}
-	
+
 	private static void capturePlayers() throws Exception {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
@@ -33,18 +33,17 @@ public class Table {
 			System.out.println("Enter the number of players in this draft!");
 			int numberOfPlayers = input.nextInt();
 			generatePlayers(numberOfPlayers);
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			System.out.println("I said *number*, idiot.");
 			capturePlayers();
 		}
 	}
-	
+
 	@SuppressWarnings("resource")
 	private static void generatePlayers(int numberOfPlayers) {
 		Scanner scanner = new Scanner(System.in);
-		for (int i = 0; i < numberOfPlayers && i <=8; i++) {
-			System.out.println("Enter the name of the player in position " + (i+1) + ".");
+		for (int i = 0; i < numberOfPlayers && i <= 8; i++) {
+			System.out.println("Enter the name of the player in position " + (i + 1) + ".");
 			String pName = scanner.nextLine();
 			players.add(new Player(pName));
 		}
@@ -53,11 +52,15 @@ public class Table {
 	private static void draftManager(ArrayList<String> pool, int amountFromTier, String string) {
 		System.out.println("Time to draft " + string + ".");
 		System.out.println();
-		
+
 		int maxFromTier = 1;
-		if (string.equals("OU")) { maxFromTier = 5; }
-		if (string.equals("UU")) { maxFromTier = 7; }
-		
+		if (string.equals("OU")) {
+			maxFromTier = 5;
+		}
+		if (string.equals("UU")) {
+			maxFromTier = 7;
+		}
+
 		while (amountFromTier < maxFromTier) {
 			for (int i = 0; i < players.size(); i++) {
 				printEachPlayersArsenal();
@@ -80,13 +83,13 @@ public class Table {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		try {
-			System.out.println(p.getName() + ", your picks are as follows! (Already in your arsenal: " + p.getPoolAsString() +")");
+			System.out.println(p.getName() + ", your picks are as follows! (Already in your arsenal: "
+					+ p.getPoolAsString() + ")");
 			printPicks(tier);
 			System.out.println("Which do you want?");
 			int pick = sc.nextInt();
-			p.claimsPick(tier.remove(pick-1));
-		}
-		catch (Exception e) {
+			p.claimsPick(tier.remove(pick - 1));
+		} catch (Exception e) {
 			System.out.println("Well that's just wrong, you ham-fisted waste of oxygen.");
 			askPlayerToPickOne(p, tier);
 		}
@@ -96,34 +99,33 @@ public class Table {
 		String line = "";
 		if (tier.size() % 2 == 0) {
 			for (int i = 0; i < tier.size(); i++) {
-				line += rpad("" + (i+1) + ") " + tier.get(i), 65);
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 65);
 				i++;
-				line += "" + (i+1) + ") " + tier.get(i);
+				line += "" + (i + 1) + ") " + tier.get(i);
 				System.out.println(line);
 				line = "";
 			}
-		}
-		else {
-			for (int i = 0; i < tier.size()-1; i++) {
-				line += rpad("" + (i+1) + ") " + tier.get(i), 65);
+		} else {
+			for (int i = 0; i < tier.size() - 1; i++) {
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 65);
 				i++;
-				line += "" + (i+1) + ") " + tier.get(i);
+				line += "" + (i + 1) + ") " + tier.get(i);
 				System.out.println(line);
 				line = "";
 			}
-			line += "" + (tier.size()) + ") " + tier.get(tier.size()-1);
+			line += "" + (tier.size()) + ") " + tier.get(tier.size() - 1);
 			System.out.println(line);
 		}
-	} 
-	
-	public static String rpad(String inStr, int finalLength)
-	{
-	    return (inStr + "                                                                                                                          "
-	        ).substring(0, finalLength);
+	}
+
+	public static String rpad(String inStr, int finalLength) {
+		return (inStr
+				+ "                                                                                                                          ")
+						.substring(0, finalLength);
 	}
 
 	private static void fillPools() {
-		
+
 		ouPool.add("Amoonguss");
 		ouPool.add("Azumarill");
 		ouPool.add("Bisharp");
@@ -188,7 +190,7 @@ public class Table {
 		blPool.add("Victini");
 		blPool.add("Volcarona");
 		blPool.add("Zygarde");
-		
+
 		uuPool.add("Absol (*)");
 		uuPool.add("Aerodactyl (*)");
 		uuPool.add("Aggron (*)");
@@ -249,7 +251,7 @@ public class Table {
 		uuPool.add("Umbreon");
 		uuPool.add("Vaporeon");
 		uuPool.add("Whimsicott");
-		
+
 		uuPool.add("Abomasnow");
 		uuPool.add("Dragalge");
 		uuPool.add("Durant");
@@ -267,6 +269,6 @@ public class Table {
 		uuPool.add("Venomoth");
 		uuPool.add("Yanmega");
 		uuPool.add("Zoroark");
-		}
-	
+	}
+
 }

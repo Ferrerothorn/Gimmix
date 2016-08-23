@@ -277,8 +277,8 @@ public abstract class Unit {
 	public void setJob(String s) {
 		job = s;
 	}
-	
-	public void addTrait (String trait) {
+
+	public void addTrait(String trait) {
 		traits.add(trait);
 	}
 
@@ -291,8 +291,7 @@ public abstract class Unit {
 			thisPower += target.getResBase();
 		}
 
-		if (this.weapon.getTraits().contains("Arrow")
-				&& (target.getTraits().contains("Flying"))) {
+		if (this.weapon.getTraits().contains("Arrow") && (target.getTraits().contains("Flying"))) {
 			thisPower += 2 * weapon.getPow();
 		}
 
@@ -320,24 +319,25 @@ public abstract class Unit {
 		if (this.getJob().equals("Sniper")) {
 			int sureStrike = r.nextInt(100);
 			if (sureStrike <= this.getSkillBase()) {
-			//	System.out.println("SURE STRIKE");
+				// System.out.println("SURE STRIKE");
 				overallHitRate = 999;
 			}
 		}
 
 		if (hit < overallHitRate) {
-	//		System.out.println("And hits, for " + hitDamage + " damage! " + "[" + target.getName() + ": "
-		//			+ target.getCurrentHp() + "/" + target.getHpBase() + "]");
+			// System.out.println("And hits, for " + hitDamage + " damage! " +
+			// "[" + target.getName() + ": "
+			// + target.getCurrentHp() + "/" + target.getHpBase() + "]");
 
 			int isCrit = r.nextInt(100);
 			if (isCrit <= thisCrit) {
-		//		System.out.println("CRITICAL!");
+				// System.out.println("CRITICAL!");
 				hitDamage *= 3;
 			}
 			if (target.getJob().equals("General")) {
 				int greatShield = r.nextInt(100);
 				if (greatShield <= target.getSkillBase()) {
-			//		System.out.println("GREAT SHIELD!");
+					// System.out.println("GREAT SHIELD!");
 					hitDamage = 0;
 				}
 			}
@@ -345,7 +345,7 @@ public abstract class Unit {
 			if (this.getJob().equals("Assassin")) {
 				int instaKill = r.nextInt(100);
 				if (instaKill <= this.getSkillBase()) {
-		//			System.out.println("KILLING BLOW!");
+					// System.out.println("KILLING BLOW!");
 					hitDamage = target.getCurrentHp();
 				}
 			}
@@ -358,7 +358,7 @@ public abstract class Unit {
 				currentHp = this.getHpBase();
 			}
 		} else {
-	//		System.out.println("But misses...");
+			// System.out.println("But misses...");
 		}
 	}
 
@@ -368,7 +368,9 @@ public abstract class Unit {
 
 	private int triangleDamageBonus(Unit target) {
 
-		if (this.weapon.getTrinity().equals("Gun") && (target.weapon.getTrinity().equals("Lance") || target.weapon.getTrinity().equals("Axe") || target.weapon.getTrinity().equals("Sword") || target.weapon.getTrinity().equals("Dark"))) {
+		if (this.weapon.getTrinity().equals("Gun")
+				&& (target.weapon.getTrinity().equals("Lance") || target.weapon.getTrinity().equals("Axe")
+						|| target.weapon.getTrinity().equals("Sword") || target.weapon.getTrinity().equals("Dark"))) {
 			return 1;
 		}
 		if (this.weapon.getTrinity().equals("Bow") && target.weapon.getTrinity().equals("Claw")) {
@@ -425,7 +427,9 @@ public abstract class Unit {
 		if (this.weapon.getTrinity().equals("Bow") && target.weapon.getTrinity().equals("Shield")) {
 			return -1;
 		}
-		if (this.weapon.getTrinity().equals("Gun") && (target.weapon.getTrinity().equals("Anima") || target.weapon.getTrinity().equals("Light") || target.weapon.getTrinity().equals("Bow") || target.weapon.getTrinity().equals("Shield") )  ) {
+		if (this.weapon.getTrinity().equals("Gun")
+				&& (target.weapon.getTrinity().equals("Anima") || target.weapon.getTrinity().equals("Light")
+						|| target.weapon.getTrinity().equals("Bow") || target.weapon.getTrinity().equals("Shield"))) {
 			return -1;
 		}
 		return 0;
@@ -433,7 +437,9 @@ public abstract class Unit {
 
 	private int triangleAccuracyBonus(Unit target) {
 
-		if (this.weapon.getTrinity().equals("Gun") && (target.weapon.getTrinity().equals("Lance") || target.weapon.getTrinity().equals("Axe") || target.weapon.getTrinity().equals("Sword") || target.weapon.getTrinity().equals("Dark"))) {
+		if (this.weapon.getTrinity().equals("Gun")
+				&& (target.weapon.getTrinity().equals("Lance") || target.weapon.getTrinity().equals("Axe")
+						|| target.weapon.getTrinity().equals("Sword") || target.weapon.getTrinity().equals("Dark"))) {
 			return 15;
 		}
 		if (this.weapon.getTrinity().equals("Bow") && target.weapon.getTrinity().equals("Claw")) {
@@ -463,7 +469,9 @@ public abstract class Unit {
 		if (this.weapon.getTrinity().equals("Dark") && target.weapon.getTrinity().equals("Anima")) {
 			return 15;
 		}
-		if (this.weapon.getTrinity().equals("Gun") && (target.weapon.getTrinity().equals("Anima") || target.weapon.getTrinity().equals("Light") || target.weapon.getTrinity().equals("Bow") || target.weapon.getTrinity().equals("Shield") )  ) {
+		if (this.weapon.getTrinity().equals("Gun")
+				&& (target.weapon.getTrinity().equals("Anima") || target.weapon.getTrinity().equals("Light")
+						|| target.weapon.getTrinity().equals("Bow") || target.weapon.getTrinity().equals("Shield"))) {
 			return -15;
 		}
 		if (this.weapon.getTrinity().equals("Sword") && target.weapon.getTrinity().equals("Lance")) {
@@ -502,7 +510,7 @@ public abstract class Unit {
 		}
 		return false;
 	}
-	
+
 	public Unit fight(Unit opponent) {
 
 		// System.out.println("Behold, " + this.getName() + " the Lv" +
@@ -514,8 +522,8 @@ public abstract class Unit {
 		if (this.getJob().equals(opponent.getJob())) {
 			int thistotal = this.getHpBase() + this.getStrBase() + this.getSkillBase() + this.getLuckBase()
 					+ this.getSpeedBase() + this.getDefBase() + this.getResBase();
-			int unit2total = opponent.getHpBase() + opponent.getStrBase() + opponent.getSkillBase() + opponent.getLuckBase()
-					+ opponent.getSpeedBase() + opponent.getDefBase() + opponent.getResBase();
+			int unit2total = opponent.getHpBase() + opponent.getStrBase() + opponent.getSkillBase()
+					+ opponent.getLuckBase() + opponent.getSpeedBase() + opponent.getDefBase() + opponent.getResBase();
 			if (unit2total > thistotal) {
 				victor = opponent;
 			} else {
@@ -555,8 +563,9 @@ public abstract class Unit {
 			} else {
 				int thistotal = this.getHpBase() + this.getStrBase() + this.getSkillBase() + this.getLuckBase()
 						+ this.getSpeedBase() + this.getDefBase() + this.getResBase();
-				int unit2total = opponent.getHpBase() + opponent.getStrBase() + opponent.getSkillBase() + opponent.getLuckBase()
-						+ opponent.getSpeedBase() + opponent.getDefBase() + opponent.getResBase();
+				int unit2total = opponent.getHpBase() + opponent.getStrBase() + opponent.getSkillBase()
+						+ opponent.getLuckBase() + opponent.getSpeedBase() + opponent.getDefBase()
+						+ opponent.getResBase();
 				if (unit2total > thistotal) {
 					victor = opponent;
 				} else {
@@ -614,12 +623,12 @@ public abstract class Unit {
 		}
 		return false;
 	}
-	
+
 	public void printDetailedUnitDescription(int i) {
 		System.out.println("" + i + ": " + this.getName() + " the " + this.getJob() + ". " + "Lv: " + this.getLv()
 				+ ", HP: " + this.getHpBase() + ", Str: " + this.getStrBase() + ", Skill: " + this.getSkillBase()
 				+ ", Speed: " + this.getSpeedBase() + ", Luck: " + this.getLuckBase() + ", Def: " + this.getDefBase()
 				+ ", Res: " + this.getResBase() + ".");
 	}
-	
+
 }

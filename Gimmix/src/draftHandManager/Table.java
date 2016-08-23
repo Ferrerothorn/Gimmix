@@ -12,21 +12,21 @@ public class Table {
 	static ArrayList<ArrayList<String>> packs = new ArrayList<ArrayList<String>>();
 	static Scanner sc = new Scanner(System.in);
 	static int numberOfPlayers;
-	
-	public static void main (String[] args) {
-		
+
+	public static void main(String[] args) {
+
 		fillPools();
 		System.out.println("How many players in this draft?");
 		numberOfPlayers = sc.nextInt();
-		
+
 		createPlayers(numberOfPlayers);
-		//Collections.shuffle(players);
-		
+		// Collections.shuffle(players);
+
 		trimPoolsToFitPlayers();
-		
+
 		packs = generatePacks(ouPool);
 		distributePacks(packs);
-		
+
 		while (aPackContainsSomething()) {
 			for (Player p : players) {
 				askPlayerToPickOne(p);
@@ -34,12 +34,12 @@ public class Table {
 			rotatePacks();
 			printEachPlayersArsenal();
 		}
-		
+
 		System.out.println("Now, on to UU.");
-		
+
 		packs = generatePacks(uuPool);
 		distributePacks(packs);
-		
+
 		while (aPackContainsSomething()) {
 			for (Player p : players) {
 				askPlayerToPickOne(p);
@@ -51,10 +51,10 @@ public class Table {
 
 	private static void rotatePacks() {
 		ArrayList<String> firstGuyPack = players.get(0).getHand();
-		for (int i = 1; i< players.size(); i++) {
-			players.get(i-1).giveHand(players.get(i).getHand());
+		for (int i = 1; i < players.size(); i++) {
+			players.get(i - 1).giveHand(players.get(i).getHand());
 		}
-		players.get(players.size()-1).setPack(firstGuyPack);
+		players.get(players.size() - 1).setPack(firstGuyPack);
 	}
 
 	private static void distributePacks(ArrayList<ArrayList<String>> packs2) {
@@ -83,65 +83,65 @@ public class Table {
 	}
 
 	private static void askPlayerToPickOne(Player p) {
-			System.out.println(p.getName() + ", your picks are as follows! (Already in your arsenal: " + p.getDeckAsString() +")");
-			p.printPicks();
-			System.out.println("Which do you want?");
-			int pick = sc.nextInt();
-			p.claimPick(pick);
+		System.out.println(
+				p.getName() + ", your picks are as follows! (Already in your arsenal: " + p.getDeckAsString() + ")");
+		p.printPicks();
+		System.out.println("Which do you want?");
+		int pick = sc.nextInt();
+		p.claimPick(pick);
 	}
 
 	private static ArrayList<ArrayList<String>> generatePacks(ArrayList<String> pool) {
 		ArrayList<ArrayList<String>> everyonesPacks = new ArrayList<ArrayList<String>>();
-		
+
 		ArrayList<String> p1pix = new ArrayList<String>();
 		everyonesPacks.add(p1pix);
-		if (numberOfPlayers > 1){
+		if (numberOfPlayers > 1) {
 			ArrayList<String> p2pix = new ArrayList<String>();
 			everyonesPacks.add(p2pix);
 		}
-		if (numberOfPlayers > 2){
+		if (numberOfPlayers > 2) {
 			ArrayList<String> p3pix = new ArrayList<String>();
 			everyonesPacks.add(p3pix);
 		}
-		if (numberOfPlayers > 3){
+		if (numberOfPlayers > 3) {
 			ArrayList<String> p4pix = new ArrayList<String>();
 			everyonesPacks.add(p4pix);
 		}
-		if (numberOfPlayers > 4){
+		if (numberOfPlayers > 4) {
 			ArrayList<String> p5pix = new ArrayList<String>();
 			everyonesPacks.add(p5pix);
 		}
-		if (numberOfPlayers > 5){
+		if (numberOfPlayers > 5) {
 			ArrayList<String> p6pix = new ArrayList<String>();
 			everyonesPacks.add(p6pix);
 		}
-		if (numberOfPlayers > 6){
+		if (numberOfPlayers > 6) {
 			ArrayList<String> p7pix = new ArrayList<String>();
 			everyonesPacks.add(p7pix);
 		}
-		if (numberOfPlayers > 7){
+		if (numberOfPlayers > 7) {
 			ArrayList<String> p8pix = new ArrayList<String>();
 			everyonesPacks.add(p8pix);
 		}
-		if (numberOfPlayers > 8){
+		if (numberOfPlayers > 8) {
 			ArrayList<String> p9pix = new ArrayList<String>();
 			everyonesPacks.add(p9pix);
 		}
-		if (numberOfPlayers > 9){
+		if (numberOfPlayers > 9) {
 			ArrayList<String> p10pix = new ArrayList<String>();
 			everyonesPacks.add(p10pix);
 		}
-			
+
 		Collections.shuffle(pool);
 		while (pool.size() > 0) {
 			for (ArrayList<String> pack : everyonesPacks) {
 				pack.add(pool.remove(0));
 			}
 		}
-		
+
 		return everyonesPacks;
 	}
-
 
 	private static void createPlayers(int playerNo) {
 		@SuppressWarnings("resource")
@@ -153,34 +153,30 @@ public class Table {
 		}
 	}
 
-
 	private static void trimPoolsToFitPlayers() {
 		Collections.shuffle(ouPool);
 		Collections.shuffle(uuPool);
-		
+
 		boolean fits = false;
-		while(!fits) {
-			
-			if ( ouPool.size() % numberOfPlayers  == 0 ) {
+		while (!fits) {
+
+			if (ouPool.size() % numberOfPlayers == 0) {
 				fits = true;
-			}
-			else {
+			} else {
 				ouPool.remove(0);
 			}
 		}
-		
+
 		fits = false;
-		while(!fits) {
-			
-			if ( uuPool.size() % numberOfPlayers  == 0 ) {
+		while (!fits) {
+
+			if (uuPool.size() % numberOfPlayers == 0) {
 				fits = true;
-			}
-			else {
+			} else {
 				uuPool.remove(0);
 			}
 		}
 	}
-
 
 	private static void fillPools() {
 		ouPool.add("Amoonguss");
@@ -232,22 +228,22 @@ public class Table {
 		ouPool.add("Weavile");
 		ouPool.add("Zapdos");
 
-//		blPool.add("Alakazam (*)");
-//		blPool.add("Altaria (*)");
-//		blPool.add("Diggersby");
-//		blPool.add("Gallade (*)");
-//		blPool.add("Gyarados (*)");
-//		blPool.add("Hawlucha");
-//		blPool.add("Heracross (*)");
-//		blPool.add("Pidgeot (*)");
-//		blPool.add("Scolipede");
-//		blPool.add("Staraptor");
-//		blPool.add("Terrakion");
-//		blPool.add("Togekiss");
-//		blPool.add("Victini");
-//		blPool.add("Volcarona");
-//		blPool.add("Zygarde");
-		
+		// blPool.add("Alakazam (*)");
+		// blPool.add("Altaria (*)");
+		// blPool.add("Diggersby");
+		// blPool.add("Gallade (*)");
+		// blPool.add("Gyarados (*)");
+		// blPool.add("Hawlucha");
+		// blPool.add("Heracross (*)");
+		// blPool.add("Pidgeot (*)");
+		// blPool.add("Scolipede");
+		// blPool.add("Staraptor");
+		// blPool.add("Terrakion");
+		// blPool.add("Togekiss");
+		// blPool.add("Victini");
+		// blPool.add("Volcarona");
+		// blPool.add("Zygarde");
+
 		ouPool.add("Alakazam (*)");
 		ouPool.add("Altaria (*)");
 		ouPool.add("Diggersby");
@@ -263,7 +259,7 @@ public class Table {
 		ouPool.add("Victini");
 		ouPool.add("Volcarona");
 		ouPool.add("Zygarde");
-		
+
 		uuPool.add("Absol (*)");
 		uuPool.add("Aerodactyl (*)");
 		uuPool.add("Aggron (*)");
@@ -324,7 +320,7 @@ public class Table {
 		uuPool.add("Umbreon");
 		uuPool.add("Vaporeon");
 		uuPool.add("Whimsicott");
-		
+
 		uuPool.add("Abomasnow");
 		uuPool.add("Dragalge");
 		uuPool.add("Durant");
@@ -342,6 +338,6 @@ public class Table {
 		uuPool.add("Venomoth");
 		uuPool.add("Yanmega");
 		uuPool.add("Zoroark");
-		}
-	
+	}
+
 }

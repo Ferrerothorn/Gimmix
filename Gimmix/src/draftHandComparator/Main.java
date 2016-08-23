@@ -9,19 +9,19 @@ public class Main {
 	public static ArrayList<Entry> p1hand = new ArrayList<Entry>();
 	public static ArrayList<Entry> p2hand = new ArrayList<Entry>();
 	public static ArrayList<Pairing> pairings = new ArrayList<Pairing>();
-	
+
 	public static void main(String[] args) {
 		fillHands();
-		
+
 		for (Entry s : p1hand) {
 			for (Entry s2 : p2hand) {
 				pairings.add(new Pairing(s, s2));
 			}
 		}
 		Collections.shuffle(pairings);
-		
+
 		pollForPairings();
-			
+
 		Collections.sort(p1hand);
 		Collections.sort(p2hand);
 		System.out.println(stringify(p1hand));
@@ -58,14 +58,13 @@ public class Main {
 				} else if (winner == 2) {
 					p.getP2().win();
 				} else {
-					
+
 				}
 			} catch (Exception e) {
 				System.out.println("Illegal input. Please enter a NUMBER.");
 			}
 		}
-		}
-
+	}
 
 	private static void printAllPairings() {
 		int index = 0;
@@ -90,24 +89,20 @@ public class Main {
 		p1hand.add(new Entry("Heliolisk"));
 		p1hand.add(new Entry("Salamence"));
 		p1hand.add(new Entry("Diggersby"));
-		
-		
-		
-		p2hand.add(new Entry("Rotom"));	
-		p2hand.add(new Entry("Venusaur"));	
-		p2hand.add(new Entry("Garchomp"));	
-		p2hand.add(new Entry("Bisharp"));	
-		p2hand.add(new Entry("Dragonite"));	
-		p2hand.add(new Entry("Porygon2"));	
-		p2hand.add(new Entry("Conkeldurr"));	
-		p2hand.add(new Entry("Feraligatr"));	
-		p2hand.add(new Entry("Houndoom"));	
-		p2hand.add(new Entry("Cloyster"));	
-		p2hand.add(new Entry("Entei"));	
-		p2hand.add(new Entry("Metagross"));	
-		p2hand.add(new Entry("Volcarona"));	
+
+		p2hand.add(new Entry("Rotom"));
+		p2hand.add(new Entry("Venusaur"));
+		p2hand.add(new Entry("Garchomp"));
+		p2hand.add(new Entry("Bisharp"));
+		p2hand.add(new Entry("Dragonite"));
+		p2hand.add(new Entry("Porygon2"));
+		p2hand.add(new Entry("Conkeldurr"));
+		p2hand.add(new Entry("Feraligatr"));
+		p2hand.add(new Entry("Houndoom"));
+		p2hand.add(new Entry("Cloyster"));
+		p2hand.add(new Entry("Entei"));
+		p2hand.add(new Entry("Metagross"));
+		p2hand.add(new Entry("Volcarona"));
 	}
 
-	
-	
 }

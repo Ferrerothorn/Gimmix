@@ -1,7 +1,8 @@
 package swissRunner;
+
 import java.util.ArrayList;
 
-public class Player implements Comparable<Player> { 
+public class Player implements Comparable<Player> {
 
 	String name;
 	int score = 0;
@@ -31,7 +32,7 @@ public class Player implements Comparable<Player> {
 		}
 	}
 
-	public void recalculateOpps() { 
+	public void recalculateOpps() {
 		opps = 0;
 		for (Player p : previousRounds) {
 			opps += (double) p.victories.size() / p.previousRounds.size();

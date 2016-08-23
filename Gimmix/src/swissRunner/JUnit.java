@@ -1,11 +1,12 @@
 package swissRunner;
+
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class JUnit {
-	
+
 	public Tournament t = new Tournament();
 	public Player p1;
 	public Player p2;

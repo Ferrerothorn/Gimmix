@@ -1,4 +1,5 @@
 package swissRunner;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -19,11 +20,11 @@ public class Tournament {
 		playerCap++;
 	}
 
-	public int participants() { 
+	public int participants() {
 		return players.size();
 	}
 
-	public void newTourney() { 
+	public void newTourney() {
 		players.clear();
 	}
 
@@ -31,7 +32,7 @@ public class Tournament {
 		Collections.sort(ps);
 	}
 
-	public String rankingsToOneBigString() { 
+	public String rankingsToOneBigString() {
 		int i = players.size();
 		i--;
 		String output = "";
