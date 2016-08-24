@@ -22,14 +22,14 @@ public class SnapcasterMage extends Unit {
 
 		this.setHpGr(50);
 		this.setStrGr(55);
-		this.setSkillGr(20);
+		this.setSkillGr(30);
 		this.setSpeedGr(45);
-		this.setLuckGr(75);
+		this.setLuckGr(65);
 		this.setDefGr(40);
 		this.setResGr(25);
 
-		this.setStrCap(24);
-		this.setSkillCap(29);
+		this.setStrCap(29);
+		this.setSkillCap(24);
 		this.setSpeedCap(29);
 		this.setDefCap(25);
 		this.setResCap(20);

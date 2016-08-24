@@ -71,10 +71,6 @@ public abstract class Unit {
 		return HpCap;
 	}
 
-	public void setHpCap(int hpCap) {
-		HpCap = hpCap;
-	}
-
 	public int getStrCap() {
 		return StrCap;
 	}

@@ -123,17 +123,18 @@ public class List {
 				levelTheDudesTo(15, arena);
 				System.out.println("Commencing deathmatch.");
 				deathmatch(1024);
+				maxArenaSize = 1024;
 				System.out.println();
 				double initialStDev = calcStDev(arena);
 
-				String mostCommonWeapon = getWeaponMetagame(arena);
-				System.out.println("The metagame is trending towards " + mostCommonWeapon + ".");
+				String leastCommonWeapon = getWeaponMetagame(arena);
+				System.out.println("The metagame is too short on " + leastCommonWeapon + ".");
 
 				boolean foundNewGuy = false;
 
 				ArrayList<Weapon> armory = new ArrayList<Weapon>();
 
-				populateArmory(mostCommonWeapon, armory);
+				populateArmory(leastCommonWeapon, armory);
 
 				while (!foundNewGuy) {
 					System.out.println("The target to beat is " + initialStDev + ".");
@@ -154,6 +155,7 @@ public class List {
 
 					levelTheDudesTo(15, arena);
 					deathmatch(1024);
+					maxArenaSize = 1024;
 					double newStDev = calcStDev(arena);
 					System.out.println("The new balance measure is " + newStDev + ".");
 
@@ -196,6 +198,24 @@ public class List {
 				}
 				break;
 
+				
+			case 88:
+				System.out.println("Adding initial population to the arena.");
+				addEachClass(20000);
+				System.out.println("Leveling population up.");
+				levelTheDudesTo(15, arena);
+				System.out.println("Commencing deathmatch.");
+				deathmatch(1024);
+				Collections.shuffle(arena);
+				initialStDev = calcStDev(arena);
+				Unit mutated = arena.remove(0);
+				String mutatorClass = mutated.getJob();
+				arena.clear();
+				addEachClass(20000);
+				
+				
+				break;
+				
 			case 999:
 				on = false;
 				input.close();
@@ -206,41 +226,28 @@ public class List {
 
 	private static void populateArmory(String weaponPreference, ArrayList<Weapon> armory) {
 		if (weaponPreference.equals("Axe")) {
-			armory.add(new IronSword());
-			armory.add(new SteelSword());
-			armory.add(new IronGun());
-			armory.add(new Lightning());
-			armory.add(new Shine());
-		} else if (weaponPreference.equals("Sword")) {
-			armory.add(new IronLance());
-			armory.add(new IronGun());
-			armory.add(new Thunder());
-			armory.add(new Fire());
-		} else if (weaponPreference.equals("Lance")) {
 			armory.add(new IronAxe());
-			armory.add(new IronGun());
-			armory.add(new Flux());
-		} else if (weaponPreference.equals("Dark")) {
-			armory.add(new IronGun());
-			armory.add(new Shine());
-			armory.add(new Lightning());
-			armory.add(new IronLance());
-		} else if (weaponPreference.equals("Light")) {
-			armory.add(new Fire());
-			armory.add(new IronLance());
-			armory.add(new Thunder());
+		} else if (weaponPreference.equals("Sword")) {
 			armory.add(new IronSword());
 			armory.add(new SteelSword());
-		} else if (weaponPreference.equals("Anima")) {
-			armory.add(new Flux());
+		} else if (weaponPreference.equals("Lance")) {
 			armory.add(new IronLance());
+		} else if (weaponPreference.equals("Dark")) {
+			armory.add(new Flux());
+		} else if (weaponPreference.equals("Light")) {
+			armory.add(new Lightning());
+			armory.add(new Shine());
+		} else if (weaponPreference.equals("Anima")) {
+			armory.add(new Fire());
+			armory.add(new Thunder());
 		} else if (weaponPreference.equals("Claw")) {
+			armory.add(new SharpClaw());
+		} else if (weaponPreference.equals("Shield")) {
+			armory.add(new DivineShield());
+			armory.add(new IronShield());
+		} else if (weaponPreference.equals("Bow")) {
 			armory.add(new SteelBow());
 			armory.add(new IronBow());
-		} else if (weaponPreference.equals("Shield")) {
-			armory.add(new SharpClaw());
-		} else if (weaponPreference.equals("Bow")) {
-			armory.add(new DivineShield());
 		} else {
 			armory.add(new IronGun());
 		}
@@ -292,60 +299,54 @@ public class List {
 				break;
 			}
 		}
-		if (sword == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw, gun)) {
+		
+		System.out.println("Sword: " + sword);
+		System.out.println("Lance:" + lance);
+		System.out.println("Axe: " + axe);
+		System.out.println("Anima: " + anima);
+		System.out.println("Light: " + light);
+		System.out.println("Dark: " + dark);
+		System.out.println("Bow: " + bow);
+		System.out.println("Claw: " + claw);
+		System.out.println("Shield: " + shield);
+		System.out.println("Gun: " + gun);
+		System.out.println("Staff: " +( maxArenaSize - (sword+lance+axe+light+anima+claw+shield+dark+bow+gun)));
+		System.out.println();
+		
+		if (sword < axe && sword < lance && sword < light && sword < dark && sword < anima && sword < shield
+				&& sword < bow && sword < claw && sword < gun) {
 			return "Sword";
 		}
-		if (lance == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw, gun)) {
+		else if (lance < axe && lance < anima && lance < dark && lance < light && lance < shield && lance < claw
+				&& lance < bow && lance < gun) {
 			return "Lance";
 		}
-		if (axe == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw, gun)) {
+		else if (axe < anima && axe < dark && axe < light &&
+				axe < shield && axe < claw && axe < bow && axe < gun) {
 			return "Axe";
 		}
-		if (anima == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw, gun)) {
+		else if (anima < dark && anima < light && anima < shield && 
+				anima < claw && anima < bow && anima < gun) {
 			return "Anima";
 		}
-		if (dark == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw, gun)) {
-			return "Dark";
-		}
-		if (light == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw, gun)) {
+		else if (light < dark && light < shield && light < claw && 
+				light < bow && light < gun) {
 			return "Light";
 		}
-		if (shield == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw, gun)) {
-			return "Shield";
+		else if (dark < shield && dark < claw &&
+				dark < bow && dark < gun) {
+			return "Dark";
 		}
-		if (claw == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw, gun)) {
+		else if (bow < shield && bow < claw && bow < gun) {
+			return "Bow";
+		}
+		else if (claw < shield && claw < gun) {
 			return "Claw";
 		}
-		if (gun == isMostPrevalent(sword, axe, lance, anima, dark, light, bow, shield, claw, gun)) {
-			return "Sword";
+		else if (gun < shield) {
+			return "Gun";
 		}
-		return "Bow";
-	}
-
-	private static int isMostPrevalent(int sword, int axe, int lance, int anima, int dark, int light, int bow,
-			int shield, int claw, int gun) {
-		if (sword > axe && sword > lance && sword > light && sword > dark && sword > anima && sword > shield
-				&& sword > bow && sword > claw && sword > gun) {
-			return sword;
-		} else if (lance > axe && lance > anima && lance > dark && lance > light && lance > shield && lance > claw
-				&& lance > bow && lance > gun) {
-			return lance;
-		} else if (axe > anima && axe > dark && axe > light && axe > shield && axe > claw && axe > bow && axe > gun) {
-			return axe;
-		} else if (anima > dark && anima > light && anima > shield && anima > claw && anima > bow && anima > gun) {
-			return anima;
-		} else if (light > dark && light > shield && light > claw && light > bow && light > gun) {
-			return light;
-		} else if (dark > shield && dark > claw && dark > bow && dark > gun) {
-			return dark;
-		} else if (bow > shield && bow > claw && bow > gun) {
-			return bow;
-		} else if (claw > shield && claw > gun) {
-			return claw;
-		} else if (gun > shield) {
-			return gun;
-		}
-		return shield;
+		else return "Shield";
 	}
 
 	private static void generateNewUnitStats() {
@@ -565,16 +566,14 @@ public class List {
 	private static void addEachClass(int i) {
 		for (int x = 0; x < i; x++) {
 			arena.add(new Soldier());
-			arena.add(new Warrior());
+			arena.add(new Watchman());
 			arena.add(new Berserker());
 			arena.add(new Sniper());
-			arena.add(new Falcoknight());
 			arena.add(new Druid());
 			arena.add(new General());
 			arena.add(new Tarmogoyf());
 			arena.add(new Bishop());
 			arena.add(new Swordmaster());
-			arena.add(new MageKnight());
 			arena.add(new Sage());
 			arena.add(new Necromancer());
 			arena.add(new Crusader());
@@ -594,9 +593,8 @@ public class List {
 			arena.add(new Lancemaster());
 			arena.add(new Crossbowman());
 			arena.add(new Gunslinger());
-			arena.add(new Page());
 			arena.add(new Pirate());
-
+			arena.add(new Duke());
 		}
 		Collections.shuffle(arena);
 	}

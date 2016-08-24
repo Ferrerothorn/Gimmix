@@ -8,9 +8,10 @@ public class Entombed extends Unit {
 	public Entombed() {
 		this.setJob("Entombed");
 		this.setWeapon(new SharpClaw());
-		this.setBaseCrit(10);
 		this.setHpBase(24);
 		this.setCurrentHp(this.getHpBase());
+		this.setBaseCrit(10);
+		
 		this.setStrBase(6);
 		this.setSkillBase(4);
 		this.setSpeedBase(8);

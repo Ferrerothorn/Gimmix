@@ -21,10 +21,10 @@ public class Tarmogoyf extends Unit {
 		this.setHpGr(55);
 		this.setStrGr(45);
 		this.setSkillGr(35);
-		this.setSpeedGr(35);
-		this.setLuckGr(40);
-		this.setDefGr(50);
-		this.setResGr(50);
+		this.setSpeedGr(40);
+		this.setLuckGr(20);
+		this.setDefGr(60);
+		this.setResGr(55);
 
 		this.setStrCap(26);
 		this.setSkillCap(25);
