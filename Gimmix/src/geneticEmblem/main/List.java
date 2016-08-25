@@ -610,10 +610,9 @@ public class List {
 			theArena.add(new Aran());
 			theArena.add(new GoblinGunner());
 			theArena.add(new Assassin());
+			theArena.add(new PortalMage());
 
-			
 			theArena.add(new Entombed());
-			theArena.add(new ClawGeneral());
 			theArena.add(new Golem());
 			theArena.add(new Noble());
 			theArena.add(new Brigand());
