@@ -6,7 +6,7 @@ public class IronShield extends Weapon {
 		super.setTrinity("Shield");
 		super.setPow(5);
 		super.setAcc(100);
-		super.setPhys(false);
+		super.setPhys(true);
 		super.addTrait("Shield");
 		super.setName("IronShield");
 	}

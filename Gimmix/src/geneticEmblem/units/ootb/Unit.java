@@ -330,7 +330,7 @@ public abstract class Unit {
 				// System.out.println("CRITICAL!");
 				hitDamage *= 3;
 			}
-			if (target.getJob().equals("General")) {
+			if (target.getJob().contains("General")) {
 				int greatShield = r.nextInt(100);
 				if (greatShield <= target.getSkillBase()) {
 					// System.out.println("GREAT SHIELD!");
@@ -365,8 +365,7 @@ public abstract class Unit {
 	private int triangleDamageBonus(Unit target) {
 
 		if (this.weapon.getTrinity().equals("Gun")
-				&& (target.weapon.getTrinity().equals("Lance") || target.weapon.getTrinity().equals("Axe")
-						|| target.weapon.getTrinity().equals("Sword") || target.weapon.getTrinity().equals("Dark"))) {
+				&& (target.weapon.getTrinity().equals("Axe") || target.weapon.getTrinity().equals("Lance") || target.weapon.getTrinity().equals("Dark"))) {
 			return 1;
 		}
 		if (this.weapon.getTrinity().equals("Bow") && target.weapon.getTrinity().equals("Claw")) {
@@ -425,7 +424,7 @@ public abstract class Unit {
 		}
 		if (this.weapon.getTrinity().equals("Gun")
 				&& (target.weapon.getTrinity().equals("Anima") || target.weapon.getTrinity().equals("Light")
-						|| target.weapon.getTrinity().equals("Bow") || target.weapon.getTrinity().equals("Shield"))) {
+						|| target.weapon.getTrinity().equals("Shield"))) {
 			return -1;
 		}
 		return 0;
@@ -435,7 +434,7 @@ public abstract class Unit {
 
 		if (this.weapon.getTrinity().equals("Gun")
 				&& (target.weapon.getTrinity().equals("Lance") || target.weapon.getTrinity().equals("Axe")
-						|| target.weapon.getTrinity().equals("Sword") || target.weapon.getTrinity().equals("Dark"))) {
+						|| target.weapon.getTrinity().equals("Dark"))) {
 			return 15;
 		}
 		if (this.weapon.getTrinity().equals("Bow") && target.weapon.getTrinity().equals("Claw")) {
@@ -467,7 +466,7 @@ public abstract class Unit {
 		}
 		if (this.weapon.getTrinity().equals("Gun")
 				&& (target.weapon.getTrinity().equals("Anima") || target.weapon.getTrinity().equals("Light")
-						|| target.weapon.getTrinity().equals("Bow") || target.weapon.getTrinity().equals("Shield"))) {
+					 || target.weapon.getTrinity().equals("Shield"))) {
 			return -15;
 		}
 		if (this.weapon.getTrinity().equals("Sword") && target.weapon.getTrinity().equals("Lance")) {

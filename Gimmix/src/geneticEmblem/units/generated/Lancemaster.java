@@ -21,12 +21,12 @@ public class Lancemaster extends Unit {
 		this.setResBase(4);
 
 		this.setHpGr(50);
-		this.setStrGr(50);
+		this.setStrGr(45);
 		this.setSkillGr(55);
 		this.setSpeedGr(70);
 		this.setLuckGr(40);
 		this.setDefGr(25);
-		this.setResGr(20);
+		this.setResGr(25);
 
 		this.setStrCap(26);
 		this.setSkillCap(26);

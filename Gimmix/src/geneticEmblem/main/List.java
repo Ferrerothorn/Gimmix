@@ -53,7 +53,6 @@ public class List {
 			System.out.println("===Choose a command===");
 			System.out.println("0: The usual (25k each, 1024 remain, report).");
 			System.out.println("1: Add a number of each class to the arena.");
-			System.out.println("11: Add 3333 of each class to the arena.");
 			System.out.println("2: View a single match.");
 			System.out.println("22: Run until 2048 number remain.");
 			System.out.println("222: Run until specified number remain.");
@@ -61,6 +60,7 @@ public class List {
 			System.out.println("5: Report on the surviving units.");
 			System.out.println("55: Report statistics on surviving race.");
 			System.out.println("69: Genetically modify a new unit.");
+			System.out.println("88: Determine which class is healthiest to cull.");
 			System.out.println("999: Quit.");
 			System.out.println();
 			int choice = input.nextInt();
@@ -69,39 +69,36 @@ public class List {
 			switch (choice) {
 
 			case 0:
-				addEachClass(25000);
+				addEachClass(25000, arena);
 				levelTheDudesTo(15, arena);
-				deathmatch(2048);
+				deathmatch(2048, arena);
 				System.out.println();
-				showSurvivors();
+				showSurvivors(arena);
+				System.out.println();
+				getWeaponMetagame(arena);
 				on = false;
 				break;
 
 			case 1:
 				System.out.println("How many of each class should be added?");
 				int number = input.nextInt();
-				addEachClass(number);
+				addEachClass(number, arena);
 				System.out.println("What level should everyone start at?");
 				number = input.nextInt();
 				levelTheDudesTo(number, arena);
 				break;
-
-			case 11:
-				addEachClass(3333);
-				break;
-
 			case 2:
-				deathmatch(arena.size() - 1);
+				deathmatch(arena.size() - 1, arena);
 				break;
 
 			case 22:
-				deathmatch(2048);
+				deathmatch(2048, arena);
 				break;
 
 			case 222:
 				System.out.println("How many units should remain standing?");
 				int number1 = input.nextInt();
-				deathmatch(number1);
+				deathmatch(number1, arena);
 				break;
 
 			case 3:
@@ -109,7 +106,7 @@ public class List {
 				break;
 
 			case 5:
-				showSurvivors();
+				showSurvivors(arena);
 				break;
 
 			case 55:
@@ -118,11 +115,11 @@ public class List {
 
 			case 69:
 				System.out.println("Adding initial population to the arena.");
-				addEachClass(20000);
+				addEachClass(20000, arena);
 				System.out.println("Leveling population up.");
 				levelTheDudesTo(15, arena);
 				System.out.println("Commencing deathmatch.");
-				deathmatch(1024);
+				deathmatch(1024, arena);
 				maxArenaSize = 1024;
 				System.out.println();
 				double initialStDev = calcStDev(arena);
@@ -139,7 +136,7 @@ public class List {
 				while (!foundNewGuy) {
 					System.out.println("The target to beat is " + initialStDev + ".");
 					arena.clear();
-					addEachClass(20000);
+					addEachClass(20000, arena);
 					Random random = new Random();
 					int weaponIndex = random.nextInt(armory.size());
 					Weapon newWeapon = armory.get(weaponIndex);
@@ -154,7 +151,7 @@ public class List {
 					}
 
 					levelTheDudesTo(15, arena);
-					deathmatch(1024);
+					deathmatch(1024, arena);
 					maxArenaSize = 1024;
 					double newStDev = calcStDev(arena);
 					System.out.println("The new balance measure is " + newStDev + ".");
@@ -198,29 +195,70 @@ public class List {
 				}
 				break;
 
-				
 			case 88:
-				System.out.println("Adding initial population to the arena.");
-				addEachClass(20000);
-				System.out.println("Leveling population up.");
+				ArrayList<Unit> counter = new ArrayList<Unit>();
+				ArrayList<Unit> tempArena;
+				addEachClass(1, counter);
+				HashMap<String, Double> metagameHealth = new HashMap<String, Double>();
+				System.out.println("Established system health logging...");
+
+				addEachClass(20000, arena);
+				System.out.println("Added 20k of each class to arena.");
 				levelTheDudesTo(15, arena);
-				System.out.println("Commencing deathmatch.");
-				deathmatch(1024);
-				Collections.shuffle(arena);
-				initialStDev = calcStDev(arena);
-				Unit mutated = arena.remove(0);
-				String mutatorClass = mutated.getJob();
+				System.out.println("Leveled them all to 15.");
+				deathmatch(2048, arena);
+				System.out.println("Final 2048 calculated.");
+				double currentMetagameHealth = calcStDev(arena);
+				System.out.println("Standard metagame health determined @ " + currentMetagameHealth + ".");
+				metagameHealth.put("Default", currentMetagameHealth);
 				arena.clear();
-				addEachClass(20000);
-				
-				
+
+				for (Unit placeholder : counter) {
+					String withoutThisClass = placeholder.getJob();
+					tempArena = new ArrayList<Unit>();
+					System.out.println("Testing what life would be like without " + withoutThisClass + ".");
+					
+					addEachClass(20000, arena);
+					levelTheDudesTo(15, arena);
+					
+					for (Unit u : arena) {
+						if (u.getJob().equals(withoutThisClass)) {
+							
+						}
+						else {
+							tempArena.add(u);
+						}
+					}
+					arena.clear();
+					deathmatch(2048, tempArena);
+					double withoutHealth = calcStDev(tempArena);
+					metagameHealth.put(withoutThisClass, withoutHealth);
+					System.out.println("[" + withoutHealth + "]");
+					
+				}
+				sortByValues(metagameHealth);
+				printAlternateMetagameHealth(metagameHealth);
 				break;
-				
+
 			case 999:
 				on = false;
 				input.close();
 				break;
 			}
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	private static void printAlternateMetagameHealth(HashMap<String, Double> metagameHealth) {
+
+		metagameHealth = sortByValues(metagameHealth);
+
+		@SuppressWarnings("rawtypes")
+		Iterator it = metagameHealth.entrySet().iterator();
+		while (it.hasNext()) {
+			@SuppressWarnings("rawtypes")
+			Map.Entry pair = (Map.Entry) it.next();
+			System.out.println(pair.getKey() + "s: " + pair.getValue());
 		}
 	}
 
@@ -299,9 +337,9 @@ public class List {
 				break;
 			}
 		}
-		
+
 		System.out.println("Sword: " + sword);
-		System.out.println("Lance:" + lance);
+		System.out.println("Lance: " + lance);
 		System.out.println("Axe: " + axe);
 		System.out.println("Anima: " + anima);
 		System.out.println("Light: " + light);
@@ -310,43 +348,30 @@ public class List {
 		System.out.println("Claw: " + claw);
 		System.out.println("Shield: " + shield);
 		System.out.println("Gun: " + gun);
-		System.out.println("Staff: " +( maxArenaSize - (sword+lance+axe+light+anima+claw+shield+dark+bow+gun)));
 		System.out.println();
-		
+
 		if (sword < axe && sword < lance && sword < light && sword < dark && sword < anima && sword < shield
 				&& sword < bow && sword < claw && sword < gun) {
 			return "Sword";
-		}
-		else if (lance < axe && lance < anima && lance < dark && lance < light && lance < shield && lance < claw
+		} else if (lance < axe && lance < anima && lance < dark && lance < light && lance < shield && lance < claw
 				&& lance < bow && lance < gun) {
 			return "Lance";
-		}
-		else if (axe < anima && axe < dark && axe < light &&
-				axe < shield && axe < claw && axe < bow && axe < gun) {
+		} else if (axe < anima && axe < dark && axe < light && axe < shield && axe < claw && axe < bow && axe < gun) {
 			return "Axe";
-		}
-		else if (anima < dark && anima < light && anima < shield && 
-				anima < claw && anima < bow && anima < gun) {
+		} else if (anima < dark && anima < light && anima < shield && anima < claw && anima < bow && anima < gun) {
 			return "Anima";
-		}
-		else if (light < dark && light < shield && light < claw && 
-				light < bow && light < gun) {
+		} else if (light < dark && light < shield && light < claw && light < bow && light < gun) {
 			return "Light";
-		}
-		else if (dark < shield && dark < claw &&
-				dark < bow && dark < gun) {
+		} else if (dark < shield && dark < claw && dark < bow && dark < gun) {
 			return "Dark";
-		}
-		else if (bow < shield && bow < claw && bow < gun) {
+		} else if (bow < shield && bow < claw && bow < gun) {
 			return "Bow";
-		}
-		else if (claw < shield && claw < gun) {
+		} else if (claw < shield && claw < gun) {
 			return "Claw";
-		}
-		else if (gun < shield) {
+		} else if (gun < shield) {
 			return "Gun";
-		}
-		else return "Shield";
+		} else
+			return "Shield";
 	}
 
 	private static void generateNewUnitStats() {
@@ -476,8 +501,8 @@ public class List {
 		}
 	}
 
-	private static double calcStDev(ArrayList<Unit> arena2) {
-		HashMap<String, Integer> survivors = reportOnSurvivors();
+	private static double calcStDev(ArrayList<Unit> anArena) {
+		HashMap<String, Integer> survivors = reportOnSurvivors(anArena);
 		double total = 0;
 		double index = survivors.size();
 		@SuppressWarnings("rawtypes")
@@ -509,14 +534,14 @@ public class List {
 		return sum;
 	}
 
-	private static void showSurvivors() {
-		HashMap<String, Integer> survivors = reportOnSurvivors();
+	private static void showSurvivors(ArrayList<Unit> anArena) {
+		HashMap<String, Integer> survivors = reportOnSurvivors(anArena);
 		printMap(survivors);
 	}
 
-	private static HashMap<String, Integer> reportOnSurvivors() {
+	private static HashMap<String, Integer> reportOnSurvivors(ArrayList<Unit> anArena) {
 		HashMap<String, Integer> survivors = new HashMap<String, Integer>();
-		for (Unit u : arena) {
+		for (Unit u : anArena) {
 			if (!survivors.containsKey(u.getJob())) {
 				survivors.put(u.getJob(), 1);
 			} else {
@@ -540,20 +565,21 @@ public class List {
 		}
 	}
 
-	private static void deathmatch(int i) {
-		maxArenaSize = arena.size();
-
-		while (arena.size() > i && i > 0) {
-			Unit unit1 = arena.remove(0);
-			Unit unit2 = arena.remove(0);
+	private static void deathmatch(int i, ArrayList<Unit> u) {
+		
+		if (i > 0) {
+		while (u.size() > i) {
+			Unit unit1 = u.remove(0);
+			Unit unit2 = u.remove(0);
 			Unit victor = unit1.fight(unit2);
 
 			victor.levelUp();
-			arena.add(victor);
+			u.add(victor);
 			// System.out.println("We have our winner! " + victor.getName() + "
 			// the Lv" + victor.getLv() + " "
 			// + victor.getJob() + "!");
 			// System.out.println(maxArenaSize - (maxArenaSize - arena.size()));
+		}
 		}
 	}
 
@@ -563,38 +589,35 @@ public class List {
 		}
 	}
 
-	private static void addEachClass(int i) {
+	private static void addEachClass(int i, ArrayList<Unit> theArena) {
 		for (int x = 0; x < i; x++) {
-			arena.add(new Soldier());
-			arena.add(new Watchman());
-			arena.add(new Berserker());
-			arena.add(new Sniper());
-			arena.add(new Druid());
-			arena.add(new General());
-			arena.add(new Tarmogoyf());
-			arena.add(new Bishop());
-			arena.add(new Swordmaster());
-			arena.add(new Sage());
-			arena.add(new Necromancer());
-			arena.add(new Crusader());
-			arena.add(new Mogall());
-			arena.add(new ReflectorMage());
-			arena.add(new Cleric());
-			arena.add(new NomadTrooper());
-			arena.add(new Assassin());
+			theArena.add(new Soldier());
+			theArena.add(new Watchman());
+			theArena.add(new Berserker());
+			theArena.add(new Sniper());
+			theArena.add(new General());
+			theArena.add(new Tarmogoyf());
+			theArena.add(new Swordmaster());
+			theArena.add(new Sage());
+			theArena.add(new Crusader());
+			theArena.add(new Mogall());
+			theArena.add(new ReflectorMage());
+			theArena.add(new Cleric());
+			theArena.add(new NomadTrooper());
+			theArena.add(new Assassin());
 
-			arena.add(new Entombed());
-			arena.add(new FirePoison());
-			arena.add(new Noble());
-			arena.add(new Brigand());
-			arena.add(new Reaper());
-			arena.add(new SnapcasterMage());
-			arena.add(new Saint());
-			arena.add(new Lancemaster());
-			arena.add(new Crossbowman());
-			arena.add(new Gunslinger());
-			arena.add(new Pirate());
-			arena.add(new Duke());
+			theArena.add(new Entombed());
+			theArena.add(new ClawGeneral());
+			//theArena.add(new FirePoison());
+			theArena.add(new Noble());
+			theArena.add(new Brigand());
+			theArena.add(new Reaper());
+			theArena.add(new SnapcasterMage());
+			theArena.add(new Saint());
+			theArena.add(new Lancemaster());
+			theArena.add(new Crossbowman());
+			theArena.add(new Duke());
+			theArena.add(new Buccaneer());
 		}
 		Collections.shuffle(arena);
 	}
