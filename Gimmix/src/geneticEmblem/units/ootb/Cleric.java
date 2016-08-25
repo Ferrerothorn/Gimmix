@@ -1,12 +1,12 @@
 package geneticEmblem.units.ootb;
 
-import geneticEmblem.weapons.HealStaff;
+import geneticEmblem.weapons.Shine;
 
 public class Cleric extends Unit {
 
 	public Cleric() {
 		this.setJob("Cleric");
-		this.setWeapon(new HealStaff());
+		this.setWeapon(new Shine());
 		this.setHpBase(22);
 		this.setCurrentHp(this.getHpBase());
 		this.setBaseCrit(0);

@@ -5,14 +5,13 @@ import geneticEmblem.weapons.Weapon;
 
 public class Custom extends Unit {
 
-	public Custom(Weapon newWeapon, int baseHP, int baseCrit, int strBase, int skillBase, int speedBase, int luckBase,
+	public Custom(Weapon newWeapon, int baseHP, int strBase, int skillBase, int speedBase, int luckBase,
 			int defBase, int resBase, int hpGr, int strGr, int skillGr, int speedGr, int luckGr, int defGr, int resGr,
 			int strCap, int speedCap, int skillCap, int defCap, int resCap) {
 		this.setJob("Custom");
 		this.setWeapon(newWeapon);
 		this.setHpBase(baseHP);
 		this.setCurrentHp(this.getHpBase());
-		this.setBaseCrit(baseCrit);
 
 		this.setStrBase(strBase);
 		this.setSkillBase(skillBase);

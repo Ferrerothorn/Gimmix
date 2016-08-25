@@ -8,12 +8,11 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
-import java.util.Random;
 import java.util.Scanner;
 
 import geneticEmblem.units.generated.*;
 import geneticEmblem.units.ootb.*;
-import geneticEmblem.weapons.*;
+import geneticEmblem.units.greenfield.*;
 
 public class List {
 
@@ -21,28 +20,7 @@ public class List {
 	static Boolean on = true;
 	static Scanner input = new Scanner(System.in);
 	static int maxArenaSize;
-
-	static int baseHP;
-	static int strBase;
-	static int skillBase;
-	static int speedBase;
-	static int luckBase;
-	static int defBase;
-	static int resBase;
-
-	static int hpGr;
-	static int strGr;
-	static int skillGr;
-	static int speedGr;
-	static int luckGr;
-	static int defGr;
-	static int resGr;
-
-	static int strCap;
-	static int speedCap;
-	static int skillCap;
-	static int defCap;
-	static int resCap;
+	static CustomUnitGenerator customUnitGenerator;
 
 	static HashMap<String, Integer> matchupsSeen = new HashMap<String, Integer>();
 
@@ -76,7 +54,7 @@ public class List {
 				showSurvivors(arena);
 				System.out.println();
 				getWeaponMetagame(arena);
-				on = false;
+				// on = false;
 				break;
 
 			case 1:
@@ -114,6 +92,7 @@ public class List {
 				break;
 
 			case 69:
+
 				System.out.println("Adding initial population to the arena.");
 				addEachClass(20000, arena);
 				System.out.println("Leveling population up.");
@@ -127,73 +106,32 @@ public class List {
 				String leastCommonWeapon = getWeaponMetagame(arena);
 				System.out.println("The metagame is too short on " + leastCommonWeapon + ".");
 
-				boolean foundNewGuy = false;
+				customUnitGenerator = new CustomUnitGenerator(leastCommonWeapon);
+				customUnitGenerator.populateArmory(leastCommonWeapon);
 
-				ArrayList<Weapon> armory = new ArrayList<Weapon>();
-
-				populateArmory(leastCommonWeapon, armory);
-
-				while (!foundNewGuy) {
+				while (true) {
 					System.out.println("The target to beat is " + initialStDev + ".");
 					arena.clear();
 					addEachClass(20000, arena);
-					Random random = new Random();
-					int weaponIndex = random.nextInt(armory.size());
-					Weapon newWeapon = armory.get(weaponIndex);
-
-					generateNewUnitStats();
+					Custom custom = customUnitGenerator.buildUnit();
 
 					for (int i = 0; i < 20000; i++) {
-						Custom custom = new Custom(newWeapon, baseHP, 0, strBase, skillBase, speedBase, luckBase,
-								defBase, resBase, hpGr, strGr, skillGr, speedGr, luckGr, defGr, resGr, strCap, speedCap,
-								skillCap, defCap, resCap);
 						arena.add(custom);
 					}
+					customUnitGenerator.generateNewUnitStats();
 
+					Collections.shuffle(arena);
 					levelTheDudesTo(15, arena);
 					deathmatch(1024, arena);
-					maxArenaSize = 1024;
+
 					double newStDev = calcStDev(arena);
 					System.out.println("The new balance measure is " + newStDev + ".");
 
 					if (newStDev < initialStDev) {
-						System.out.println("import geneticEmblem.units.ootb.Unit;" + '\n');
-						System.out.println("import geneticEmblem.weapons.*;" + '\n');
-						System.out.println("public class XXX extends Unit { " + '\n');
-						System.out.println("public XXX() {" + '\n');
-						System.out.println("    this.setJob();" + '\n');
-						System.out.println("    this.setWeapon(new " + newWeapon.getName() + "());");
-						System.out.println("    this.setHpBase(" + baseHP + ");");
-						System.out.println("    this.setCurrentHp(this.getHpBase());");
-						System.out.println("    this.setStrBase(" + strBase + ");");
-						System.out.println("    this.setSkillBase(" + skillBase + ");");
-						System.out.println("    this.setSpeedBase(" + speedBase + ");");
-						System.out.println("    this.setLuckBase(" + luckBase + ");");
-						System.out.println("    this.setDefBase(" + defBase + ");");
-						System.out.println("    this.setResBase(" + resBase + ");");
-						System.out.println();
-						System.out.println("    this.setHpGr(" + hpGr + ");");
-						System.out.println("    this.setStrGr(" + strGr + ");");
-						System.out.println("    this.setSkillGr(" + skillGr + ");");
-						System.out.println("    this.setSpeedGr(" + speedGr + ");");
-						System.out.println("    this.setLuckGr(" + luckGr + ");");
-						System.out.println("    this.setDefGr(" + defGr + ");");
-						System.out.println("    this.setResGr(" + resGr + ");");
-						System.out.println();
-						System.out.println("    this.setStrCap(" + strCap + ");");
-						System.out.println("    this.setSkillCap(" + skillCap + ");");
-						System.out.println("    this.setSpeedCap(" + speedCap + ");");
-						System.out.println("    this.setDefCap(" + defCap + ");");
-						System.out.println("    this.setResCap(" + resCap + ");");
-						System.out.println("    }");
-						System.out.println("}");
-						System.out.println();
-						System.out.println();
-						// foundNewGuy = true;
+						customUnitGenerator.printNewClass();
 						// on = false;
 					}
 				}
-				break;
 
 			case 88:
 				ArrayList<Unit> counter = new ArrayList<Unit>();
@@ -258,35 +196,6 @@ public class List {
 			@SuppressWarnings("rawtypes")
 			Map.Entry pair = (Map.Entry) it.next();
 			System.out.println(pair.getKey() + "s: " + pair.getValue());
-		}
-	}
-
-	private static void populateArmory(String weaponPreference, ArrayList<Weapon> armory) {
-		if (weaponPreference.equals("Axe")) {
-			armory.add(new IronAxe());
-		} else if (weaponPreference.equals("Sword")) {
-			armory.add(new IronSword());
-			armory.add(new SteelSword());
-		} else if (weaponPreference.equals("Lance")) {
-			armory.add(new IronLance());
-		} else if (weaponPreference.equals("Dark")) {
-			armory.add(new Flux());
-		} else if (weaponPreference.equals("Light")) {
-			armory.add(new Lightning());
-			armory.add(new Shine());
-		} else if (weaponPreference.equals("Anima")) {
-			armory.add(new Fire());
-			armory.add(new Thunder());
-		} else if (weaponPreference.equals("Claw")) {
-			armory.add(new SharpClaw());
-		} else if (weaponPreference.equals("Shield")) {
-			armory.add(new DivineShield());
-			armory.add(new IronShield());
-		} else if (weaponPreference.equals("Bow")) {
-			armory.add(new SteelBow());
-			armory.add(new IronBow());
-		} else {
-			armory.add(new IronGun());
 		}
 	}
 
@@ -369,136 +278,6 @@ public class List {
 			return "Gun";
 		} else
 			return "Shield";
-	}
-
-	private static void generateNewUnitStats() {
-		Random r = new Random();
-		generateBases(r);
-		generateGrowthRates(r);
-		generateCaps(r);
-
-		if ((defGr > 45 || resGr > 45) && hpGr < 40) {
-			generateNewUnitStats();
-		}
-		if (resGr < speedGr && speedCap < resCap) {
-			generateNewUnitStats();
-		}
-		if (defGr < speedGr && speedCap < defCap) {
-			generateNewUnitStats();
-		}
-		if (skillBase > strBase && skillCap < strCap) {
-			generateNewUnitStats();
-		}
-		if (strBase > skillBase && strCap < skillCap) {
-			generateNewUnitStats();
-		}
-		if ((luckBase >= strBase || luckBase >= skillBase || luckBase >= speedBase || luckBase >= defBase
-				|| luckBase >= resBase)
-				&& (luckGr < strGr || luckGr < skillGr || luckGr < speedGr || luckGr < defGr || luckGr < resGr)) {
-			generateNewUnitStats();
-		}
-		if (skillGr > speedGr && speedCap > skillCap) {
-			generateNewUnitStats();
-		}
-		if (strGr > defGr && defCap > strCap) {
-			generateNewUnitStats();
-		}
-		if (skillBase > strBase && skillBase > speedBase && (skillGr < strGr || skillGr < speedGr)) {
-			generateNewUnitStats();
-		}
-		if (strBase > speedBase && speedGr > strGr) {
-			generateNewUnitStats();
-		}
-		if (strBase > skillBase && skillGr > strGr) {
-			generateNewUnitStats();
-		}
-		if (speedBase > defBase && defGr > speedGr) {
-			generateNewUnitStats();
-		}
-		if (speedBase > resBase && resGr > speedGr) {
-			generateNewUnitStats();
-		}
-		if ((defBase > resBase && resGr > defGr) || (resBase > defBase && defGr > resGr)) {
-			generateNewUnitStats();
-		}
-		if ((defCap > resCap && resGr > defGr) || (resCap > defCap && defGr > resGr)) {
-			generateNewUnitStats();
-		}
-		if ((defBase > resBase && resCap > defCap) || (resBase > defBase && defCap > resCap)) {
-			generateNewUnitStats();
-		}
-
-	}
-
-	private static void generateCaps(Random r) {
-
-		strCap = r.nextInt(11);
-		strCap += 20;
-		speedCap = r.nextInt(11);
-		speedCap += 20;
-		skillCap = r.nextInt(11);
-		skillCap += 20;
-		defCap = r.nextInt(11);
-		defCap += 20;
-		resCap = r.nextInt(11);
-		resCap += 20;
-
-		int sumCaps = strCap + speedCap + skillCap + defCap + resCap;
-
-		if (sumCaps < 127 || sumCaps > 131) {
-			generateCaps(r);
-		}
-	}
-
-	private static void generateGrowthRates(Random r) {
-		hpGr = r.nextInt(13);
-		hpGr += 4;
-		hpGr *= 5;
-		strGr = r.nextInt(13);
-		strGr += 4;
-		strGr *= 5;
-		skillGr = r.nextInt(13);
-		skillGr += 4;
-		skillGr *= 5;
-		speedGr = r.nextInt(13);
-		speedGr += 4;
-		speedGr *= 5;
-		luckGr = r.nextInt(13);
-		luckGr += 4;
-		luckGr *= 5;
-		defGr = r.nextInt(13);
-		defGr += 4;
-		defGr *= 5;
-		resGr = r.nextInt(13);
-		resGr += 4;
-		resGr *= 5;
-		int sumGRs = hpGr + strGr + skillGr + speedGr + luckGr + defGr + resGr;
-
-		if (sumGRs != 310) {
-			generateGrowthRates(r);
-		}
-	}
-
-	private static void generateBases(Random r) {
-		baseHP = r.nextInt(7);
-		baseHP += 20;
-		strBase = r.nextInt(5);
-		strBase += 5;
-		skillBase = r.nextInt(5);
-		skillBase += 5;
-		speedBase = r.nextInt(5);
-		speedBase += 5;
-		luckBase = r.nextInt(6);
-		luckBase += 2;
-		defBase = r.nextInt(6);
-		defBase += 2;
-		resBase = r.nextInt(6);
-		resBase += 1;
-		int sumBases = strBase + skillBase + speedBase + luckBase + defBase + resBase;
-
-		if (sumBases != 37) {
-			generateBases(r);
-		}
 	}
 
 	private static double calcStDev(ArrayList<Unit> anArena) {
@@ -593,26 +372,26 @@ public class List {
 
 	private static void addEachClass(int i, ArrayList<Unit> theArena) {
 		for (int x = 0; x < i; x++) {
+
 			theArena.add(new Soldier());
-			theArena.add(new Watchman());
 			theArena.add(new Berserker());
-			theArena.add(new Sniper());
 			theArena.add(new General());
 			theArena.add(new Tarmogoyf());
 			theArena.add(new Swordmaster());
-			theArena.add(new Sage());
 			theArena.add(new Crusader());
 			theArena.add(new Mogall());
 			theArena.add(new ReflectorMage());
-			theArena.add(new Cleric());
 			theArena.add(new NomadTrooper());
-			theArena.add(new KilnFiend());
 			theArena.add(new Aran());
-			theArena.add(new GoblinGunner());
 			theArena.add(new Assassin());
-			theArena.add(new PortalMage());
+			theArena.add(new Viking());
 
 			theArena.add(new Entombed());
+			theArena.add(new Angel());
+			theArena.add(new Wall());
+			theArena.add(new Ghost());
+			theArena.add(new Mortivore());
+			theArena.add(new MagnetMage());
 			theArena.add(new Golem());
 			theArena.add(new Noble());
 			theArena.add(new Brigand());
@@ -622,7 +401,7 @@ public class List {
 			theArena.add(new Crossbowman());
 			theArena.add(new Duke());
 			theArena.add(new Buccaneer());
-			theArena.add(new FirePoison());
+
 		}
 		Collections.shuffle(arena);
 	}

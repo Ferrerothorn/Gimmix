@@ -7,7 +7,7 @@ public class FireClaw extends Weapon {
 		super.setTrinity("Anima");
 		super.setPow(5);
 		super.setAcc(75);
-		super.setPhys(false);
+		super.setPhys(true);
 		super.setName("FireClaw");
 	}
 

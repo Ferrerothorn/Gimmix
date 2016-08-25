@@ -6,7 +6,7 @@ public class NomadTrooper extends Unit {
 
 	public NomadTrooper() {
 		this.setJob("Nomad Trooper");
-		this.setWeapon(new IronBow());
+		this.setWeapon(new IronGear());
 		this.setHpBase(22);
 		this.setCurrentHp(this.getHpBase());
 		this.setBaseCrit(0);
