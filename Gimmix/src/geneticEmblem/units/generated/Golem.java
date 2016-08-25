@@ -8,7 +8,7 @@ public class Golem extends Unit {
 
 public Golem() {
 
-    this.setJob("Iron Golem");
+    this.setJob("Golem");
 
     this.setWeapon(new DivineShield());
     this.setHpBase(24);

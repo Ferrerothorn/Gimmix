@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public abstract class Weapon {
 
 	public boolean phys;
-	public String trinity;
+	public ArrayList<String> trinity = new ArrayList<String>();
 	public String name;
 	public int acc;
 	public int pow;
@@ -20,12 +20,12 @@ public abstract class Weapon {
 		this.phys = phys;
 	}
 
-	public String getTrinity() {
+	public ArrayList<String> getTrinity() {
 		return trinity;
 	}
 
-	public void setTrinity(String trinity) {
-		this.trinity = trinity;
+	public void setTrinity(String trinityType) {
+		trinity.add(trinityType);
 	}
 
 	public int getAcc() {

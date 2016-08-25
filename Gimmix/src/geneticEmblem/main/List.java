@@ -217,15 +217,14 @@ public class List {
 					String withoutThisClass = placeholder.getJob();
 					tempArena = new ArrayList<Unit>();
 					System.out.println("Testing what life would be like without " + withoutThisClass + ".");
-					
+
 					addEachClass(20000, arena);
 					levelTheDudesTo(15, arena);
-					
+
 					for (Unit u : arena) {
 						if (u.getJob().equals(withoutThisClass)) {
-							
-						}
-						else {
+
+						} else {
 							tempArena.add(u);
 						}
 					}
@@ -234,7 +233,7 @@ public class List {
 					double withoutHealth = calcStDev(tempArena);
 					metagameHealth.put(withoutThisClass, withoutHealth);
 					System.out.println("[" + withoutHealth + "]");
-					
+
 				}
 				sortByValues(metagameHealth);
 				printAlternateMetagameHealth(metagameHealth);
@@ -303,38 +302,36 @@ public class List {
 		int bow = 0;
 		int gun = 0;
 		for (Unit u : arena) {
-			String s = u.getWeapon().getTrinity();
-			switch (s) {
-			case "Axe":
+			ArrayList<String> s = u.getWeapon().getTrinity();
+			if (s.contains("Axe")) {
 				axe++;
-				break;
-			case "Sword":
+			}
+			if (s.contains("Sword")) {
 				sword++;
-				break;
-			case "Lance":
+			}
+			if (s.contains("Lance")) {
 				lance++;
-				break;
-			case "Dark":
+			}
+			if (s.contains("Dark")) {
 				dark++;
-				break;
-			case "Light":
+			}
+			if (s.contains("Light")) {
 				light++;
-				break;
-			case "Anima":
+			}
+			if (s.contains("Anima")) {
 				anima++;
-				break;
-			case "Bow":
+			}
+			if (s.contains("Bow")) {
 				bow++;
-				break;
-			case "Claw":
+			}
+			if (s.contains("Claw")) {
 				claw++;
-				break;
-			case "Shield":
+			}
+			if (s.contains("Shield")) {
 				shield++;
-				break;
-			case "Gun":
+			}
+			if (s.contains("Gun")) {
 				gun++;
-				break;
 			}
 		}
 
@@ -380,6 +377,9 @@ public class List {
 		generateGrowthRates(r);
 		generateCaps(r);
 
+		if ((defGr > 45 || resGr > 45) && hpGr < 40) {
+			generateNewUnitStats();
+		}
 		if (resGr < speedGr && speedCap < resCap) {
 			generateNewUnitStats();
 		}
@@ -566,20 +566,22 @@ public class List {
 	}
 
 	private static void deathmatch(int i, ArrayList<Unit> u) {
-		
-		if (i > 0) {
-		while (u.size() > i) {
-			Unit unit1 = u.remove(0);
-			Unit unit2 = u.remove(0);
-			Unit victor = unit1.fight(unit2);
 
-			victor.levelUp();
-			u.add(victor);
-			// System.out.println("We have our winner! " + victor.getName() + "
-			// the Lv" + victor.getLv() + " "
-			// + victor.getJob() + "!");
-			// System.out.println(maxArenaSize - (maxArenaSize - arena.size()));
-		}
+		if (i > 0) {
+			while (u.size() > i) {
+				Unit unit1 = u.remove(0);
+				Unit unit2 = u.remove(0);
+				Unit victor = unit1.fight(unit2);
+
+				victor.levelUp();
+				u.add(victor);
+				// System.out.println("We have our winner! " + victor.getName()
+				// + "
+				// the Lv" + victor.getLv() + " "
+				// + victor.getJob() + "!");
+				// System.out.println(maxArenaSize - (maxArenaSize -
+				// arena.size()));
+			}
 		}
 	}
 
@@ -604,20 +606,24 @@ public class List {
 			theArena.add(new ReflectorMage());
 			theArena.add(new Cleric());
 			theArena.add(new NomadTrooper());
+			theArena.add(new KilnFiend());
+			theArena.add(new Aran());
+			theArena.add(new GoblinGunner());
 			theArena.add(new Assassin());
 
+			
 			theArena.add(new Entombed());
 			theArena.add(new ClawGeneral());
 			theArena.add(new Golem());
 			theArena.add(new Noble());
 			theArena.add(new Brigand());
 			theArena.add(new Reaper());
-			theArena.add(new SnapcasterMage());
 			theArena.add(new Saint());
 			theArena.add(new Lancemaster());
 			theArena.add(new Crossbowman());
 			theArena.add(new Duke());
 			theArena.add(new Buccaneer());
+			theArena.add(new FirePoison());
 		}
 		Collections.shuffle(arena);
 	}
