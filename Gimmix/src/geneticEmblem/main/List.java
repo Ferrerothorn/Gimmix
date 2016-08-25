@@ -608,7 +608,7 @@ public class List {
 
 			theArena.add(new Entombed());
 			theArena.add(new ClawGeneral());
-			//theArena.add(new FirePoison());
+			theArena.add(new Golem());
 			theArena.add(new Noble());
 			theArena.add(new Brigand());
 			theArena.add(new Reaper());
