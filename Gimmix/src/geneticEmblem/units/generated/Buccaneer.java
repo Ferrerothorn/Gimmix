@@ -1,7 +1,6 @@
 package geneticEmblem.units.generated;
 
-import geneticEmblem.units.ootb.Unit;
-
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class Buccaneer extends Unit { 
@@ -20,9 +19,9 @@ public Buccaneer() {
     this.setDefBase(6);
     this.setResBase(6);
 
-    this.setHpGr(30);
+    this.setHpGr(35);
     this.setStrGr(55);
-    this.setSkillGr(35);
+    this.setSkillGr(40);
     this.setSpeedGr(80);
     this.setLuckGr(45);
     this.setDefGr(40);

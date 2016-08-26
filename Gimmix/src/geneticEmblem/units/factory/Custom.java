@@ -1,6 +1,5 @@
-package geneticEmblem.units.generated;
+package geneticEmblem.units.factory;
 
-import geneticEmblem.units.ootb.Unit;
 import geneticEmblem.weapons.Weapon;
 
 public class Custom extends Unit {

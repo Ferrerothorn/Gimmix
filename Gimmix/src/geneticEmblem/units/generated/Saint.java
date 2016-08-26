@@ -1,6 +1,6 @@
 package geneticEmblem.units.generated;
 
-import geneticEmblem.units.ootb.Unit;
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class Saint extends Unit {
@@ -20,11 +20,11 @@ public class Saint extends Unit {
 		this.setResBase(6);
 
 		this.setHpGr(60);
-		this.setStrGr(40);
+		this.setStrGr(45);
 		this.setSkillGr(50);
 		this.setSpeedGr(50);
 		this.setLuckGr(55);
-		this.setDefGr(25);
+		this.setDefGr(30);
 		this.setResGr(30);
 
 		this.setStrCap(24);

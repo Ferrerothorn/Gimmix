@@ -1,5 +1,6 @@
 package geneticEmblem.units.ootb;
 
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class ReflectorMage extends Unit {
@@ -18,10 +19,10 @@ public class ReflectorMage extends Unit {
 		this.setDefBase(5);
 		this.setResBase(5);
 
-		this.setHpGr(40);
+		this.setHpGr(44);
 		this.setStrGr(45);
-		this.setSkillGr(45);
-		this.setSpeedGr(60);
+		this.setSkillGr(48);
+		this.setSpeedGr(63);
 		this.setLuckGr(50);
 		this.setDefGr(30);
 		this.setResGr(40);

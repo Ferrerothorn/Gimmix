@@ -1,7 +1,6 @@
 package geneticEmblem.units.generated;
 
-import geneticEmblem.units.ootb.Unit;
-
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class Golem extends Unit { 
@@ -24,8 +23,8 @@ public Golem() {
     this.setStrGr(35);
     this.setSkillGr(20);
     this.setSpeedGr(75);
-    this.setLuckGr(20);
-    this.setDefGr(30);
+    this.setLuckGr(25);
+    this.setDefGr(35);
     this.setResGr(70);
 
     this.setStrCap(30);

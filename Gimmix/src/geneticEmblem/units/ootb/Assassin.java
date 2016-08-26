@@ -1,5 +1,6 @@
 package geneticEmblem.units.ootb;
 
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class Assassin extends Unit {
@@ -18,12 +19,12 @@ public class Assassin extends Unit {
 		this.setDefBase(4);
 		this.setResBase(2);
 
-		this.setHpGr(65);
-		this.setStrGr(35);
-		this.setSkillGr(55);
-		this.setSpeedGr(55);
+		this.setHpGr(50);
+		this.setStrGr(40);
+		this.setSkillGr(60);
+		this.setSpeedGr(65);
 		this.setLuckGr(40);
-		this.setDefGr(30);
+		this.setDefGr(35);
 		this.setResGr(30);
 
 		this.setStrCap(23);

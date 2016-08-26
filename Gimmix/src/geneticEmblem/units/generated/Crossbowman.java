@@ -1,7 +1,6 @@
 package geneticEmblem.units.generated;
 
-import geneticEmblem.units.ootb.Unit;
-
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class Crossbowman extends Unit {
@@ -23,10 +22,10 @@ public class Crossbowman extends Unit {
 		this.setHpGr(40);
 		this.setStrGr(65);
 		this.setSkillGr(30);
-		this.setSpeedGr(50);
+		this.setSpeedGr(55);
 		this.setLuckGr(25);
 		this.setDefGr(55);
-		this.setResGr(45);
+		this.setResGr(50);
 
 		this.setStrCap(26);
 		this.setSkillCap(25);

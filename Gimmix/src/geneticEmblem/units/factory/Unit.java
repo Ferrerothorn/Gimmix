@@ -1,4 +1,4 @@
-package geneticEmblem.units.ootb;
+package geneticEmblem.units.factory;
 
 import java.util.ArrayList;
 import java.util.Arrays;

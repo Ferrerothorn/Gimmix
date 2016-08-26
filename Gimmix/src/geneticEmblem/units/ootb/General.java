@@ -1,5 +1,6 @@
 package geneticEmblem.units.ootb;
 
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class General extends Unit {
@@ -21,9 +22,9 @@ public class General extends Unit {
 		this.setHpGr(60);
 		this.setStrGr(55);
 		this.setSkillGr(45);
-		this.setSpeedGr(30);
+		this.setSpeedGr(35);
 		this.setLuckGr(40);
-		this.setDefGr(55);
+		this.setDefGr(60);
 		this.setResGr(25);
 
 		this.setStrCap(27);

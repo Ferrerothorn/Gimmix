@@ -1,7 +1,6 @@
-package geneticEmblem.units.greenfield;
+package geneticEmblem.units.generated;
 
-import geneticEmblem.units.ootb.Unit;
-
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class MagnetMage extends Unit { 
@@ -22,7 +21,7 @@ public MagnetMage() {
 
     this.setHpGr(65);
     this.setStrGr(75);
-    this.setSkillGr(25);
+    this.setSkillGr(35);
     this.setSpeedGr(60);
     this.setLuckGr(35);
     this.setDefGr(25);

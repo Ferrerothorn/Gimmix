@@ -1,5 +1,6 @@
 package geneticEmblem.units.ootb;
 
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class Viking extends Unit {
@@ -19,10 +20,10 @@ public class Viking extends Unit {
 
 		this.setHpGr(70);
 		this.setStrGr(60);
-		this.setSkillGr(40);
+		this.setSkillGr(45);
 		this.setSpeedGr(45);
 		this.setLuckGr(30);
-		this.setDefGr(40);
+		this.setDefGr(45);
 		this.setResGr(25);
 
 		this.setStrCap(30);

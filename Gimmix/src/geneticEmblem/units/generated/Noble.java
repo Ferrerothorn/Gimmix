@@ -1,14 +1,13 @@
 package geneticEmblem.units.generated;
 
-import geneticEmblem.units.ootb.Unit;
-
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class Noble extends Unit {
 
 	public Noble() {
 		this.setJob("Noble");
-		this.setWeapon(new IronSword());
+		this.setWeapon(new Rapier());
 		this.setHpBase(24);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(9);
@@ -22,14 +21,14 @@ public class Noble extends Unit {
 		this.setStrGr(60);
 		this.setSkillGr(30);
 		this.setSpeedGr(80);
-		this.setLuckGr(35);
+		this.setLuckGr(45);
 		this.setDefGr(25);
 		this.setResGr(45);
 
 		this.setStrCap(24);
-		this.setSkillCap(24);
-		this.setSpeedCap(23);
-		this.setDefCap(28);
+		this.setSkillCap(23);
+		this.setSpeedCap(28);
+		this.setDefCap(24);
 		this.setResCap(28);
 	}
 }

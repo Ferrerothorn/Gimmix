@@ -1,7 +1,6 @@
 package geneticEmblem.units.generated;
 
-import geneticEmblem.units.ootb.Unit;
-
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class Brigand extends Unit {
@@ -18,7 +17,7 @@ public class Brigand extends Unit {
 		this.setDefBase(5);
 		this.setResBase(2);
 
-		this.setHpGr(30);
+		this.setHpGr(40);
 		this.setStrGr(40);
 		this.setSkillGr(35);
 		this.setSpeedGr(75);

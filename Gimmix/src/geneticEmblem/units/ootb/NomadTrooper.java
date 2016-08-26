@@ -1,5 +1,6 @@
 package geneticEmblem.units.ootb;
 
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class NomadTrooper extends Unit {
@@ -20,11 +21,11 @@ public class NomadTrooper extends Unit {
 
 		this.setHpGr(60);
 		this.setStrGr(50);
-		this.setSkillGr(40);
+		this.setSkillGr(45);
 		this.setSpeedGr(60);
 		this.setLuckGr(40);
 		this.setDefGr(35);
-		this.setResGr(25);
+		this.setResGr(30);
 
 		this.setStrCap(25);
 		this.setSkillCap(28);

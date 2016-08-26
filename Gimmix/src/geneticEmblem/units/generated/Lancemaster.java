@@ -1,6 +1,6 @@
 package geneticEmblem.units.generated;
 
-import geneticEmblem.units.ootb.Unit;
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class Lancemaster extends Unit {
@@ -13,6 +13,7 @@ public class Lancemaster extends Unit {
 		this.setHpBase(23);
 		this.setBaseCrit(10);
 		this.setCurrentHp(this.getHpBase());
+		
 		this.setStrBase(8);
 		this.setSkillBase(7);
 		this.setSpeedBase(9);
@@ -24,9 +25,9 @@ public class Lancemaster extends Unit {
 		this.setStrGr(45);
 		this.setSkillGr(55);
 		this.setSpeedGr(70);
-		this.setLuckGr(40);
+		this.setLuckGr(45);
 		this.setDefGr(25);
-		this.setResGr(25);
+		this.setResGr(30);
 
 		this.setStrCap(26);
 		this.setSkillCap(26);

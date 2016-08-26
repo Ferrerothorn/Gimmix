@@ -1,6 +1,6 @@
 package geneticEmblem.units.generated;
 
-import geneticEmblem.units.ootb.Unit;
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class Entombed extends Unit {
@@ -23,7 +23,7 @@ public class Entombed extends Unit {
 		this.setStrGr(70);
 		this.setSkillGr(40);
 		this.setSpeedGr(55);
-		this.setLuckGr(25);
+		this.setLuckGr(35);
 		this.setDefGr(45);
 		this.setResGr(30);
 

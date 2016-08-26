@@ -1,5 +1,6 @@
 package geneticEmblem.units.ootb;
 
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class Tarmogoyf extends Unit {
@@ -20,7 +21,7 @@ public class Tarmogoyf extends Unit {
 
 		this.setHpGr(55);
 		this.setStrGr(45);
-		this.setSkillGr(35);
+		this.setSkillGr(45);
 		this.setSpeedGr(40);
 		this.setLuckGr(20);
 		this.setDefGr(60);

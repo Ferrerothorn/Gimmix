@@ -1,5 +1,6 @@
 package geneticEmblem.units.ootb;
 
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class Crusader extends Unit {
@@ -20,7 +21,7 @@ public class Crusader extends Unit {
 		this.setHpGr(65);
 		this.setStrGr(45);
 		this.setSkillGr(40);
-		this.setSpeedGr(45);
+		this.setSpeedGr(55);
 		this.setLuckGr(45);
 		this.setDefGr(35);
 		this.setResGr(35);

@@ -1,5 +1,6 @@
 package geneticEmblem.units.ootb;
 
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class Swordmaster extends Unit {
@@ -23,8 +24,8 @@ public class Swordmaster extends Unit {
 		this.setSkillGr(55);
 		this.setSpeedGr(55);
 		this.setLuckGr(40);
-		this.setDefGr(22);
-		this.setResGr(28);
+		this.setDefGr(30);
+		this.setResGr(30);
 
 		this.setStrCap(24);
 		this.setSkillCap(29);

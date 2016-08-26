@@ -1,7 +1,6 @@
 package geneticEmblem.units.generated;
 
-import geneticEmblem.units.ootb.Unit;
-
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class Duke extends Unit { 
@@ -20,7 +19,7 @@ public Duke() {
     this.setDefBase(7);
     this.setResBase(3);
 
-    this.setHpGr(55);
+    this.setHpGr(65);
     this.setStrGr(50);
     this.setSkillGr(45);
     this.setSpeedGr(40);

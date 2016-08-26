@@ -1,7 +1,6 @@
-package geneticEmblem.units.ootb;
+package geneticEmblem.units.generated;
 
-import geneticEmblem.units.ootb.Unit;
-
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class Angel extends Unit { 
@@ -26,7 +25,7 @@ public Angel() {
     this.setSpeedGr(35);
     this.setLuckGr(80);
     this.setDefGr(25);
-    this.setResGr(25);
+    this.setResGr(35);
 
     this.setStrCap(29);
     this.setSkillCap(24);

@@ -10,16 +10,17 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
 
+import geneticEmblem.units.factory.Custom;
+import geneticEmblem.units.factory.CustomUnitGenerator;
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.units.generated.*;
 import geneticEmblem.units.ootb.*;
-import geneticEmblem.units.greenfield.*;
 
 public class List {
 
 	static ArrayList<Unit> arena = new ArrayList<Unit>();
 	static Boolean on = true;
 	static Scanner input = new Scanner(System.in);
-	static int maxArenaSize;
 	static CustomUnitGenerator customUnitGenerator;
 
 	static HashMap<String, Integer> matchupsSeen = new HashMap<String, Integer>();
@@ -98,8 +99,7 @@ public class List {
 				System.out.println("Leveling population up.");
 				levelTheDudesTo(15, arena);
 				System.out.println("Commencing deathmatch.");
-				deathmatch(1024, arena);
-				maxArenaSize = 1024;
+				deathmatch(2048, arena);
 				System.out.println();
 				double initialStDev = calcStDev(arena);
 
@@ -122,7 +122,7 @@ public class List {
 
 					Collections.shuffle(arena);
 					levelTheDudesTo(15, arena);
-					deathmatch(1024, arena);
+					deathmatch(2048, arena);
 
 					double newStDev = calcStDev(arena);
 					System.out.println("The new balance measure is " + newStDev + ".");
@@ -385,12 +385,12 @@ public class List {
 			theArena.add(new Aran());
 			theArena.add(new Assassin());
 			theArena.add(new Viking());
+			theArena.add(new Cleric());
 
 			theArena.add(new Entombed());
+			theArena.add(new KilnFiend());
 			theArena.add(new Angel());
 			theArena.add(new Wall());
-			theArena.add(new Ghost());
-			theArena.add(new Mortivore());
 			theArena.add(new MagnetMage());
 			theArena.add(new Golem());
 			theArena.add(new Noble());
@@ -401,7 +401,9 @@ public class List {
 			theArena.add(new Crossbowman());
 			theArena.add(new Duke());
 			theArena.add(new Buccaneer());
-
+			theArena.add(new Guerrilla());
+			theArena.add(new Gunmaster());
+			theArena.add(new FirePoison());
 		}
 		Collections.shuffle(arena);
 	}

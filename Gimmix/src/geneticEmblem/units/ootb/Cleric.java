@@ -1,5 +1,6 @@
 package geneticEmblem.units.ootb;
 
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.Shine;
 
 public class Cleric extends Unit {
@@ -20,9 +21,9 @@ public class Cleric extends Unit {
 
 		this.setHpGr(50);
 		this.setStrGr(50);
-		this.setSkillGr(35);
+		this.setSkillGr(40);
 		this.setSpeedGr(40);
-		this.setLuckGr(60);
+		this.setLuckGr(65);
 		this.setDefGr(20);
 		this.setResGr(55);
 

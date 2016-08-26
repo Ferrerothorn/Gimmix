@@ -1,7 +1,6 @@
 package geneticEmblem.units.generated;
 
-import geneticEmblem.units.ootb.Unit;
-
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class Wall extends Unit { 
@@ -24,8 +23,8 @@ public Wall() {
     this.setStrGr(40);
     this.setSkillGr(20);
     this.setSpeedGr(25);
-    this.setLuckGr(20);
-    this.setDefGr(65);
+    this.setLuckGr(25);
+    this.setDefGr(70);
     this.setResGr(60);
 
     this.setStrCap(22);

@@ -1,5 +1,6 @@
 package geneticEmblem.units.ootb;
 
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class Mogall extends Unit {
@@ -22,8 +23,8 @@ public class Mogall extends Unit {
 		this.setStrGr(60);
 		this.setSkillGr(35);
 		this.setSpeedGr(55);
-		this.setLuckGr(35);
-		this.setDefGr(25);
+		this.setLuckGr(40);
+		this.setDefGr(30);
 		this.setResGr(55);
 
 		this.setStrCap(29);

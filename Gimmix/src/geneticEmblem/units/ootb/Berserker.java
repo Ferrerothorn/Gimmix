@@ -1,5 +1,6 @@
 package geneticEmblem.units.ootb;
 
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class Berserker extends Unit {
@@ -21,10 +22,10 @@ public class Berserker extends Unit {
 		this.setHpGr(75);
 		this.setStrGr(60);
 		this.setSkillGr(35);
-		this.setSpeedGr(50);
+		this.setSpeedGr(55);
 		this.setLuckGr(30);
 		this.setDefGr(35);
-		this.setResGr(25);
+		this.setResGr(30);
 
 		this.setStrCap(30);
 		this.setSkillCap(29);

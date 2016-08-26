@@ -1,6 +1,6 @@
 package geneticEmblem.units.generated;
 
-import geneticEmblem.units.ootb.Unit;
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class FirePoison extends Unit {
@@ -11,15 +11,15 @@ public class FirePoison extends Unit {
 		this.setHpBase(20);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(9);
-		this.setSkillBase(7);
+		this.setSkillBase(6);
 		this.setSpeedBase(9);
 		this.setLuckBase(3);
 		this.setDefBase(3);
-		this.setResBase(6);
+		this.setResBase(7);
 
 		this.setHpGr(50);
-		this.setStrGr(55);
-		this.setSkillGr(30);
+		this.setStrGr(60);
+		this.setSkillGr(35);
 		this.setSpeedGr(70);
 		this.setLuckGr(30);
 		this.setDefGr(30);

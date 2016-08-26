@@ -1,5 +1,6 @@
 package geneticEmblem.units.ootb;
 
+import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
 public class Aran extends Unit {
@@ -22,12 +23,12 @@ public class Aran extends Unit {
 		this.setSkillGr(35);
 		this.setSpeedGr(45);
 		this.setLuckGr(30);
-		this.setDefGr(35);
+		this.setDefGr(45);
 		this.setResGr(25);
 
 		this.setStrCap(30);
-		this.setSkillCap(29);
-		this.setSpeedCap(28);
+		this.setSkillCap(27);
+		this.setSpeedCap(30);
 		this.setDefCap(23);
 		this.setResCap(21);
 	}

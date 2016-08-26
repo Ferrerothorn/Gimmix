@@ -1,4 +1,4 @@
-package geneticEmblem.units.generated;
+package geneticEmblem.units.factory;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -32,18 +32,6 @@ public class CustomUnitGenerator {
 	ArrayList<Weapon> armory = new ArrayList<Weapon>();
 	Weapon weapon;
 	
-	public CustomUnitGenerator(String leastCommonWeapon) {
-		populateArmory(leastCommonWeapon);
-		generateNewUnitStats();
-	}
-	
-
-	public Custom buildUnit() {
-		Custom custom = new Custom(weapon, baseHP, strBase, skillBase, speedBase, luckBase, defBase, resBase, hpGr,
-				strGr, skillGr, speedGr, luckGr, defGr, resGr, strCap, speedCap, skillCap, defCap, resCap);
-		return custom;
-	}
-
 	public void generateNewUnitStats() {
 		blatStats();
 		Random r = new Random();
@@ -52,6 +40,12 @@ public class CustomUnitGenerator {
 		generateCaps(r);
 		chooseWeapon(r);
 
+		if (strGr <= 30 && strCap > 21 ) {
+			generateNewUnitStats();
+		}
+		if ( skillCap > speedCap && skillGr < speedGr ){
+			generateNewUnitStats();
+		}
 		if ((defGr > 45 || resGr > 45) && hpGr < 40) {
 			generateNewUnitStats();
 		}
@@ -103,6 +97,21 @@ public class CustomUnitGenerator {
 			generateNewUnitStats();
 		}
 	}
+	
+	
+	public CustomUnitGenerator(String leastCommonWeapon) {
+		populateArmory(leastCommonWeapon);
+		generateNewUnitStats();
+	}
+	
+
+	public Custom buildUnit() {
+		Custom custom = new Custom(weapon, baseHP, strBase, skillBase, speedBase, luckBase, defBase, resBase, hpGr,
+				strGr, skillGr, speedGr, luckGr, defGr, resGr, strCap, speedCap, skillCap, defCap, resCap);
+		return custom;
+	}
+
+	
 
 	private void blatStats() {
 		baseHP = 0;
@@ -201,7 +210,7 @@ public class CustomUnitGenerator {
 		resGr *= 5;
 		int sumGRs = hpGr + strGr + skillGr + speedGr + luckGr + defGr + resGr;
 
-		if (sumGRs != 310) {
+		if (sumGRs != 320) {
 			generateGRs(r);
 		}
 	}
@@ -252,17 +261,22 @@ public class CustomUnitGenerator {
 			armory.add(new SteelSword());
 			armory.add(new WallOfSwords());
 			armory.add(new LightBrand());
+			armory.add(new Bayonet());
 			armory.add(new ShadowBlade());
 		} else if (leastCommonWeapon.equals("Lance")) {
 			armory.add(new IronLance());
+			armory.add(new IronRake());
+			armory.add(new Sunlance());
 			armory.add(new PoleAxe());
 		} else if (leastCommonWeapon.equals("Dark")) {
 			armory.add(new Flux());
 			armory.add(new Portal());
 			armory.add(new ShadowBlade());
+			armory.add(new Oathbow());
 		} else if (leastCommonWeapon.equals("Light")) {
 			armory.add(new LightBrand());
 			armory.add(new Shine());
+			armory.add(new Sunlance());
 		} else if (leastCommonWeapon.equals("Anima")) {
 			armory.add(new Fire());
 			armory.add(new Thunder());
@@ -272,19 +286,22 @@ public class CustomUnitGenerator {
 		} else if (leastCommonWeapon.equals("Claw")) {
 			armory.add(new SharpClaw());
 			armory.add(new FireClaw());
+			armory.add(new IronRake());
 		} else if (leastCommonWeapon.equals("Shield")) {
 			armory.add(new DivineShield());
 			armory.add(new IronShield());
-			armory.add(new Hurricane());
+			armory.add(new WindBow());
 			armory.add(new Portal());
 			armory.add(new WallOfSwords());
 		} else if (leastCommonWeapon.equals("Bow")) {
 			armory.add(new SteelBow());
 			armory.add(new IronBow());
-			armory.add(new Hurricane());
+			armory.add(new WindBow());
 			armory.add(new IronGear());
+			armory.add(new Oathbow());
 		} else {
 			armory.add(new IronGun());
+			armory.add(new Bayonet());
 			armory.add(new Flamethrower());
 		}
 	}
