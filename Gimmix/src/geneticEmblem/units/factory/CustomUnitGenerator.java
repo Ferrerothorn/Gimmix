@@ -253,10 +253,16 @@ public class CustomUnitGenerator {
 
 	public void populateArmory(String leastCommonWeapon) {
 		if (leastCommonWeapon.equals("Axe")) {
-			armory.add(new IronAxe());
-			armory.add(new PoleAxe());
-			armory.add(new BoltAxe());
+			armory.add(new Bayonet());
+			armory.add(new Flamethrower());
+			armory.add(new IronGear());
+			armory.add(new IronGun());
+			armory.add(new IronSword());
+			armory.add(new LightBrand());
 			armory.add(new Machete());
+			armory.add(new ShadowBlade());
+			armory.add(new SteelSword());
+			armory.add(new WallOfSwords());
 		} else if (leastCommonWeapon.equals("Sword")) {
 			armory.add(new IronSword());
 			armory.add(new IronGear());

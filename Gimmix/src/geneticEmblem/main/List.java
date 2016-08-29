@@ -256,25 +256,25 @@ public class List {
 		System.out.println("Gun: " + gun);
 		System.out.println();
 
-		if (sword < axe && sword < lance && sword < light && sword < dark && sword < anima && sword < shield
-				&& sword < bow && sword < claw && sword < gun) {
+		if (sword > axe && sword > lance && sword > light && sword > dark && sword > anima && sword > shield
+				&& sword > bow && sword > claw && sword > gun) {
 			return "Sword";
-		} else if (lance < axe && lance < anima && lance < dark && lance < light && lance < shield && lance < claw
-				&& lance < bow && lance < gun) {
+		} else if (lance > axe && lance > anima && lance > dark && lance > light && lance > shield && lance > claw
+				&& lance > bow && lance > gun) {
 			return "Lance";
-		} else if (axe < anima && axe < dark && axe < light && axe < shield && axe < claw && axe < bow && axe < gun) {
+		} else if (axe > anima && axe > dark && axe > light && axe > shield && axe > claw && axe > bow && axe > gun) {
 			return "Axe";
-		} else if (anima < dark && anima < light && anima < shield && anima < claw && anima < bow && anima < gun) {
+		} else if (anima > dark && anima > light && anima > shield && anima > claw && anima > bow && anima > gun) {
 			return "Anima";
-		} else if (light < dark && light < shield && light < claw && light < bow && light < gun) {
+		} else if (light > dark && light > shield && light > claw && light > bow && light > gun) {
 			return "Light";
-		} else if (dark < shield && dark < claw && dark < bow && dark < gun) {
+		} else if (dark > shield && dark > claw && dark > bow && dark > gun) {
 			return "Dark";
-		} else if (bow < shield && bow < claw && bow < gun) {
+		} else if (bow > shield && bow > claw && bow > gun) {
 			return "Bow";
-		} else if (claw < shield && claw < gun) {
+		} else if (claw > shield && claw > gun) {
 			return "Claw";
-		} else if (gun < shield) {
+		} else if (gun > shield) {
 			return "Gun";
 		} else
 			return "Shield";
