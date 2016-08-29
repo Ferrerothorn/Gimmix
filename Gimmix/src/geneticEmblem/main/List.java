@@ -385,8 +385,10 @@ public class List {
 			theArena.add(new Viking());
 
 			theArena.add(new Entombed());
+			theArena.add(new Executioner());
 			theArena.add(new KilnFiend());
 			theArena.add(new Angel());
+			theArena.add(new Kaiser());
 			theArena.add(new Flamecaller());
 			theArena.add(new Wall());
 			theArena.add(new MagnetMage());
@@ -409,6 +411,7 @@ public class List {
 			theArena.add(new Assassin());
 			theArena.add(new DragonKnight());
 			theArena.add(new BlueMage());
+			theArena.add(new Mageslayer());
 		}
 		Collections.shuffle(arena);
 	}
