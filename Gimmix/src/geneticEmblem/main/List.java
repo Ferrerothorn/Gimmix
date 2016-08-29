@@ -403,7 +403,13 @@ public class List {
 			theArena.add(new Buccaneer());
 			theArena.add(new Guerrilla());
 			theArena.add(new Gunmaster());
-			theArena.add(new FirePoison());
+			// theArena.add(new FirePoison());
+			theArena.add(new Aristocrat());
+			theArena.add(new Defender());
+			theArena.add(new WindBreaker());
+			theArena.add(new Streetear());
+			theArena.add(new Mercedes());
+			theArena.add(new Farmer());
 		}
 		Collections.shuffle(arena);
 	}

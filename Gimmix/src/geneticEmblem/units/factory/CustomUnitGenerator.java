@@ -216,7 +216,8 @@ public class CustomUnitGenerator {
 	}
 
 	public void printNewClass() {
-		System.out.println("import geneticEmblem.units.ootb.Unit;" + '\n');
+		System.out.println();
+		System.out.println("import geneticEmblem.units.factory.Unit;" + '\n');
 		System.out.println("import geneticEmblem.weapons.*;" + '\n');
 		System.out.println("public class XXX extends Unit { " + '\n');
 		System.out.println("public XXX() {" + '\n');
@@ -255,19 +256,23 @@ public class CustomUnitGenerator {
 			armory.add(new IronAxe());
 			armory.add(new PoleAxe());
 			armory.add(new BoltAxe());
+			armory.add(new Machete());
 		} else if (leastCommonWeapon.equals("Sword")) {
 			armory.add(new IronSword());
 			armory.add(new IronGear());
 			armory.add(new SteelSword());
 			armory.add(new WallOfSwords());
+			armory.add(new Rapier());
 			armory.add(new LightBrand());
 			armory.add(new Bayonet());
+			armory.add(new Machete());
 			armory.add(new ShadowBlade());
 		} else if (leastCommonWeapon.equals("Lance")) {
 			armory.add(new IronLance());
 			armory.add(new IronRake());
 			armory.add(new Sunlance());
 			armory.add(new PoleAxe());
+			armory.add(new Rapier());
 		} else if (leastCommonWeapon.equals("Dark")) {
 			armory.add(new Flux());
 			armory.add(new Portal());
@@ -280,6 +285,7 @@ public class CustomUnitGenerator {
 		} else if (leastCommonWeapon.equals("Anima")) {
 			armory.add(new Fire());
 			armory.add(new Thunder());
+			armory.add(new Forblaze());
 			armory.add(new BoltAxe());
 			armory.add(new FireClaw());
 			armory.add(new Flamethrower());
@@ -291,6 +297,7 @@ public class CustomUnitGenerator {
 			armory.add(new DivineShield());
 			armory.add(new IronShield());
 			armory.add(new WindBow());
+			armory.add(new Forblaze());
 			armory.add(new Portal());
 			armory.add(new WallOfSwords());
 		} else if (leastCommonWeapon.equals("Bow")) {
@@ -299,9 +306,11 @@ public class CustomUnitGenerator {
 			armory.add(new WindBow());
 			armory.add(new IronGear());
 			armory.add(new Oathbow());
+			armory.add(new DualBowgun());
 		} else {
 			armory.add(new IronGun());
 			armory.add(new Bayonet());
+			armory.add(new DualBowgun());
 			armory.add(new Flamethrower());
 		}
 	}

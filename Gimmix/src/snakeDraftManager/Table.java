@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+import snakeDraftManager.Player;
+
 public class Table {
 
 	public static ArrayList<Player> players = new ArrayList<Player>();
