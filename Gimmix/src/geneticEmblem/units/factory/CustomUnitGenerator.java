@@ -30,8 +30,105 @@ public class CustomUnitGenerator {
 	int resCap = 0;
 
 	ArrayList<Weapon> armory = new ArrayList<Weapon>();
+
+	ArrayList<Weapon> swordList = new ArrayList<Weapon>();
+	ArrayList<Weapon> lanceList = new ArrayList<Weapon>();
+	ArrayList<Weapon> axeList = new ArrayList<Weapon>();
+	ArrayList<Weapon> animaList = new ArrayList<Weapon>();
+	ArrayList<Weapon> darkList = new ArrayList<Weapon>();
+	ArrayList<Weapon> lightList = new ArrayList<Weapon>();
+	ArrayList<Weapon> clawList = new ArrayList<Weapon>();
+	ArrayList<Weapon> bowList = new ArrayList<Weapon>();
+	ArrayList<Weapon> shieldList = new ArrayList<Weapon>();
+	ArrayList<Weapon> gunList = new ArrayList<Weapon>();
+
 	Weapon weapon;
-	
+
+	private void fillWeaponLists() {
+		swordList.add(new IronSword());
+		swordList.add(new AquaSaber());
+		swordList.add(new Bayonet());
+		swordList.add(new IronGear());
+		swordList.add(new IronSword());
+		swordList.add(new Knuckleduster());
+		swordList.add(new WallOfSwords());
+		swordList.add(new LightBrand());
+		swordList.add(new Rapier());
+		swordList.add(new Machete());
+		swordList.add(new ShadowBlade());
+		swordList.add(new SteelSword());
+
+		lanceList.add(new ArcaneLance());
+		lanceList.add(new IronLance());
+		lanceList.add(new IronRake());
+		lanceList.add(new Sunlance());
+		lanceList.add(new PoleAxe());
+		lanceList.add(new Rapier());
+
+		axeList.add(new BoltAxe());
+		axeList.add(new DevilAxe());
+		axeList.add(new HuntersGear());
+		axeList.add(new Machete());
+		axeList.add(new IronAxe());
+		axeList.add(new PoleAxe());
+
+		animaList.add(new AquaSaber());
+		animaList.add(new ArcaneLance());
+		animaList.add(new BoltAxe());
+		animaList.add(new Channel());
+		animaList.add(new Fire());
+		animaList.add(new FireClaw());
+		animaList.add(new Flamethrower());
+		animaList.add(new Forblaze());
+		animaList.add(new WindBow());
+		animaList.add(new Thunder());
+
+		darkList.add(new Channel());
+		darkList.add(new DarkClaw());
+		darkList.add(new DevilAxe());
+		darkList.add(new Oathbow());
+		darkList.add(new Flux());
+		darkList.add(new ShadowBlade());
+		darkList.add(new Portal());
+		darkList.add(new SunDial());
+
+		lightList.add(new DivineShield());
+		lightList.add(new Sunlance());
+		lightList.add(new HolyClaw());
+		lightList.add(new LightBrand());
+		lightList.add(new Shine());
+		lightList.add(new SunDial());
+
+		bowList.add(new DualBowgun());
+		bowList.add(new HuntersGear());
+		bowList.add(new IronBow());
+		bowList.add(new IronGear());
+		bowList.add(new Oathbow());
+		bowList.add(new SteelBow());
+		bowList.add(new WindBow());
+
+		shieldList.add(new DivineShield());
+		shieldList.add(new Forblaze());
+		shieldList.add(new SpikedShield());
+		shieldList.add(new IronShield());
+		shieldList.add(new Portal());
+		shieldList.add(new WallOfSwords());
+
+		clawList.add(new DarkClaw());
+		clawList.add(new FireClaw());
+		clawList.add(new HolyClaw());
+		clawList.add(new Knuckleduster());
+		clawList.add(new SpikedShield());
+		clawList.add(new IronRake());
+		clawList.add(new SharpClaw());
+
+		gunList.add(new Bayonet());
+		gunList.add(new DualBowgun());
+		gunList.add(new Flamethrower());
+		gunList.add(new IronGun());
+
+	}
+
 	public void generateNewUnitStats() {
 		blatStats();
 		Random r = new Random();
@@ -40,10 +137,10 @@ public class CustomUnitGenerator {
 		generateCaps(r);
 		chooseWeapon(r);
 
-		if (strGr <= 30 && strCap > 21 ) {
+		if (strGr <= 30 && strCap > 21) {
 			generateNewUnitStats();
 		}
-		if ( skillCap > speedCap && skillGr < speedGr ){
+		if (skillCap > speedCap && skillGr < speedGr) {
 			generateNewUnitStats();
 		}
 		if ((defGr > 45 || resGr > 45) && hpGr < 40) {
@@ -97,21 +194,18 @@ public class CustomUnitGenerator {
 			generateNewUnitStats();
 		}
 	}
-	
-	
+
 	public CustomUnitGenerator(String leastCommonWeapon) {
+		fillWeaponLists();
 		populateArmory(leastCommonWeapon);
 		generateNewUnitStats();
 	}
-	
 
 	public Custom buildUnit() {
 		Custom custom = new Custom(weapon, baseHP, strBase, skillBase, speedBase, luckBase, defBase, resBase, hpGr,
 				strGr, skillGr, speedGr, luckGr, defGr, resGr, strCap, speedCap, skillCap, defCap, resCap);
 		return custom;
 	}
-
-	
 
 	private void blatStats() {
 		baseHP = 0;
@@ -155,7 +249,6 @@ public class CustomUnitGenerator {
 
 		if (sumBases != 37) {
 			generateBases(r);
-
 		}
 	}
 
@@ -176,7 +269,6 @@ public class CustomUnitGenerator {
 		defCap += 20;
 		resCap = r.nextInt(11);
 		resCap += 20;
-
 		int sumCaps = strCap + speedCap + skillCap + defCap + resCap;
 
 		if (sumCaps < 127 || sumCaps > 131) {
@@ -251,74 +343,32 @@ public class CustomUnitGenerator {
 		System.out.println();
 	}
 
-	public void populateArmory(String leastCommonWeapon) {
-		if (leastCommonWeapon.equals("Axe")) {
-			armory.add(new Bayonet());
-			armory.add(new Flamethrower());
-			armory.add(new IronGear());
-			armory.add(new IronGun());
-			armory.add(new IronSword());
-			armory.add(new LightBrand());
-			armory.add(new Machete());
-			armory.add(new ShadowBlade());
-			armory.add(new SteelSword());
-			armory.add(new WallOfSwords());
-		} else if (leastCommonWeapon.equals("Sword")) {
-			armory.add(new IronSword());
-			armory.add(new IronGear());
-			armory.add(new SteelSword());
-			armory.add(new WallOfSwords());
-			armory.add(new Rapier());
-			armory.add(new LightBrand());
-			armory.add(new Bayonet());
-			armory.add(new Machete());
-			armory.add(new ShadowBlade());
-		} else if (leastCommonWeapon.equals("Lance")) {
-			armory.add(new IronLance());
-			armory.add(new IronRake());
-			armory.add(new Sunlance());
-			armory.add(new PoleAxe());
-			armory.add(new Rapier());
-		} else if (leastCommonWeapon.equals("Dark")) {
-			armory.add(new Flux());
-			armory.add(new Portal());
-			armory.add(new ShadowBlade());
-			armory.add(new Oathbow());
-		} else if (leastCommonWeapon.equals("Light")) {
-			armory.add(new LightBrand());
-			armory.add(new Shine());
-			armory.add(new Sunlance());
-		} else if (leastCommonWeapon.equals("Anima")) {
-			armory.add(new Fire());
-			armory.add(new Thunder());
-			armory.add(new Forblaze());
-			armory.add(new BoltAxe());
-			armory.add(new FireClaw());
-			armory.add(new Flamethrower());
-		} else if (leastCommonWeapon.equals("Claw")) {
-			armory.add(new SharpClaw());
-			armory.add(new FireClaw());
-			armory.add(new IronRake());
-		} else if (leastCommonWeapon.equals("Shield")) {
-			armory.add(new DivineShield());
-			armory.add(new IronShield());
-			armory.add(new WindBow());
-			armory.add(new Forblaze());
-			armory.add(new Portal());
-			armory.add(new WallOfSwords());
-		} else if (leastCommonWeapon.equals("Bow")) {
-			armory.add(new SteelBow());
-			armory.add(new IronBow());
-			armory.add(new WindBow());
-			armory.add(new IronGear());
-			armory.add(new Oathbow());
-			armory.add(new DualBowgun());
-		} else {
-			armory.add(new IronGun());
-			armory.add(new Bayonet());
-			armory.add(new DualBowgun());
-			armory.add(new Flamethrower());
+	public void populateArmory(String mostCommonWeapon) {
+		if (mostCommonWeapon.equals("Axe")) {
+			armory.addAll(swordList);
+			armory.addAll(gunList);
+		} else if (mostCommonWeapon.equals("Sword")) {
+			armory.addAll(lanceList);
+		} else if (mostCommonWeapon.equals("Lance")) {
+			armory.addAll(axeList);
+			armory.addAll(gunList);
+		} else if (mostCommonWeapon.equals("Dark")) {
+			armory.addAll(lightList);
+			armory.addAll(gunList);
+		} else if (mostCommonWeapon.equals("Light")) {
+			armory.addAll(animaList);
+		} else if (mostCommonWeapon.equals("Anima")) {
+			armory.addAll(darkList);
+		} else if (mostCommonWeapon.equals("Claw")) {
+			armory.addAll(bowList);
+		} else if (mostCommonWeapon.equals("Shield")) {
+			armory.addAll(clawList);
+		} else if (mostCommonWeapon.equals("Bow")) {
+			armory.addAll(shieldList);
+		} else if (mostCommonWeapon.equals("Gun")) {
+			armory.addAll(animaList);
+			armory.addAll(lightList);
+			armory.addAll(shieldList);
 		}
 	}
-
 }

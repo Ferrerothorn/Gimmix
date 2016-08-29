@@ -12,8 +12,8 @@ public class Saint extends Unit {
 		this.setWeapon(new Shine());
 		this.setHpBase(26);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(9);
-		this.setSkillBase(7);
+		this.setStrBase(8);
+		this.setSkillBase(8);
 		this.setSpeedBase(7);
 		this.setLuckBase(5);
 		this.setDefBase(3);

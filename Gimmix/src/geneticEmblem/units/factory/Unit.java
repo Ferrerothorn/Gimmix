@@ -9,7 +9,6 @@ public abstract class Unit {
 
 	String name = "";
 	String job = "";
-	ArrayList<String> traits = new ArrayList<String>();
 	Weapon weapon;
 	int lv = 1;
 	int currentHp;
@@ -274,22 +273,10 @@ public abstract class Unit {
 		job = s;
 	}
 
-	public void addTrait(String trait) {
-		traits.add(trait);
-	}
-
 	public void swingAt(Unit target) {
 		Random r = new Random();
 		int thisAccu = 2 * this.getSkillBase() + this.LuckBase + weapon.getAcc() + this.triangleAccuracyBonus(target);
 		int thisPower = this.StrBase + weapon.getPow() + this.triangleDamageBonus(target);
-
-		if (this.weapon.getTraits().contains("Luna")) {
-			thisPower += target.getResBase();
-		}
-
-		if (this.weapon.getTraits().contains("Arrow") && (target.getTraits().contains("Flying"))) {
-			thisPower += 2 * weapon.getPow();
-		}
 
 		int thisCrit = this.SkillBase / 2 + this.getBaseCrit() + this.weapon.getCrit() - target.getLuckBase();
 		int hitDamage;
@@ -300,7 +287,7 @@ public abstract class Unit {
 		}
 
 		if (this.weapon.getTraits().contains("Arrow") && target.getWeapon().getTraits().contains("Shield")) {
-			hitDamage /= 1.6;
+			hitDamage /= 1.5;
 		}
 
 		if (hitDamage < 0) {
@@ -312,13 +299,6 @@ public abstract class Unit {
 
 		int hit = r.nextInt(100);
 
-		if (this.getJob().equals("Sniper")) {
-			int sureStrike = r.nextInt(100);
-			if (sureStrike <= this.getSkillBase()) {
-				// System.out.println("SURE STRIKE");
-				overallHitRate = 999;
-			}
-		}
 
 		if (hit < overallHitRate) {
 			// System.out.println("And hits, for " + hitDamage + " damage! " +
@@ -338,28 +318,13 @@ public abstract class Unit {
 				}
 			}
 
-			if (this.getJob().equals("Assassin")) {
-				int instaKill = r.nextInt(100);
-				if (instaKill <= this.getSkillBase()) {
-					// System.out.println("KILLING BLOW!");
-					hitDamage = target.getCurrentHp();
-				}
-			}
+
 
 			target.currentHp -= hitDamage;
-			if (this.weapon.getTraits().contains("Lifelink")) {
-				this.currentHp += hitDamage;
-			}
-			if (this.currentHp > this.HpBase) {
-				currentHp = this.getHpBase();
-			}
+
 		} else {
 			// System.out.println("But misses...");
 		}
-	}
-
-	private ArrayList<String> getTraits() {
-		return traits;
 	}
 
 	private int triangleDamageBonus(Unit target) {

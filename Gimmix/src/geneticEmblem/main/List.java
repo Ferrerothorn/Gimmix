@@ -103,11 +103,11 @@ public class List {
 				System.out.println();
 				double initialStDev = calcStDev(arena);
 
-				String leastCommonWeapon = getWeaponMetagame(arena);
-				System.out.println("The metagame is too short on " + leastCommonWeapon + ".");
+				String mostCommonWeapon = getWeaponMetagame(arena);
+				System.out.println("The metagame is overpopulated by " + mostCommonWeapon + ".");
 
-				customUnitGenerator = new CustomUnitGenerator(leastCommonWeapon);
-				customUnitGenerator.populateArmory(leastCommonWeapon);
+				customUnitGenerator = new CustomUnitGenerator(mostCommonWeapon);
+				customUnitGenerator.populateArmory(mostCommonWeapon);
 
 				while (true) {
 					System.out.println("The target to beat is " + initialStDev + ".");
@@ -376,20 +376,18 @@ public class List {
 			theArena.add(new Soldier());
 			theArena.add(new Berserker());
 			theArena.add(new General());
-			theArena.add(new Tarmogoyf());
 			theArena.add(new Swordmaster());
 			theArena.add(new Crusader());
 			theArena.add(new Mogall());
 			theArena.add(new ReflectorMage());
 			theArena.add(new NomadTrooper());
 			theArena.add(new Aran());
-			theArena.add(new Assassin());
 			theArena.add(new Viking());
-			theArena.add(new Cleric());
 
 			theArena.add(new Entombed());
 			theArena.add(new KilnFiend());
 			theArena.add(new Angel());
+			theArena.add(new Flamecaller());
 			theArena.add(new Wall());
 			theArena.add(new MagnetMage());
 			theArena.add(new Golem());
@@ -403,13 +401,14 @@ public class List {
 			theArena.add(new Buccaneer());
 			theArena.add(new Guerrilla());
 			theArena.add(new Gunmaster());
-			// theArena.add(new FirePoison());
 			theArena.add(new Aristocrat());
 			theArena.add(new Defender());
-			theArena.add(new WindBreaker());
-			theArena.add(new Streetear());
 			theArena.add(new Mercedes());
-			theArena.add(new Farmer());
+			theArena.add(new Demon());
+			theArena.add(new BurnMage());
+			theArena.add(new Assassin());
+			theArena.add(new DragonKnight());
+			theArena.add(new BlueMage());
 		}
 		Collections.shuffle(arena);
 	}
