@@ -373,7 +373,6 @@ public class List {
 	private static void addEachClass(int i, ArrayList<Unit> theArena) {
 		for (int x = 0; x < i; x++) {
 
-			theArena.add(new Soldier());
 			theArena.add(new Berserker());
 			theArena.add(new General());
 			theArena.add(new Swordmaster());
@@ -385,7 +384,6 @@ public class List {
 			theArena.add(new Viking());
 
 			theArena.add(new Entombed());
-			theArena.add(new Executioner());
 			theArena.add(new KilnFiend());
 			theArena.add(new Angel());
 			theArena.add(new Kaiser());
@@ -401,19 +399,12 @@ public class List {
 			theArena.add(new Crossbowman());
 			theArena.add(new Duke());
 			theArena.add(new Buccaneer());
-			theArena.add(new Guerrilla());
 			theArena.add(new Gunmaster());
 			theArena.add(new Aristocrat());
-			theArena.add(new Defender());
 			theArena.add(new Mercedes());
-			theArena.add(new Demon());
 			theArena.add(new BurnMage());
 			theArena.add(new Assassin());
 			theArena.add(new DragonKnight());
-			theArena.add(new BlueMage());
-			theArena.add(new Mageslayer());
-			theArena.add(new Paladin());
-			theArena.add(new Dandy());
 		}
 		Collections.shuffle(arena);
 	}
