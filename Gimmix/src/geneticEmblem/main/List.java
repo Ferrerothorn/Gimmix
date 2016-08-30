@@ -412,6 +412,8 @@ public class List {
 			theArena.add(new DragonKnight());
 			theArena.add(new BlueMage());
 			theArena.add(new Mageslayer());
+			theArena.add(new Paladin());
+			theArena.add(new Dandy());
 		}
 		Collections.shuffle(arena);
 	}
