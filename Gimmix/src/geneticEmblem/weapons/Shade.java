@@ -1,13 +1,13 @@
 package geneticEmblem.weapons;
 
-public class SunDial extends Weapon {
+public class Shade extends Weapon {
 	
-	public SunDial(){
+	public Shade(){
 	super.setTrinity("Dark");
 	super.setTrinity("Light");
 	super.setPow(5);
 	super.setAcc(100);
 	super.setPhys(false);
-	super.setName("SunDial");
+	super.setName("Shade");
 }
 }

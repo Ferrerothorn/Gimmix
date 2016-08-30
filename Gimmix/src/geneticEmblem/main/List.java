@@ -1,5 +1,9 @@
 package geneticEmblem.main;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -10,11 +14,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
 
-import geneticEmblem.units.factory.Custom;
-import geneticEmblem.units.factory.CustomUnitGenerator;
-import geneticEmblem.units.factory.Unit;
-import geneticEmblem.units.generated.*;
-import geneticEmblem.units.ootb.*;
+import geneticEmblem.units.factory.*;
 
 public class List {
 
@@ -22,6 +22,7 @@ public class List {
 	static Boolean on = true;
 	static Scanner input = new Scanner(System.in);
 	static CustomUnitGenerator customUnitGenerator;
+	static ClassList classList;
 
 	static HashMap<String, Integer> matchupsSeen = new HashMap<String, Integer>();
 
@@ -105,12 +106,12 @@ public class List {
 
 				String mostCommonWeapon = getWeaponMetagame(arena);
 				System.out.println("The metagame is overpopulated by " + mostCommonWeapon + ".");
+				System.out.println("Generating units endlessly...");
 
 				customUnitGenerator = new CustomUnitGenerator(mostCommonWeapon);
 				customUnitGenerator.populateArmory(mostCommonWeapon);
 
 				while (true) {
-					System.out.println("The target to beat is " + initialStDev + ".");
 					arena.clear();
 					addEachClass(20000, arena);
 					Custom custom = customUnitGenerator.buildUnit();
@@ -125,11 +126,24 @@ public class List {
 					deathmatch(2048, arena);
 
 					double newStDev = calcStDev(arena);
-					System.out.println("The new balance measure is " + newStDev + ".");
 
 					if (newStDev < initialStDev) {
-						customUnitGenerator.printNewClass();
-						// on = false;
+						
+						String fileName = "" + newStDev;
+						String filePath = "C:\\Users\\sdolman\\Desktop\\Gimmix\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
+						//String filePath = "";
+						String output = customUnitGenerator.generateCode(newStDev);
+						
+						File file = new File(filePath + fileName + ".java");
+						try {
+							PrintWriter writer = new PrintWriter(file, "UTF-8");
+							writer.print(output);
+							writer.close();
+						} catch (FileNotFoundException e) {
+							e.printStackTrace();
+						} catch (UnsupportedEncodingException e) {
+							e.printStackTrace();
+						}
 					}
 				}
 
@@ -354,12 +368,6 @@ public class List {
 
 				victor.levelUp();
 				u.add(victor);
-				// System.out.println("We have our winner! " + victor.getName()
-				// + "
-				// the Lv" + victor.getLv() + " "
-				// + victor.getJob() + "!");
-				// System.out.println(maxArenaSize - (maxArenaSize -
-				// arena.size()));
 			}
 		}
 	}
@@ -372,41 +380,16 @@ public class List {
 
 	private static void addEachClass(int i, ArrayList<Unit> theArena) {
 		for (int x = 0; x < i; x++) {
-
-			theArena.add(new Berserker());
-			theArena.add(new General());
-			theArena.add(new Swordmaster());
-			theArena.add(new Crusader());
-			theArena.add(new Mogall());
-			theArena.add(new ReflectorMage());
-			theArena.add(new NomadTrooper());
-			theArena.add(new Aran());
-			theArena.add(new Viking());
-
-			theArena.add(new Entombed());
-			theArena.add(new KilnFiend());
-			theArena.add(new Angel());
-			theArena.add(new Kaiser());
-			theArena.add(new Flamecaller());
-			theArena.add(new Wall());
-			theArena.add(new MagnetMage());
-			theArena.add(new Golem());
-			theArena.add(new Noble());
-			theArena.add(new Brigand());
-			theArena.add(new Reaper());
-			theArena.add(new Saint());
-			theArena.add(new Lancemaster());
-			theArena.add(new Crossbowman());
-			theArena.add(new Duke());
-			theArena.add(new Buccaneer());
-			theArena.add(new Gunmaster());
-			theArena.add(new Aristocrat());
-			theArena.add(new Mercedes());
-			theArena.add(new BurnMage());
-			theArena.add(new Assassin());
-			theArena.add(new DragonKnight());
+			classList = new ClassList();
+			addEach(classList.getReleasedUnits(), theArena);
 		}
 		Collections.shuffle(arena);
+	}
+
+	private static void addEach(ArrayList<Unit> released, ArrayList<Unit> theArena) {
+		for (Unit u : released) {
+			theArena.add(u);
+		}
 	}
 
 	public static void levelTheDudesTo(int lv, ArrayList<Unit> dudes) {

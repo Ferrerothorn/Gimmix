@@ -64,6 +64,7 @@ public class CustomUnitGenerator {
 		lanceList.add(new Sunlance());
 		lanceList.add(new PoleAxe());
 		lanceList.add(new Rapier());
+		lanceList.add(new Halberd());
 
 		axeList.add(new BoltAxe());
 		axeList.add(new DevilAxe());
@@ -71,7 +72,8 @@ public class CustomUnitGenerator {
 		axeList.add(new Machete());
 		axeList.add(new IronAxe());
 		axeList.add(new PoleAxe());
-
+		axeList.add(new MeleeGear());
+		
 		animaList.add(new AquaSaber());
 		animaList.add(new ArcaneLance());
 		animaList.add(new BoltAxe());
@@ -90,14 +92,15 @@ public class CustomUnitGenerator {
 		darkList.add(new Flux());
 		darkList.add(new ShadowBlade());
 		darkList.add(new Portal());
-		darkList.add(new SunDial());
+		darkList.add(new Shade());
 
 		lightList.add(new DivineShield());
 		lightList.add(new Sunlance());
 		lightList.add(new HolyClaw());
 		lightList.add(new LightBrand());
 		lightList.add(new Shine());
-		lightList.add(new SunDial());
+		lightList.add(new Shade());
+		lightList.add(new RayGun());
 
 		bowList.add(new DualBowgun());
 		bowList.add(new HuntersGear());
@@ -113,6 +116,8 @@ public class CustomUnitGenerator {
 		shieldList.add(new IronShield());
 		shieldList.add(new Portal());
 		shieldList.add(new WallOfSwords());
+		shieldList.add(new Halberd());
+		shieldList.add(new MeleeGear());
 
 		clawList.add(new DarkClaw());
 		clawList.add(new FireClaw());
@@ -126,6 +131,7 @@ public class CustomUnitGenerator {
 		gunList.add(new DualBowgun());
 		gunList.add(new Flamethrower());
 		gunList.add(new IronGun());
+		gunList.add(new RayGun());
 
 	}
 
@@ -307,40 +313,21 @@ public class CustomUnitGenerator {
 		}
 	}
 
-	public void printNewClass() {
-		System.out.println();
-		System.out.println("import geneticEmblem.units.factory.Unit;" + '\n');
-		System.out.println("import geneticEmblem.weapons.*;" + '\n');
-		System.out.println("public class XXX extends Unit { " + '\n');
-		System.out.println("public XXX() {" + '\n');
-		System.out.println("    this.setJob();" + '\n');
-		System.out.println("    this.setWeapon(new " + weapon.getName() + "());");
-		System.out.println("    this.setHpBase(" + baseHP + ");");
-		System.out.println("    this.setCurrentHp(this.getHpBase());");
-		System.out.println("    this.setStrBase(" + strBase + ");");
-		System.out.println("    this.setSkillBase(" + skillBase + ");");
-		System.out.println("    this.setSpeedBase(" + speedBase + ");");
-		System.out.println("    this.setLuckBase(" + luckBase + ");");
-		System.out.println("    this.setDefBase(" + defBase + ");");
-		System.out.println("    this.setResBase(" + resBase + ");");
-		System.out.println();
-		System.out.println("    this.setHpGr(" + hpGr + ");");
-		System.out.println("    this.setStrGr(" + strGr + ");");
-		System.out.println("    this.setSkillGr(" + skillGr + ");");
-		System.out.println("    this.setSpeedGr(" + speedGr + ");");
-		System.out.println("    this.setLuckGr(" + luckGr + ");");
-		System.out.println("    this.setDefGr(" + defGr + ");");
-		System.out.println("    this.setResGr(" + resGr + ");");
-		System.out.println();
-		System.out.println("    this.setStrCap(" + strCap + ");");
-		System.out.println("    this.setSkillCap(" + skillCap + ");");
-		System.out.println("    this.setSpeedCap(" + speedCap + ");");
-		System.out.println("    this.setDefCap(" + defCap + ");");
-		System.out.println("    this.setResCap(" + resCap + ");");
-		System.out.println("    }");
-		System.out.println("}");
-		System.out.println();
-		System.out.println();
+	public String generateCode(double stDev) {
+		return "" + '\n' + "import geneticEmblem.units.factory.Unit;" + '\n' + "import geneticEmblem.weapons.*;" + '\n'
+				+ '\n' + "public class " + stDev + " extends Unit { " + '\n' + '\n' + "public " + stDev + "() {" + '\n'
+				+ '\n' + "    this.setJob(\"" + stDev + "\");" + '\n' + "    this.setWeapon(new " + weapon.getName()
+				+ "());" + '\n' + "    this.setHpBase(" + baseHP + ");" + '\n'
+				+ "    this.setCurrentHp(this.getHpBase());" + '\n' + "    this.setStrBase(" + strBase + ");" + '\n'
+				+ "    this.setSkillBase(" + skillBase + ");" + '\n' + "    this.setSpeedBase(" + speedBase + ");"
+				+ '\n' + "    this.setLuckBase(" + luckBase + ");" + '\n' + "    this.setDefBase(" + defBase + ");"
+				+ '\n' + "    this.setResBase(" + resBase + ");" + '\n' + '\n' + "    this.setHpGr(" + hpGr + ");"
+				+ '\n' + "    this.setStrGr(" + strGr + ");" + '\n' + "    this.setSkillGr(" + skillGr + ");" + '\n'
+				+ "    this.setSpeedGr(" + speedGr + ");" + '\n' + "    this.setLuckGr(" + luckGr + ");" + '\n'
+				+ "    this.setDefGr(" + defGr + ");" + '\n' + "    this.setResGr(" + resGr + ");" + '\n' + '\n'
+				+ "    this.setStrCap(" + strCap + ");" + '\n' + "    this.setSkillCap(" + skillCap + ");" + '\n'
+				+ "    this.setSpeedCap(" + speedCap + ");" + '\n' + "    this.setDefCap(" + defCap + ");" + '\n'
+				+ "    this.setResCap(" + resCap + ");" + '\n' + "    }" + '\n' + "}" + '\n';
 	}
 
 	public void populateArmory(String mostCommonWeapon) {
@@ -351,7 +338,6 @@ public class CustomUnitGenerator {
 			armory.addAll(lanceList);
 		} else if (mostCommonWeapon.equals("Lance")) {
 			armory.addAll(axeList);
-			armory.addAll(gunList);
 		} else if (mostCommonWeapon.equals("Dark")) {
 			armory.addAll(lightList);
 			armory.addAll(gunList);
@@ -366,7 +352,6 @@ public class CustomUnitGenerator {
 		} else if (mostCommonWeapon.equals("Bow")) {
 			armory.addAll(shieldList);
 		} else if (mostCommonWeapon.equals("Gun")) {
-			armory.addAll(animaList);
 			armory.addAll(lightList);
 			armory.addAll(shieldList);
 		}
