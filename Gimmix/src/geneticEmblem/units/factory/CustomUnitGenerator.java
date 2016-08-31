@@ -65,7 +65,8 @@ public class CustomUnitGenerator {
 		lanceList.add(new PoleAxe());
 		lanceList.add(new Rapier());
 		lanceList.add(new Halberd());
-
+		lanceList.add(new Ballista());
+		
 		axeList.add(new BoltAxe());
 		axeList.add(new DevilAxe());
 		axeList.add(new HuntersGear());
@@ -93,6 +94,7 @@ public class CustomUnitGenerator {
 		darkList.add(new ShadowBlade());
 		darkList.add(new Portal());
 		darkList.add(new Shade());
+		darkList.add(new MurderersGun());
 
 		lightList.add(new DivineShield());
 		lightList.add(new Sunlance());
@@ -109,6 +111,7 @@ public class CustomUnitGenerator {
 		bowList.add(new Oathbow());
 		bowList.add(new SteelBow());
 		bowList.add(new WindBow());
+		bowList.add(new Ballista());
 
 		shieldList.add(new DivineShield());
 		shieldList.add(new Forblaze());
@@ -132,6 +135,7 @@ public class CustomUnitGenerator {
 		gunList.add(new Flamethrower());
 		gunList.add(new IronGun());
 		gunList.add(new RayGun());
+		gunList.add(new MurderersGun());
 
 	}
 
@@ -314,7 +318,7 @@ public class CustomUnitGenerator {
 	}
 
 	public String generateCode(double stDev) {
-		return "" + '\n' + "import geneticEmblem.units.factory.Unit;" + '\n' + "import geneticEmblem.weapons.*;" + '\n'
+		return ("" + '\n' + "import geneticEmblem.units.factory.Unit;" + '\n' + "import geneticEmblem.weapons.*;" + '\n'
 				+ '\n' + "public class " + stDev + " extends Unit { " + '\n' + '\n' + "public " + stDev + "() {" + '\n'
 				+ '\n' + "    this.setJob(\"" + stDev + "\");" + '\n' + "    this.setWeapon(new " + weapon.getName()
 				+ "());" + '\n' + "    this.setHpBase(" + baseHP + ");" + '\n'
@@ -327,10 +331,20 @@ public class CustomUnitGenerator {
 				+ "    this.setDefGr(" + defGr + ");" + '\n' + "    this.setResGr(" + resGr + ");" + '\n' + '\n'
 				+ "    this.setStrCap(" + strCap + ");" + '\n' + "    this.setSkillCap(" + skillCap + ");" + '\n'
 				+ "    this.setSpeedCap(" + speedCap + ");" + '\n' + "    this.setDefCap(" + defCap + ");" + '\n'
-				+ "    this.setResCap(" + resCap + ");" + '\n' + "    }" + '\n' + "}" + '\n';
+				+ "    this.setResCap(" + resCap + ");" + '\n' + "    }" + '\n' + "}" + '\n').replace(".", "");
 	}
 
 	public void populateArmory(String mostCommonWeapon) {
+		armory.addAll(swordList);
+		armory.addAll(lanceList);
+		armory.addAll(axeList);
+		armory.addAll(animaList);
+		armory.addAll(lightList);
+		armory.addAll(darkList);
+		armory.addAll(shieldList);
+		armory.addAll(clawList);
+		armory.addAll(bowList);
+		armory.addAll(gunList);
 		if (mostCommonWeapon.equals("Axe")) {
 			armory.addAll(swordList);
 			armory.addAll(gunList);

@@ -24,8 +24,6 @@ public class List {
 	static CustomUnitGenerator customUnitGenerator;
 	static ClassList classList;
 
-	static HashMap<String, Integer> matchupsSeen = new HashMap<String, Integer>();
-
 	public static void main(String[] args) {
 
 		while (on) {
@@ -55,7 +53,6 @@ public class List {
 				System.out.println();
 				showSurvivors(arena);
 				System.out.println();
-				getWeaponMetagame(arena);
 				// on = false;
 				break;
 
@@ -67,6 +64,7 @@ public class List {
 				number = input.nextInt();
 				levelTheDudesTo(number, arena);
 				break;
+
 			case 2:
 				deathmatch(arena.size() - 1, arena);
 				break;
@@ -90,19 +88,15 @@ public class List {
 				break;
 
 			case 55:
-				System.out.println(calcStDev(arena));
+				System.out.println(metagameBalanceMetrics(arena));
 				break;
 
 			case 69:
-
-				System.out.println("Adding initial population to the arena.");
-				addEachClass(20000, arena);
-				System.out.println("Leveling population up.");
+				addEachClass(15000, arena);
 				levelTheDudesTo(15, arena);
-				System.out.println("Commencing deathmatch.");
 				deathmatch(2048, arena);
 				System.out.println();
-				double initialStDev = calcStDev(arena);
+				double initialStDev = metagameBalanceMetrics(arena);
 
 				String mostCommonWeapon = getWeaponMetagame(arena);
 				System.out.println("The metagame is overpopulated by " + mostCommonWeapon + ".");
@@ -113,10 +107,10 @@ public class List {
 
 				while (true) {
 					arena.clear();
-					addEachClass(20000, arena);
+					addEachClass(15000, arena);
 					Custom custom = customUnitGenerator.buildUnit();
 
-					for (int i = 0; i < 20000; i++) {
+					for (int i = 0; i < 15000; i++) {
 						arena.add(custom);
 					}
 					customUnitGenerator.generateNewUnitStats();
@@ -125,15 +119,21 @@ public class List {
 					levelTheDudesTo(15, arena);
 					deathmatch(2048, arena);
 
-					double newStDev = calcStDev(arena);
+					double newStDev = metagameBalanceMetrics(arena);
+					ArrayList<Quantity> metagamePairs = new ArrayList<Quantity>();
+					HashMap<String, Integer> toBeSorted = reportOnSurvivors(arena);
+					sortByValues(toBeSorted);
+					populate(metagamePairs, toBeSorted);
 
 					if (newStDev < initialStDev) {
-						
+
 						String fileName = "" + newStDev;
-						//String filePath = "C:\\Users\\sdolman\\Desktop\\Gimmix\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
-						String filePath = "C:\\Users\\User\\workspace\\Git Repo\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
+						String filePath = "C:\\Users\\sdolman\\Desktop\\Gimmix\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
+						// String filePath = "C:\\Users\\User\\workspace\\Git "
+						// +
+						// "Repo\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
 						String output = customUnitGenerator.generateCode(newStDev);
-						
+
 						File file = new File(filePath + fileName + ".java");
 						try {
 							PrintWriter writer = new PrintWriter(file, "UTF-8");
@@ -154,14 +154,14 @@ public class List {
 				HashMap<String, Double> metagameHealth = new HashMap<String, Double>();
 				System.out.println("Established system health logging...");
 
-				addEachClass(20000, arena);
-				System.out.println("Added 20k of each class to arena.");
+				addEachClass(10000, arena);
+				System.out.println("Added 10000 of each class to arena.");
 				levelTheDudesTo(15, arena);
 				System.out.println("Leveled them all to 15.");
-				deathmatch(2048, arena);
-				System.out.println("Final 2048 calculated.");
-				double currentMetagameHealth = calcStDev(arena);
-				System.out.println("Standard metagame health determined @ " + currentMetagameHealth + ".");
+				deathmatch(512, arena);
+				System.out.println("Final 512 calculated.");
+				double currentMetagameHealth = metagameBalanceMetrics(arena);
+				System.out.println("Default metagame health determined @ " + currentMetagameHealth + ".");
 				metagameHealth.put("Default", currentMetagameHealth);
 				arena.clear();
 
@@ -170,19 +170,17 @@ public class List {
 					tempArena = new ArrayList<Unit>();
 					System.out.println("Testing what life would be like without " + withoutThisClass + ".");
 
-					addEachClass(20000, arena);
+					addEachClass(10000, arena);
 					levelTheDudesTo(15, arena);
 
 					for (Unit u : arena) {
-						if (u.getJob().equals(withoutThisClass)) {
-
-						} else {
+						if (!u.getJob().equals(withoutThisClass)) {
 							tempArena.add(u);
 						}
 					}
 					arena.clear();
-					deathmatch(2048, tempArena);
-					double withoutHealth = calcStDev(tempArena);
+					deathmatch(512, tempArena);
+					double withoutHealth = metagameBalanceMetrics(tempArena);
 					metagameHealth.put(withoutThisClass, withoutHealth);
 					System.out.println("[" + withoutHealth + "]");
 
@@ -197,6 +195,13 @@ public class List {
 				break;
 			}
 		}
+	}
+
+	private static void populate(ArrayList<Quantity> metagamePairs, HashMap<String, Integer> toBeSorted) {
+		for (Map.Entry<String, Integer> entry : toBeSorted.entrySet()) {
+			metagamePairs.add(new Quantity(entry.getKey(), entry.getValue()));
+		}
+		Collections.sort(metagamePairs);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -294,7 +299,7 @@ public class List {
 			return "Shield";
 	}
 
-	private static double calcStDev(ArrayList<Unit> anArena) {
+	private static double metagameBalanceMetrics(ArrayList<Unit> anArena) {
 		HashMap<String, Integer> survivors = reportOnSurvivors(anArena);
 		double total = 0;
 		double index = survivors.size();
@@ -324,7 +329,7 @@ public class List {
 		sum /= meanSubs.size();
 		sum = Math.sqrt(sum);
 
-		return sum;
+		return sum/survivors.size();
 	}
 
 	private static void showSurvivors(ArrayList<Unit> anArena) {

@@ -9,7 +9,6 @@ public class ConduitMage extends Unit {
 public ConduitMage() {
 
     this.setJob("Conduit Mage");
-
     this.setWeapon(new Fire());
     this.setHpBase(26);
     this.setCurrentHp(this.getHpBase());
@@ -17,8 +16,8 @@ public ConduitMage() {
     this.setSkillBase(6);
     this.setSpeedBase(7);
     this.setLuckBase(4);
-    this.setDefBase(7);
-    this.setResBase(4);
+    this.setDefBase(4);
+    this.setResBase(7);
 
     this.setHpGr(45);
     this.setStrGr(60);

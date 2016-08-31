@@ -1,12 +1,13 @@
+package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
-public class 21.22940178149163 extends Unit { 
+public class Lieutenant extends Unit { 
 
-public 21.22940178149163() {
+public Lieutenant() {
 
-    this.setJob("21.22940178149163");
+    this.setJob("Lieutenant");
     this.setWeapon(new Sunlance());
     this.setHpBase(26);
     this.setCurrentHp(this.getHpBase());

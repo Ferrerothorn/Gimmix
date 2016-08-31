@@ -9,7 +9,7 @@ public Golem() {
 
     this.setJob("Golem");
 
-    this.setWeapon(new DivineShield());
+    this.setWeapon(new IronShield());
     this.setHpBase(24);
     this.setCurrentHp(this.getHpBase());
     this.setStrBase(5);

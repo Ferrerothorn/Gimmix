@@ -300,25 +300,17 @@ public abstract class Unit {
 		int hit = r.nextInt(100);
 
 		if (hit < overallHitRate) {
-			// System.out.println("And hits, for " + hitDamage + " damage! " +
-			// "[" + target.getName() + ": "
-			// + target.getCurrentHp() + "/" + target.getHpBase() + "]");
-
 			int isCrit = r.nextInt(100);
 			if (isCrit <= thisCrit) {
-				// System.out.println("CRITICAL!");
 				hitDamage *= 3;
 			}
 			if (target.getJob().contains("General")) {
 				int greatShield = r.nextInt(100);
 				if (greatShield <= target.getSkillBase()) {
-					// System.out.println("GREAT SHIELD!");
 					hitDamage = 0;
 				}
 			}
 			target.currentHp -= hitDamage;
-		} else {
-			// System.out.println("But misses...");
 		}
 	}
 
@@ -466,10 +458,6 @@ public abstract class Unit {
 
 	public Unit fight(Unit opponent) {
 
-		// System.out.println("Behold, " + this.getName() + " the Lv" +
-		// this.getLv() + " " + this.getJob() + "!");
-		// System.out.println("Versus " + unit2.getName() + " the Lv" +
-		// unit2.getLv() + " " + unit2.getJob() + "!");
 		Unit victor = null;
 
 		if (this.getJob().equals(opponent.getJob())) {
@@ -486,24 +474,16 @@ public abstract class Unit {
 			int turnCounter = 1;
 			while (this.isAlive() && opponent.isAlive() && turnCounter < 51) {
 				if (this.isAlive() && opponent.isAlive()) {
-					// System.out.println(this.getName() + " swings at " +
-					// unit2.getName() + "!");
 					this.swingAt(opponent);
 				}
 				if (this.isAlive() && opponent.isAlive()) {
-					// System.out.println(unit2.getName() + " swings at " +
-					// this.getName() + "!");
 					opponent.swingAt(this);
 				}
 				if (this.isAlive() && opponent.isAlive() && this.greatlyOutspeeds(opponent)
 						&& !opponent.greatlyOutspeeds(this)) {
-					// System.out.println(this.getName() + " swings at " +
-					// unit2.getName() + "!");
 					this.swingAt(opponent);
 				} else if (this.isAlive() && opponent.isAlive() && !this.greatlyOutspeeds(opponent)
 						&& opponent.greatlyOutspeeds(this)) {
-					// System.out.println(unit2.getName() + " swings at " +
-					// this.getName() + "!");
 					opponent.swingAt(this);
 				}
 				turnCounter++;
