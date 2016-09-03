@@ -331,7 +331,7 @@ public class CustomUnitGenerator {
 				+ "    this.setDefGr(" + defGr + ");" + '\n' + "    this.setResGr(" + resGr + ");" + '\n' + '\n'
 				+ "    this.setStrCap(" + strCap + ");" + '\n' + "    this.setSkillCap(" + skillCap + ");" + '\n'
 				+ "    this.setSpeedCap(" + speedCap + ");" + '\n' + "    this.setDefCap(" + defCap + ");" + '\n'
-				+ "    this.setResCap(" + resCap + ");" + '\n' + "    }" + '\n' + "}" + '\n').replace(".", "");
+				+ "    this.setResCap(" + resCap + ");" + '\n' + "    }" + '\n' + "}" + '\n');
 	}
 
 	public void populateArmory(String mostCommonWeapon) {
