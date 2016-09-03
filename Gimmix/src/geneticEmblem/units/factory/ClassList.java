@@ -11,14 +11,7 @@ public class ClassList {
 
 	public ClassList() {
 
-		releasedClasses.add(new Aran());
-		releasedClasses.add(new Beginner());
-		releasedClasses.add(new Brawler());
-		releasedClasses.add(new Butcher());
-		releasedClasses.add(new Farmer());
-		releasedClasses.add(new Longbowman());
-		releasedClasses.add(new Saracen());
-		releasedClasses.add(new SearingSpearman());
+
 		// releasedClasses.add(new ());
 		// releasedClasses.add(new ());
 		// releasedClasses.add(new ());
@@ -29,9 +22,13 @@ public class ClassList {
 		// releasedClasses.add(new ());
 		// releasedClasses.add(new ());
 
-		releasedClasses.add(new Lieutenant());
 		releasedClasses.add(new BlisterLancer());
 		releasedClasses.add(new FlameWizard());
+		releasedClasses.add(new Aran());
+		releasedClasses.add(new Beginner());
+		releasedClasses.add(new Butcher());
+		releasedClasses.add(new Farmer());
+		releasedClasses.add(new Saracen());
 		releasedClasses.add(new WindBreaker());
 		releasedClasses.add(new Monk());
 		releasedClasses.add(new Entombed());
@@ -59,7 +56,6 @@ public class ClassList {
 
 		releasedClasses.add(new Berserker());
 		releasedClasses.add(new General());
-		releasedClasses.add(new Swordmaster());
 		releasedClasses.add(new Crusader());
 		releasedClasses.add(new Mogall());
 		releasedClasses.add(new ReflectorMage());
