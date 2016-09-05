@@ -21,6 +21,9 @@ public class Player {
 
 	public String getPoolAsString() {
 		return pPool.toString();
+	}	
+	public ArrayList<String> getPool() {
+		return pPool;
 	}
 
 }

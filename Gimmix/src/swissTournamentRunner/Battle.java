@@ -1,4 +1,4 @@
-package swissRunner;
+package swissTournamentRunner;
 
 public class Battle {
 

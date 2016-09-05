@@ -2,6 +2,7 @@ package snakeDraftManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 import java.util.Scanner;
 
 import snakeDraftManager.Player;
@@ -14,24 +15,115 @@ public class Table {
 	public static ArrayList<String> uuPool = new ArrayList<String>();
 	public static ArrayList<String> bl2Pool = new ArrayList<String>();
 	public static ArrayList<String> ruPool = new ArrayList<String>();
-
-	static int ouLimit = 0;
-	static int uuLimit = 0;
-	static int blLimit = 0;
-	static int ruLimit = 0;
-	static int bl2Limit = 0;
+	public static Scanner inputs = new Scanner(System.in);
 
 	public static void main(String[] args) throws Exception {
 
 		fillPools();
+		Collections.sort(blPool);
+		Collections.sort(uuPool);
+		Collections.sort(bl2Pool);
+		Collections.sort(ruPool);
 		capturePlayers();
-	//	draftManager(ouPool, ouLimit, "OU");
-		draftManager(blPool, blLimit, "BL");
-		draftManager(uuPool, uuLimit, "UU");
-		draftManager(bl2Pool, bl2Limit, "BL2");
-		draftManager(ruPool, ruLimit, "RU");
+		draftManager(blPool, 0, "BL");
+		draftManager(uuPool, 0, "UU");
+		draftManager(bl2Pool, 0, "BL2");
+		draftManager(ruPool, 0, "RU");
 		printEachPlayersArsenal();
 
+		tradingPost();
+		inputs.close();
+	}
+
+	@SuppressWarnings("resource")
+	private static void tradingPost() throws Exception {
+		boolean allSatisfiedWithTrades = false;
+
+		while (!allSatisfiedWithTrades) {
+
+			int playerIndex = 0;
+			printEachPlayersArsenal();
+			System.out.println();
+			System.out.println("Anyone looking to instigate a trade?");
+			for (Player p : players) {
+				System.out.println("" + (playerIndex + 1) + ") " + p.getName());
+				playerIndex++;
+			}
+			System.out.println("0) No thanks.");
+
+			Scanner inputs = new Scanner(System.in);
+			int buyerIndex = inputs.nextInt();
+
+			switch (buyerIndex) {
+			case 0:
+				allSatisfiedWithTrades = true;
+				break;
+			default:
+				if (buyerIndex <= players.size()) {
+					Player buyer = players.get(buyerIndex - 1);
+					System.out.println();
+					System.out.println("And, you're wanting to trade with whom?");
+
+					for (int i = 0; i < players.size(); i++) {
+						if (players.get(i) != buyer) {
+							System.out.println("" + (i + 1) + ") " + players.get(i).getName());
+						}
+					}
+					int sellerIndex = inputs.nextInt();
+					sellerIndex--;
+					Player seller = null;
+					if (sellerIndex <= players.size()) {
+						seller = players.get(sellerIndex);
+					}
+
+					if (buyer != null && seller != null) {
+						try {
+							transaction(buyer, seller);
+						} catch (Exception e) {
+						}
+					}
+				}
+			}
+
+		}
+	}
+
+	private static void transaction(Player p1, Player p2) throws Exception{
+
+		System.out.println(p1.getName() + "'s pool:");
+		int index = 1;
+		for (String s : p1.getPool()) {
+			System.out.println("" + index + ") " + s);
+			index++;
+		}
+		int input = inputs.nextInt();
+		if (input == 999) {
+			System.out.println("Trade cancelled.");
+			return;
+		}
+		String trading = p1.getPool().get(input-1);
+		
+		System.out.println("Trade " + trading + " for what?");
+		index = 1;
+		for (String s : p2.getPool()) {
+			System.out.println("" + index + ") " + s);
+			index++;
+		}
+		
+		input = inputs.nextInt();
+		if (input == 999) {
+			System.out.println("Trade cancelled.");
+			return;
+		}
+		String tradeBack = p2.getPool().get(input-1);
+		
+		p1.getPool().add(tradeBack);
+		p1.getPool().remove(trading);
+		p2.getPool().add(trading);
+		p2.getPool().remove(tradeBack);
+		
+		System.out.println("Trade completed.");
+		
 	}
 
 	private static void capturePlayers() throws Exception {
@@ -42,9 +134,67 @@ public class Table {
 			int numberOfPlayers = input.nextInt();
 			generatePlayers(numberOfPlayers);
 		} catch (Exception e) {
-			System.out.println("I said *number*, idiot.");
+			System.out.println("I said *number*, you " + freshInsult() + ".");
 			capturePlayers();
 		}
+	}
+
+	private static String freshInsult() {
+		ArrayList<String> firsts = new ArrayList<String>();
+		ArrayList<String> seconds = new ArrayList<String>();
+		firsts.add("dismal");
+		firsts.add("empty");
+		firsts.add("ham-fisted");
+		firsts.add("spindly");
+		firsts.add("ceaseless");
+		firsts.add("vile");
+		firsts.add("fleshy");
+		firsts.add("window-licking");
+		firsts.add("ruinous");
+		firsts.add("crumbling");
+		firsts.add("toxic");
+		firsts.add("hopeless");
+		firsts.add("dopey");
+		firsts.add("hideous");
+		firsts.add("weak-minded");
+		firsts.add("fallacious");
+		firsts.add("cancerous");
+		firsts.add("pestilent");
+		firsts.add("diseased");
+		firsts.add("malnourished");
+		firsts.add("slagbound");
+		firsts.add("skeletal");
+		firsts.add("worn-out");
+
+		seconds.add("wreckage");
+		seconds.add("vessel");
+		seconds.add("waste of oxygen");
+		seconds.add("error");
+		seconds.add("aberration");
+		seconds.add("mistake");
+		seconds.add("husk");
+		seconds.add("pebble");
+		seconds.add("surplus");
+		seconds.add("piglet");
+		seconds.add("refuse");
+		seconds.add("accident");
+		seconds.add("mushroom");
+		seconds.add("vermin");
+		seconds.add("kernel");
+		seconds.add("cad");
+		seconds.add("ragamuffin");
+		seconds.add("cauldron");
+		seconds.add("wafer");
+		seconds.add("scrapmound");
+
+		Random r = new Random();
+		int fi = r.nextInt(firsts.size());
+		String f = firsts.get(fi);
+		int si = r.nextInt(seconds.size());
+		String s = seconds.get(si);
+
+		return f + " " + s;
+
 	}
 
 	@SuppressWarnings("resource")
@@ -98,9 +248,30 @@ public class Table {
 			int pick = sc.nextInt();
 			p.claimsPick(tier.remove(pick - 1));
 		} catch (Exception e) {
-			System.out.println("Well that's just wrong, you ham-fisted waste of oxygen.");
+			System.out.println("Well that's just wrong, you " + freshInsult() + ".");
+			System.out.println("I wanted a number, not " + listPhrase());
 			askPlayerToPickOne(p, tier);
 		}
+	}
+
+	private static String listPhrase() {
+		ArrayList<String> lists = new ArrayList<String>();
+		Random r = new Random();
+
+		lists.add("your Tesco shopping list");
+		lists.add("your murder confessions");
+		lists.add("your passing thoughts on communism");
+		lists.add("a detailed log of your affections for " + players.get(r.nextInt(players.size())).getName());
+		lists.add("your diary's back pages");
+		lists.add("the daily tabloids as dictated by Stevie Wonder");
+		lists.add("a badly written Twilight fanfiction");
+		lists.add("your face rubbed across the keyboard");
+
+		int index = r.nextInt(lists.size());
+		String f = lists.get(index);
+
+		return f + "." + '\n';
+
 	}
 
 	private static void printPicks(ArrayList<String> tier) {
@@ -202,6 +373,7 @@ public class Table {
 		blPool.add("Zygarde");
 
 		uuPool.add("Absol (*)");
+		uuPool.add("Whimsicott");
 		uuPool.add("Aerodactyl (*)");
 		uuPool.add("Aggron (*)");
 		uuPool.add("Ampharos (*)");
@@ -249,10 +421,10 @@ public class Table {
 		uuPool.add("Porygon-2");
 		uuPool.add("Reuniclus");
 		uuPool.add("Roserade");
-		uuPool.add("Rotoms (minus Wash)");
+		uuPool.add("Rotom (*, minus Wash)");
 		uuPool.add("Sableye");
 		uuPool.add("Sceptile (*)");
-		uuPool.add("Sharpedo");
+		uuPool.add("Sharpedo (*)");
 		uuPool.add("Snorlax");
 		uuPool.add("Suicune");
 		uuPool.add("Swampert (*)");
@@ -262,16 +434,14 @@ public class Table {
 		uuPool.add("Toxicroak");
 		uuPool.add("Umbreon");
 		uuPool.add("Vaporeon");
-		uuPool.add("Whimsicott");
 
-
-		
 		bl2Pool.add("Abomasnow");
+		bl2Pool.add("Zoroark");
 		bl2Pool.add("Dragalge");
 		bl2Pool.add("Durant");
 		bl2Pool.add("Froslass");
 		bl2Pool.add("Honchkrow");
-		bl2Pool.add("Houndoom");
+		bl2Pool.add("Houndoom (*)");
 		bl2Pool.add("Kingdra");
 		bl2Pool.add("Moltres");
 		bl2Pool.add("Noivern");
@@ -279,11 +449,10 @@ public class Table {
 		bl2Pool.add("Shuckle");
 		bl2Pool.add("Shaymin");
 		bl2Pool.add("Slurpuff");
-		bl2Pool.add("Steelix");
+		bl2Pool.add("Steelix (*)");
 		bl2Pool.add("Tyrantrum");
 		bl2Pool.add("Venomoth");
 		bl2Pool.add("Yanmega");
-		bl2Pool.add("Zoroark");
 
 		ruPool.add("Accelgor");
 		ruPool.add("Alomomola");
@@ -292,7 +461,7 @@ public class Table {
 		ruPool.add("Banette (*)");
 		ruPool.add("Braviary");
 		ruPool.add("Bronzong");
-		ruPool.add("Camerupt");
+		ruPool.add("Camerupt (*)");
 		ruPool.add("Cinccino");
 		ruPool.add("Clawitzer");
 		ruPool.add("Cofagrigus");
@@ -306,7 +475,7 @@ public class Table {
 		ruPool.add("Escavalier");
 		ruPool.add("Fletchinder");
 		ruPool.add("Flygon");
-		ruPool.add("Glalie");
+		ruPool.add("Glalie (*)");
 		ruPool.add("Golbat");
 		ruPool.add("Granbull");
 		ruPool.add("Hitmonlee");
@@ -332,5 +501,4 @@ public class Table {
 		ruPool.add("Uxie");
 		ruPool.add("Virizion");
 	}
-
 }

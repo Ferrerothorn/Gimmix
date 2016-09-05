@@ -1,4 +1,4 @@
-package swissRunner;
+package swissTournamentRunner;
 
 import java.util.ArrayList;
 

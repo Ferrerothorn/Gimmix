@@ -12,9 +12,7 @@ public class ClassList {
 	public ClassList() {
 
 
-		// releasedClasses.add(new ());
-		// releasedClasses.add(new ());
-		// releasedClasses.add(new ());
+
 		// releasedClasses.add(new ());
 		// releasedClasses.add(new ());
 		// releasedClasses.add(new ());
@@ -22,19 +20,19 @@ public class ClassList {
 		// releasedClasses.add(new ());
 		// releasedClasses.add(new ());
 
-		releasedClasses.add(new BlisterLancer());
+		releasedClasses.add(new Trapper());
+		releasedClasses.add(new Brawler());
+		releasedClasses.add(new Marauder());
 		releasedClasses.add(new FlameWizard());
 		releasedClasses.add(new Aran());
 		releasedClasses.add(new Beginner());
 		releasedClasses.add(new Butcher());
-		releasedClasses.add(new Farmer());
 		releasedClasses.add(new Saracen());
 		releasedClasses.add(new WindBreaker());
 		releasedClasses.add(new Monk());
 		releasedClasses.add(new Entombed());
 		releasedClasses.add(new PortalMage());
 		releasedClasses.add(new KilnFiend());
-		releasedClasses.add(new Angel());
 		releasedClasses.add(new Kaiser());
 		releasedClasses.add(new MagnetMage());
 		releasedClasses.add(new ConduitMage());
