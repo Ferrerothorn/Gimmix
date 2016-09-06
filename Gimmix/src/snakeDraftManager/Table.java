@@ -75,7 +75,7 @@ public class Table {
 						seller = players.get(sellerIndex);
 					}
 
-					if (buyer != null && seller != null) {
+					if (buyer != null && seller != null && buyer != seller) {
 						try {
 							transaction(buyer, seller);
 						} catch (Exception e) {
@@ -95,10 +95,11 @@ public class Table {
 			System.out.println("" + index + ") " + s);
 			index++;
 		}
-		System.out.println("999) Cancel transaction");
-		
+		System.out.println("999) Cancel transaction" + '\n');
+
 		int input = inputs.nextInt();
 		if (input == 999) {
+			wipeScreen();
 			System.out.println("Trade cancelled.");
 			return;
 		}
@@ -110,10 +111,11 @@ public class Table {
 			System.out.println("" + index + ") " + s);
 			index++;
 		}
-		System.out.println("999) Cancel transaction");
-		
+		System.out.println("999) Cancel transaction" + '\n');
+
 		input = inputs.nextInt();
 		if (input == 999) {
+			wipeScreen();
 			System.out.println("Trade cancelled.");
 			return;
 		}
@@ -124,16 +126,21 @@ public class Table {
 		p2.getPool().add(trading);
 		p2.getPool().remove(tradeBack);
 
-		System.out.println("Trade completed. (" + trading + " -> " + tradeBack + ").");
+		wipeScreen();
+		System.out.println("Trade completed. (" + trading + " -> " + tradeBack + ")." + '\n');
 
 	}
 
+	private static void wipeScreen() {
+		for (int i = 0; i < 5000; i++) {
+			System.out.print('\n');
+		}
+	}
+
 	private static void capturePlayers() throws Exception {
-		@SuppressWarnings("resource")
-		Scanner input = new Scanner(System.in);
 		try {
 			System.out.println("Enter the number of players in this draft!");
-			int numberOfPlayers = input.nextInt();
+			int numberOfPlayers = inputs.nextInt();
 			generatePlayers(numberOfPlayers);
 		} catch (Exception e) {
 			System.out.println("I said *number*, you " + freshInsult() + ".");
@@ -205,7 +212,7 @@ public class Table {
 	private static void generatePlayers(int numberOfPlayers) {
 		Scanner scanner = new Scanner(System.in);
 		for (int i = 0; i < numberOfPlayers; i++) {
-			System.out.println("Enter the name of the player in position " + (i + 1) + ".");
+			System.out.println("Enter the name of the player in position " + (i + 1) + " of the snake.");
 			String pName = scanner.nextLine();
 			players.add(new Player(pName));
 		}
@@ -281,24 +288,43 @@ public class Table {
 
 	private static void printPicks(ArrayList<String> tier) {
 		String line = "";
-		if (tier.size() % 2 == 0) {
+		if (tier.size() % 3 == 0) {
 			for (int i = 0; i < tier.size(); i++) {
 				line += rpad("" + (i + 1) + ") " + tier.get(i), 65);
 				i++;
-				line += "" + (i + 1) + ") " + tier.get(i);
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 65);
+				i++;
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 65);
 				System.out.println(line);
 				line = "";
 			}
 		} else {
-			for (int i = 0; i < tier.size() - 1; i++) {
-				line += rpad("" + (i + 1) + ") " + tier.get(i), 65);
-				i++;
-				line += "" + (i + 1) + ") " + tier.get(i);
+			if (tier.size() % 3 == 1) {
+				for (int i = 0; i < tier.size() - 1; i++) {
+					line += rpad("" + (i + 1) + ") " + tier.get(i), 65);
+					i++;
+					line += rpad("" + (i + 1) + ") " + tier.get(i), 65);
+					i++;
+					line += rpad("" + (i + 1) + ") " + tier.get(i), 65);
+					System.out.println(line);
+					line = "";
+				}
+				line += "" + (tier.size()) + ") " + tier.get(tier.size() - 1);
 				System.out.println(line);
-				line = "";
+			} else {
+				for (int i = 0; i < tier.size() - 2; i++) {
+					line += rpad("" + (i + 1) + ") " + tier.get(i), 65);
+					i++;
+					line += rpad("" + (i + 1) + ") " + tier.get(i), 65);
+					i++;
+					line += rpad("" + (i + 1) + ") " + tier.get(i), 65);
+					System.out.println(line);
+					line = "";
+				}
+				line += rpad("" + (tier.size() - 1) + ") " + tier.get(tier.size() - 2), 65);
+				line += "" + (tier.size()) + ") " + tier.get(tier.size() - 1);
+				System.out.println(line);
 			}
-			line += "" + (tier.size()) + ") " + tier.get(tier.size() - 1);
-			System.out.println(line);
 		}
 	}
 
