@@ -10,20 +10,10 @@ public class ClassList {
 	ArrayList<Unit> releasedClasses = new ArrayList<Unit>();
 
 	public ClassList() {
-
-
-
-		// releasedClasses.add(new ());
-		// releasedClasses.add(new ());
-		// releasedClasses.add(new ());
-		// releasedClasses.add(new ());
-		// releasedClasses.add(new ());
-		// releasedClasses.add(new ());
-
+		
+		releasedClasses.add(new Convict());
 		releasedClasses.add(new Trapper());
 		releasedClasses.add(new Brawler());
-		releasedClasses.add(new Marauder());
-		releasedClasses.add(new FlameWizard());
 		releasedClasses.add(new Aran());
 		releasedClasses.add(new Beginner());
 		releasedClasses.add(new Butcher());
@@ -39,7 +29,6 @@ public class ClassList {
 		releasedClasses.add(new Golem());
 		releasedClasses.add(new Noble());
 		releasedClasses.add(new Brigand());
-		releasedClasses.add(new Reaper());
 		releasedClasses.add(new Saint());
 		releasedClasses.add(new Lancemaster());
 		releasedClasses.add(new Crossbowman());

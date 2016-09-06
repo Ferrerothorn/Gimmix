@@ -29,7 +29,6 @@ public class Table {
 		draftManager(uuPool, 0, "UU");
 		draftManager(bl2Pool, 0, "BL2");
 		draftManager(ruPool, 0, "RU");
-		printEachPlayersArsenal();
 
 		tradingPost();
 		inputs.close();
@@ -88,7 +87,7 @@ public class Table {
 		}
 	}
 
-	private static void transaction(Player p1, Player p2) throws Exception{
+	private static void transaction(Player p1, Player p2) throws Exception {
 
 		System.out.println(p1.getName() + "'s pool:");
 		int index = 1;
@@ -96,34 +95,37 @@ public class Table {
 			System.out.println("" + index + ") " + s);
 			index++;
 		}
+		System.out.println("999) Cancel transaction");
+		
 		int input = inputs.nextInt();
 		if (input == 999) {
 			System.out.println("Trade cancelled.");
 			return;
 		}
-		String trading = p1.getPool().get(input-1);
-		
+		String trading = p1.getPool().get(input - 1);
+
 		System.out.println("Trade " + trading + " for what?");
 		index = 1;
 		for (String s : p2.getPool()) {
 			System.out.println("" + index + ") " + s);
 			index++;
 		}
+		System.out.println("999) Cancel transaction");
 		
 		input = inputs.nextInt();
 		if (input == 999) {
 			System.out.println("Trade cancelled.");
 			return;
 		}
-		String tradeBack = p2.getPool().get(input-1);
-		
+		String tradeBack = p2.getPool().get(input - 1);
+
 		p1.getPool().add(tradeBack);
 		p1.getPool().remove(trading);
 		p2.getPool().add(trading);
 		p2.getPool().remove(tradeBack);
-		
-		System.out.println("Trade completed.");
-		
+
+		System.out.println("Trade completed. (" + trading + " -> " + tradeBack + ").");
+
 	}
 
 	private static void capturePlayers() throws Exception {
@@ -151,6 +153,7 @@ public class Table {
 		firsts.add("fleshy");
 		firsts.add("window-licking");
 		firsts.add("ruinous");
+		firsts.add("devoid");
 		firsts.add("crumbling");
 		firsts.add("toxic");
 		firsts.add("hopeless");
@@ -178,6 +181,7 @@ public class Table {
 		seconds.add("piglet");
 		seconds.add("refuse");
 		seconds.add("accident");
+		seconds.add("excuse");
 		seconds.add("mushroom");
 		seconds.add("vermin");
 		seconds.add("kernel");
@@ -232,7 +236,8 @@ public class Table {
 
 	private static void printEachPlayersArsenal() {
 		for (Player p : players) {
-			System.out.println(p.getName() + ": " + p.getPoolAsString());
+			Collections.sort(p.getPool());
+			System.out.println(p.getName() + ": " + p.getPoolAsString() + '\n');
 		}
 		System.out.println();
 	}
@@ -241,8 +246,8 @@ public class Table {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		try {
-			System.out.println(p.getName() + ", your picks are as follows! (Already in your arsenal: "
-					+ p.getPoolAsString() + ")");
+			System.out.println(p.getName() + ", your picks are as follows!" + '\n' + "(Already in your arsenal: "
+					+ p.getPoolAsString() + ")" + '\n');
 			printPicks(tier);
 			System.out.println("Which do you want?");
 			int pick = sc.nextInt();
@@ -435,7 +440,7 @@ public class Table {
 		uuPool.add("Umbreon");
 		uuPool.add("Vaporeon");
 
-		bl2Pool.add("Abomasnow");
+		bl2Pool.add("Abomasnow (*)");
 		bl2Pool.add("Zoroark");
 		bl2Pool.add("Dragalge");
 		bl2Pool.add("Durant");
