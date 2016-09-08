@@ -1,5 +1,9 @@
 package snakeDraftManager;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -31,7 +35,24 @@ public class Table {
 		draftManager(ruPool, 0, "RU");
 
 		tradingPost();
+		saveFile();
 		inputs.close();
+	}
+
+	private static void saveFile() {
+		
+		String output = printEachPlayersArsenal();
+
+		File file = new File("FinalDraftPools.txt");
+		try {
+			PrintWriter writer = new PrintWriter(file, "UTF-8");
+			writer.print(output);
+			writer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@SuppressWarnings("resource")
@@ -41,7 +62,7 @@ public class Table {
 		while (!allSatisfiedWithTrades) {
 
 			int playerIndex = 0;
-			printEachPlayersArsenal();
+			System.out.println(printEachPlayersArsenal());
 			System.out.println();
 			System.out.println("Anyone looking to instigate a trade?");
 			for (Player p : players) {
@@ -241,12 +262,13 @@ public class Table {
 		}
 	}
 
-	private static void printEachPlayersArsenal() {
+	private static String printEachPlayersArsenal() {
+		String output = "";
 		for (Player p : players) {
 			Collections.sort(p.getPool());
-			System.out.println(p.getName() + ": " + p.getPoolAsString() + '\n');
+			output += p.getName() + ": " + p.getPoolAsString() + '\n' + '\n';
 		}
-		System.out.println();
+		return output;
 	}
 
 	private static void askPlayerToPickOne(Player p, ArrayList<String> tier) {
@@ -259,6 +281,7 @@ public class Table {
 			System.out.println("Which do you want?");
 			int pick = sc.nextInt();
 			p.claimsPick(tier.remove(pick - 1));
+			saveFile();
 		} catch (Exception e) {
 			System.out.println("Well that's just wrong, you " + freshInsult() + ".");
 			System.out.println("I wanted a number, not " + listPhrase());
@@ -290,22 +313,22 @@ public class Table {
 		String line = "";
 		if (tier.size() % 3 == 0) {
 			for (int i = 0; i < tier.size(); i++) {
-				line += rpad("" + (i + 1) + ") " + tier.get(i), 65);
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
 				i++;
-				line += rpad("" + (i + 1) + ") " + tier.get(i), 65);
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
 				i++;
-				line += rpad("" + (i + 1) + ") " + tier.get(i), 65);
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
 				System.out.println(line);
 				line = "";
 			}
 		} else {
 			if (tier.size() % 3 == 1) {
 				for (int i = 0; i < tier.size() - 1; i++) {
-					line += rpad("" + (i + 1) + ") " + tier.get(i), 65);
+					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
 					i++;
-					line += rpad("" + (i + 1) + ") " + tier.get(i), 65);
+					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
 					i++;
-					line += rpad("" + (i + 1) + ") " + tier.get(i), 65);
+					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
 					System.out.println(line);
 					line = "";
 				}
@@ -313,15 +336,15 @@ public class Table {
 				System.out.println(line);
 			} else {
 				for (int i = 0; i < tier.size() - 2; i++) {
-					line += rpad("" + (i + 1) + ") " + tier.get(i), 65);
+					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
 					i++;
-					line += rpad("" + (i + 1) + ") " + tier.get(i), 65);
+					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
 					i++;
-					line += rpad("" + (i + 1) + ") " + tier.get(i), 65);
+					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
 					System.out.println(line);
 					line = "";
 				}
-				line += rpad("" + (tier.size() - 1) + ") " + tier.get(tier.size() - 2), 65);
+				line += rpad("" + (tier.size() - 1) + ") " + tier.get(tier.size() - 2), 40);
 				line += "" + (tier.size()) + ") " + tier.get(tier.size() - 1);
 				System.out.println(line);
 			}
@@ -365,7 +388,6 @@ public class Table {
 		ouPool.add("Manaphy");
 		ouPool.add("Manectric (*)");
 		ouPool.add("Medicham (*)");
-		uuPool.add("Metagross");
 		ouPool.add("Mew");
 		ouPool.add("Pinsir (*)");
 		ouPool.add("Quagsire");
@@ -391,7 +413,6 @@ public class Table {
 		blPool.add("Gallade (*)");
 		blPool.add("Gyarados (*)");
 		blPool.add("Hawlucha");
-		blPool.add("Heracross (*)");
 		blPool.add("Pidgeot (*)");
 		blPool.add("Salamence");
 		blPool.add("Scolipede");
@@ -404,7 +425,6 @@ public class Table {
 		blPool.add("Zygarde");
 
 		uuPool.add("Absol (*)");
-		uuPool.add("Whimsicott");
 		uuPool.add("Aerodactyl (*)");
 		uuPool.add("Aggron (*)");
 		uuPool.add("Ampharos (*)");
@@ -422,6 +442,7 @@ public class Table {
 		uuPool.add("Crawdaunt");
 		uuPool.add("Cresselia");
 		uuPool.add("Crobat");
+
 		uuPool.add("Darmanitan");
 		uuPool.add("Donphan");
 		uuPool.add("Doublade");
@@ -437,22 +458,26 @@ public class Table {
 		uuPool.add("Goodra");
 		uuPool.add("Haxorus");
 		uuPool.add("Heliolisk");
+		uuPool.add("Heracross");
 		uuPool.add("Hydreigon");
 		uuPool.add("Infernape");
 		uuPool.add("Krookodile");
+
 		uuPool.add("Lucario");
 		uuPool.add("Machamp");
 		uuPool.add("Mamoswine");
 		uuPool.add("Mandibuzz");
+		uuPool.add("Metagross");
 		uuPool.add("Mienshao");
 		uuPool.add("Milotic");
 		uuPool.add("Nidoking");
 		uuPool.add("Nidoqueen");
 		uuPool.add("Porygon-Z");
 		uuPool.add("Porygon-2");
+		uuPool.add("Quagsire");
 		uuPool.add("Reuniclus");
 		uuPool.add("Roserade");
-		uuPool.add("Rotom (*, minus Wash)");
+		uuPool.add("Rotoms (Minus Wash)");
 		uuPool.add("Sableye");
 		uuPool.add("Sceptile (*)");
 		uuPool.add("Sharpedo (*)");
@@ -465,9 +490,9 @@ public class Table {
 		uuPool.add("Toxicroak");
 		uuPool.add("Umbreon");
 		uuPool.add("Vaporeon");
+		uuPool.add("Whimsicott");
 
 		bl2Pool.add("Abomasnow (*)");
-		bl2Pool.add("Zoroark");
 		bl2Pool.add("Dragalge");
 		bl2Pool.add("Durant");
 		bl2Pool.add("Froslass");
@@ -477,13 +502,14 @@ public class Table {
 		bl2Pool.add("Moltres");
 		bl2Pool.add("Noivern");
 		bl2Pool.add("Pangoro");
-		bl2Pool.add("Shuckle");
 		bl2Pool.add("Shaymin");
+		bl2Pool.add("Shuckle");
 		bl2Pool.add("Slurpuff");
 		bl2Pool.add("Steelix (*)");
 		bl2Pool.add("Tyrantrum");
 		bl2Pool.add("Venomoth");
 		bl2Pool.add("Yanmega");
+		bl2Pool.add("Zoroark");
 
 		ruPool.add("Accelgor");
 		ruPool.add("Alomomola");
@@ -504,6 +530,7 @@ public class Table {
 		ruPool.add("Eelektross");
 		ruPool.add("Emboar");
 		ruPool.add("Escavalier");
+		ruPool.add("Exploud");
 		ruPool.add("Fletchinder");
 		ruPool.add("Flygon");
 		ruPool.add("Glalie (*)");
@@ -520,8 +547,8 @@ public class Table {
 		ruPool.add("Qwilfish");
 		ruPool.add("Registeel");
 		ruPool.add("Rhyperior");
-		ruPool.add("Scrafty");
 		ruPool.add("Sawk");
+		ruPool.add("Scrafty");
 		ruPool.add("Seismitoad");
 		ruPool.add("Sigilyph");
 		ruPool.add("Slowking");
@@ -530,6 +557,7 @@ public class Table {
 		ruPool.add("Togetic");
 		ruPool.add("Typhlosion");
 		ruPool.add("Uxie");
+		ruPool.add("Venusaur");
 		ruPool.add("Virizion");
 	}
 }

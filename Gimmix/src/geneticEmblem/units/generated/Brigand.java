@@ -6,6 +6,7 @@ import geneticEmblem.weapons.*;
 public class Brigand extends Unit {
 
 	public Brigand() {
+
 		this.setJob("Brigand");
 		this.setWeapon(new IronAxe());
 		this.setHpBase(20);

@@ -42,7 +42,6 @@ public class List {
 			System.out.println("999: Quit.");
 			System.out.println();
 			int choice = input.nextInt();
-			// int choice = 69;
 
 			switch (choice) {
 
@@ -53,7 +52,6 @@ public class List {
 				System.out.println();
 				showSurvivors(arena);
 				System.out.println();
-				// on = false;
 				break;
 
 			case 1:
@@ -329,7 +327,7 @@ public class List {
 		sum /= meanSubs.size();
 		sum = Math.sqrt(sum);
 
-		return sum/survivors.size();
+		return sum / survivors.size();
 	}
 
 	private static void showSurvivors(ArrayList<Unit> anArena) {

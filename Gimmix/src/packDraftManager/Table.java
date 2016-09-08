@@ -9,7 +9,9 @@ public class Table {
 	public static ArrayList<Player> players = new ArrayList<Player>();
 	public static ArrayList<String> ouPool = new ArrayList<String>();
 	public static ArrayList<String> uuPool = new ArrayList<String>();
+	public static ArrayList<String> ruPool = new ArrayList<String>();
 	static ArrayList<ArrayList<String>> packs = new ArrayList<ArrayList<String>>();
+	
 	static Scanner sc = new Scanner(System.in);
 	static int numberOfPlayers;
 
@@ -20,7 +22,7 @@ public class Table {
 		numberOfPlayers = sc.nextInt();
 
 		createPlayers(numberOfPlayers);
-		// Collections.shuffle(players);
+		Collections.shuffle(players);
 
 		trimPoolsToFitPlayers();
 
@@ -32,7 +34,6 @@ public class Table {
 				askPlayerToPickOne(p);
 			}
 			rotatePacks();
-			printEachPlayersArsenal();
 		}
 
 		System.out.println("Now, on to UU.");
@@ -45,7 +46,18 @@ public class Table {
 				askPlayerToPickOne(p);
 			}
 			rotatePacks();
-			printEachPlayersArsenal();
+		}
+		
+		System.out.println("Now, on to RU.");
+
+		packs = generatePacks(ruPool);
+		distributePacks(packs);
+
+		while (aPackContainsSomething()) {
+			for (Player p : players) {
+				askPlayerToPickOne(p);
+			}
+			rotatePacks();
 		}
 	}
 
@@ -84,7 +96,7 @@ public class Table {
 
 	private static void askPlayerToPickOne(Player p) {
 		System.out.println(
-				p.getName() + ", your picks are as follows! (Already in your arsenal: " + p.getDeckAsString() + ")");
+				p.getName() + ", your picks are as follows!" + '\n' + "(Already in your arsenal: " + p.getDeckAsString() + ")");
 		p.printPicks();
 		System.out.println("Which do you want?");
 		int pick = sc.nextInt();
@@ -156,6 +168,7 @@ public class Table {
 	private static void trimPoolsToFitPlayers() {
 		Collections.shuffle(ouPool);
 		Collections.shuffle(uuPool);
+		Collections.shuffle(ruPool);
 
 		boolean fits = false;
 		while (!fits) {
@@ -174,6 +187,16 @@ public class Table {
 				fits = true;
 			} else {
 				uuPool.remove(0);
+			}
+		}
+		
+		fits = false;
+		while (!fits) {
+
+			if (ruPool.size() % numberOfPlayers == 0) {
+				fits = true;
+			} else {
+				ruPool.remove(0);
 			}
 		}
 	}
@@ -227,38 +250,21 @@ public class Table {
 		ouPool.add("Volcanion");
 		ouPool.add("Weavile");
 		ouPool.add("Zapdos");
-
-		// blPool.add("Alakazam (*)");
-		// blPool.add("Altaria (*)");
-		// blPool.add("Diggersby");
-		// blPool.add("Gallade (*)");
-		// blPool.add("Gyarados (*)");
-		// blPool.add("Hawlucha");
-		// blPool.add("Heracross (*)");
-		// blPool.add("Pidgeot (*)");
-		// blPool.add("Scolipede");
-		// blPool.add("Staraptor");
-		// blPool.add("Terrakion");
-		// blPool.add("Togekiss");
-		// blPool.add("Victini");
-		// blPool.add("Volcarona");
-		// blPool.add("Zygarde");
-
-		ouPool.add("Alakazam (*)");
-		ouPool.add("Altaria (*)");
-		ouPool.add("Diggersby");
-		ouPool.add("Gallade (*)");
-		ouPool.add("Gyarados (*)");
-		ouPool.add("Hawlucha");
-		ouPool.add("Heracross (*)");
-		ouPool.add("Pidgeot (*)");
-		ouPool.add("Scolipede");
-		ouPool.add("Staraptor");
-		ouPool.add("Terrakion");
-		ouPool.add("Togekiss");
-		ouPool.add("Victini");
-		ouPool.add("Volcarona");
-		ouPool.add("Zygarde");
+		 ouPool.add("Alakazam (*)");
+		 ouPool.add("Altaria (*)");
+		 ouPool.add("Diggersby");
+		 ouPool.add("Gallade (*)");
+		 ouPool.add("Gyarados (*)");
+		 ouPool.add("Hawlucha");
+		 ouPool.add("Heracross (*)");
+		 ouPool.add("Pidgeot (*)");
+		 ouPool.add("Scolipede");
+		 ouPool.add("Staraptor");
+		 ouPool.add("Terrakion");
+		 ouPool.add("Togekiss");
+		 ouPool.add("Victini");
+		 ouPool.add("Volcarona");
+		 ouPool.add("Zygarde");
 
 		uuPool.add("Absol (*)");
 		uuPool.add("Aerodactyl (*)");
@@ -320,7 +326,6 @@ public class Table {
 		uuPool.add("Umbreon");
 		uuPool.add("Vaporeon");
 		uuPool.add("Whimsicott");
-
 		uuPool.add("Abomasnow");
 		uuPool.add("Dragalge");
 		uuPool.add("Durant");
@@ -338,6 +343,55 @@ public class Table {
 		uuPool.add("Venomoth");
 		uuPool.add("Yanmega");
 		uuPool.add("Zoroark");
+		
+		ruPool.add("Accelgor");
+		ruPool.add("Alomomola");
+		ruPool.add("Ambipom");
+		ruPool.add("Aromatisse");
+		ruPool.add("Banette (*)");
+		ruPool.add("Braviary");
+		ruPool.add("Bronzong");
+		ruPool.add("Camerupt (*)");
+		ruPool.add("Cinccino");
+		ruPool.add("Clawitzer");
+		ruPool.add("Cofagrigus");
+		ruPool.add("Delphox");
+		ruPool.add("Diancie");
+		ruPool.add("Drapion");
+		ruPool.add("Druddigon");
+		ruPool.add("Dugtrio");
+		ruPool.add("Eelektross");
+		ruPool.add("Emboar");
+		ruPool.add("Escavalier");
+		ruPool.add("Exploud");
+		ruPool.add("Fletchinder");
+		ruPool.add("Flygon");
+		ruPool.add("Glalie (*)");
+		ruPool.add("Golbat");
+		ruPool.add("Granbull");
+		ruPool.add("Hitmonlee");
+		ruPool.add("Hitmontop");
+		ruPool.add("Hoopa");
+		ruPool.add("Jellicent");
+		ruPool.add("Jolteon");
+		ruPool.add("Magneton");
+		ruPool.add("Medicham");
+		ruPool.add("Meloetta");
+		ruPool.add("Qwilfish");
+		ruPool.add("Registeel");
+		ruPool.add("Rhyperior");
+		ruPool.add("Sawk");
+		ruPool.add("Scrafty");
+		ruPool.add("Seismitoad");
+		ruPool.add("Sigilyph");
+		ruPool.add("Slowking");
+		ruPool.add("Sneasel");
+		ruPool.add("Spiritomb");
+		ruPool.add("Togetic");
+		ruPool.add("Typhlosion");
+		ruPool.add("Uxie");
+		ruPool.add("Venusaur");
+		ruPool.add("Virizion");
 	}
 
 }

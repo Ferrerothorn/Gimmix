@@ -129,6 +129,7 @@ public class CustomUnitGenerator {
 		clawList.add(new SpikedShield());
 		clawList.add(new IronRake());
 		clawList.add(new SharpClaw());
+		clawList.add(new KillerClaw());
 
 		gunList.add(new Bayonet());
 		gunList.add(new DualBowgun());

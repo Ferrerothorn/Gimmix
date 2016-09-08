@@ -10,8 +10,18 @@ public class ClassList {
 	ArrayList<Unit> releasedClasses = new ArrayList<Unit>();
 
 	public ClassList() {
-		
+
 		releasedClasses.add(new Convict());
+		releasedClasses.add(new Woodcutter());
+		releasedClasses.add(new Bandit());
+		releasedClasses.add(new Marksman());
+		releasedClasses.add(new Explorer());
+		releasedClasses.add(new Channeler());
+		releasedClasses.add(new BlueMage());
+		releasedClasses.add(new Viera());
+		releasedClasses.add(new Jett());
+		releasedClasses.add(new Cremator());
+		releasedClasses.add(new Merchant());
 		releasedClasses.add(new Trapper());
 		releasedClasses.add(new Brawler());
 		releasedClasses.add(new Aran());
