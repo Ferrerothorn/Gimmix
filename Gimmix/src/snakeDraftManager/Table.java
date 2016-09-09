@@ -40,7 +40,7 @@ public class Table {
 	}
 
 	private static void saveFile() {
-		
+
 		String output = printEachPlayersArsenal();
 
 		File file = new File("FinalDraftPools.txt");
@@ -278,15 +278,41 @@ public class Table {
 			System.out.println(p.getName() + ", your picks are as follows!" + '\n' + "(Already in your arsenal: "
 					+ p.getPoolAsString() + ")" + '\n');
 			printPicks(tier);
+			System.out.println();
 			System.out.println("Which do you want?");
+			System.out.println("Alternatively, enter 999 to see the drafted picks.");
 			int pick = sc.nextInt();
-			p.claimsPick(tier.remove(pick - 1));
+			if (pick == 999) {
+				printSnekAndPools();
+			} else {
+				p.claimsPick(tier.remove(pick - 1));
+			}
 			saveFile();
 		} catch (Exception e) {
 			System.out.println("Well that's just wrong, you " + freshInsult() + ".");
 			System.out.println("I wanted a number, not " + listPhrase());
 			askPlayerToPickOne(p, tier);
 		}
+	}
+
+	private static void printSnekAndPools() {
+		String padding = "                ";
+		String snek = rpad(padding, 13) + "Y" + '\n';
+		snek +=rpad(padding, 11) + "/' '\\" + '\n';
+		snek += rpad(padding, 10) +"|     |" + '\n';
+		snek += rpad(padding, 11) +"\\   /" + '\n';
+		snek += rpad(padding, 11) + "|  |" + '\n';
+
+		for (Player p : players) {
+			snek += rpad(p.getName() + padding, 11) + "|  |  " + p.getPoolAsString() + '\n';
+			snek += rpad(padding, 11) + "|  |" + '\n';
+			snek += rpad(padding, 11) + "|  |" + '\n';
+		}
+		
+		snek += rpad(padding, 11) + "\\_/" + '\n';
+		
+		System.out.println(snek);
+
 	}
 
 	private static String listPhrase() {

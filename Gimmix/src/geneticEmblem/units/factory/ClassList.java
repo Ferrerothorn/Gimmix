@@ -11,14 +11,12 @@ public class ClassList {
 
 	public ClassList() {
 
-		releasedClasses.add(new Convict());
 		releasedClasses.add(new Woodcutter());
 		releasedClasses.add(new Bandit());
 		releasedClasses.add(new Marksman());
 		releasedClasses.add(new Explorer());
 		releasedClasses.add(new Channeler());
 		releasedClasses.add(new BlueMage());
-		releasedClasses.add(new Viera());
 		releasedClasses.add(new Jett());
 		releasedClasses.add(new Cremator());
 		releasedClasses.add(new Merchant());
@@ -26,9 +24,7 @@ public class ClassList {
 		releasedClasses.add(new Brawler());
 		releasedClasses.add(new Aran());
 		releasedClasses.add(new Beginner());
-		releasedClasses.add(new Butcher());
 		releasedClasses.add(new Saracen());
-		releasedClasses.add(new WindBreaker());
 		releasedClasses.add(new Monk());
 		releasedClasses.add(new Entombed());
 		releasedClasses.add(new PortalMage());
@@ -48,12 +44,10 @@ public class ClassList {
 		releasedClasses.add(new Mercedes());
 		releasedClasses.add(new BurnMage());
 		releasedClasses.add(new Assassin());
-		releasedClasses.add(new Bael());
 		releasedClasses.add(new DragonKnight());
 
 		releasedClasses.add(new Berserker());
 		releasedClasses.add(new General());
-		releasedClasses.add(new Crusader());
 		releasedClasses.add(new Mogall());
 		releasedClasses.add(new ReflectorMage());
 		releasedClasses.add(new Viking());
