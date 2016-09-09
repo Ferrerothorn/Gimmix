@@ -160,8 +160,10 @@ public class Table {
 
 	private static void capturePlayers() throws Exception {
 		try {
+			@SuppressWarnings("resource")
+			Scanner scanner = new Scanner(System.in);
 			System.out.println("Enter the number of players in this draft!");
-			int numberOfPlayers = inputs.nextInt();
+			int numberOfPlayers = scanner.nextInt();
 			generatePlayers(numberOfPlayers);
 		} catch (Exception e) {
 			System.out.println("I said *number*, you " + freshInsult() + ".");

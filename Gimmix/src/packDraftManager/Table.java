@@ -11,7 +11,7 @@ public class Table {
 	public static ArrayList<String> uuPool = new ArrayList<String>();
 	public static ArrayList<String> ruPool = new ArrayList<String>();
 	static ArrayList<ArrayList<String>> packs = new ArrayList<ArrayList<String>>();
-	
+
 	static Scanner sc = new Scanner(System.in);
 	static int numberOfPlayers;
 
@@ -36,29 +36,29 @@ public class Table {
 			rotatePacks();
 		}
 
-		System.out.println("Now, on to UU.");
-
-		packs = generatePacks(uuPool);
-		distributePacks(packs);
-
-		while (aPackContainsSomething()) {
-			for (Player p : players) {
-				askPlayerToPickOne(p);
-			}
-			rotatePacks();
-		}
-		
-		System.out.println("Now, on to RU.");
-
-		packs = generatePacks(ruPool);
-		distributePacks(packs);
-
-		while (aPackContainsSomething()) {
-			for (Player p : players) {
-				askPlayerToPickOne(p);
-			}
-			rotatePacks();
-		}
+		// System.out.println("Now, on to UU.");
+		//
+		// packs = generatePacks(uuPool);
+		// distributePacks(packs);
+		//
+		// while (aPackContainsSomething()) {
+		// for (Player p : players) {
+		// askPlayerToPickOne(p);
+		// }
+		// rotatePacks();
+		// }
+		//
+		// System.out.println("Now, on to RU.");
+		//
+		// packs = generatePacks(ruPool);
+		// distributePacks(packs);
+		//
+		// while (aPackContainsSomething()) {
+		// for (Player p : players) {
+		// askPlayerToPickOne(p);
+		// }
+		// rotatePacks();
+		// }
 	}
 
 	private static void rotatePacks() {
@@ -95,8 +95,8 @@ public class Table {
 	}
 
 	private static void askPlayerToPickOne(Player p) {
-		System.out.println(
-				p.getName() + ", your picks are as follows!" + '\n' + "(Already in your arsenal: " + p.getDeckAsString() + ")");
+		System.out.println(p.getName() + ", your picks are as follows!" + '\n' + "(Already in your arsenal: "
+				+ p.getDeckAsString() + ")");
 		p.printPicks();
 		System.out.println("Which do you want?");
 		int pick = sc.nextInt();
@@ -189,7 +189,7 @@ public class Table {
 				uuPool.remove(0);
 			}
 		}
-		
+
 		fits = false;
 		while (!fits) {
 
@@ -218,11 +218,12 @@ public class Table {
 		ouPool.add("Gengar");
 		ouPool.add("Gliscor");
 		ouPool.add("Heatran");
+		ouPool.add("Heracross (*)");
 		ouPool.add("Hippowdon");
 		ouPool.add("Jirachi");
 		ouPool.add("Keldeo");
 		ouPool.add("Klefki");
-		ouPool.add("Kyurem (*)");
+		ouPool.add("Kyurem-B+R");
 		ouPool.add("Landorus-T");
 		ouPool.add("Latias (*)");
 		ouPool.add("Latios (*)");
@@ -234,7 +235,7 @@ public class Table {
 		uuPool.add("Metagross");
 		ouPool.add("Mew");
 		ouPool.add("Pinsir (*)");
-		ouPool.add("Quagsire");
+		//ouPool.add("Quagsire");
 		ouPool.add("Raikou");
 		ouPool.add("Rotom (*)");
 		ouPool.add("Sableye (*)");
@@ -243,6 +244,8 @@ public class Table {
 		ouPool.add("Skarmory");
 		ouPool.add("Slowbro (*)");
 		ouPool.add("Starmie");
+		ouPool.add("Talonflame");
+		ouPool.add("Tangrowth");
 		ouPool.add("Thundurus (*)");
 		ouPool.add("Tornadus (*)");
 		ouPool.add("Tyranitar (*)");
@@ -250,21 +253,23 @@ public class Table {
 		ouPool.add("Volcanion");
 		ouPool.add("Weavile");
 		ouPool.add("Zapdos");
-		 ouPool.add("Alakazam (*)");
-		 ouPool.add("Altaria (*)");
-		 ouPool.add("Diggersby");
-		 ouPool.add("Gallade (*)");
-		 ouPool.add("Gyarados (*)");
-		 ouPool.add("Hawlucha");
-		 ouPool.add("Heracross (*)");
-		 ouPool.add("Pidgeot (*)");
-		 ouPool.add("Scolipede");
-		 ouPool.add("Staraptor");
-		 ouPool.add("Terrakion");
-		 ouPool.add("Togekiss");
-		 ouPool.add("Victini");
-		 ouPool.add("Volcarona");
-		 ouPool.add("Zygarde");
+
+//		ouPool.add("Alakazam (*)");
+//		ouPool.add("Altaria (*)");
+//		ouPool.add("Diggersby");
+//		ouPool.add("Gallade (*)");
+//		ouPool.add("Gyarados (*)");
+//		ouPool.add("Hawlucha");
+//		ouPool.add("Heracross (*)");
+//		ouPool.add("Pidgeot (*)");
+//		ouPool.add("Salamence");
+//		ouPool.add("Scolipede");
+//		ouPool.add("Staraptor");
+//		ouPool.add("Terrakion");
+//		ouPool.add("Togekiss");
+//		ouPool.add("Victini");
+//		ouPool.add("Volcarona");
+//		ouPool.add("Zygarde");
 
 		uuPool.add("Absol (*)");
 		uuPool.add("Aerodactyl (*)");
@@ -343,7 +348,7 @@ public class Table {
 		uuPool.add("Venomoth");
 		uuPool.add("Yanmega");
 		uuPool.add("Zoroark");
-		
+
 		ruPool.add("Accelgor");
 		ruPool.add("Alomomola");
 		ruPool.add("Ambipom");

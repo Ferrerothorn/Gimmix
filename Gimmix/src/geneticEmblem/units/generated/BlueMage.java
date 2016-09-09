@@ -7,7 +7,7 @@ public class BlueMage extends Unit {
 
 public BlueMage() {
 
-    this.setJob("BlueMage");
+    this.setJob("Blue Mage");
     this.setWeapon(new AquaSaber());
     this.setHpBase(22);
     this.setCurrentHp(this.getHpBase());

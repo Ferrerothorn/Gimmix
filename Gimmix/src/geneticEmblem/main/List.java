@@ -29,10 +29,10 @@ public class List {
 		while (on) {
 			System.out.println();
 			System.out.println("===Choose a command===");
-			System.out.println("0: The usual (25k each, 1024 remain, report).");
+			System.out.println("0: The usual (Add 25k each, 2048 remain, report).");
 			System.out.println("1: Add a number of each class to the arena.");
 			System.out.println("2: View a single match.");
-			System.out.println("22: Run until 2048 number remain.");
+			System.out.println("22: Run until 2048 remain.");
 			System.out.println("222: Run until specified number remain.");
 			System.out.println("3: See the top 8 in the arena.");
 			System.out.println("5: Report on the surviving units.");
@@ -177,7 +177,7 @@ public class List {
 						}
 					}
 					arena.clear();
-					deathmatch(512, tempArena);
+					deathmatch(1024, tempArena);
 					double withoutHealth = metagameBalanceMetrics(tempArena);
 					metagameHealth.put(withoutThisClass, withoutHealth);
 					System.out.println("[" + withoutHealth + "]");
