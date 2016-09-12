@@ -8,28 +8,28 @@ public class Woodcutter extends Unit {
 public Woodcutter() {
 
     this.setJob("Woodcutter");
-    this.setWeapon(new HuntersGear());
-    this.setHpBase(24);
+    this.setWeapon(new Machete());
+    this.setHpBase(25);
     this.setCurrentHp(this.getHpBase());
-    this.setStrBase(8);
-    this.setSkillBase(6);
+    this.setStrBase(7);
+    this.setSkillBase(7);
     this.setSpeedBase(8);
-    this.setLuckBase(3);
-    this.setDefBase(7);
+    this.setLuckBase(4);
+    this.setDefBase(6);
     this.setResBase(5);
 
     this.setHpGr(45);
-    this.setStrGr(60);
-    this.setSkillGr(25);
+    this.setStrGr(45);
+    this.setSkillGr(40);
     this.setSpeedGr(70);
-    this.setLuckGr(25);
-    this.setDefGr(70);
-    this.setResGr(25);
+    this.setLuckGr(40);
+    this.setDefGr(40);
+    this.setResGr(40);
 
-    this.setStrCap(29);
-    this.setSkillCap(21);
-    this.setSpeedCap(28);
-    this.setDefCap(29);
-    this.setResCap(20);
+    this.setStrCap(28);
+    this.setSkillCap(26);
+    this.setSpeedCap(29);
+    this.setDefCap(23);
+    this.setResCap(23);
     }
 }

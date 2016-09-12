@@ -62,18 +62,23 @@ public class CustomUnitGenerator {
 		lanceList.add(new IronLance());
 		lanceList.add(new IronRake());
 		lanceList.add(new Sunlance());
+		lanceList.add(new Cannon());
 		lanceList.add(new PoleAxe());
 		lanceList.add(new Rapier());
 		lanceList.add(new Halberd());
 		lanceList.add(new Ballista());
+		lanceList.add(new SoulSpear());
 		
 		axeList.add(new BoltAxe());
 		axeList.add(new DevilAxe());
 		axeList.add(new HuntersGear());
 		axeList.add(new Machete());
+		axeList.add(new MaraudersGear());
+		axeList.add(new BlessedAxe());
 		axeList.add(new IronAxe());
 		axeList.add(new PoleAxe());
 		axeList.add(new MeleeGear());
+		axeList.add(new Saw());
 		
 		animaList.add(new AquaSaber());
 		animaList.add(new ArcaneLance());
@@ -84,6 +89,7 @@ public class CustomUnitGenerator {
 		animaList.add(new Flamethrower());
 		animaList.add(new Forblaze());
 		animaList.add(new WindBow());
+		animaList.add(new Regenerate());
 		animaList.add(new Thunder());
 
 		darkList.add(new Channel());
@@ -95,14 +101,18 @@ public class CustomUnitGenerator {
 		darkList.add(new Portal());
 		darkList.add(new Shade());
 		darkList.add(new MurderersGun());
+		darkList.add(new SoulSpear());
 
 		lightList.add(new DivineShield());
 		lightList.add(new Sunlance());
+		lightList.add(new Regenerate());
 		lightList.add(new HolyClaw());
 		lightList.add(new LightBrand());
 		lightList.add(new Shine());
 		lightList.add(new Shade());
 		lightList.add(new RayGun());
+		lightList.add(new BlessedAxe());
+		lightList.add(new HolyArrow());
 
 		bowList.add(new DualBowgun());
 		bowList.add(new HuntersGear());
@@ -112,6 +122,7 @@ public class CustomUnitGenerator {
 		bowList.add(new SteelBow());
 		bowList.add(new WindBow());
 		bowList.add(new Ballista());
+		bowList.add(new HolyArrow());
 
 		shieldList.add(new DivineShield());
 		shieldList.add(new Forblaze());
@@ -126,6 +137,7 @@ public class CustomUnitGenerator {
 		clawList.add(new FireClaw());
 		clawList.add(new HolyClaw());
 		clawList.add(new Knuckleduster());
+		clawList.add(new Saw());
 		clawList.add(new SpikedShield());
 		clawList.add(new IronRake());
 		clawList.add(new SharpClaw());
@@ -137,6 +149,8 @@ public class CustomUnitGenerator {
 		gunList.add(new IronGun());
 		gunList.add(new RayGun());
 		gunList.add(new MurderersGun());
+		gunList.add(new Cannon());
+		gunList.add(new MaraudersGear());
 
 	}
 

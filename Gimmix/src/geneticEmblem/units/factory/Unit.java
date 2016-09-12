@@ -304,12 +304,6 @@ public abstract class Unit {
 			if (isCrit <= thisCrit) {
 				hitDamage *= 3;
 			}
-			if (target.getJob().contains("General")) {
-				int greatShield = r.nextInt(100);
-				if (greatShield <= target.getSkillBase()) {
-					hitDamage = 0;
-				}
-			}
 			target.currentHp -= hitDamage;
 		}
 	}

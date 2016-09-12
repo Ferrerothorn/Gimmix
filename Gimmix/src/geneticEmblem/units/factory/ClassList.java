@@ -12,6 +12,13 @@ public class ClassList {
 	public ClassList() {
 
 		releasedClasses.add(new Woodcutter());
+		releasedClasses.add(new Wyvern());	
+		releasedClasses.add(new Bishop());
+		releasedClasses.add(new WarMonk());
+		releasedClasses.add(new Viper());
+		releasedClasses.add(new Hoodlum());
+		releasedClasses.add(new Android());
+		releasedClasses.add(new Elf());
 		releasedClasses.add(new Bandit());
 		releasedClasses.add(new Marksman());
 		releasedClasses.add(new Explorer());

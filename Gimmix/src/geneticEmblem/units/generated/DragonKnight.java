@@ -11,7 +11,7 @@ public DragonKnight() {
 
     this.setJob("Dragon Knight");
 
-    this.setWeapon(new IronLance());
+    this.setWeapon(new SoulSpear());
     this.setHpBase(24);
     this.setCurrentHp(this.getHpBase());
     this.setStrBase(9);

@@ -9,27 +9,28 @@ public PortalMage() {
 
     this.setJob("Portal Mage");
     this.setWeapon(new Portal());
-    this.setHpBase(22);
+    this.setWeapon(new Portal());
+    this.setHpBase(26);
     this.setCurrentHp(this.getHpBase());
-    this.setStrBase(8);
-    this.setSkillBase(6);
-    this.setSpeedBase(7);
+    this.setStrBase(9);
+    this.setSkillBase(7);
+    this.setSpeedBase(5);
     this.setLuckBase(4);
-    this.setDefBase(7);
-    this.setResBase(5);
+    this.setDefBase(6);
+    this.setResBase(6);
 
-    this.setHpGr(55);
-    this.setStrGr(45);
-    this.setSkillGr(35);
-    this.setSpeedGr(35);
+    this.setHpGr(75);
+    this.setStrGr(50);
+    this.setSkillGr(30);
+    this.setSpeedGr(50);
     this.setLuckGr(60);
-    this.setDefGr(70);
-    this.setResGr(20);
+    this.setDefGr(20);
+    this.setResGr(35);
 
-    this.setStrCap(30);
-    this.setSkillCap(24);
-    this.setSpeedCap(29);
-    this.setDefCap(27);
-    this.setResCap(20);
+    this.setStrCap(26);
+    this.setSkillCap(22);
+    this.setSpeedCap(27);
+    this.setDefCap(26);
+    this.setResCap(26);
     }
 }
