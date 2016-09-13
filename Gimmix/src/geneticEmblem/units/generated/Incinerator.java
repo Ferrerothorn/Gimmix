@@ -1,12 +1,13 @@
+package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
-public class 0.7276698288355187 extends Unit { 
+public class Incinerator extends Unit { 
 
-public 0.7276698288355187() {
+public Incinerator() {
 
-    this.setJob("0.7276698288355187");
+    this.setJob("Incinerator");
     this.setWeapon(new ArcaneLance());
     this.setHpBase(24);
     this.setCurrentHp(this.getHpBase());

@@ -6,7 +6,7 @@ public class WallOfSwords extends Weapon {
 		super.setTrinity("Shield");
 		super.setTrinity("Sword");
 		super.setPow(4);
-		super.setAcc(100);
+		super.setAcc(85);
 		super.setPhys(true);
 		super.setName("WallOfSwords");
 	}

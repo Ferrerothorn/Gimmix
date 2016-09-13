@@ -3,7 +3,6 @@ package geneticEmblem.units.factory;
 import java.util.ArrayList;
 
 import geneticEmblem.units.generated.*;
-import geneticEmblem.units.ootb.*;
 
 public class ClassList {
 
@@ -11,35 +10,19 @@ public class ClassList {
 
 	public ClassList() {
 
-		releasedClasses.add(new Woodcutter());
-		releasedClasses.add(new Wyvern());	
-		releasedClasses.add(new Bishop());
-		releasedClasses.add(new WarMonk());
-		releasedClasses.add(new Viper());
-		releasedClasses.add(new Hoodlum());
-		releasedClasses.add(new Android());
-		releasedClasses.add(new Elf());
-		releasedClasses.add(new Bandit());
-		releasedClasses.add(new Marksman());
-		releasedClasses.add(new Explorer());
-		releasedClasses.add(new Channeler());
+		releasedClasses.add(new Scarecrow());
+		releasedClasses.add(new Incinerator());
 		releasedClasses.add(new BlueMage());
-		releasedClasses.add(new Jett());
 		releasedClasses.add(new Cremator());
-		releasedClasses.add(new Merchant());
 		releasedClasses.add(new Trapper());
-		releasedClasses.add(new Brawler());
 		releasedClasses.add(new Aran());
 		releasedClasses.add(new Beginner());
-		releasedClasses.add(new Saracen());
 		releasedClasses.add(new Monk());
 		releasedClasses.add(new Entombed());
 		releasedClasses.add(new PortalMage());
-		releasedClasses.add(new KilnFiend());
 		releasedClasses.add(new Kaiser());
 		releasedClasses.add(new MagnetMage());
 		releasedClasses.add(new ConduitMage());
-		releasedClasses.add(new Golem());
 		releasedClasses.add(new Noble());
 		releasedClasses.add(new Brigand());
 		releasedClasses.add(new Saint());
@@ -52,7 +35,6 @@ public class ClassList {
 		releasedClasses.add(new BurnMage());
 		releasedClasses.add(new Assassin());
 		releasedClasses.add(new DragonKnight());
-
 		releasedClasses.add(new Berserker());
 		releasedClasses.add(new General());
 		releasedClasses.add(new Mogall());

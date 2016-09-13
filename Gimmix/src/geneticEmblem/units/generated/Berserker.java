@@ -1,4 +1,4 @@
-package geneticEmblem.units.ootb;
+package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;

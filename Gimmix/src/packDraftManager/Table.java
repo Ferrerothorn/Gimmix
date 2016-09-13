@@ -254,22 +254,21 @@ public class Table {
 		ouPool.add("Weavile");
 		ouPool.add("Zapdos");
 
-//		ouPool.add("Alakazam (*)");
-//		ouPool.add("Altaria (*)");
-//		ouPool.add("Diggersby");
-//		ouPool.add("Gallade (*)");
-//		ouPool.add("Gyarados (*)");
-//		ouPool.add("Hawlucha");
-//		ouPool.add("Heracross (*)");
-//		ouPool.add("Pidgeot (*)");
-//		ouPool.add("Salamence");
-//		ouPool.add("Scolipede");
-//		ouPool.add("Staraptor");
-//		ouPool.add("Terrakion");
-//		ouPool.add("Togekiss");
-//		ouPool.add("Victini");
-//		ouPool.add("Volcarona");
-//		ouPool.add("Zygarde");
+		ouPool.add("Alakazam (*)");
+		ouPool.add("Altaria (*)");
+		ouPool.add("Diggersby");
+		ouPool.add("Gallade (*)");
+		ouPool.add("Gyarados (*)");
+		ouPool.add("Hawlucha");
+		ouPool.add("Pidgeot (*)");
+		ouPool.add("Salamence");
+		ouPool.add("Scolipede");
+		ouPool.add("Staraptor");
+		ouPool.add("Terrakion");
+		ouPool.add("Togekiss");
+		ouPool.add("Victini");
+		ouPool.add("Volcarona");
+		ouPool.add("Zygarde");
 
 		uuPool.add("Absol (*)");
 		uuPool.add("Aerodactyl (*)");
