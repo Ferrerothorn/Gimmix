@@ -286,6 +286,7 @@ public class Table {
 			int pick = sc.nextInt();
 			if (pick == 999) {
 				printSnekAndPools();
+				askPlayerToPickOne(p, tier);
 			} else {
 				p.claimsPick(tier.remove(pick - 1));
 			}
@@ -299,20 +300,19 @@ public class Table {
 
 	private static void printSnekAndPools() {
 		String padding = "                ";
-		String snek = rpad(padding, 13) + "Y" + '\n';
-		snek +=rpad(padding, 11) + "/' '\\" + '\n';
-		snek += rpad(padding, 10) +"|     |" + '\n';
-		snek += rpad(padding, 11) +"\\   /" + '\n';
+		String snek = rpad(padding, 12) + "_Y_" + '\n';
+		snek += rpad(padding, 11) + "/' '\\" + '\n';
+		snek += rpad(padding, 10) + "|     |" + '\n';
+		snek += rpad(padding, 11) + "\\   /" + '\n';
 		snek += rpad(padding, 11) + "|  |" + '\n';
 
 		for (Player p : players) {
 			snek += rpad(p.getName() + padding, 11) + "|  |  " + p.getPoolAsString() + '\n';
 			snek += rpad(padding, 11) + "|  |" + '\n';
-			snek += rpad(padding, 11) + "|  |" + '\n';
 		}
-		
-		snek += rpad(padding, 11) + "\\_/" + '\n';
-		
+
+		snek += rpad(padding, 11) + "\\__/" + '\n';
+
 		System.out.println(snek);
 
 	}
