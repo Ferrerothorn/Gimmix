@@ -10,6 +10,10 @@ public class ClassList {
 
 	public ClassList() {
 
+	//	releasedClasses.add(new Cannoneer());
+		//releasedClasses.add(new Mihile());
+		releasedClasses.add(new Tarmogoyf());
+		
 		releasedClasses.add(new Scarecrow());
 		releasedClasses.add(new Incinerator());
 		releasedClasses.add(new BlueMage());

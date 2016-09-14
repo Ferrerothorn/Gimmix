@@ -1,12 +1,13 @@
+package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
-public class 0.6530233580606741 extends Unit { 
+public class Mihile extends Unit { 
 
-public 0.6530233580606741() {
+public Mihile() {
 
-    this.setJob("0.6530233580606741");
+    this.setJob("Mihile");
     this.setWeapon(new BoltAxe());
     this.setHpBase(20);
     this.setCurrentHp(this.getHpBase());

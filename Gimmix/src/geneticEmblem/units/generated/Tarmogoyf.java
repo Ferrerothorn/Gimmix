@@ -1,12 +1,13 @@
+package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;
 
-public class 0.6778469910015656 extends Unit { 
+public class Tarmogoyf extends Unit { 
 
-public 0.6778469910015656() {
+public Tarmogoyf() {
 
-    this.setJob("0.6778469910015656");
+    this.setJob("Tarmogoyf");
     this.setWeapon(new SpikedShield());
     this.setHpBase(25);
     this.setCurrentHp(this.getHpBase());
