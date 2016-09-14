@@ -126,10 +126,8 @@ public class List {
 					if (newStDev < initialStDev) {
 
 						String fileName = "" + newStDev;
-						String filePath = "C:\\Users\\sdolman\\Desktop\\Gimmix\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
-						// String filePath = "C:\\Users\\User\\workspace\\Git "
-						// +
-						// "Repo\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
+						//String filePath = "C:\\Users\\sdolman\\Desktop\\Gimmix\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
+						 String filePath = "C:\\Users\\User\\workspace\\Git Repo\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
 						String output = customUnitGenerator.generateCode(newStDev);
 
 						File file = new File(filePath + fileName + ".java");
