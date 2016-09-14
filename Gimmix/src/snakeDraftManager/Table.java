@@ -104,7 +104,6 @@ public class Table {
 					}
 				}
 			}
-
 		}
 	}
 
@@ -490,7 +489,6 @@ public class Table {
 		uuPool.add("Hydreigon");
 		uuPool.add("Infernape");
 		uuPool.add("Krookodile");
-
 		uuPool.add("Lucario");
 		uuPool.add("Machamp");
 		uuPool.add("Mamoswine");
