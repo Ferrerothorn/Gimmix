@@ -19,6 +19,9 @@ public class Table {
 	public static ArrayList<String> uuPool = new ArrayList<String>();
 	public static ArrayList<String> bl2Pool = new ArrayList<String>();
 	public static ArrayList<String> ruPool = new ArrayList<String>();
+	
+	public static ArrayList<String> unclaimedPokemonBin = new ArrayList<String>();
+	
 	public static Scanner inputs = new Scanner(System.in);
 
 	public static void main(String[] args) throws Exception {
@@ -262,6 +265,7 @@ public class Table {
 			Collections.reverse(players);
 			amountFromTier++;
 		}
+		unclaimedPokemonBin.addAll(pool);
 	}
 
 	private static String printEachPlayersArsenal() {
@@ -270,6 +274,8 @@ public class Table {
 			Collections.sort(p.getPool());
 			output += p.getName() + ": " + p.getPoolAsString() + '\n' + '\n';
 		}
+		Collections.sort(unclaimedPokemonBin);
+		output += "Swapping Pool: " + unclaimedPokemonBin.toString() + '\n' + '\n';
 		return output;
 	}
 
