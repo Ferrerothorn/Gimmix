@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 import snakeDraftManager.Player;
 
-public class Table {
+public class RunSnakeDraft {
 
 	public static ArrayList<Player> players = new ArrayList<Player>();
 	public static ArrayList<String> ouPool = new ArrayList<String>();
@@ -151,7 +151,7 @@ public class Table {
 
 		wipeScreen();
 		System.out.println("Trade completed. (" + trading + " -> " + tradeBack + ")." + '\n');
-
+		saveFile();
 	}
 
 	private static void wipeScreen() {
@@ -257,6 +257,7 @@ public class Table {
 
 		while (amountFromTier < maxFromTier) {
 			for (int i = 0; i < players.size(); i++) {
+				wipeScreen();
 				printEachPlayersArsenal();
 				System.out.println();
 				askPlayerToPickOne(players.get(i), pool);

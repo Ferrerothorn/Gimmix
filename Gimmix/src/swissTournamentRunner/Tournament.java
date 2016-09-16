@@ -68,17 +68,21 @@ public class Tournament {
 			p.recalculateTB();
 			p.recalculateOpps();
 			p.recalculateOppsOpps();
+		}
+		sortRankings();
+		for (Player p : players) {
 			p.updatePositionInRankings(players);
 		}
 	}
 
 	public void displayInDepthRankings() {
+		String participantString = "";
 		for (int i = 1; i <= players.size(); i++) {
-			String participantString = "" + i + ") " + players.get(i - 1).getName() + "  Score: "
+			participantString += "" + i + ") " + players.get(i - 1).getName() + "  Score: "
 					+ players.get(i - 1).getScore() + "  TB: " + players.get(i - 1).getTB() + "  Opp WR: "
-					+ players.get(i - 1).getOpps() + "  Opp Opp WR: " + players.get(i - 1).getOppsOpps();
-			System.out.println(participantString);
+					+ players.get(i - 1).getOpps() + "  Opp Opp WR: " + players.get(i - 1).getOppsOpps() + '\n';
 		}
+		System.out.println(participantString);
 	}
 
 	public void generatePairings() {
