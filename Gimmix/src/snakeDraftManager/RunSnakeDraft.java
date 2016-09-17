@@ -19,9 +19,9 @@ public class RunSnakeDraft {
 	public static ArrayList<String> uuPool = new ArrayList<String>();
 	public static ArrayList<String> bl2Pool = new ArrayList<String>();
 	public static ArrayList<String> ruPool = new ArrayList<String>();
-	
+
 	public static ArrayList<String> unclaimedPokemonBin = new ArrayList<String>();
-	
+
 	public static Scanner inputs = new Scanner(System.in);
 
 	public static void main(String[] args) throws Exception {
@@ -155,7 +155,7 @@ public class RunSnakeDraft {
 	}
 
 	private static void wipeScreen() {
-		for (int i = 0; i < 5000; i++) {
+		for (int i = 0; i < 100; i++) {
 			System.out.print('\n');
 		}
 	}
@@ -179,6 +179,7 @@ public class RunSnakeDraft {
 		firsts.add("dismal");
 		firsts.add("empty");
 		firsts.add("ham-fisted");
+		firsts.add("puny");
 		firsts.add("spindly");
 		firsts.add("ceaseless");
 		firsts.add("vile");
@@ -200,6 +201,7 @@ public class RunSnakeDraft {
 		firsts.add("slagbound");
 		firsts.add("skeletal");
 		firsts.add("worn-out");
+		firsts.add("regrettable");
 
 		seconds.add("wreckage");
 		seconds.add("vessel");
@@ -210,6 +212,7 @@ public class RunSnakeDraft {
 		seconds.add("husk");
 		seconds.add("pebble");
 		seconds.add("surplus");
+		seconds.add("Sunkern");
 		seconds.add("piglet");
 		seconds.add("refuse");
 		seconds.add("accident");
@@ -260,7 +263,7 @@ public class RunSnakeDraft {
 				wipeScreen();
 				printEachPlayersArsenal();
 				System.out.println();
-				askPlayerToPickOne(players.get(i), pool);
+				askPlayerToPickOne(players.get(i), pool, (maxFromTier-amountFromTier));
 			}
 			Collections.reverse(players);
 			amountFromTier++;
@@ -279,12 +282,13 @@ public class RunSnakeDraft {
 		return output;
 	}
 
-	private static void askPlayerToPickOne(Player p, ArrayList<String> tier) {
+	private static void askPlayerToPickOne(Player p, ArrayList<String> tier, int amountFromTier) {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		try {
 			System.out.println(p.getName() + ", your picks are as follows!" + '\n' + "(Already in your arsenal: "
 					+ p.getPoolAsString() + ")" + '\n');
+			System.out.println("Your have " + amountFromTier + " pick(s) left from this tier." + '\n');
 			printPicks(tier);
 			System.out.println();
 			System.out.println("Which do you want?");
@@ -292,7 +296,7 @@ public class RunSnakeDraft {
 			int pick = sc.nextInt();
 			if (pick == 999) {
 				printSnekAndPools();
-				askPlayerToPickOne(p, tier);
+				askPlayerToPickOne(p, tier, amountFromTier);
 			} else {
 				p.claimsPick(tier.remove(pick - 1));
 			}
@@ -300,7 +304,7 @@ public class RunSnakeDraft {
 		} catch (Exception e) {
 			System.out.println("Well that's just wrong, you " + freshInsult() + ".");
 			System.out.println("I wanted a number, not " + listPhrase());
-			askPlayerToPickOne(p, tier);
+			askPlayerToPickOne(p, tier, amountFromTier);
 		}
 	}
 
@@ -335,6 +339,7 @@ public class RunSnakeDraft {
 		lists.add("the daily tabloids as dictated by Stevie Wonder");
 		lists.add("a badly written Twilight fanfiction");
 		lists.add("your face rubbed across the keyboard");
+		lists.add("your letter to Santa");
 
 		int index = r.nextInt(lists.size());
 		String f = lists.get(index);
@@ -487,7 +492,7 @@ public class RunSnakeDraft {
 		uuPool.add("Florges");
 		uuPool.add("Forretress");
 		uuPool.add("Galvantula");
-		uuPool.add("Gardevoir (No Mega)");
+		uuPool.add("Gardevoir");
 		uuPool.add("Gligar");
 		uuPool.add("Goodra");
 		uuPool.add("Haxorus");
@@ -507,7 +512,6 @@ public class RunSnakeDraft {
 		uuPool.add("Nidoqueen");
 		uuPool.add("Porygon-Z");
 		uuPool.add("Porygon-2");
-		uuPool.add("Quagsire");
 		uuPool.add("Reuniclus");
 		uuPool.add("Roserade");
 		uuPool.add("Rotoms (Minus Wash)");
@@ -532,6 +536,7 @@ public class RunSnakeDraft {
 		bl2Pool.add("Honchkrow");
 		bl2Pool.add("Houndoom (*)");
 		bl2Pool.add("Kingdra");
+		bl2Pool.add("Kyurem (Base only)");
 		bl2Pool.add("Moltres");
 		bl2Pool.add("Noivern");
 		bl2Pool.add("Pangoro");
@@ -577,6 +582,7 @@ public class RunSnakeDraft {
 		ruPool.add("Magneton");
 		ruPool.add("Medicham");
 		ruPool.add("Meloetta");
+		ruPool.add("Quagsire");
 		ruPool.add("Qwilfish");
 		ruPool.add("Registeel");
 		ruPool.add("Rhyperior");
