@@ -20,7 +20,7 @@ public class RunSnakeDraft {
 	public static ArrayList<String> bl2Pool = new ArrayList<String>();
 	public static ArrayList<String> ruPool = new ArrayList<String>();
 
-	public static ArrayList<String> unclaimedPokemonBin = new ArrayList<String>();
+	public static String swappingPool = "Swapping pool:" + '\n';
 
 	public static Scanner inputs = new Scanner(System.in);
 
@@ -40,360 +40,6 @@ public class RunSnakeDraft {
 		tradingPost();
 		saveFile();
 		inputs.close();
-	}
-
-	private static void saveFile() {
-
-		String output = printEachPlayersArsenal();
-
-		File file = new File("FinalDraftPools.txt");
-		try {
-			PrintWriter writer = new PrintWriter(file, "UTF-8");
-			writer.print(output);
-			writer.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-	}
-
-	@SuppressWarnings("resource")
-	private static void tradingPost() throws Exception {
-		boolean allSatisfiedWithTrades = false;
-
-		while (!allSatisfiedWithTrades) {
-
-			int playerIndex = 0;
-			System.out.println(printEachPlayersArsenal());
-			System.out.println();
-			System.out.println("Anyone looking to instigate a trade?");
-			for (Player p : players) {
-				System.out.println("" + (playerIndex + 1) + ") " + p.getName());
-				playerIndex++;
-			}
-			System.out.println("0) No thanks.");
-
-			Scanner inputs = new Scanner(System.in);
-			int buyerIndex = inputs.nextInt();
-
-			switch (buyerIndex) {
-			case 0:
-				allSatisfiedWithTrades = true;
-				break;
-			default:
-				if (buyerIndex <= players.size()) {
-					Player buyer = players.get(buyerIndex - 1);
-					System.out.println();
-					System.out.println("And, you're wanting to trade with whom?");
-
-					for (int i = 0; i < players.size(); i++) {
-						if (players.get(i) != buyer) {
-							System.out.println("" + (i + 1) + ") " + players.get(i).getName());
-						}
-					}
-					int sellerIndex = inputs.nextInt();
-					sellerIndex--;
-					Player seller = null;
-					if (sellerIndex <= players.size()) {
-						seller = players.get(sellerIndex);
-					}
-
-					if (buyer != null && seller != null && buyer != seller) {
-						try {
-							transaction(buyer, seller);
-						} catch (Exception e) {
-						}
-					}
-				}
-			}
-		}
-	}
-
-	private static void transaction(Player p1, Player p2) throws Exception {
-
-		System.out.println(p1.getName() + "'s pool:");
-		int index = 1;
-		for (String s : p1.getPool()) {
-			System.out.println("" + index + ") " + s);
-			index++;
-		}
-		System.out.println("999) Cancel transaction" + '\n');
-
-		int input = inputs.nextInt();
-		if (input == 999) {
-			wipeScreen();
-			System.out.println("Trade cancelled.");
-			return;
-		}
-		String trading = p1.getPool().get(input - 1);
-
-		System.out.println("Trade " + trading + " for what?");
-		index = 1;
-		for (String s : p2.getPool()) {
-			System.out.println("" + index + ") " + s);
-			index++;
-		}
-		System.out.println("999) Cancel transaction" + '\n');
-
-		input = inputs.nextInt();
-		if (input == 999) {
-			wipeScreen();
-			System.out.println("Trade cancelled.");
-			return;
-		}
-		String tradeBack = p2.getPool().get(input - 1);
-
-		p1.getPool().add(tradeBack);
-		p1.getPool().remove(trading);
-		p2.getPool().add(trading);
-		p2.getPool().remove(tradeBack);
-
-		wipeScreen();
-		System.out.println("Trade completed. (" + trading + " -> " + tradeBack + ")." + '\n');
-		saveFile();
-	}
-
-	private static void wipeScreen() {
-		for (int i = 0; i < 100; i++) {
-			System.out.print('\n');
-		}
-	}
-
-	private static void capturePlayers() throws Exception {
-		try {
-			@SuppressWarnings("resource")
-			Scanner scanner = new Scanner(System.in);
-			System.out.println("Enter the number of players in this draft!");
-			int numberOfPlayers = scanner.nextInt();
-			generatePlayers(numberOfPlayers);
-		} catch (Exception e) {
-			System.out.println("I said *number*, you " + freshInsult() + ".");
-			capturePlayers();
-		}
-	}
-
-	private static String freshInsult() {
-		ArrayList<String> firsts = new ArrayList<String>();
-		ArrayList<String> seconds = new ArrayList<String>();
-		firsts.add("dismal");
-		firsts.add("empty");
-		firsts.add("ham-fisted");
-		firsts.add("puny");
-		firsts.add("spindly");
-		firsts.add("ceaseless");
-		firsts.add("vile");
-		firsts.add("fleshy");
-		firsts.add("window-licking");
-		firsts.add("ruinous");
-		firsts.add("devoid");
-		firsts.add("crumbling");
-		firsts.add("toxic");
-		firsts.add("hopeless");
-		firsts.add("dopey");
-		firsts.add("hideous");
-		firsts.add("weak-minded");
-		firsts.add("fallacious");
-		firsts.add("cancerous");
-		firsts.add("pestilent");
-		firsts.add("diseased");
-		firsts.add("malnourished");
-		firsts.add("slagbound");
-		firsts.add("skeletal");
-		firsts.add("worn-out");
-		firsts.add("regrettable");
-
-		seconds.add("wreckage");
-		seconds.add("vessel");
-		seconds.add("waste of oxygen");
-		seconds.add("error");
-		seconds.add("aberration");
-		seconds.add("mistake");
-		seconds.add("husk");
-		seconds.add("pebble");
-		seconds.add("surplus");
-		seconds.add("Sunkern");
-		seconds.add("piglet");
-		seconds.add("refuse");
-		seconds.add("accident");
-		seconds.add("excuse");
-		seconds.add("mushroom");
-		seconds.add("vermin");
-		seconds.add("kernel");
-		seconds.add("cad");
-		seconds.add("ragamuffin");
-		seconds.add("cauldron");
-		seconds.add("wafer");
-		seconds.add("scrapmound");
-
-		Random r = new Random();
-		int fi = r.nextInt(firsts.size());
-		String f = firsts.get(fi);
-		int si = r.nextInt(seconds.size());
-		String s = seconds.get(si);
-
-		return f + " " + s;
-
-	}
-
-	@SuppressWarnings("resource")
-	private static void generatePlayers(int numberOfPlayers) {
-		Scanner scanner = new Scanner(System.in);
-		for (int i = 0; i < numberOfPlayers; i++) {
-			System.out.println("Enter the name of the player in position " + (i + 1) + " of the snake.");
-			String pName = scanner.nextLine();
-			players.add(new Player(pName));
-		}
-	}
-
-	private static void draftManager(ArrayList<String> pool, int amountFromTier, String string) {
-		System.out.println("Time to draft " + string + ".");
-		System.out.println();
-
-		int maxFromTier = 1;
-		if (string.equals("UU")) {
-			maxFromTier = 6;
-		}
-		if (string.contains("RU")) {
-			maxFromTier = 4;
-		}
-
-		while (amountFromTier < maxFromTier) {
-			for (int i = 0; i < players.size(); i++) {
-				wipeScreen();
-				printEachPlayersArsenal();
-				System.out.println();
-				askPlayerToPickOne(players.get(i), pool, (maxFromTier-amountFromTier));
-			}
-			Collections.reverse(players);
-			amountFromTier++;
-		}
-		unclaimedPokemonBin.addAll(pool);
-	}
-
-	private static String printEachPlayersArsenal() {
-		String output = "";
-		for (Player p : players) {
-			Collections.sort(p.getPool());
-			output += p.getName() + ": " + p.getPoolAsString() + '\n' + '\n';
-		}
-		Collections.sort(unclaimedPokemonBin);
-		output += "Swapping Pool: " + unclaimedPokemonBin.toString() + '\n' + '\n';
-		return output;
-	}
-
-	private static void askPlayerToPickOne(Player p, ArrayList<String> tier, int amountFromTier) {
-		@SuppressWarnings("resource")
-		Scanner sc = new Scanner(System.in);
-		try {
-			System.out.println(p.getName() + ", your picks are as follows!" + '\n' + "(Already in your arsenal: "
-					+ p.getPoolAsString() + ")" + '\n');
-			System.out.println("Your have " + amountFromTier + " pick(s) left from this tier." + '\n');
-			printPicks(tier);
-			System.out.println();
-			System.out.println("Which do you want?");
-			System.out.println("Alternatively, enter 999 to see the drafted picks.");
-			int pick = sc.nextInt();
-			if (pick == 999) {
-				printSnekAndPools();
-				askPlayerToPickOne(p, tier, amountFromTier);
-			} else {
-				p.claimsPick(tier.remove(pick - 1));
-			}
-			saveFile();
-		} catch (Exception e) {
-			System.out.println("Well that's just wrong, you " + freshInsult() + ".");
-			System.out.println("I wanted a number, not " + listPhrase());
-			askPlayerToPickOne(p, tier, amountFromTier);
-		}
-	}
-
-	private static void printSnekAndPools() {
-		String padding = "                ";
-		String snek = rpad(padding, 12) + "_Y_" + '\n';
-		snek += rpad(padding, 11) + "/' '\\" + '\n';
-		snek += rpad(padding, 10) + "|     |" + '\n';
-		snek += rpad(padding, 11) + "\\   /" + '\n';
-		snek += rpad(padding, 11) + "|  |" + '\n';
-
-		for (Player p : players) {
-			snek += rpad(p.getName() + padding, 11) + "|  |  " + p.getPoolAsString() + '\n';
-			snek += rpad(padding, 11) + "|  |" + '\n';
-		}
-
-		snek += rpad(padding, 11) + "\\__/" + '\n';
-
-		System.out.println(snek);
-
-	}
-
-	private static String listPhrase() {
-		ArrayList<String> lists = new ArrayList<String>();
-		Random r = new Random();
-
-		lists.add("your Tesco shopping list");
-		lists.add("your murder confessions");
-		lists.add("your passing thoughts on communism");
-		lists.add("a detailed log of your affections for " + players.get(r.nextInt(players.size())).getName());
-		lists.add("your diary's back pages");
-		lists.add("the daily tabloids as dictated by Stevie Wonder");
-		lists.add("a badly written Twilight fanfiction");
-		lists.add("your face rubbed across the keyboard");
-		lists.add("your letter to Santa");
-
-		int index = r.nextInt(lists.size());
-		String f = lists.get(index);
-
-		return f + "." + '\n';
-
-	}
-
-	private static void printPicks(ArrayList<String> tier) {
-		String line = "";
-		if (tier.size() % 3 == 0) {
-			for (int i = 0; i < tier.size(); i++) {
-				line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
-				i++;
-				line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
-				i++;
-				line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
-				System.out.println(line);
-				line = "";
-			}
-		} else {
-			if (tier.size() % 3 == 1) {
-				for (int i = 0; i < tier.size() - 1; i++) {
-					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
-					i++;
-					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
-					i++;
-					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
-					System.out.println(line);
-					line = "";
-				}
-				line += "" + (tier.size()) + ") " + tier.get(tier.size() - 1);
-				System.out.println(line);
-			} else {
-				for (int i = 0; i < tier.size() - 2; i++) {
-					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
-					i++;
-					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
-					i++;
-					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
-					System.out.println(line);
-					line = "";
-				}
-				line += rpad("" + (tier.size() - 1) + ") " + tier.get(tier.size() - 2), 40);
-				line += "" + (tier.size()) + ") " + tier.get(tier.size() - 1);
-				System.out.println(line);
-			}
-		}
-	}
-
-	public static String rpad(String inStr, int finalLength) {
-		return (inStr
-				+ "                                                                                                                          ")
-						.substring(0, finalLength);
 	}
 
 	private static void fillPools() {
@@ -598,5 +244,364 @@ public class RunSnakeDraft {
 		ruPool.add("Uxie");
 		ruPool.add("Venusaur");
 		ruPool.add("Virizion");
+	}
+
+	private static void capturePlayers() throws Exception {
+		try {
+			@SuppressWarnings("resource")
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("Enter the number of players in this draft!");
+			int numberOfPlayers = scanner.nextInt();
+			generatePlayers(numberOfPlayers);
+		} catch (Exception e) {
+			System.out.println("I said *number*, you " + freshInsult() + ".");
+			capturePlayers();
+		}
+	}
+
+	@SuppressWarnings("resource")
+	private static void generatePlayers(int numberOfPlayers) {
+		Scanner scanner = new Scanner(System.in);
+		for (int i = 0; i < numberOfPlayers; i++) {
+			System.out.println("Enter the name of the player in position " + (i + 1) + " of the snake.");
+			String pName = scanner.nextLine();
+			players.add(new Player(pName));
+		}
+	}
+
+	private static void draftManager(ArrayList<String> pool, int amountFromTier, String tierLabel) {
+		System.out.println("Time to draft " + tierLabel + ".");
+		System.out.println();
+
+		int maxFromTier = 1;
+		if (tierLabel.equals("UU")) {
+			maxFromTier = 6;
+		}
+		if (tierLabel.equals("RU")) {
+			maxFromTier = 4;
+		}
+
+		while (amountFromTier < maxFromTier) {
+			for (int i = 0; i < players.size(); i++) {
+				wipeScreen();
+				printEachPlayersArsenal();
+				System.out.println();
+				askPlayerToPickOne(players.get(i), pool, (maxFromTier - amountFromTier));
+			}
+			Collections.reverse(players);
+			amountFromTier++;
+		}
+		processUnclaimedPokemon(pool, tierLabel);
+	}
+
+	private static void wipeScreen() {
+		for (int i = 0; i < 100; i++) {
+			System.out.print('\n');
+		}
+	}
+
+	private static String printEachPlayersArsenal() {
+		String output = "";
+		for (Player p : players) {
+			Collections.sort(p.getPool());
+			output += p.getName() + ": " + p.getPoolAsString() + '\n' + '\n';
+		}
+		return output;
+	}
+
+	private static void askPlayerToPickOne(Player p, ArrayList<String> tier, int amountFromTier) {
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+		try {
+			System.out.println(p.getName() + ", your picks are as follows!" + '\n' + "(Already in your arsenal: "
+					+ p.getPoolAsString() + ")" + '\n');
+			System.out.println("Your have " + amountFromTier + " pick(s) left from this tier." + '\n');
+			printPicks(tier);
+			System.out.println();
+			System.out.println("Which do you want?");
+			System.out.println("Alternatively, enter 999 to see the drafted picks.");
+			int pick = sc.nextInt();
+			if (pick == 999) {
+				printSnekAndPools();
+				askPlayerToPickOne(p, tier, amountFromTier);
+			} else {
+				p.claimsPick(tier.remove(pick - 1));
+			}
+			saveFile();
+		} catch (Exception e) {
+			System.out.println("Well that's just wrong, you " + freshInsult() + ".");
+			System.out.println("I wanted a number, not " + listPhrase());
+			askPlayerToPickOne(p, tier, amountFromTier);
+		}
+	}
+
+	@SuppressWarnings("resource")
+	private static void tradingPost() throws Exception {
+		boolean allSatisfiedWithTrades = false;
+
+		while (!allSatisfiedWithTrades) {
+
+			int playerIndex = 0;
+			System.out.println(printEachPlayersArsenal());
+			System.out.println();
+			System.out.println("Anyone looking to instigate a trade?");
+			for (Player p : players) {
+				System.out.println("" + (playerIndex + 1) + ") " + p.getName());
+				playerIndex++;
+			}
+			System.out.println("0) No thanks.");
+
+			Scanner inputs = new Scanner(System.in);
+			int buyerIndex = inputs.nextInt();
+
+			switch (buyerIndex) {
+			case 0:
+				allSatisfiedWithTrades = true;
+				break;
+			default:
+				if (buyerIndex <= players.size()) {
+					Player buyer = players.get(buyerIndex - 1);
+					System.out.println();
+					System.out.println("And, you're wanting to trade with whom?");
+
+					for (int i = 0; i < players.size(); i++) {
+						if (players.get(i) != buyer) {
+							System.out.println("" + (i + 1) + ") " + players.get(i).getName());
+						}
+					}
+					int sellerIndex = inputs.nextInt();
+					sellerIndex--;
+					Player seller = null;
+					if (sellerIndex <= players.size()) {
+						seller = players.get(sellerIndex);
+					}
+
+					if (buyer != null && seller != null && buyer != seller) {
+						try {
+							transaction(buyer, seller);
+						} catch (Exception e) {
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private static void saveFile() {
+
+		String output = printEachPlayersArsenal();
+		output += swappingPool;
+
+		File file = new File("FinalDraftPools.txt");
+		try {
+			PrintWriter writer = new PrintWriter(file, "UTF-8");
+			writer.print(output);
+			writer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static void transaction(Player p1, Player p2) throws Exception {
+
+		System.out.println(p1.getName() + "'s pool:");
+		int index = 1;
+		for (String s : p1.getPool()) {
+			System.out.println("" + index + ") " + s);
+			index++;
+		}
+		System.out.println("999) Cancel transaction" + '\n');
+
+		int input = inputs.nextInt();
+		if (input == 999) {
+			wipeScreen();
+			System.out.println("Trade cancelled.");
+			return;
+		}
+		String trading = p1.getPool().get(input - 1);
+
+		System.out.println("Trade " + trading + " for what?");
+		index = 1;
+		for (String s : p2.getPool()) {
+			System.out.println("" + index + ") " + s);
+			index++;
+		}
+		System.out.println("999) Cancel transaction" + '\n');
+
+		input = inputs.nextInt();
+		if (input == 999) {
+			wipeScreen();
+			System.out.println("Trade cancelled.");
+			return;
+		}
+		String tradeBack = p2.getPool().get(input - 1);
+
+		p1.getPool().add(tradeBack);
+		p1.getPool().remove(trading);
+		p2.getPool().add(trading);
+		p2.getPool().remove(tradeBack);
+
+		wipeScreen();
+		System.out.println("Trade completed. (" + trading + " -> " + tradeBack + ")." + '\n');
+		saveFile();
+	}
+
+	private static String freshInsult() {
+		ArrayList<String> firsts = new ArrayList<String>();
+		ArrayList<String> seconds = new ArrayList<String>();
+		firsts.add("dismal");
+		firsts.add("empty");
+		firsts.add("ham-fisted");
+		firsts.add("puny");
+		firsts.add("spindly");
+		firsts.add("ceaseless");
+		firsts.add("vile");
+		firsts.add("fleshy");
+		firsts.add("window-licking");
+		firsts.add("ruinous");
+		firsts.add("devoid");
+		firsts.add("crumbling");
+		firsts.add("toxic");
+		firsts.add("hopeless");
+		firsts.add("dopey");
+		firsts.add("hideous");
+		firsts.add("weak-minded");
+		firsts.add("fallacious");
+		firsts.add("cancerous");
+		firsts.add("pestilent");
+		firsts.add("diseased");
+		firsts.add("malnourished");
+		firsts.add("slagbound");
+		firsts.add("skeletal");
+		firsts.add("worn-out");
+		firsts.add("regrettable");
+
+		seconds.add("wreckage");
+		seconds.add("vessel");
+		seconds.add("waste of oxygen");
+		seconds.add("error");
+		seconds.add("aberration");
+		seconds.add("mistake");
+		seconds.add("husk");
+		seconds.add("pebble");
+		seconds.add("surplus");
+		seconds.add("Sunkern");
+		seconds.add("piglet");
+		seconds.add("refuse");
+		seconds.add("accident");
+		seconds.add("excuse");
+		seconds.add("mushroom");
+		seconds.add("vermin");
+		seconds.add("kernel");
+		seconds.add("cad");
+		seconds.add("ragamuffin");
+		seconds.add("cauldron");
+		seconds.add("wafer");
+		seconds.add("scrapmound");
+
+		Random r = new Random();
+		int fi = r.nextInt(firsts.size());
+		String f = firsts.get(fi);
+		int si = r.nextInt(seconds.size());
+		String s = seconds.get(si);
+
+		return f + " " + s;
+
+	}
+
+	private static String listPhrase() {
+		ArrayList<String> lists = new ArrayList<String>();
+		Random r = new Random();
+
+		lists.add("your Tesco shopping list");
+		lists.add("your murder confessions");
+		lists.add("your passing thoughts on communism");
+		lists.add("a detailed log of your affections for " + players.get(r.nextInt(players.size())).getName());
+		lists.add("your diary's back pages");
+		lists.add("the daily tabloids as dictated by Stevie Wonder");
+		lists.add("a badly written Twilight fanfiction");
+		lists.add("your face rubbed across the keyboard");
+		lists.add("your letter to Santa");
+
+		int index = r.nextInt(lists.size());
+		String f = lists.get(index);
+
+		return f + "." + '\n';
+
+	}
+
+	private static void processUnclaimedPokemon(ArrayList<String> pool, String tierLabel) {
+		Collections.sort(pool);
+		String tierBin = tierLabel + ": " + pool.toString();
+		swappingPool += tierBin + '\n';
+	}
+
+	private static void printPicks(ArrayList<String> tier) {
+		String line = "";
+		if (tier.size() % 3 == 0) {
+			for (int i = 0; i < tier.size(); i++) {
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
+				i++;
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
+				i++;
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
+				System.out.println(line);
+				line = "";
+			}
+		} else {
+			if (tier.size() % 3 == 1) {
+				for (int i = 0; i < tier.size() - 1; i++) {
+					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
+					i++;
+					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
+					i++;
+					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
+					System.out.println(line);
+					line = "";
+				}
+				line += "" + (tier.size()) + ") " + tier.get(tier.size() - 1);
+				System.out.println(line);
+			} else {
+				for (int i = 0; i < tier.size() - 2; i++) {
+					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
+					i++;
+					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
+					i++;
+					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
+					System.out.println(line);
+					line = "";
+				}
+				line += rpad("" + (tier.size() - 1) + ") " + tier.get(tier.size() - 2), 40);
+				line += "" + (tier.size()) + ") " + tier.get(tier.size() - 1);
+				System.out.println(line);
+			}
+		}
+	}
+
+	private static void printSnekAndPools() {
+		String padding = "                ";
+		String snek = rpad(padding, 12) + "_Y_" + '\n';
+		snek += rpad(padding, 11) + "/' '\\" + '\n';
+		snek += rpad(padding, 10) + "|     |" + '\n';
+		snek += rpad(padding, 11) + "\\   /" + '\n';
+		snek += rpad(padding, 11) + "|  |" + '\n';
+
+		for (Player p : players) {
+			snek += rpad(p.getName() + padding, 11) + "|  |  " + p.getPoolAsString() + '\n';
+			snek += rpad(padding, 11) + "|  |" + '\n';
+		}
+
+		snek += rpad(padding, 11) + "\\__/" + '\n';
+
+		System.out.println(snek);
+
+	}
+
+	public static String rpad(String inStr, int finalLength) {
+		return (inStr
+				+ "                                                                                                                          ")
+						.substring(0, finalLength);
 	}
 }
