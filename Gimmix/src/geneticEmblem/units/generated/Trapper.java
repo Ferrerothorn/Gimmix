@@ -8,7 +8,7 @@ public class Trapper extends Unit {
 public Trapper() {
 
     this.setJob("Trapper");
-    this.setWeapon(new DualBowgun());
+    this.setWeapon(new HuntersGear());
     this.setHpBase(26);
     this.setCurrentHp(this.getHpBase());
     this.setStrBase(6);

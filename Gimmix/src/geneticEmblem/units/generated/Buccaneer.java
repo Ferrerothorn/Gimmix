@@ -9,7 +9,7 @@ public Buccaneer() {
 
     this.setJob("Buccaneer");
 
-    this.setWeapon(new IronGun());
+    this.setWeapon(new IronSword());
     this.setHpBase(22);
     this.setCurrentHp(this.getHpBase());
     this.setStrBase(7);

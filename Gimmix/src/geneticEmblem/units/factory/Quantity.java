@@ -11,8 +11,7 @@ public class Quantity implements Comparable<Quantity>{
 	}
 
 	public Object getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
 
 	@Override

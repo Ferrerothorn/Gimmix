@@ -3,6 +3,7 @@ package snakeDraftManager;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.io.UTFDataFormatException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,15 +33,16 @@ public class RunSnakeDraft {
 		Collections.sort(bl2Pool);
 		Collections.sort(ruPool);
 		capturePlayers();
-		draftManager(blPool, 0, "BL");
-		draftManager(uuPool, 0, "UU");
-		draftManager(bl2Pool, 0, "BL2");
-		draftManager(ruPool, 0, "RU");
+		draftManager(blPool, "BL");
+		draftManager(uuPool, "UU");
+		draftManager(bl2Pool, "BL2");
+		draftManager(ruPool, "RU");
 
 		tradingPost();
 		saveFile();
 		inputs.close();
 	}
+
 
 	private static void fillPools() {
 
@@ -269,27 +271,22 @@ public class RunSnakeDraft {
 		}
 	}
 
-	private static void draftManager(ArrayList<String> pool, int amountFromTier, String tierLabel) {
+	private static void draftManager(ArrayList<String> pool, String tierLabel) {
 		System.out.println("Time to draft " + tierLabel + ".");
 		System.out.println();
 
-		int maxFromTier = 1;
-		if (tierLabel.equals("UU")) {
-			maxFromTier = 6;
-		}
-		if (tierLabel.equals("RU")) {
-			maxFromTier = 4;
-		}
+		int maxFromTier = Math.floorDiv((pool.size()), players.size());
 
-		while (amountFromTier < maxFromTier) {
+		int counter = 0;
+		while (counter < maxFromTier && pool.size() > 0) {
 			for (int i = 0; i < players.size(); i++) {
 				wipeScreen();
 				printEachPlayersArsenal();
 				System.out.println();
-				askPlayerToPickOne(players.get(i), pool, (maxFromTier - amountFromTier));
+				askPlayerToPickOne(players.get(i), pool, (maxFromTier - counter));
 			}
 			Collections.reverse(players);
-			amountFromTier++;
+			counter++;
 		}
 		processUnclaimedPokemon(pool, tierLabel);
 	}
@@ -322,7 +319,7 @@ public class RunSnakeDraft {
 			System.out.println("Alternatively, enter 999 to see the drafted picks.");
 			int pick = sc.nextInt();
 			if (pick == 999) {
-				printSnekAndPools();
+				System.out.println(printSnekAndPools());
 				askPlayerToPickOne(p, tier, amountFromTier);
 			} else {
 				p.claimsPick(tier.remove(pick - 1));
@@ -342,7 +339,7 @@ public class RunSnakeDraft {
 		while (!allSatisfiedWithTrades) {
 
 			int playerIndex = 0;
-			System.out.println(printEachPlayersArsenal());
+			System.out.println(printSnekAndPools());
 			System.out.println();
 			System.out.println("Anyone looking to instigate a trade?");
 			for (Player p : players) {
@@ -580,7 +577,7 @@ public class RunSnakeDraft {
 		}
 	}
 
-	private static void printSnekAndPools() {
+	private static String printSnekAndPools() {
 		String padding = "                ";
 		String snek = rpad(padding, 12) + "_Y_" + '\n';
 		snek += rpad(padding, 11) + "/' '\\" + '\n';
@@ -595,7 +592,7 @@ public class RunSnakeDraft {
 
 		snek += rpad(padding, 11) + "\\__/" + '\n';
 
-		System.out.println(snek);
+		return snek;
 
 	}
 

@@ -10,7 +10,7 @@ public Mercedes() {
 
     this.setJob("Mercedes");
 
-    this.setWeapon(new DualBowgun());
+    this.setWeapon(new IronBow());
     this.setHpBase(22);
     this.setCurrentHp(this.getHpBase());
     this.setStrBase(9);

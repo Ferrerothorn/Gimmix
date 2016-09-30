@@ -102,7 +102,7 @@ public class List {
 
 				customUnitGenerator = new CustomUnitGenerator(mostCommonWeapon);
 				customUnitGenerator.populateArmory(mostCommonWeapon);
-				
+
 				while (true) {
 					arena.clear();
 					addEachClass(15000, arena);
@@ -127,9 +127,10 @@ public class List {
 
 						String fileName = "" + newStDev;
 						String filePath = "C:\\Users\\sdolman\\Desktop\\Gimmix\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
-						// String filePath = "C:\\Users\\User\\workspace\\Git Repo\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
+						// String filePath = "C:\\Users\\User\\workspace\\Git
+						// Repo\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
 						File readDirectory = new File("FileWritePath.txt");
-						
+
 						String output = customUnitGenerator.generateCode(newStDev);
 
 						File file = new File(filePath + fileName + ".java");

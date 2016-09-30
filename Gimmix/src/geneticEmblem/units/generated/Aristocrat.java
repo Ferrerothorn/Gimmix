@@ -10,7 +10,7 @@ public Aristocrat() {
 
     this.setJob("Aristocrat");
 
-    this.setWeapon(new IronGun());
+    this.setWeapon(new Regenerate());
     this.setHpBase(24);
     this.setCurrentHp(this.getHpBase());
     this.setStrBase(8);

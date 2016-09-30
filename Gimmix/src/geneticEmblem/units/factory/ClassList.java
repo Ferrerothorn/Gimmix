@@ -10,9 +10,9 @@ public class ClassList {
 
 	public ClassList() {
 
-
-		releasedClasses.add(new Cannoneer());
-		
+		releasedClasses.add(new Kanna());
+		releasedClasses.add(new Farmer());
+		releasedClasses.add(new Bael());
 		releasedClasses.add(new Tarmogoyf());		
 		releasedClasses.add(new Scarecrow());
 		releasedClasses.add(new Incinerator());
@@ -33,7 +33,6 @@ public class ClassList {
 		releasedClasses.add(new Lancemaster());
 		releasedClasses.add(new Crossbowman());
 		releasedClasses.add(new Buccaneer());
-		releasedClasses.add(new Gunmaster());
 		releasedClasses.add(new Aristocrat());
 		releasedClasses.add(new Mercedes());
 		releasedClasses.add(new BurnMage());
