@@ -24,6 +24,7 @@ public class RunTourney {
 		tourney.addBye();
 
 		int numberOfRounds = tourney.logBase2(tourney.numberOfPlayers());
+		numberOfRounds++;
 		
 		int i = 1;
 		while (i <= numberOfRounds) {

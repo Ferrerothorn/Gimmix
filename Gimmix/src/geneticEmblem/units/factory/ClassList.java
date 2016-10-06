@@ -10,39 +10,17 @@ public class ClassList {
 
 	public ClassList() {
 
-		releasedClasses.add(new Kanna());
-		releasedClasses.add(new Farmer());
-		releasedClasses.add(new Bael());
-		releasedClasses.add(new Tarmogoyf());		
-		releasedClasses.add(new Scarecrow());
-		releasedClasses.add(new Incinerator());
-		releasedClasses.add(new BlueMage());
-		releasedClasses.add(new Cremator());
-		releasedClasses.add(new Trapper());
-		releasedClasses.add(new Aran());
-		releasedClasses.add(new Beginner());
-		releasedClasses.add(new Monk());
-		releasedClasses.add(new Entombed());
-		releasedClasses.add(new PortalMage());
-		releasedClasses.add(new Kaiser());
-		releasedClasses.add(new MagnetMage());
-		releasedClasses.add(new ConduitMage());
-		releasedClasses.add(new Noble());
-		releasedClasses.add(new Brigand());
-		releasedClasses.add(new Saint());
-		releasedClasses.add(new Lancemaster());
-		releasedClasses.add(new Crossbowman());
-		releasedClasses.add(new Buccaneer());
-		releasedClasses.add(new Aristocrat());
-		releasedClasses.add(new Mercedes());
-		releasedClasses.add(new BurnMage());
 		releasedClasses.add(new Assassin());
-		releasedClasses.add(new DragonKnight());
-		releasedClasses.add(new Berserker());
-		releasedClasses.add(new General());
-		releasedClasses.add(new Mogall());
-		releasedClasses.add(new ReflectorMage());
-		releasedClasses.add(new Viking());
+		releasedClasses.add(new Bandit());
+		releasedClasses.add(new Cleric());
+		releasedClasses.add(new FirePoison());
+		releasedClasses.add(new Hunter());
+		releasedClasses.add(new IceLightning());
+		releasedClasses.add(new Page());
+		releasedClasses.add(new Spearman());
+		
+		releasedClasses.add(new Tarmogoyf());
+		releasedClasses.add(new Beginner());
 	}
 
 	public ArrayList<Unit> getReleasedUnits() {

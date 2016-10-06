@@ -5,8 +5,8 @@ import java.util.Collections;
 
 public class landMathsMain {
 	
-	static int startWithThisManyLands = 0;
-	static int testUpToThisManyLands = 60;
+	static int startWithThisManyLands = 9;
+	static int testUpToThisManyLands = 35;
 	
 	public static void main (String[] args) {
 		
@@ -57,6 +57,6 @@ public class landMathsMain {
 				lands++;
 			}
 		}
-		return (lands >= 2);
+		return (lands == 3 || lands == 4);
 	}
 }

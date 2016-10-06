@@ -8,28 +8,28 @@ public class Hunter extends Unit {
 public Hunter() {
 
     this.setJob("Hunter");
-    this.setWeapon(new HuntersGear());
-    this.setHpBase(24);
+    this.setWeapon(new IronBow());
+    this.setHpBase(25);
     this.setCurrentHp(this.getHpBase());
     this.setStrBase(8);
-    this.setSkillBase(6);
-    this.setSpeedBase(8);
-    this.setLuckBase(3);
+    this.setSkillBase(7);
+    this.setSpeedBase(5);
+    this.setLuckBase(5);
     this.setDefBase(7);
     this.setResBase(5);
 
-    this.setHpGr(45);
-    this.setStrGr(60);
-    this.setSkillGr(25);
-    this.setSpeedGr(70);
-    this.setLuckGr(25);
-    this.setDefGr(70);
-    this.setResGr(25);
+    this.setHpGr(40);
+    this.setStrGr(40);
+    this.setSkillGr(30);
+    this.setSpeedGr(20);
+    this.setLuckGr(75);
+    this.setDefGr(60);
+    this.setResGr(55);
 
-    this.setStrCap(29);
-    this.setSkillCap(21);
-    this.setSpeedCap(28);
+    this.setStrCap(30);
+    this.setSkillCap(26);
+    this.setSpeedCap(22);
     this.setDefCap(29);
-    this.setResCap(20);
+    this.setResCap(24);
     }
 }
