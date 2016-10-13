@@ -5,6 +5,36 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class Main {
+	
+	/*C:\Users\User\workspace\Git Repo\Gimmix\src\dredge\Main.java
+	Creatures	Qty		Spells			Lands		
+								
+Lodestone Golem	4		Smokestack	4		Cloudpost	4	
+Metalworker	4		Tangle Wire	4		Glimmerpost	4	
+Steel Hellkite	3		Trinisphere	4		Vesuva	4	
+Wurmcoil Engine	2		Winter Orb	2		Ancient Tomb	4	
+Karn, Silver Golem	2		Grim Monolith	2		Crystal Vein	4	
+			Ghirapur Orrery	1		Buried Ruin	4	
+			Portcullis	1				
+			Treasure Map	2				
+								
+			Mind's Eye	1				
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+Total of Type	15			21			24	60
+# in opening hand	1.75			2.45			2.8	7
+
+	*/
 
 	static ArrayList<String> deck = new ArrayList<String>();
 	static ArrayList<String> hand = new ArrayList<String>();
