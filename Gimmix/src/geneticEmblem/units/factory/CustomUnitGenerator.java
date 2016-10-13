@@ -40,7 +40,6 @@ public class CustomUnitGenerator {
 	ArrayList<Weapon> clawList = new ArrayList<Weapon>();
 	ArrayList<Weapon> bowList = new ArrayList<Weapon>();
 	ArrayList<Weapon> shieldList = new ArrayList<Weapon>();
-	ArrayList<Weapon> gunList = new ArrayList<Weapon>();
 
 	Weapon weapon;
 
@@ -343,17 +342,14 @@ public class CustomUnitGenerator {
 		armory.addAll(shieldList);
 		armory.addAll(clawList);
 		armory.addAll(bowList);
-		armory.addAll(gunList);
 		if (mostCommonWeapon.equals("Axe")) {
 			armory.addAll(swordList);
-			armory.addAll(gunList);
 		} else if (mostCommonWeapon.equals("Sword")) {
 			armory.addAll(lanceList);
 		} else if (mostCommonWeapon.equals("Lance")) {
 			armory.addAll(axeList);
 		} else if (mostCommonWeapon.equals("Dark")) {
 			armory.addAll(lightList);
-			armory.addAll(gunList);
 		} else if (mostCommonWeapon.equals("Light")) {
 			armory.addAll(animaList);
 		} else if (mostCommonWeapon.equals("Anima")) {

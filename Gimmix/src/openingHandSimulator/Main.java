@@ -5,36 +5,6 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class Main {
-	
-	/*C:\Users\User\workspace\Git Repo\Gimmix\src\dredge\Main.java
-	Creatures	Qty		Spells			Lands		
-								
-Lodestone Golem	4		Smokestack	4		Cloudpost	4	
-Metalworker	4		Tangle Wire	4		Glimmerpost	4	
-Steel Hellkite	3		Trinisphere	4		Vesuva	4	
-Wurmcoil Engine	2		Winter Orb	2		Ancient Tomb	4	
-Karn, Silver Golem	2		Grim Monolith	2		Crystal Vein	4	
-			Ghirapur Orrery	1		Buried Ruin	4	
-			Portcullis	1				
-			Treasure Map	2				
-								
-			Mind's Eye	1				
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-Total of Type	15			21			24	60
-# in opening hand	1.75			2.45			2.8	7
-
-	*/
 
 	static ArrayList<String> deck = new ArrayList<String>();
 	static ArrayList<String> hand = new ArrayList<String>();
@@ -229,31 +199,79 @@ Total of Type	15			21			24	60
 		// addThisCard("Plains", 1);
 		// addThisCard("Evolving Wilds", 2);
 
+		//MUD
+		addThisCard("Lodestone Golem", 4);
+		addThisCard("Smokestack", 4);
+		addThisCard("Cloudpost", 4);
+		addThisCard("Metalworker", 4);
+		addThisCard("Tangle Wire", 4);
+		addThisCard("Glimmerpost", 4);
+		addThisCard("Steel Hellkite", 3);
+		addThisCard("Trinisphere", 4);
+		addThisCard("Vesuva", 4);
+		addThisCard("Wurmcoil Engine", 2);
+		addThisCard("Sphere of Resistance", 4);
+		addThisCard("Ancient Tomb", 4);
+		addThisCard("Winter Orb", 2);
+		addThisCard("Crystal Vein", 4);
+		addThisCard("Treasure Map", 2);
+		addThisCard("Buried Ruin", 4);
+		addThisCard("Mind's Eye", 1);
+		addThisCard("Ghirapur Orrery", 1);
+		addThisCard("Staff of Nin", 1);
+
+		// addThisCard("Birds of Paradise", 4);
+		// addThisCard("Dryad Arbor", 1);
+		// addThisCard("Scavenging Ooze", 2);
+		// addThisCard("Scryb Ranger", 1);
+		// addThisCard("Tarmogoyf", 1);
+		// addThisCard("Qasali Pridemage", 3);
+		// addThisCard("Thalia, Guardian of Thraben", 3);
+		// addThisCard("Stoneforge Mystic", 4);
+		// addThisCard("Scute Mob", 1);
+		// addThisCard("Xantid Swarm", 1);
+		// addThisCard("Mother of Runes", 4);
+		// addThisCard("Swords to Plowshares", 4);
+		// addThisCard("Green Sun's Zenith", 4);
+		// addThisCard("Life from the Loam", 1);	
+		// addThisCard("Sylvan Library", 1);
+		// addThisCard("Batterskull", 1);
+		// addThisCard("Sword of Feast and Famine", 1);
+		// addThisCard("Umezawa's Jitte", 1);
+		// addThisCard("Forest", 4);
+		// addThisCard("Plains", 4);
+		// addThisCard("Nykthos, Shrine to Nyx", 1);	
+		// addThisCard("Maze of Ith", 1);		
+		// addThisCard("Evolving Wilds", 4);
+		// addThisCard("Sunpetal Grove", 4);
+		// addThisCard("Canopy Vista", 4);
+		
+		
 		// Shardless BUG
-		addThisCard("Shardless Agent", 4);
-		addThisCard("Ancestral Vision", 4);
-		addThisCard("Evolving Wilds", 4);
-		addThisCard("Tarmogoyf", 4);
-		addThisCard("Brainstorm", 4);
-		addThisCard("Opulent Palace", 4);
-		addThisCard("Deathrite Shaman", 4);
-		addThisCard("Abrupt Decay", 4);
-		addThisCard("Island", 2);
-		addThisCard("Baleful Strix", 3);
-		addThisCard("Force of Will", 3);
-		addThisCard("Swamp", 2);
-		addThisCard("Leovold-Emissary of Trest", 2);
-		addThisCard("Hymn to Tourach", 2);
-		addThisCard("Forest", 2);
-		addThisCard("Toxic Deluge", 1);
-		addThisCard("Underground River", 2);
-		addThisCard("Disfigure", 1);
-		addThisCard("Yavimaya Coast", 2);
-		addThisCard("Sylvan Library", 1);
-		addThisCard("Llanowar Wastes", 2);
-		addThisCard("Golgari Charm", 1);
-		addThisCard("Wasteland", 1);
-		addThisCard("Ponder", 1);
+//		addThisCard("Shardless Agent", 4);
+//		addThisCard("Ancestral Vision", 4);
+//		addThisCard("Evolving Wilds", 4);
+//		addThisCard("Tarmogoyf", 4);
+//		addThisCard("Brainstorm", 4);
+//		addThisCard("Opulent Palace", 4);
+//		addThisCard("Deathrite Shaman", 4);
+//		addThisCard("Abrupt Decay", 4);
+//		addThisCard("Island", 2);
+//		addThisCard("Baleful Strix", 3);
+//		addThisCard("Force of Will", 3);
+//		addThisCard("Swamp", 2);
+//		addThisCard("Leovold-Emissary of Trest", 2);
+//		addThisCard("Hymn to Tourach", 2);
+//		addThisCard("Forest", 2);
+//		addThisCard("Toxic Deluge", 1);
+//		addThisCard("Underground River", 2);
+//		addThisCard("Disfigure", 1);
+//		addThisCard("Yavimaya Coast", 2);
+//		addThisCard("Sylvan Library", 1);
+//		addThisCard("Llanowar Wastes", 2);
+//		addThisCard("Golgari Charm", 1);
+//		addThisCard("Wasteland", 1);
+//		addThisCard("Ponder", 1);
 
 		// Colossus Affinity
 		// addThisCard("Sunken Hollow", 3);

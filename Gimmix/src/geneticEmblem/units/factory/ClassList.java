@@ -10,6 +10,11 @@ public class ClassList {
 
 	public ClassList() {
 
+		releasedClasses.add(new Henehoe());
+		releasedClasses.add(new Brawler());
+		releasedClasses.add(new Merchant());
+		releasedClasses.add(new Mechanic());	
+		releasedClasses.add(new WindBreaker());		
 		releasedClasses.add(new Assassin());
 		releasedClasses.add(new Bandit());
 		releasedClasses.add(new Cleric());
@@ -18,7 +23,6 @@ public class ClassList {
 		releasedClasses.add(new IceLightning());
 		releasedClasses.add(new Page());
 		releasedClasses.add(new Spearman());
-		
 		releasedClasses.add(new Tarmogoyf());
 		releasedClasses.add(new Beginner());
 	}
