@@ -123,7 +123,7 @@ public class List {
 					sortByValues(toBeSorted);
 					populate(metagamePairs, toBeSorted);
 
-					if (newStDev < initialStDev) {
+					if (newStDev <= initialStDev) {
 
 						String fileName = "" + newStDev;
 						String filePath = "C:\\Users\\sdolman\\Desktop\\Gimmix\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
