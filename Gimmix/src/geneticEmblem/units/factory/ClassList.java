@@ -1,7 +1,6 @@
 package geneticEmblem.units.factory;
 
 import java.util.ArrayList;
-
 import geneticEmblem.units.generated.*;
 
 public class ClassList {
