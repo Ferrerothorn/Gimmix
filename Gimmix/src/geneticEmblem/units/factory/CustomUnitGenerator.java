@@ -45,95 +45,43 @@ public class CustomUnitGenerator {
 
 	private void fillWeaponLists() {
 		swordList.add(new IronSword());
-		swordList.add(new AquaSaber());
-		swordList.add(new IronGear());
 		swordList.add(new IronSword());
 		swordList.add(new Knuckleduster());
-		swordList.add(new WallOfSwords());
 		swordList.add(new LightBrand());
-		swordList.add(new Rapier());
-		swordList.add(new Machete());
 		swordList.add(new ShadowBlade());
-		swordList.add(new SteelSword());
+		swordList.add(new FireSword());
 
-		lanceList.add(new ArcaneLance());
 		lanceList.add(new IronLance());
 		lanceList.add(new IronRake());
-		lanceList.add(new Sunlance());
-		lanceList.add(new PoleAxe());
-		lanceList.add(new Rapier());
-		lanceList.add(new Halberd());
-		lanceList.add(new Ballista());
-		lanceList.add(new SoulSpear());
-		
-		axeList.add(new BoltAxe());
-		axeList.add(new DevilAxe());
-		axeList.add(new HuntersGear());
-		axeList.add(new Machete());
-		axeList.add(new BlessedAxe());
+
 		axeList.add(new IronAxe());
 		axeList.add(new PoleAxe());
-		axeList.add(new MeleeGear());
 		axeList.add(new Saw());
 		
-		animaList.add(new AquaSaber());
-		animaList.add(new ArcaneLance());
-		animaList.add(new BoltAxe());
-		animaList.add(new Channel());
 		animaList.add(new Fire());
-		animaList.add(new FireClaw());
-		animaList.add(new Forblaze());
 		animaList.add(new WindBow());
-		animaList.add(new Regenerate());
-		animaList.add(new Thunder());
+		animaList.add(new FireSword());
 
-		darkList.add(new Channel());
-		darkList.add(new DarkClaw());
-		darkList.add(new DevilAxe());
-		darkList.add(new Oathbow());
 		darkList.add(new Flux());
 		darkList.add(new ShadowBlade());
-		darkList.add(new Portal());
-		darkList.add(new Shade());
-		darkList.add(new SoulSpear());
-
-		lightList.add(new DivineShield());
-		lightList.add(new Sunlance());
-		lightList.add(new Regenerate());
-		lightList.add(new HolyClaw());
+	
 		lightList.add(new LightBrand());
-		lightList.add(new Shine());
-		lightList.add(new Shade());
-		lightList.add(new BlessedAxe());
+		lightList.add(new Lightning());
 		lightList.add(new HolyArrow());
 
 		bowList.add(new HuntersGear());
 		bowList.add(new IronBow());
-		bowList.add(new IronGear());
-		bowList.add(new Oathbow());
 		bowList.add(new SteelBow());
 		bowList.add(new WindBow());
-		bowList.add(new Ballista());
 		bowList.add(new HolyArrow());
 
-		shieldList.add(new DivineShield());
-		shieldList.add(new Forblaze());
-		shieldList.add(new SpikedShield());
-		shieldList.add(new IronShield());
-		shieldList.add(new Portal());
-		shieldList.add(new WallOfSwords());
-		shieldList.add(new Halberd());
-		shieldList.add(new MeleeGear());
 
-		clawList.add(new DarkClaw());
-		clawList.add(new FireClaw());
-		clawList.add(new HolyClaw());
+		shieldList.add(new IronShield());
+
 		clawList.add(new Knuckleduster());
+		clawList.add(new IronClaw());
 		clawList.add(new Saw());
-		clawList.add(new SpikedShield());
 		clawList.add(new IronRake());
-		clawList.add(new SharpClaw());
-		clawList.add(new KillerClaw());
 
 	}
 
@@ -279,7 +227,7 @@ public class CustomUnitGenerator {
 		resCap += 20;
 		int sumCaps = strCap + speedCap + skillCap + defCap + resCap;
 
-		if (sumCaps < 127 || sumCaps > 131) {
+		if (sumCaps != 130) {
 			generateCaps(r);
 		}
 

@@ -11,7 +11,7 @@ public abstract class Unit {
 	String job = "";
 	Weapon weapon;
 	int lv = 1;
-	int currentHp;
+	int currentHp = 23;
 	int baseCrit;
 
 	int HpCap = 60;
@@ -30,7 +30,7 @@ public abstract class Unit {
 	int DefGr;
 	int ResGr;
 
-	int HpBase;
+	int HpBase = 23;
 	int StrBase;
 	int SkillBase;
 	int SpeedBase;

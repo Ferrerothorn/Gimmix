@@ -5,8 +5,8 @@ public class Saw extends Weapon {
 	public Saw() {
 		super.setTrinity("Axe");
 		super.setTrinity("Claw");
-		super.setPow(9);
-		super.setAcc(64);
+		super.setPow(3);
+		super.setAcc(115);
 		super.setName("Saw");
 		super.setPhys(true);
 	}
