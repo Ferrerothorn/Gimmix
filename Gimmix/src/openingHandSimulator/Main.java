@@ -214,7 +214,7 @@ public class Main {
 		addThisCard("Ancient Tomb", 4);
 		addThisCard("Winter Orb", 2);
 		addThisCard("Crystal Vein", 4);
-		addThisCard("Treasure Map", 2);
+		addThisCard("Expedition Map", 2);
 		addThisCard("Buried Ruin", 4);
 		addThisCard("Mind's Eye", 1);
 		addThisCard("Ghirapur Orrery", 1);
