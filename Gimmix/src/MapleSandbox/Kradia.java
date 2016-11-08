@@ -13,7 +13,7 @@ public class Kradia {
 
 		populateMap();
 		Player p = new Player();
-		System.out.println();
+		System.out.println(p.getName());
 		
 	}
 

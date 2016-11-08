@@ -20,10 +20,10 @@ public class Player {
 	int Luk = 4;
 	
 	public Player() {
-		generateName(name);
+		generateName();
 	}
 
-	private void generateName(String name) {
+	private void generateName() {
 		ArrayList<String> cons = new ArrayList<String>();
 		cons.addAll(Arrays.asList("b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "r", "s", "t", "v", "w",
 				"z"));
@@ -40,6 +40,10 @@ public class Player {
 		if (six == 1) {
 			name += cons.get(r.nextInt(cons.size() - 1));
 		}
+	}
+
+	public String getName() {
+		return name;
 	}
 	
 }
