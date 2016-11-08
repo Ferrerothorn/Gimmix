@@ -47,7 +47,7 @@ public class List {
 
 			case 0:
 				addEachClass(25000, arena);
-				levelTheDudesTo(15, arena);
+				levelTheDudesTo(20, arena);
 				deathmatch(2048, arena);
 				System.out.println();
 				showSurvivors(arena);

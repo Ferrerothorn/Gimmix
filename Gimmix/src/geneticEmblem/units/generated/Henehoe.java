@@ -9,19 +9,19 @@ public class Henehoe extends Unit {
 		this.setJob("Henehoe");
 		this.setWeapon(new IronRake());
 		this.setStrBase(6);
-		this.setSkillBase(6);
-		this.setSpeedBase(6);
-		this.setLuckBase(9);
+		this.setSkillBase(5);
+		this.setSpeedBase(7);
+		this.setLuckBase(7);
 		this.setDefBase(5);
-		this.setResBase(5);
+		this.setResBase(7);
 
 		this.setHpGr(45);
 		this.setStrGr(45);
-		this.setSkillGr(45);
+		this.setSkillGr(40);
 		this.setSpeedGr(45);
-		this.setLuckGr(50);
-		this.setDefGr(45);
-		this.setResGr(45);
+		this.setLuckGr(45);
+		this.setDefGr(40);
+		this.setResGr(60);
 
 		this.setStrCap(26);
 		this.setSkillCap(26);
