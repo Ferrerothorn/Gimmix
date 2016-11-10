@@ -8,6 +8,8 @@ public class Henehoe extends Unit {
 	public Henehoe() {
 		this.setJob("Henehoe");
 		this.setWeapon(new IronRake());
+		this.setHpBase(26);
+		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(6);
 		this.setSkillBase(5);
 		this.setSpeedBase(7);

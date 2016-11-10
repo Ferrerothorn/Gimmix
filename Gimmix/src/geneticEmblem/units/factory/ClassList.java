@@ -18,7 +18,6 @@ public class ClassList {
 		releasedClasses.add(new FirePoison());
 		releasedClasses.add(new Cleric());
 		
-
 		releasedClasses.add(new Hunter());
 		releasedClasses.add(new Crossbowman());
 		
@@ -26,6 +25,7 @@ public class ClassList {
 		releasedClasses.add(new Assassin());
 
 		releasedClasses.add(new Brawler());
+		releasedClasses.add(new Beginner());
 		releasedClasses.add(new NightWalker());
 		releasedClasses.add(new Merchant());
 		releasedClasses.add(new WildHunter());

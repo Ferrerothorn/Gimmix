@@ -8,6 +8,8 @@ public class Brawler extends Unit {
 	public Brawler() {
 		this.setJob("Brawler");
 		this.setWeapon(new Knuckleduster());
+		this.setHpBase(26);
+		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(9);
 		this.setSkillBase(6);
 		this.setSpeedBase(5);

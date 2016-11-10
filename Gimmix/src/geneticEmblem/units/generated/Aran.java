@@ -9,7 +9,7 @@ public Aran() {
 
     this.setJob("Aran");
     this.setWeapon(new ShadowBlade());
-    this.setHpBase(23);
+    this.setHpBase(25);
     this.setCurrentHp(this.getHpBase());
     this.setStrBase(9);
     this.setSkillBase(8);

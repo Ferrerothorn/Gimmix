@@ -8,20 +8,22 @@ public class Spearman extends Unit {
 	public Spearman() {
 		this.setJob("Spearman");
 		this.setWeapon(new IronLance());
-		this.setStrBase(9);
-		this.setSkillBase(6);
+		this.setHpBase(24);
+		this.setCurrentHp(this.getHpBase());
+		this.setStrBase(8);
+		this.setSkillBase(5);
 		this.setSpeedBase(6);
 		this.setLuckBase(6);
 		this.setDefBase(6);
-		this.setResBase(4);
+		this.setResBase(5);
 
-		this.setHpGr(70);
-		this.setStrGr(85);
+		this.setHpGr(60);
+		this.setStrGr(70);
 		this.setSkillGr(45);
-		this.setSpeedGr(45);
-		this.setLuckGr(25);
-		this.setDefGr(40);
-		this.setResGr(10);
+		this.setSpeedGr(40);
+		this.setLuckGr(40);
+		this.setDefGr(45);
+		this.setResGr(20);
 
 		this.setStrCap(30);
 		this.setSkillCap(25);

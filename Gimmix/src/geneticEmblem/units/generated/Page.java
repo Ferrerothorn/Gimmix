@@ -9,6 +9,7 @@ public Page() {
 
     this.setJob("Page");
     this.setWeapon(new FireSword());
+	this.setHpBase(25);
     this.setCurrentHp(this.getHpBase());
     this.setStrBase(6);
     this.setSkillBase(9);
