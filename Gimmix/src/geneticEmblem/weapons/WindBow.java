@@ -7,7 +7,7 @@ public class WindBow extends Weapon {
 		super.setTrinity("Anima");
 		super.setPow(7);
 		super.setAcc(70);
-		super.setPhys(false);
+		super.setPhys(true);
 		super.addTrait("Arrow");
 		super.setName("WindBow");
 	}

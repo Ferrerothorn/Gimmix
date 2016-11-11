@@ -46,13 +46,13 @@ public class CustomUnitGenerator {
 	private void fillWeaponLists() {
 		swordList.add(new IronSword());
 		swordList.add(new IronSword());
-		swordList.add(new Knuckleduster());
 		swordList.add(new LightBrand());
 		swordList.add(new ShadowBlade());
 		swordList.add(new FireSword());
 
 		lanceList.add(new IronLance());
 		lanceList.add(new IronRake());
+		lanceList.add(new PumpkinLance());
 
 		axeList.add(new IronAxe());
 		axeList.add(new PoleAxe());
@@ -64,6 +64,8 @@ public class CustomUnitGenerator {
 
 		darkList.add(new Flux());
 		darkList.add(new ShadowBlade());
+		darkList.add(new DarkClaw());
+		darkList.add(new PumpkinLance());
 	
 		lightList.add(new LightBrand());
 		lightList.add(new Lightning());
@@ -75,13 +77,14 @@ public class CustomUnitGenerator {
 		bowList.add(new WindBow());
 		bowList.add(new HolyArrow());
 
-
 		shieldList.add(new IronShield());
+		shieldList.add(new Knuckleduster());
 
 		clawList.add(new Knuckleduster());
 		clawList.add(new IronClaw());
 		clawList.add(new Saw());
 		clawList.add(new IronRake());
+		clawList.add(new DarkClaw());
 
 	}
 

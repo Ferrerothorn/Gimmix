@@ -150,15 +150,16 @@ public class List {
 				ArrayList<Unit> counter = new ArrayList<Unit>();
 				ArrayList<Unit> tempArena;
 				addEachClass(1, counter);
+				Collections.shuffle(counter);
 				HashMap<String, Double> metagameHealth = new HashMap<String, Double>();
 				System.out.println("Established system health logging...");
 
-				addEachClass(10000, arena);
-				System.out.println("Added 10000 of each class to arena.");
+				addEachClass(12500, arena);
+				System.out.println("Added 12500 of each class to arena.");
 				levelTheDudesTo(15, arena);
 				System.out.println("Leveled them all to 15.");
-				deathmatch(512, arena);
-				System.out.println("Final 512 calculated.");
+				deathmatch(2048, arena);
+				System.out.println("Final 2048 calculated.");
 				double currentMetagameHealth = metagameBalanceMetrics(arena);
 				System.out.println("Default metagame health determined @ " + currentMetagameHealth + ".");
 				metagameHealth.put("Default", currentMetagameHealth);
@@ -169,7 +170,7 @@ public class List {
 					tempArena = new ArrayList<Unit>();
 					System.out.println("Testing what life would be like without " + withoutThisClass + ".");
 
-					addEachClass(10000, arena);
+					addEachClass(12500, arena);
 					levelTheDudesTo(15, arena);
 
 					for (Unit u : arena) {
@@ -178,7 +179,7 @@ public class List {
 						}
 					}
 					arena.clear();
-					deathmatch(1024, tempArena);
+					deathmatch(2048, tempArena);
 					double withoutHealth = metagameBalanceMetrics(tempArena);
 					metagameHealth.put(withoutThisClass, withoutHealth);
 					System.out.println("[" + withoutHealth + "]");
@@ -227,7 +228,6 @@ public class List {
 		int shield = 0;
 		int claw = 0;
 		int bow = 0;
-		int gun = 0;
 		for (Unit u : arena) {
 			ArrayList<String> s = u.getWeapon().getTrinity();
 			if (s.contains("Axe")) {
@@ -257,9 +257,6 @@ public class List {
 			if (s.contains("Shield")) {
 				shield++;
 			}
-			if (s.contains("Gun")) {
-				gun++;
-			}
 		}
 
 		System.out.println("Sword: " + sword);
@@ -271,29 +268,26 @@ public class List {
 		System.out.println("Bow: " + bow);
 		System.out.println("Claw: " + claw);
 		System.out.println("Shield: " + shield);
-		System.out.println("Gun: " + gun);
 		System.out.println();
 
 		if (sword > axe && sword > lance && sword > light && sword > dark && sword > anima && sword > shield
-				&& sword > bow && sword > claw && sword > gun) {
+				&& sword > bow && sword > claw) {
 			return "Sword";
 		} else if (lance > axe && lance > anima && lance > dark && lance > light && lance > shield && lance > claw
-				&& lance > bow && lance > gun) {
+				&& lance > bow) {
 			return "Lance";
-		} else if (axe > anima && axe > dark && axe > light && axe > shield && axe > claw && axe > bow && axe > gun) {
+		} else if (axe > anima && axe > dark && axe > light && axe > shield && axe > claw && axe > bow) {
 			return "Axe";
-		} else if (anima > dark && anima > light && anima > shield && anima > claw && anima > bow && anima > gun) {
+		} else if (anima > dark && anima > light && anima > shield && anima > claw && anima > bow) {
 			return "Anima";
-		} else if (light > dark && light > shield && light > claw && light > bow && light > gun) {
+		} else if (light > dark && light > shield && light > claw && light > bow) {
 			return "Light";
-		} else if (dark > shield && dark > claw && dark > bow && dark > gun) {
+		} else if (dark > shield && dark > claw && dark > bow) {
 			return "Dark";
-		} else if (bow > shield && bow > claw && bow > gun) {
+		} else if (bow > shield && bow > claw) {
 			return "Bow";
-		} else if (claw > shield && claw > gun) {
+		} else if (claw > shield) {
 			return "Claw";
-		} else if (gun > shield) {
-			return "Gun";
 		} else
 			return "Shield";
 	}

@@ -1,4 +1,4 @@
-package geneticEmblem.units.newfags;
+package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.*;

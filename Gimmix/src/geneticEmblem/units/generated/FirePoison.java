@@ -10,10 +10,10 @@ public class FirePoison extends Unit {
 		this.setWeapon(new Fire());
 		this.setStrBase(7);
 		this.setSkillBase(5);
-		this.setSpeedBase(8);
+		this.setSpeedBase(7);
 		this.setLuckBase(5);
 		this.setDefBase(4);
-		this.setResBase(8);
+		this.setResBase(9);
 
 		this.setHpGr(40);
 		this.setStrGr(40);

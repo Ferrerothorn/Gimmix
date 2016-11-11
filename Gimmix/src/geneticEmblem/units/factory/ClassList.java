@@ -17,22 +17,24 @@ public class ClassList {
 		releasedClasses.add(new IceLightning());
 		releasedClasses.add(new FirePoison());
 		releasedClasses.add(new Cleric());
-		
+
 		releasedClasses.add(new Hunter());
+		releasedClasses.add(new WildHunter());
+		releasedClasses.add(new WindBreaker());
 		releasedClasses.add(new Crossbowman());
-		
+
 		releasedClasses.add(new Bandit());
+		releasedClasses.add(new NightWalker());
 		releasedClasses.add(new Assassin());
 
 		releasedClasses.add(new Brawler());
+		releasedClasses.add(new Striker());
+
+		releasedClasses.add(new Mechanic());
+		releasedClasses.add(new DemonSlayer());
 		releasedClasses.add(new Beginner());
-		releasedClasses.add(new NightWalker());
 		releasedClasses.add(new Merchant());
-		releasedClasses.add(new WildHunter());
-		releasedClasses.add(new Mihile());
-		releasedClasses.add(new Henehoe());
-		releasedClasses.add(new WindBreaker());
-		
+
 	}
 
 	public ArrayList<Unit> getReleasedUnits() {
