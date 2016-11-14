@@ -1,33 +1,35 @@
 package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
-import geneticEmblem.weapons.Fire;
+import geneticEmblem.weapons.*;
 
-public class FirePoison extends Unit {
+public class FirePoison extends Unit { 
 
-	public FirePoison() {
-		this.setJob("Fire / Poison");
-		this.setWeapon(new Fire());
-		this.setStrBase(7);
-		this.setSkillBase(5);
-		this.setSpeedBase(7);
-		this.setLuckBase(5);
-		this.setDefBase(4);
-		this.setResBase(9);
+public FirePoison() {
 
-		this.setHpGr(40);
-		this.setStrGr(40);
-		this.setSkillGr(45);
-		this.setSpeedGr(60);
-		this.setLuckGr(50);
-		this.setDefGr(25);
-		this.setResGr(60);
+    this.setJob("Fire / Poison");
+    this.setWeapon(new Flux());
+    this.setHpBase(21);
+    this.setCurrentHp(this.getHpBase());
+    this.setStrBase(8);
+    this.setSkillBase(6);
+    this.setSpeedBase(8);
+    this.setLuckBase(6);
+    this.setDefBase(2);
+    this.setResBase(7);
 
-		this.setStrCap(26);
-		this.setSkillCap(26);
-		this.setSpeedCap(26);
-		this.setDefCap(24);
-		this.setResCap(28);
-	}
-	
+    this.setHpGr(40);
+    this.setStrGr(60);
+    this.setSkillGr(45);
+    this.setSpeedGr(55);
+    this.setLuckGr(50);
+    this.setDefGr(25);
+    this.setResGr(45);
+
+    this.setStrCap(29);
+    this.setSkillCap(24);
+    this.setSpeedCap(26);
+    this.setDefCap(23);
+    this.setResCap(28);
+    }
 }

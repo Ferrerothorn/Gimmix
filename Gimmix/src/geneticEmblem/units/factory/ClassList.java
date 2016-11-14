@@ -9,12 +9,17 @@ public class ClassList {
 
 	public ClassList() {
 
+		
+
+		releasedClasses.add(new Kaiser());
+		releasedClasses.add(new Mercedes());
+		
 		releasedClasses.add(new Fighter());
-		releasedClasses.add(new Aran());
 		releasedClasses.add(new Spearman());
 		releasedClasses.add(new Page());
 
 		releasedClasses.add(new IceLightning());
+		releasedClasses.add(new FlameWizard());
 		releasedClasses.add(new FirePoison());
 		releasedClasses.add(new Cleric());
 
@@ -31,8 +36,13 @@ public class ClassList {
 		releasedClasses.add(new Striker());
 
 		releasedClasses.add(new Mechanic());
-		releasedClasses.add(new DemonSlayer());
+		//releasedClasses.add(new DemonSlayer());
 		releasedClasses.add(new Beginner());
+
+		releasedClasses.add(new DemonAvenger());
+		releasedClasses.add(new Henehoe());
+		releasedClasses.add(new EvilEye());
+		releasedClasses.add(new Mihile());
 		releasedClasses.add(new Merchant());
 
 	}

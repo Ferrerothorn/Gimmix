@@ -48,9 +48,11 @@ public class CustomUnitGenerator {
 		swordList.add(new IronSword());
 		swordList.add(new LightBrand());
 		swordList.add(new ShadowBlade());
+		swordList.add(new Halberd());
 		swordList.add(new FireSword());
 
 		lanceList.add(new IronLance());
+		lanceList.add(new Halberd());
 		lanceList.add(new IronRake());
 		lanceList.add(new PumpkinLance());
 

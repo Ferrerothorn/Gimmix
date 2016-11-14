@@ -8,6 +8,8 @@ public class Hunter extends Unit {
 	public Hunter() {
 		this.setJob("Hunter");
 		this.setWeapon(new IronBow());
+		this.setHpBase(22);
+		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(6);
 		this.setSkillBase(9);
 		this.setSpeedBase(8);
@@ -18,10 +20,10 @@ public class Hunter extends Unit {
 		this.setHpGr(40);
 		this.setStrGr(50);
 		this.setSkillGr(60);
-		this.setSpeedGr(65);
+		this.setSpeedGr(60);
 		this.setLuckGr(40);
 		this.setDefGr(30);
-		this.setResGr(35);
+		this.setResGr(40);
 
 		this.setStrCap(25);
 		this.setSkillCap(30);
