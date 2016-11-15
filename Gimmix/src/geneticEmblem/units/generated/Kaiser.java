@@ -8,7 +8,7 @@ public class Kaiser extends Unit {
 	public Kaiser() {
 
 		this.setJob("Kaiser");
-		this.setWeapon(new Halberd());
+		this.setWeapon(new Greatsword());
 		this.setHpBase(26);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(9);

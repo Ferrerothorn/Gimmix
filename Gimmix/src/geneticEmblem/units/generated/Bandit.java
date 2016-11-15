@@ -1,13 +1,13 @@
 package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
-import geneticEmblem.weapons.ShadowBlade;
+import geneticEmblem.weapons.IronDagger;
 
 public class Bandit extends Unit {
 
 	public Bandit() {
 		this.setJob("Bandit");
-		this.setWeapon(new ShadowBlade());
+		this.setWeapon(new IronDagger());
 		this.setStrBase(7);
 		this.setSkillBase(8);
 		this.setSpeedBase(7);
@@ -30,5 +30,5 @@ public class Bandit extends Unit {
 		this.setResCap(23);
 
 	}
-	
+
 }

@@ -1,6 +1,7 @@
 package geneticEmblem.units.factory;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 import geneticEmblem.weapons.*;
@@ -43,51 +44,34 @@ public class CustomUnitGenerator {
 
 	Weapon weapon;
 
-	private void fillWeaponLists() {
-		swordList.add(new IronSword());
-		swordList.add(new IronSword());
-		swordList.add(new LightBrand());
-		swordList.add(new ShadowBlade());
-		swordList.add(new Halberd());
-		swordList.add(new FireSword());
-
-		lanceList.add(new IronLance());
-		lanceList.add(new Halberd());
-		lanceList.add(new IronRake());
-		lanceList.add(new PumpkinLance());
-
-		axeList.add(new IronAxe());
-		axeList.add(new PoleAxe());
-		axeList.add(new Saw());
-		
-		animaList.add(new Fire());
-		animaList.add(new WindBow());
-		animaList.add(new FireSword());
-
-		darkList.add(new Flux());
-		darkList.add(new ShadowBlade());
-		darkList.add(new DarkClaw());
-		darkList.add(new PumpkinLance());
-	
-		lightList.add(new LightBrand());
-		lightList.add(new Lightning());
-		lightList.add(new HolyArrow());
-
-		bowList.add(new HuntersGear());
-		bowList.add(new IronBow());
-		bowList.add(new SteelBow());
-		bowList.add(new WindBow());
-		bowList.add(new HolyArrow());
-
-		shieldList.add(new IronShield());
-		shieldList.add(new Knuckleduster());
-
-		clawList.add(new Knuckleduster());
-		clawList.add(new IronClaw());
-		clawList.add(new Saw());
-		clawList.add(new IronRake());
-		clawList.add(new DarkClaw());
-
+	private void addEachWeapon() {
+		armory.add(new IronSword());
+		armory.add(new LightBrand());
+		armory.add(new ShadowBlade());
+		armory.add(new Greatsword());
+		armory.add(new FireSword());
+		armory.add(new IronLance());
+		armory.add(new IronRake());
+		armory.add(new PumpkinLance());
+		armory.add(new IronAxe());
+		armory.add(new PoleAxe());
+		armory.add(new Saw());
+		armory.add(new Fire());
+		armory.add(new WindBow());		
+		armory.add(new Flux());
+		armory.add(new DarkClaw());
+		armory.add(new Lightning());
+		armory.add(new HolyArrow());
+		armory.add(new HuntersGear());
+		armory.add(new IronBow());
+		armory.add(new SteelBow());
+		armory.add(new WindBow());
+		armory.add(new IronShield());
+		armory.add(new IronGun());
+		armory.add(new DualBowgun());
+		armory.add(new Knuckleduster());
+		armory.add(new IronDagger());
+		armory.add(new IronClaw());
 	}
 
 	public void generateNewUnitStats() {
@@ -157,7 +141,6 @@ public class CustomUnitGenerator {
 	}
 
 	public CustomUnitGenerator(String leastCommonWeapon) {
-		fillWeaponLists();
 		populateArmory(leastCommonWeapon);
 		generateNewUnitStats();
 	}
@@ -286,36 +269,30 @@ public class CustomUnitGenerator {
 	}
 
 	public void populateArmory(String mostCommonWeapon) {
-		armory.addAll(swordList);
-		armory.addAll(lanceList);
-		armory.addAll(axeList);
-		armory.addAll(animaList);
-		armory.addAll(lightList);
-		armory.addAll(darkList);
-		armory.addAll(shieldList);
-		armory.addAll(clawList);
-		armory.addAll(bowList);
-		if (mostCommonWeapon.equals("Axe")) {
-			armory.addAll(swordList);
-		} else if (mostCommonWeapon.equals("Sword")) {
-			armory.addAll(lanceList);
-		} else if (mostCommonWeapon.equals("Lance")) {
-			armory.addAll(axeList);
-		} else if (mostCommonWeapon.equals("Dark")) {
-			armory.addAll(lightList);
-		} else if (mostCommonWeapon.equals("Light")) {
-			armory.addAll(animaList);
-		} else if (mostCommonWeapon.equals("Anima")) {
-			armory.addAll(darkList);
-		} else if (mostCommonWeapon.equals("Claw")) {
-			armory.addAll(bowList);
-		} else if (mostCommonWeapon.equals("Shield")) {
-			armory.addAll(clawList);
+		addEachWeapon();
+		if (mostCommonWeapon.equals("Melee")) {
+			purge(armory, "Melee");
 		} else if (mostCommonWeapon.equals("Bow")) {
-			armory.addAll(shieldList);
-		} else if (mostCommonWeapon.equals("Gun")) {
-			armory.addAll(lightList);
-			armory.addAll(shieldList);
+			purge(armory, "Bow");
+		} else if (mostCommonWeapon.equals("Magic")) {
+			purge(armory, "Magic");
+		} else if (mostCommonWeapon.equals("Stealth")) {
+			purge(armory, "Stealth");
+		} else if (mostCommonWeapon.equals("Seafare")) {
+			purge(armory, "Seafare");
+		} 
+	}
+
+	private void purge(ArrayList<Weapon> armory2, String string) {
+		Iterator<Weapon> iter = armory2.iterator();
+		
+		while (iter.hasNext()) {
+			Weapon w = iter.next();
+			
+			if (w.getTrinity().equals(string)) {
+				iter.remove();
+			}
 		}
+		
 	}
 }

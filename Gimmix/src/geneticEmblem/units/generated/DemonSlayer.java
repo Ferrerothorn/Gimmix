@@ -8,7 +8,7 @@ public class DemonSlayer extends Unit {
 public DemonSlayer() {
 
     this.setJob("Demon Slayer");
-    this.setWeapon(new Saw());
+    this.setWeapon(new IronSword());
     this.setHpBase(24);
     this.setCurrentHp(this.getHpBase());
     this.setStrBase(8);

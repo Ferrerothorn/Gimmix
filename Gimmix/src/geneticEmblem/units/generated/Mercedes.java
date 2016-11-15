@@ -8,7 +8,7 @@ public class Mercedes extends Unit {
 public Mercedes() {
 
     this.setJob("Mercedes");
-    this.setWeapon(new IronBow());
+    this.setWeapon(new DualBowgun());
     this.setHpBase(22);
     this.setCurrentHp(this.getHpBase());
     this.setStrBase(6);

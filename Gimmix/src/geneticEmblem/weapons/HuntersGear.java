@@ -3,7 +3,7 @@ package geneticEmblem.weapons;
 public class HuntersGear extends Weapon {
 
 	public HuntersGear() {
-		super.setTrinity("Axe");
+		super.setTrinity("Melee");
 		super.setTrinity("Bow");
 		super.setPow(7);
 		super.setAcc(70);

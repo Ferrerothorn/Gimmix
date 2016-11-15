@@ -9,11 +9,9 @@ public class ClassList {
 
 	public ClassList() {
 
-		
-
 		releasedClasses.add(new Kaiser());
 		releasedClasses.add(new Mercedes());
-		
+
 		releasedClasses.add(new Fighter());
 		releasedClasses.add(new Spearman());
 		releasedClasses.add(new Page());
@@ -36,7 +34,7 @@ public class ClassList {
 		releasedClasses.add(new Striker());
 
 		releasedClasses.add(new Mechanic());
-		//releasedClasses.add(new DemonSlayer());
+		releasedClasses.add(new DemonSlayer());
 		releasedClasses.add(new Beginner());
 
 		releasedClasses.add(new DemonAvenger());

@@ -8,15 +8,15 @@ public class Mechanic extends Unit {
 public Mechanic() {
 
     this.setJob("Mechanic");
-    this.setWeapon(new Knuckleduster());
+    this.setWeapon(new IronGun());
     this.setHpBase(24);
     this.setCurrentHp(this.getHpBase());
-    this.setStrBase(5);
+    this.setStrBase(7);
     this.setSkillBase(8);
-    this.setSpeedBase(7);
+    this.setSpeedBase(5);
     this.setLuckBase(5);
-    this.setDefBase(6);
-    this.setResBase(6);
+    this.setDefBase(7);
+    this.setResBase(5);
 
     this.setHpGr(40);
     this.setStrGr(50);

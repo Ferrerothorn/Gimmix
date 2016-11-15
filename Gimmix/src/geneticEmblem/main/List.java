@@ -126,9 +126,9 @@ public class List {
 					if (newStDev <= initialStDev) {
 
 						String fileName = "" + newStDev;
-						String filePath = "C:\\Users\\sdolman\\Desktop\\Gimmix\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
-						// String filePath = "C:\\Users\\User\\workspace\\Git
-						// Repo\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
+						// String filePath =
+						// "C:\\Users\\sdolman\\Desktop\\Gimmix\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
+						String filePath = "C:\\Users\\User\\workspace\\Git Repo\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
 						File readDirectory = new File("FileWritePath.txt");
 
 						String output = customUnitGenerator.generateCode(newStDev);
@@ -219,77 +219,48 @@ public class List {
 	}
 
 	private static String getWeaponMetagame(ArrayList<Unit> arena2) {
-		int axe = 0;
-		int lance = 0;
-		int sword = 0;
-		int light = 0;
-		int dark = 0;
-		int anima = 0;
-		int shield = 0;
-		int claw = 0;
+		int melee = 0;
 		int bow = 0;
+		int magic = 0;
+		int stealth = 0;
+		int seafare = 0;
+
 		for (Unit u : arena) {
 			ArrayList<String> s = u.getWeapon().getTrinity();
-			if (s.contains("Axe")) {
-				axe++;
-			}
-			if (s.contains("Sword")) {
-				sword++;
-			}
-			if (s.contains("Lance")) {
-				lance++;
-			}
-			if (s.contains("Dark")) {
-				dark++;
-			}
-			if (s.contains("Light")) {
-				light++;
-			}
-			if (s.contains("Anima")) {
-				anima++;
+			if (s.contains("Melee")) {
+				melee++;
 			}
 			if (s.contains("Bow")) {
 				bow++;
 			}
-			if (s.contains("Claw")) {
-				claw++;
+			if (s.contains("Magic")) {
+				magic++;
 			}
-			if (s.contains("Shield")) {
-				shield++;
+			if (s.contains("Stealth")) {
+				stealth++;
+			}
+			if (s.contains("Seafare")) {
+				seafare++;
 			}
 		}
 
-		System.out.println("Sword: " + sword);
-		System.out.println("Lance: " + lance);
-		System.out.println("Axe: " + axe);
-		System.out.println("Anima: " + anima);
-		System.out.println("Light: " + light);
-		System.out.println("Dark: " + dark);
+		System.out.println("Melee: " + melee);
+		System.out.println("Magic: " + magic);
 		System.out.println("Bow: " + bow);
-		System.out.println("Claw: " + claw);
-		System.out.println("Shield: " + shield);
+		System.out.println("Stealth: " + stealth);
+		System.out.println("Seafare: " + seafare);
 		System.out.println();
 
-		if (sword > axe && sword > lance && sword > light && sword > dark && sword > anima && sword > shield
-				&& sword > bow && sword > claw) {
-			return "Sword";
-		} else if (lance > axe && lance > anima && lance > dark && lance > light && lance > shield && lance > claw
-				&& lance > bow) {
-			return "Lance";
-		} else if (axe > anima && axe > dark && axe > light && axe > shield && axe > claw && axe > bow) {
-			return "Axe";
-		} else if (anima > dark && anima > light && anima > shield && anima > claw && anima > bow) {
-			return "Anima";
-		} else if (light > dark && light > shield && light > claw && light > bow) {
-			return "Light";
-		} else if (dark > shield && dark > claw && dark > bow) {
-			return "Dark";
-		} else if (bow > shield && bow > claw) {
+		if (melee > magic && melee > bow && melee > stealth && melee > seafare) {
+			return "Melee";
+		} else if (magic > bow && magic > stealth && magic > seafare) {
+			return "Magic";
+		} else if (bow > stealth && bow > seafare) {
 			return "Bow";
-		} else if (claw > shield) {
-			return "Claw";
+		} else if (stealth > seafare) {
+			return "Stealth";
 		} else
-			return "Shield";
+			return "Seafare";
 	}
 
 	private static double metagameBalanceMetrics(ArrayList<Unit> anArena) {
