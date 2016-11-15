@@ -60,7 +60,6 @@ public class CustomUnitGenerator {
 		armory.add(new IronGun());
 		armory.add(new IronLance());
 		armory.add(new IronRake());
-		armory.add(new IronShield());
 		armory.add(new IronSword());
 		armory.add(new Knuckleduster());
 		armory.add(new LightBrand());

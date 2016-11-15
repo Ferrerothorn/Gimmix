@@ -9,22 +9,22 @@ public DualBlade() {
 
     this.setJob("Dual Blade");
     this.setWeapon(new IronDagger());
-    this.setHpBase(20);
+    this.setHpBase(21);
     this.setCurrentHp(this.getHpBase());
-    this.setStrBase(9);
-    this.setSkillBase(6);
+    this.setStrBase(8);
+    this.setSkillBase(8);
     this.setSpeedBase(8);
-    this.setLuckBase(2);
-    this.setDefBase(6);
-    this.setResBase(6);
+    this.setLuckBase(4);
+    this.setDefBase(5);
+    this.setResBase(4);
 
     this.setHpGr(40);
-    this.setStrGr(65);
-    this.setSkillGr(75);
+    this.setStrGr(55);
+    this.setSkillGr(55);
     this.setSpeedGr(55);
     this.setLuckGr(40);
-    this.setDefGr(20);
-    this.setResGr(25);
+    this.setDefGr(45);
+    this.setResGr(30);
 
     this.setStrCap(30);
     this.setSkillCap(21);

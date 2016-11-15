@@ -16,10 +16,8 @@ public class ClassList {
 		 releasedClasses.add(new Brawler());
 		 releasedClasses.add(new Cleric());
 		 releasedClasses.add(new Crossbowman());
-		 releasedClasses.add(new DemonAvenger());
 		 releasedClasses.add(new DemonSlayer());
 		 releasedClasses.add(new DualBlade());
-		 releasedClasses.add(new EvilEye());
 		 releasedClasses.add(new Fighter());
 		 releasedClasses.add(new FirePoison());
 		 releasedClasses.add(new FlameWizard());

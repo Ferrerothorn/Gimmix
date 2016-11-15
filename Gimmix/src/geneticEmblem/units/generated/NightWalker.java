@@ -11,20 +11,20 @@ public NightWalker() {
     this.setWeapon(new DarkClaw());
     this.setHpBase(21);
     this.setCurrentHp(this.getHpBase());
-    this.setStrBase(8);
-    this.setSkillBase(8);
-    this.setSpeedBase(8);
+    this.setStrBase(9);
+    this.setSkillBase(9);
+    this.setSpeedBase(9);
     this.setLuckBase(5);
-    this.setDefBase(4);
-    this.setResBase(4);
+    this.setDefBase(3);
+    this.setResBase(2);
 
-    this.setHpGr(40);
-    this.setStrGr(50);
-    this.setSkillGr(55);
-    this.setSpeedGr(60);
-    this.setLuckGr(55);
-    this.setDefGr(30);
-    this.setResGr(30);
+    this.setHpGr(30);
+    this.setStrGr(65);
+    this.setSkillGr(65);
+    this.setSpeedGr(65);
+    this.setLuckGr(40);
+    this.setDefGr(35);
+    this.setResGr(20);
 
     this.setStrCap(26);
     this.setSkillCap(28);
