@@ -108,6 +108,13 @@ public class CustomUnitGenerator {
 				&& (luckGr < strGr || luckGr < skillGr || luckGr < speedGr || luckGr < defGr || luckGr < resGr)) {
 			generateNewUnitStats();
 		}
+		if (skillBase > defBase && defGr > skillGr) {
+			generateNewUnitStats();
+		}
+		if (skillBase > resBase && resGr > skillGr) {
+			generateNewUnitStats();
+		}
+		
 		if (skillGr > speedGr && speedCap > skillCap) {
 			generateNewUnitStats();
 		}
@@ -289,7 +296,7 @@ public class CustomUnitGenerator {
 		while (iter.hasNext()) {
 			Weapon w = iter.next();
 			
-			if (w.getTrinity().equals(string)) {
+			if (w.getTrinity().contains(string)) {
 				iter.remove();
 			}
 		}

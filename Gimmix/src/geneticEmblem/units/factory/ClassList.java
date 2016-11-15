@@ -10,6 +10,7 @@ public class ClassList {
 	public ClassList() {
 
 		releasedClasses.add(new Kaiser());
+		releasedClasses.add(new DualBlade());
 		releasedClasses.add(new Mercedes());
 
 		releasedClasses.add(new Fighter());
