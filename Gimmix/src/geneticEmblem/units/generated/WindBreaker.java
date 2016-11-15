@@ -8,17 +8,19 @@ public class WindBreaker extends Unit {
 	public WindBreaker() {
 		this.setJob("Wind Breaker");
 		this.setWeapon(new WindBow());
-		this.setStrBase(6);
-		this.setSkillBase(6);
-		this.setSpeedBase(9);
-		this.setLuckBase(7);
+		this.setHpBase(22);
+		this.setCurrentHp(this.getHpBase());
+		this.setStrBase(7);
+		this.setSkillBase(8);
+		this.setSpeedBase(8);
+		this.setLuckBase(5);
 		this.setDefBase(5);
 		this.setResBase(4);
 
-		this.setHpGr(40);
+		this.setHpGr(50);
 		this.setStrGr(45);
-		this.setSkillGr(65);
-		this.setSpeedGr(65);
+		this.setSkillGr(60);
+		this.setSpeedGr(60);
 		this.setLuckGr(40);
 		this.setDefGr(30);
 		this.setResGr(35);

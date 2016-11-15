@@ -45,33 +45,33 @@ public class CustomUnitGenerator {
 	Weapon weapon;
 
 	private void addEachWeapon() {
-		armory.add(new IronSword());
-		armory.add(new LightBrand());
-		armory.add(new ShadowBlade());
-		armory.add(new Greatsword());
-		armory.add(new FireSword());
-		armory.add(new IronLance());
-		armory.add(new IronRake());
-		armory.add(new PumpkinLance());
-		armory.add(new IronAxe());
-		armory.add(new PoleAxe());
-		armory.add(new Saw());
-		armory.add(new Fire());
-		armory.add(new WindBow());		
-		armory.add(new Flux());
 		armory.add(new DarkClaw());
-		armory.add(new Lightning());
+		armory.add(new DualBowgun());
+		armory.add(new Fire());
+		armory.add(new FireSword());
+		armory.add(new Flux());
+		armory.add(new Greatsword());
 		armory.add(new HolyArrow());
 		armory.add(new HuntersGear());
+		armory.add(new IronAxe());
 		armory.add(new IronBow());
+		armory.add(new IronClaw());
+		armory.add(new IronDagger());
+		armory.add(new IronGun());
+		armory.add(new IronLance());
+		armory.add(new IronRake());
+		armory.add(new IronShield());
+		armory.add(new IronSword());
+		armory.add(new Knuckleduster());
+		armory.add(new LightBrand());
+		armory.add(new Lightning());
+		armory.add(new PoleAxe());
+		armory.add(new PumpkinLance());
+		armory.add(new Saw());
+		armory.add(new ShadowBlade());
+		armory.add(new Staff());
 		armory.add(new SteelBow());
 		armory.add(new WindBow());
-		armory.add(new IronShield());
-		armory.add(new IronGun());
-		armory.add(new DualBowgun());
-		armory.add(new Knuckleduster());
-		armory.add(new IronDagger());
-		armory.add(new IronClaw());
 	}
 
 	public void generateNewUnitStats() {
@@ -114,7 +114,7 @@ public class CustomUnitGenerator {
 		if (skillBase > resBase && resGr > skillGr) {
 			generateNewUnitStats();
 		}
-		
+
 		if (skillGr > speedGr && speedCap > skillCap) {
 			generateNewUnitStats();
 		}
@@ -287,19 +287,19 @@ public class CustomUnitGenerator {
 			purge(armory, "Stealth");
 		} else if (mostCommonWeapon.equals("Seafare")) {
 			purge(armory, "Seafare");
-		} 
+		}
 	}
 
 	private void purge(ArrayList<Weapon> armory2, String string) {
 		Iterator<Weapon> iter = armory2.iterator();
-		
+
 		while (iter.hasNext()) {
 			Weapon w = iter.next();
-			
+
 			if (w.getTrinity().contains(string)) {
 				iter.remove();
 			}
 		}
-		
+
 	}
 }

@@ -10,20 +10,20 @@ public class Hunter extends Unit {
 		this.setWeapon(new IronBow());
 		this.setHpBase(22);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(6);
-		this.setSkillBase(9);
+		this.setStrBase(7);
+		this.setSkillBase(8);
 		this.setSpeedBase(8);
 		this.setLuckBase(5);
 		this.setDefBase(5);
 		this.setResBase(4);
 
-		this.setHpGr(40);
-		this.setStrGr(50);
+		this.setHpGr(50);
+		this.setStrGr(45);
 		this.setSkillGr(60);
 		this.setSpeedGr(60);
 		this.setLuckGr(40);
 		this.setDefGr(30);
-		this.setResGr(40);
+		this.setResGr(35);
 
 		this.setStrCap(25);
 		this.setSkillCap(30);

@@ -19,12 +19,12 @@ public Mercedes() {
     this.setResBase(4);
 
     this.setHpGr(45);
-    this.setStrGr(45);
-    this.setSkillGr(60);
-    this.setSpeedGr(70);
+    this.setStrGr(40);
+    this.setSkillGr(65);
+    this.setSpeedGr(65);
     this.setLuckGr(40);
-    this.setDefGr(30);
-    this.setResGr(30);
+    this.setDefGr(25);
+    this.setResGr(40);
 
     this.setStrCap(24);
     this.setSkillCap(30);

@@ -42,6 +42,7 @@ public class List {
 			System.out.println("999: Quit.");
 			System.out.println();
 			int choice = input.nextInt();
+//			int choice = 0;
 
 			switch (choice) {
 
@@ -52,6 +53,7 @@ public class List {
 				System.out.println();
 				showSurvivors(arena);
 				System.out.println();
+				on = false;
 				break;
 
 			case 1:

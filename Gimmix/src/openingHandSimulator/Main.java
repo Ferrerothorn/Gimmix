@@ -208,13 +208,13 @@ public class Main {
 		addThisCard("Glimmerpost", 4);
 		addThisCard("Steel Hellkite", 3);
 		addThisCard("Trinisphere", 4);
-		addThisCard("Vesuva", 4);
+		addThisCard("Thespian's Stage", 4);
 		addThisCard("Wurmcoil Engine", 2);
-		addThisCard("Sphere of Resistance", 4);
-		addThisCard("Ancient Tomb", 4);
-		addThisCard("Winter Orb", 2);
+		addThisCard("Thorn of Amethyst", 4);
 		addThisCard("Crystal Vein", 4);
-		addThisCard("Expedition Map", 2);
+		addThisCard("Winter Orb", 2);
+		addThisCard("Inventor's Fair", 4);
+		addThisCard("Expedition Map", 3);
 		addThisCard("Buried Ruin", 4);
 		addThisCard("Mind's Eye", 1);
 		addThisCard("Ghirapur Orrery", 1);

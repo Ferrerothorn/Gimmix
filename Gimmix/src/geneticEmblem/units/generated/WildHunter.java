@@ -8,20 +8,22 @@ public class WildHunter extends Unit {
 	public WildHunter() {
 		this.setJob("Wild Hunter");
 		this.setWeapon(new HuntersGear());
-		this.setStrBase(8);
+		this.setHpBase(22);
+		this.setCurrentHp(this.getHpBase());
+		this.setStrBase(9);
 		this.setSkillBase(6);
-		this.setSpeedBase(7);
-		this.setLuckBase(6);
+		this.setSpeedBase(9);
+		this.setLuckBase(5);
 		this.setDefBase(7);
-		this.setResBase(3);
+		this.setResBase(4);
 
 		this.setHpGr(60);
-		this.setStrGr(60);
-		this.setSkillGr(45);
+		this.setStrGr(55);
+		this.setSkillGr(50);
 		this.setSpeedGr(50);
-		this.setLuckGr(35);
-		this.setDefGr(35);
-		this.setResGr(35);
+		this.setLuckGr(40);
+		this.setDefGr(40);
+		this.setResGr(25);
 
 		this.setStrCap(27);
 		this.setSkillCap(25);
