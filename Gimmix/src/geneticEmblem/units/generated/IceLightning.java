@@ -10,20 +10,20 @@ public class IceLightning extends Unit {
 		this.setWeapon(new Lightning());
 		this.setHpBase(21);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(8);
-		this.setSkillBase(4);
-		this.setSpeedBase(7);
+		this.setStrBase(9);
+		this.setSkillBase(5);
+		this.setSpeedBase(8);
 		this.setLuckBase(7);
-		this.setDefBase(3);
-		this.setResBase(8);
+		this.setDefBase(2);
+		this.setResBase(6);
 
-		this.setHpGr(40);
-		this.setStrGr(55);
-		this.setSkillGr(45);
+		this.setHpGr(35);
+		this.setStrGr(60);
+		this.setSkillGr(40);
 		this.setSpeedGr(60);
-		this.setLuckGr(40);
+		this.setLuckGr(60);
 		this.setDefGr(25);
-		this.setResGr(55);
+		this.setResGr(40);
 
 		this.setStrCap(28);
 		this.setSkillCap(25);
