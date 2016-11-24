@@ -32,6 +32,8 @@ public class ClassList {
 		releasedClasses.add(new Nobless());
 		releasedClasses.add(new NXHoe());
 		releasedClasses.add(new Page());
+		releasedClasses.add(new Phantom());
+		releasedClasses.add(new Priest());
 		releasedClasses.add(new Spearman());
 		releasedClasses.add(new Viper());
 		releasedClasses.add(new WildHunter());

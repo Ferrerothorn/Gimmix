@@ -35,6 +35,7 @@ public class CustomUnitGenerator {
 	Weapon weapon;
 
 	private void addEachWeapon() {
+		armory.add(new Cane());
 		armory.add(new Cannon());
 		armory.add(new DualBowgun());
 		armory.add(new Fire());
@@ -71,67 +72,12 @@ public class CustomUnitGenerator {
 		generateCaps(r);
 		chooseWeapon(r);
 
-		if (hpGr <= 20 || strGr <= 30 && strCap > 21) {
-			generateNewUnitStats();
-		}
-		if (skillCap > speedCap && skillGr < speedGr) {
-			generateNewUnitStats();
-		}
-		if ((defGr > 45 || resGr > 45) && hpGr < 40) {
-			generateNewUnitStats();
-		}
-		if (resGr < speedGr && speedCap < resCap) {
-			generateNewUnitStats();
-		}
-		if (defGr < speedGr && speedCap < defCap) {
-			generateNewUnitStats();
-		}
-		if (skillBase > strBase && skillCap < strCap) {
-			generateNewUnitStats();
-		}
-		if (strBase > skillBase && strCap < skillCap) {
+		if (hpGr <= 20) {
 			generateNewUnitStats();
 		}
 		if ((luckBase >= strBase || luckBase >= skillBase || luckBase >= speedBase || luckBase >= defBase
 				|| luckBase >= resBase)
 				&& (luckGr < strGr || luckGr < skillGr || luckGr < speedGr || luckGr < defGr || luckGr < resGr)) {
-			generateNewUnitStats();
-		}
-		if (skillBase > defBase && defGr > skillGr) {
-			generateNewUnitStats();
-		}
-		if (skillBase > resBase && resGr > skillGr) {
-			generateNewUnitStats();
-		}
-
-		if (skillGr > speedGr && speedCap > skillCap) {
-			generateNewUnitStats();
-		}
-		if (strGr > defGr && defCap > strCap) {
-			generateNewUnitStats();
-		}
-		if (skillBase > strBase && skillBase > speedBase && (skillGr < strGr || skillGr < speedGr)) {
-			generateNewUnitStats();
-		}
-		if (strBase > speedBase && speedGr > strGr) {
-			generateNewUnitStats();
-		}
-		if (strBase > skillBase && skillGr > strGr) {
-			generateNewUnitStats();
-		}
-		if (speedBase > defBase && defGr > speedGr) {
-			generateNewUnitStats();
-		}
-		if (speedBase > resBase && resGr > speedGr) {
-			generateNewUnitStats();
-		}
-		if ((defBase > resBase && resGr > defGr) || (resBase > defBase && defGr > resGr)) {
-			generateNewUnitStats();
-		}
-		if ((defCap > resCap && resGr > defGr) || (resCap > defCap && defGr > resGr)) {
-			generateNewUnitStats();
-		}
-		if ((defBase > resBase && resCap > defCap) || (resBase > defBase && defCap > resCap)) {
 			generateNewUnitStats();
 		}
 	}

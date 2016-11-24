@@ -128,7 +128,7 @@ public class List {
 					if (newStDev <= initialStDev) {
 
 						String fileName = "" + newStDev;
-						String filePath = "C:\\Users\\sdolman\\Desktop\\Gimmix\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
+						String filePath = "C:\\Users\\sdolman\\Desktop\\Gimmix\\Gimmix\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
 					//	String filePath = "C:\\Users\\User\\workspace\\Git Repo\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
 						File readDirectory = new File("FileWritePath.txt");
 
