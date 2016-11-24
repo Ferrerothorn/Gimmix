@@ -8,13 +8,13 @@ public class NightWalker extends Unit {
 public NightWalker() {
 
     this.setJob("Night Walker");
-    this.setWeapon(new DarkClaw());
+    this.setWeapon(new IronClaw());
     this.setHpBase(21);
     this.setCurrentHp(this.getHpBase());
-    this.setStrBase(9);
+    this.setStrBase(8);
     this.setSkillBase(9);
     this.setSpeedBase(9);
-    this.setLuckBase(5);
+    this.setLuckBase(6);
     this.setDefBase(3);
     this.setResBase(2);
 

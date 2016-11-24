@@ -11,20 +11,20 @@ public Beginner() {
     this.setWeapon(new IronSword());
 	this.setHpBase(24);
 	this.setCurrentHp(this.getHpBase());
-    this.setStrBase(6);
-    this.setSkillBase(6);
-    this.setSpeedBase(6);
-    this.setLuckBase(7);
+    this.setStrBase(7);
+    this.setSkillBase(7);
+    this.setSpeedBase(7);
+    this.setLuckBase(5);
     this.setDefBase(6);
-    this.setResBase(6);
+    this.setResBase(5);
 
-    this.setHpGr(45);
-    this.setStrGr(45);
-    this.setSkillGr(45);
-    this.setSpeedGr(45);
-    this.setLuckGr(50);
-    this.setDefGr(45);
-    this.setResGr(45);
+    this.setHpGr(50);
+    this.setStrGr(50);
+    this.setSkillGr(50);
+    this.setSpeedGr(50);
+    this.setLuckGr(40);
+    this.setDefGr(40);
+    this.setResGr(40);
 
     this.setStrCap(26);
     this.setSkillCap(26);

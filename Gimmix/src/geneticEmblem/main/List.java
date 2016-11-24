@@ -33,7 +33,7 @@ public class List {
 			System.out.println("0: The usual (Add 25k each, 2048 remain, report).");
 			System.out.println("1: Add a number of each class to the arena.");
 			System.out.println("2: View a single match.");
-			System.out.println("22: Run until specified number remain.");
+			System.out.println("222: Run until specified number remain.");
 			System.out.println("3: See the top 8 in the arena.");
 			System.out.println("5: Report on the surviving units.");
 			System.out.println("55: Report statistics on surviving race.");
@@ -128,9 +128,8 @@ public class List {
 					if (newStDev <= initialStDev) {
 
 						String fileName = "" + newStDev;
-						// String filePath =
-						// "C:\\Users\\sdolman\\Desktop\\Gimmix\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
-						String filePath = "C:\\Users\\User\\workspace\\Git Repo\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
+						String filePath = "C:\\Users\\sdolman\\Desktop\\Gimmix\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
+					//	String filePath = "C:\\Users\\User\\workspace\\Git Repo\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
 						File readDirectory = new File("FileWritePath.txt");
 
 						String output = customUnitGenerator.generateCode(newStDev);

@@ -32,27 +32,16 @@ public class CustomUnitGenerator {
 
 	ArrayList<Weapon> armory = new ArrayList<Weapon>();
 
-	ArrayList<Weapon> swordList = new ArrayList<Weapon>();
-	ArrayList<Weapon> lanceList = new ArrayList<Weapon>();
-	ArrayList<Weapon> axeList = new ArrayList<Weapon>();
-	ArrayList<Weapon> animaList = new ArrayList<Weapon>();
-	ArrayList<Weapon> darkList = new ArrayList<Weapon>();
-	ArrayList<Weapon> lightList = new ArrayList<Weapon>();
-	ArrayList<Weapon> clawList = new ArrayList<Weapon>();
-	ArrayList<Weapon> bowList = new ArrayList<Weapon>();
-	ArrayList<Weapon> shieldList = new ArrayList<Weapon>();
-
 	Weapon weapon;
 
 	private void addEachWeapon() {
-		armory.add(new DarkClaw());
+		armory.add(new Cannon());
 		armory.add(new DualBowgun());
 		armory.add(new Fire());
 		armory.add(new FireSword());
 		armory.add(new Flux());
 		armory.add(new Greatsword());
 		armory.add(new HolyArrow());
-		armory.add(new HuntersGear());
 		armory.add(new IronAxe());
 		armory.add(new IronBow());
 		armory.add(new IronClaw());
@@ -61,11 +50,12 @@ public class CustomUnitGenerator {
 		armory.add(new IronLance());
 		armory.add(new IronRake());
 		armory.add(new IronSword());
+		armory.add(new KannaFan());
 		armory.add(new Knuckleduster());
 		armory.add(new LightBrand());
 		armory.add(new Lightning());
-		armory.add(new PoleAxe());
 		armory.add(new PumpkinLance());
+		armory.add(new RedWhip());
 		armory.add(new Saw());
 		armory.add(new ShadowBlade());
 		armory.add(new Staff());
@@ -81,7 +71,7 @@ public class CustomUnitGenerator {
 		generateCaps(r);
 		chooseWeapon(r);
 
-		if (strGr <= 30 && strCap > 21) {
+		if (hpGr <= 20 || strGr <= 30 && strCap > 21) {
 			generateNewUnitStats();
 		}
 		if (skillCap > speedCap && skillGr < speedGr) {
@@ -278,14 +268,24 @@ public class CustomUnitGenerator {
 		addEachWeapon();
 		if (mostCommonWeapon.equals("Melee")) {
 			purge(armory, "Melee");
+			purge(armory, "Seafare");
+			purge(armory, "Stealth");
 		} else if (mostCommonWeapon.equals("Bow")) {
 			purge(armory, "Bow");
+			purge(armory, "Magic");
+			purge(armory, "Melee");
 		} else if (mostCommonWeapon.equals("Magic")) {
 			purge(armory, "Magic");
+			purge(armory, "Seafare");
+			purge(armory, "Melee");
 		} else if (mostCommonWeapon.equals("Stealth")) {
 			purge(armory, "Stealth");
+			purge(armory, "Magic");
+			purge(armory, "Bow");
 		} else if (mostCommonWeapon.equals("Seafare")) {
 			purge(armory, "Seafare");
+			purge(armory, "Bow");
+			purge(armory, "Stealth");
 		}
 	}
 

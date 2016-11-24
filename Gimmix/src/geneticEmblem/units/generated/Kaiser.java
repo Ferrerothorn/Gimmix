@@ -11,20 +11,20 @@ public class Kaiser extends Unit {
 		this.setWeapon(new Greatsword());
 		this.setHpBase(26);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(9);
-		this.setSkillBase(6);
+		this.setStrBase(8);
+		this.setSkillBase(7);
 		this.setSpeedBase(6);
-		this.setLuckBase(6);
-		this.setDefBase(5);
-		this.setResBase(5);
+		this.setLuckBase(5);
+		this.setDefBase(7);
+		this.setResBase(4);
 
-		this.setHpGr(25);
-		this.setStrGr(65);
-		this.setSkillGr(50);
-		this.setSpeedGr(55);
-		this.setLuckGr(75);
-		this.setDefGr(30);
-		this.setResGr(20);
+		this.setHpGr(60);
+		this.setStrGr(55);
+		this.setSkillGr(55);
+		this.setSpeedGr(40);
+		this.setLuckGr(25);
+		this.setDefGr(50);
+		this.setResGr(35);
 
 		this.setStrCap(29);
 		this.setSkillCap(26);

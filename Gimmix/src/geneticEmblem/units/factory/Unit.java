@@ -30,7 +30,7 @@ public abstract class Unit {
 	int DefGr;
 	int ResGr;
 
-	int HpBase = 23;
+	int HpBase = 0;
 	int StrBase;
 	int SkillBase;
 	int SpeedBase;
@@ -310,137 +310,134 @@ public abstract class Unit {
 
 	private int triangleDamageBonus(Unit target) {
 		int bonus = 0;
-
 		if (this.weapon.getTrinity().contains("Melee") && target.weapon.getTrinity().contains("Stealth")) {
 			bonus += 1;
 		}
 		if (this.weapon.getTrinity().contains("Melee") && target.weapon.getTrinity().contains("Seafare")) {
-			bonus += 1;
+			bonus += 2;
 		}
 		if (this.weapon.getTrinity().contains("Magic") && target.weapon.getTrinity().contains("Melee")) {
-			bonus += 1;
+			bonus += 2;
 		}
 		if (this.weapon.getTrinity().contains("Magic") && target.weapon.getTrinity().contains("Seafare")) {
-			bonus += 1;
-		}
-		if (this.weapon.getTrinity().contains("Bow") && target.weapon.getTrinity().contains("Melee")) {
-			bonus += 1;
-		}
-		if (this.weapon.getTrinity().contains("Bow") && target.weapon.getTrinity().contains("Magic")) {
-			bonus += 1;
-		}
-		if (this.weapon.getTrinity().contains("Stealth") && target.weapon.getTrinity().contains("Magic")) {
-			bonus += 1;
-		}
-		if (this.weapon.getTrinity().contains("Stealth") && target.weapon.getTrinity().contains("Bow")) {
 			bonus += 1;
 		}
 		if (this.weapon.getTrinity().contains("Seafare") && target.weapon.getTrinity().contains("Bow")) {
 			bonus += 1;
 		}
 		if (this.weapon.getTrinity().contains("Seafare") && target.weapon.getTrinity().contains("Stealth")) {
+			bonus += 2;
+		}
+		if (this.weapon.getTrinity().contains("Bow") && target.weapon.getTrinity().contains("Melee")) {
 			bonus += 1;
 		}
-		if (this.weapon.getTrinity().contains("Stealth") && target.weapon.getTrinity().contains("Melee")) {
-			bonus -= 1;
+		if (this.weapon.getTrinity().contains("Bow") && target.weapon.getTrinity().contains("Magic")) {
+			bonus += 2;
 		}
-		if (this.weapon.getTrinity().contains("Seafare") && target.weapon.getTrinity().contains("Melee")) {
-			bonus -= 1;
+		if (this.weapon.getTrinity().contains("Stealth") && target.weapon.getTrinity().contains("Magic")) {
+			bonus += 1;
 		}
+		if (this.weapon.getTrinity().contains("Stealth") && target.weapon.getTrinity().contains("Bow")) {
+			bonus += 2;
+		}		
 		if (this.weapon.getTrinity().contains("Melee") && target.weapon.getTrinity().contains("Magic")) {
-			bonus -= 1;
-		}
-		if (this.weapon.getTrinity().contains("Seafare") && target.weapon.getTrinity().contains("Magic")) {
-			bonus -= 1;
+			bonus -= 2;
 		}
 		if (this.weapon.getTrinity().contains("Melee") && target.weapon.getTrinity().contains("Bow")) {
 			bonus -= 1;
 		}
 		if (this.weapon.getTrinity().contains("Magic") && target.weapon.getTrinity().contains("Bow")) {
-			bonus -= 1;
+			bonus -= 2;
 		}
 		if (this.weapon.getTrinity().contains("Magic") && target.weapon.getTrinity().contains("Stealth")) {
 			bonus -= 1;
 		}
-		if (this.weapon.getTrinity().contains("Bow") && target.weapon.getTrinity().contains("Stealth")) {
+		if (this.weapon.getTrinity().contains("Stealth") && target.weapon.getTrinity().contains("Melee")) {
 			bonus -= 1;
+		}
+		if (this.weapon.getTrinity().contains("Stealth") && target.weapon.getTrinity().contains("Seafare")) {
+			bonus -= 2;
+		}
+		if (this.weapon.getTrinity().contains("Seafare") && target.weapon.getTrinity().contains("Melee")) {
+			bonus -= 2;
+		}
+		if (this.weapon.getTrinity().contains("Seafare") && target.weapon.getTrinity().contains("Magic")) {
+			bonus -= 1;
+		}
+		if (this.weapon.getTrinity().contains("Bow") && target.weapon.getTrinity().contains("Stealth")) {
+			bonus -= 2;
 		}
 		if (this.weapon.getTrinity().contains("Bow") && target.weapon.getTrinity().contains("Seafare")) {
 			bonus -= 1;
 		}
-		if (this.weapon.getTrinity().contains("Stealth") && target.weapon.getTrinity().contains("Seafare")) {
-			bonus -= 1;
-		}
-
 		return bonus;
 	}
 
 	private int triangleAccuracyBonus(Unit target) {
 		int bonus = 0;
 		if (this.weapon.getTrinity().contains("Melee") && target.weapon.getTrinity().contains("Stealth")) {
-			bonus += 15;
-		}
-		if (this.weapon.getTrinity().contains("Stealth") && target.weapon.getTrinity().contains("Melee")) {
-			bonus -= 15;
+			bonus += 10;
 		}
 		if (this.weapon.getTrinity().contains("Melee") && target.weapon.getTrinity().contains("Seafare")) {
-			bonus += 15;
-		}
-		if (this.weapon.getTrinity().contains("Seafare") && target.weapon.getTrinity().contains("Melee")) {
-			bonus -= 15;
+			bonus += 20;
 		}
 		if (this.weapon.getTrinity().contains("Magic") && target.weapon.getTrinity().contains("Melee")) {
-			bonus += 15;
-		}
-		if (this.weapon.getTrinity().contains("Melee") && target.weapon.getTrinity().contains("Magic")) {
-			bonus -= 15;
+			bonus += 20;
 		}
 		if (this.weapon.getTrinity().contains("Magic") && target.weapon.getTrinity().contains("Seafare")) {
-			bonus += 15;
-		}
-		if (this.weapon.getTrinity().contains("Seafare") && target.weapon.getTrinity().contains("Magic")) {
-			bonus -= 15;
-		}
-		if (this.weapon.getTrinity().contains("Bow") && target.weapon.getTrinity().contains("Melee")) {
-			bonus += 15;
-		}
-		if (this.weapon.getTrinity().contains("Melee") && target.weapon.getTrinity().contains("Bow")) {
-			bonus -= 15;
-		}
-		if (this.weapon.getTrinity().contains("Bow") && target.weapon.getTrinity().contains("Magic")) {
-			bonus += 15;
-		}
-		if (this.weapon.getTrinity().contains("Magic") && target.weapon.getTrinity().contains("Bow")) {
-			bonus -= 15;
-		}
-		if (this.weapon.getTrinity().contains("Stealth") && target.weapon.getTrinity().contains("Magic")) {
-			bonus += 15;
-		}
-		if (this.weapon.getTrinity().contains("Magic") && target.weapon.getTrinity().contains("Stealth")) {
-			bonus -= 15;
-		}
-		if (this.weapon.getTrinity().contains("Stealth") && target.weapon.getTrinity().contains("Bow")) {
-			bonus += 15;
-		}
-		if (this.weapon.getTrinity().contains("Bow") && target.weapon.getTrinity().contains("Stealth")) {
-			bonus -= 15;
+			bonus += 10;
 		}
 		if (this.weapon.getTrinity().contains("Seafare") && target.weapon.getTrinity().contains("Bow")) {
-			bonus += 15;
-		}
-		if (this.weapon.getTrinity().contains("Bow") && target.weapon.getTrinity().contains("Seafare")) {
-			bonus -= 15;
+			bonus += 10;
 		}
 		if (this.weapon.getTrinity().contains("Seafare") && target.weapon.getTrinity().contains("Stealth")) {
-			bonus += 15;
+			bonus += 20;
 		}
+		if (this.weapon.getTrinity().contains("Bow") && target.weapon.getTrinity().contains("Melee")) {
+			bonus += 10;
+		}
+		if (this.weapon.getTrinity().contains("Bow") && target.weapon.getTrinity().contains("Magic")) {
+			bonus += 20;
+		}
+		if (this.weapon.getTrinity().contains("Stealth") && target.weapon.getTrinity().contains("Bow")) {
+			bonus += 20;
+		}
+		if (this.weapon.getTrinity().contains("Stealth") && target.weapon.getTrinity().contains("Magic")) {
+			bonus += 10;
+		}
+		if (this.weapon.getTrinity().contains("Stealth") && target.weapon.getTrinity().contains("Melee")) {
+			bonus -= 10;
+		}
+		if (this.weapon.getTrinity().contains("Seafare") && target.weapon.getTrinity().contains("Melee")) {
+			bonus -= 20;
+		}
+		if (this.weapon.getTrinity().contains("Melee") && target.weapon.getTrinity().contains("Magic")) {
+			bonus -= 20;
+		}
+		if (this.weapon.getTrinity().contains("Seafare") && target.weapon.getTrinity().contains("Magic")) {
+			bonus -= 10;
+		}
+		if (this.weapon.getTrinity().contains("Melee") && target.weapon.getTrinity().contains("Bow")) {
+			bonus -= 10;
+		}
+		if (this.weapon.getTrinity().contains("Magic") && target.weapon.getTrinity().contains("Bow")) {
+			bonus -= 20;
+		}
+		if (this.weapon.getTrinity().contains("Magic") && target.weapon.getTrinity().contains("Stealth")) {
+			bonus -= 10;
+		}
+		if (this.weapon.getTrinity().contains("Bow") && target.weapon.getTrinity().contains("Stealth")) {
+			bonus -= 20;
+		}
+		if (this.weapon.getTrinity().contains("Bow") && target.weapon.getTrinity().contains("Seafare")) {
+			bonus -= 10;
+		}		
 		if (this.weapon.getTrinity().contains("Stealth") && target.weapon.getTrinity().contains("Seafare")) {
-			bonus -= 15;
+			bonus -= 20;
 		}
-
 		return bonus;
 	}
-
+	
 	public boolean greatlyOutspeeds(Unit target) {
 		if (SpeedBase - 4 >= target.SpeedBase) {
 			return true;

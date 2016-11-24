@@ -9,22 +9,22 @@ public DemonSlayer() {
 
     this.setJob("Demon Slayer");
     this.setWeapon(new IronSword());
-    this.setHpBase(24);
+    this.setHpBase(26);
     this.setCurrentHp(this.getHpBase());
     this.setStrBase(8);
     this.setSkillBase(7);
-    this.setSpeedBase(5);
-    this.setLuckBase(4);
-    this.setDefBase(7);
-    this.setResBase(6);
+    this.setSpeedBase(7);
+    this.setLuckBase(5);
+    this.setDefBase(6);
+    this.setResBase(4);
 
     this.setHpGr(60);
-    this.setStrGr(45);
-    this.setSkillGr(30);
-    this.setSpeedGr(35);
+    this.setStrGr(55);
+    this.setSkillGr(60);
+    this.setSpeedGr(45);
     this.setLuckGr(25);
-    this.setDefGr(70);
-    this.setResGr(55);
+    this.setDefGr(40);
+    this.setResGr(35);
 
     this.setStrCap(29);
     this.setSkillCap(25);

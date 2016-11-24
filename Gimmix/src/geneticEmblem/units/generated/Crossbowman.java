@@ -1,13 +1,13 @@
 package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
-import geneticEmblem.weapons.IronBow;
+import geneticEmblem.weapons.IronCrossbow;
 
 public class Crossbowman extends Unit {
 	
 	public Crossbowman() {
 		this.setJob("Crossbowman");
-		this.setWeapon(new IronBow());
+		this.setWeapon(new IronCrossbow());
 		this.setHpBase(22);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(8);
