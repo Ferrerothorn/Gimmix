@@ -1,15 +1,14 @@
 package geneticEmblem.weapons;
 
-public class RedWhip extends Weapon {
+public class Avenger extends Weapon {
 
-	public RedWhip() {
+	public Avenger() {
+		super.setTrinity("Seafare");
 		super.setTrinity("Melee");
 		super.setTrinity("Stealth");
-		super.setTrinity("Seafare");
 		super.setPow(7);
-		super.setAcc(75);
+		super.setAcc(80);
 		super.setPhys(true);
-		super.setName("RedWhip");
+		super.setName("Avenger");
 	}
-
 }

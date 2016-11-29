@@ -35,8 +35,10 @@ public class CustomUnitGenerator {
 	Weapon weapon;
 
 	private void addEachWeapon() {
+		armory.add(new Avenger());
 		armory.add(new Cane());
 		armory.add(new Cannon());
+		armory.add(new Dragon());
 		armory.add(new DualBowgun());
 		armory.add(new Fire());
 		armory.add(new FireSword());
@@ -55,10 +57,14 @@ public class CustomUnitGenerator {
 		armory.add(new Knuckleduster());
 		armory.add(new LightBrand());
 		armory.add(new Lightning());
+		armory.add(new Luminosity());
+		armory.add(new Machine());
 		armory.add(new PumpkinLance());
+		armory.add(new RayGun());
 		armory.add(new RedWhip());
-		armory.add(new Saw());
 		armory.add(new ShadowBlade());
+		armory.add(new Snowflake());
+		armory.add(new SoulShooter());
 		armory.add(new Staff());
 		armory.add(new SteelBow());
 		armory.add(new WindBow());
