@@ -7,29 +7,29 @@ public class Cannoneer extends Unit {
 
 public Cannoneer() {
 
-    this.setJob("1.1930678572989677");
+    this.setJob("Cannoneer");
     this.setWeapon(new Cannon());
-    this.setHpBase(26);
+    this.setHpBase(24);
     this.setCurrentHp(this.getHpBase());
     this.setStrBase(8);
     this.setSkillBase(7);
-    this.setSpeedBase(6);
+    this.setSpeedBase(7);
     this.setLuckBase(5);
     this.setDefBase(6);
-    this.setResBase(5);
+    this.setResBase(4);
 
-    this.setHpGr(40);
-    this.setStrGr(55);
-    this.setSkillGr(50);
+    this.setHpGr(50);
+    this.setStrGr(60);
+    this.setSkillGr(45);
     this.setSpeedGr(45);
     this.setLuckGr(30);
     this.setDefGr(50);
-    this.setResGr(50);
+    this.setResGr(40);
 
-    this.setStrCap(28);
-    this.setSkillCap(25);
-    this.setSpeedCap(26);
-    this.setDefCap(26);
+    this.setStrCap(29);
+    this.setSkillCap(26);
+    this.setSpeedCap(25);
+    this.setDefCap(25);
     this.setResCap(25);
     }
 }

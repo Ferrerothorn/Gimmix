@@ -6,7 +6,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		int input = 1608855764;
+		int input = 211210538;
 		System.out.println(s.breakdown(input));
 	}
 }
