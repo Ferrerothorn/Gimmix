@@ -23,6 +23,7 @@ public class List {
 	static Scanner input = new Scanner(System.in);
 	static CustomUnitGenerator customUnitGenerator;
 	static ClassList classList;
+	static int defaultLevelForExperiments = 20;
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
@@ -42,13 +43,13 @@ public class List {
 			System.out.println("999: Quit.");
 			System.out.println();
 			int choice = input.nextInt();
-//			int choice = 0;
+			// int choice = 0;
 
 			switch (choice) {
 
 			case 0:
 				addEachClass(33333, arena);
-				levelTheDudesTo(20, arena);
+				levelTheDudesTo(defaultLevelForExperiments, arena);
 				deathmatch(2048, arena);
 				System.out.println();
 				showSurvivors(arena);
@@ -93,7 +94,7 @@ public class List {
 
 			case 69:
 				addEachClass(15000, arena);
-				levelTheDudesTo(15, arena);
+				levelTheDudesTo(defaultLevelForExperiments, arena);
 				deathmatch(2048, arena);
 				System.out.println();
 				double initialStDev = metagameBalanceMetrics(arena);
@@ -116,7 +117,7 @@ public class List {
 					customUnitGenerator.generateNewUnitStats();
 
 					Collections.shuffle(arena);
-					levelTheDudesTo(15, arena);
+					levelTheDudesTo(defaultLevelForExperiments, arena);
 					deathmatch(2048, arena);
 
 					double newStDev = metagameBalanceMetrics(arena);
@@ -129,7 +130,8 @@ public class List {
 
 						String fileName = "" + newStDev;
 						String filePath = "C:\\Users\\sdolman\\Desktop\\Gimmix\\Gimmix\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
-					//	String filePath = "C:\\Users\\User\\workspace\\Git Repo\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
+						// String filePath = "C:\\Users\\User\\workspace\\Git
+						// Repo\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
 						File readDirectory = new File("FileWritePath.txt");
 
 						String output = customUnitGenerator.generateCode(newStDev);
@@ -149,45 +151,9 @@ public class List {
 
 			case 88:
 				ArrayList<Unit> counter = new ArrayList<Unit>();
-				ArrayList<Unit> tempArena;
 				addEachClass(1, counter);
 				Collections.shuffle(counter);
-				HashMap<String, Double> metagameHealth = new HashMap<String, Double>();
-				System.out.println("Established system health logging...");
-
-				addEachClass(12500, arena);
-				System.out.println("Added 12500 of each class to arena.");
-				levelTheDudesTo(15, arena);
-				System.out.println("Leveled them all to 15.");
-				deathmatch(2048, arena);
-				System.out.println("Final 2048 calculated.");
-				double currentMetagameHealth = metagameBalanceMetrics(arena);
-				System.out.println("Default metagame health determined @ " + currentMetagameHealth + ".");
-				metagameHealth.put("Default", currentMetagameHealth);
-				arena.clear();
-
-				for (Unit placeholder : counter) {
-					String withoutThisClass = placeholder.getJob();
-					tempArena = new ArrayList<Unit>();
-					System.out.println("Testing what life would be like without " + withoutThisClass + ".");
-
-					addEachClass(12500, arena);
-					levelTheDudesTo(15, arena);
-
-					for (Unit u : arena) {
-						if (!u.getJob().equals(withoutThisClass)) {
-							tempArena.add(u);
-						}
-					}
-					arena.clear();
-					deathmatch(2048, tempArena);
-					double withoutHealth = metagameBalanceMetrics(tempArena);
-					metagameHealth.put(withoutThisClass, withoutHealth);
-					System.out.println("[" + withoutHealth + "]");
-
-				}
-				sortByValues(metagameHealth);
-				printAlternateMetagameHealth(metagameHealth);
+				analyseDisposableClasses(counter, true);
 				break;
 
 			case 999:
@@ -196,6 +162,63 @@ public class List {
 				break;
 			}
 		}
+	}
+
+	private static void analyseDisposableClasses(ArrayList<Unit> counter, boolean firstIteration) {
+
+		ArrayList<Unit> tempArena = null;
+		HashMap<String, Double> metagameHealth = new HashMap<String, Double>();
+
+		System.out.println("Adding 12500 of each class to arena.");
+		addEachClass(12500, arena);
+		System.out.println("Leveled them all to " + defaultLevelForExperiments + ".");
+		levelTheDudesTo(defaultLevelForExperiments, arena);
+		System.out.println("Running deathmatch to 2048.");
+		System.out.println();
+		deathmatch(2048, arena);
+		double defaultMetagameHealth = metagameBalanceMetrics(arena);
+		arena.clear();
+
+		System.out.println("Default metagame health determined @ " + defaultMetagameHealth + ".");
+		metagameHealth.put("Default", defaultMetagameHealth);
+
+		ArrayList<Unit> recheckThese = new ArrayList<Unit>();
+
+		for (Unit placeholder : counter) {
+			String withoutThisClass = placeholder.getJob();
+			tempArena = new ArrayList<Unit>();
+			System.out.println("Testing what life would be like without " + withoutThisClass + ".");
+
+			addEachClass(12500, arena);
+			levelTheDudesTo(defaultLevelForExperiments, arena);
+
+			for (Unit u : arena) {
+				if (!u.getJob().equals(withoutThisClass)) {
+					tempArena.add(u);
+				}
+			}
+			arena.clear();
+			deathmatch(2048, tempArena);
+			double withoutHealth = metagameBalanceMetrics(tempArena);
+
+			if (withoutHealth < defaultMetagameHealth) {
+				recheckThese.add(placeholder);
+			}
+			metagameHealth.put(withoutThisClass, withoutHealth);
+			System.out.println("[" + withoutHealth + "]");
+		}
+
+		if (recheckThese.size() > 0 && firstIteration == true) {
+			System.out.println();
+			System.out.println("Some classes appear to be polluting the metagame.");
+			System.out.println("Initiating recheck.");
+			tempArena = null;
+			metagameHealth.clear();
+			analyseDisposableClasses(recheckThese, false);
+		}
+
+		sortByValues(metagameHealth);
+		printAlternateMetagameHealth(metagameHealth);
 	}
 
 	private static void populate(ArrayList<Quantity> metagamePairs, HashMap<String, Integer> toBeSorted) {

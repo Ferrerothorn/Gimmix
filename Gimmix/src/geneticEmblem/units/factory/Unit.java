@@ -15,12 +15,12 @@ public abstract class Unit {
 	int baseCrit;
 
 	int HpCap = 60;
-	int StrCap;
-	int SkillCap;
-	int SpeedCap;
+	int StrCap = 30;
+	int SkillCap = 30;
+	int SpeedCap = 30;
 	int LuckCap = 30;
-	int DefCap;
-	int ResCap;
+	int DefCap = 30;
+	int ResCap = 30;
 
 	int HpGr;
 	int StrGr;

@@ -13,24 +13,18 @@ public Phantom() {
     this.setCurrentHp(this.getHpBase());
     
     this.setStrBase(7);
-    this.setSkillBase(5);
-    this.setSpeedBase(7);
-    this.setLuckBase(7);
-    this.setDefBase(7);
+    this.setSkillBase(6);
+    this.setSpeedBase(8);
+    this.setLuckBase(8);
+    this.setDefBase(8);
     this.setResBase(4);
 
     this.setHpGr(60);
     this.setStrGr(45);
     this.setSkillGr(55);
-    this.setSpeedGr(70);
+    this.setSpeedGr(65);
     this.setLuckGr(30);
-    this.setDefGr(35);
-    this.setResGr(25);
-
-    this.setStrCap(25);
-    this.setSkillCap(28);
-    this.setSpeedCap(29);
-    this.setDefCap(24);
-    this.setResCap(24);
+    this.setDefGr(40);
+    this.setResGr(35);
     }
 }

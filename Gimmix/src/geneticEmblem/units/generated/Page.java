@@ -14,22 +14,16 @@ public Page() {
     this.setStrBase(7);
     this.setSkillBase(7);
     this.setSpeedBase(6);
-    this.setLuckBase(4);
-    this.setDefBase(8);
-    this.setResBase(5);
+    this.setLuckBase(5);
+    this.setDefBase(10);
+    this.setResBase(6);
 
     this.setHpGr(60);
     this.setStrGr(45);
-    this.setSkillGr(35);
+    this.setSkillGr(45);
     this.setSpeedGr(40);
     this.setLuckGr(25);
     this.setDefGr(70);
     this.setResGr(45);
-
-    this.setStrCap(25);
-    this.setSkillCap(24);
-    this.setSpeedCap(24);
-    this.setDefCap(30);
-    this.setResCap(27);
     }
 }

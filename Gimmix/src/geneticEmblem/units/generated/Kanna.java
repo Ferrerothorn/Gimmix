@@ -10,27 +10,19 @@ public class Kanna extends Unit {
 		this.setWeapon(new KannaFan());
 	    this.setHpBase(20);
 	    this.setCurrentHp(this.getHpBase());
-		this.setStrBase(8);
+		this.setStrBase(7);
 		this.setSkillBase(6);
 		this.setSpeedBase(8);
-		this.setLuckBase(6);
-		this.setDefBase(3);
-		this.setResBase(6);
+		this.setLuckBase(9);
+		this.setDefBase(4);
+		this.setResBase(7);
 
 		this.setHpGr(40);
-		this.setStrGr(60);
-		this.setSkillGr(45);
-		this.setSpeedGr(65);
+		this.setStrGr(65);
+		this.setSkillGr(50);
+		this.setSpeedGr(70);
 		this.setLuckGr(40);
 		this.setDefGr(20);
-		this.setResGr(50);
-
-		this.setStrCap(30);
-		this.setSkillCap(24);
-		this.setSpeedCap(30);
-		this.setDefCap(21);
-		this.setResCap(25);
-
+		this.setResGr(45);
 	}
-	
 }

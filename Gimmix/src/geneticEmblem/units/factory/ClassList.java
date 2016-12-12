@@ -10,14 +10,16 @@ public class ClassList {
 	public ClassList() {
 
 		releasedClasses.add(new AngelicBuster());
+		releasedClasses.add(new Aran());
 		releasedClasses.add(new Assassin());
 		releasedClasses.add(new Bandit());
 		releasedClasses.add(new BattleMage());
+		releasedClasses.add(new Beggar());
 		releasedClasses.add(new Beginner());
 		releasedClasses.add(new Cannoneer());
+		releasedClasses.add(new Captain());
 		releasedClasses.add(new Cleric());
 		releasedClasses.add(new Crossbowman());
-		releasedClasses.add(new DemonAvenger());
 		releasedClasses.add(new DemonSlayer());
 		releasedClasses.add(new DualBlade());
 		releasedClasses.add(new Evan());
@@ -25,7 +27,6 @@ public class ClassList {
 		releasedClasses.add(new FirePoison());
 		releasedClasses.add(new FlameWizard());
 		releasedClasses.add(new Gunslinger());
-		releasedClasses.add(new Henehoe());
 		releasedClasses.add(new Hunter());
 		releasedClasses.add(new IceLightning());
 		releasedClasses.add(new Jett());

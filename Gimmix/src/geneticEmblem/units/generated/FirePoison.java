@@ -12,23 +12,17 @@ public class FirePoison extends Unit {
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(7);
 		this.setSkillBase(6);
-		this.setSpeedBase(8);
+		this.setSpeedBase(9);
 		this.setLuckBase(6);
-		this.setDefBase(4);
-		this.setResBase(6);
+		this.setDefBase(5);
+		this.setResBase(8);
 
-		this.setHpGr(45);
-		this.setStrGr(50);
-		this.setSkillGr(40);
-		this.setSpeedGr(50);
-		this.setLuckGr(50);
-		this.setDefGr(35);
-		this.setResGr(50);
-
-		this.setStrCap(29);
-		this.setSkillCap(24);
-		this.setSpeedCap(26);
-		this.setDefCap(23);
-		this.setResCap(28);
+		this.setHpGr(40);
+		this.setStrGr(55);
+		this.setSkillGr(45);
+		this.setSpeedGr(55);
+		this.setLuckGr(40);
+		this.setDefGr(40);
+		this.setResGr(55);
 	}
 }

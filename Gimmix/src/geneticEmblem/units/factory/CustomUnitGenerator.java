@@ -24,18 +24,11 @@ public class CustomUnitGenerator {
 	int defGr = 0;
 	int resGr = 0;
 
-	int strCap = 0;
-	int speedCap = 0;
-	int skillCap = 0;
-	int defCap = 0;
-	int resCap = 0;
-
 	ArrayList<Weapon> armory = new ArrayList<Weapon>();
 
 	Weapon weapon;
 
 	private void addEachWeapon() {
-		armory.add(new Avenger());
 		armory.add(new Cane());
 		armory.add(new Cannon());
 		armory.add(new Dragon());
@@ -48,6 +41,7 @@ public class CustomUnitGenerator {
 		armory.add(new IronAxe());
 		armory.add(new IronBow());
 		armory.add(new IronClaw());
+		armory.add(new IronCrossbow());
 		armory.add(new IronDagger());
 		armory.add(new IronGun());
 		armory.add(new IronLance());
@@ -59,15 +53,19 @@ public class CustomUnitGenerator {
 		armory.add(new Lightning());
 		armory.add(new Luminosity());
 		armory.add(new Machine());
+		armory.add(new Panther());
 		armory.add(new PumpkinLance());
 		armory.add(new RayGun());
 		armory.add(new RedWhip());
 		armory.add(new ShadowBlade());
+		armory.add(new ShiningRay());
 		armory.add(new Snowflake());
 		armory.add(new SoulShooter());
 		armory.add(new Staff());
 		armory.add(new SteelBow());
+		armory.add(new Stick());
 		armory.add(new WindBow());
+
 	}
 
 	public void generateNewUnitStats() {
@@ -75,7 +73,6 @@ public class CustomUnitGenerator {
 		Random r = new Random();
 		generateBases(r);
 		generateGRs(r);
-		generateCaps(r);
 		chooseWeapon(r);
 
 		if (hpGr <= 20) {
@@ -95,7 +92,7 @@ public class CustomUnitGenerator {
 
 	public Custom buildUnit() {
 		Custom custom = new Custom(weapon, baseHP, strBase, skillBase, speedBase, luckBase, defBase, resBase, hpGr,
-				strGr, skillGr, speedGr, luckGr, defGr, resGr, strCap, speedCap, skillCap, defCap, resCap);
+				strGr, skillGr, speedGr, luckGr, defGr, resGr);
 		return custom;
 	}
 
@@ -107,11 +104,6 @@ public class CustomUnitGenerator {
 		luckBase = 0;
 		defBase = 0;
 		resBase = 0;
-		strCap = 0;
-		skillCap = 0;
-		speedCap = 0;
-		defCap = 0;
-		resCap = 0;
 		hpGr = 0;
 		strGr = 0;
 		skillGr = 0;
@@ -125,21 +117,21 @@ public class CustomUnitGenerator {
 
 		baseHP = r.nextInt(7);
 		baseHP += 20;
-		strBase = r.nextInt(5);
+		strBase = r.nextInt(6);
 		strBase += 5;
-		skillBase = r.nextInt(5);
+		skillBase = r.nextInt(6);
 		skillBase += 5;
-		speedBase = r.nextInt(5);
+		speedBase = r.nextInt(6);
 		speedBase += 5;
 		luckBase = r.nextInt(6);
 		luckBase += 2;
-		defBase = r.nextInt(6);
+		defBase = r.nextInt(9);
 		defBase += 2;
-		resBase = r.nextInt(6);
-		resBase += 1;
+		resBase = r.nextInt(9);
+		resBase += 2;
 		int sumBases = strBase + skillBase + speedBase + luckBase + defBase + resBase;
 
-		if (sumBases != 37) {
+		if (sumBases != 41) {
 			generateBases(r);
 		}
 	}
@@ -149,30 +141,10 @@ public class CustomUnitGenerator {
 		weapon = armory.get(weaponIndex);
 	}
 
-	private void generateCaps(Random r) {
-
-		strCap = r.nextInt(11);
-		strCap += 20;
-		speedCap = r.nextInt(11);
-		speedCap += 20;
-		skillCap = r.nextInt(11);
-		skillCap += 20;
-		defCap = r.nextInt(11);
-		defCap += 20;
-		resCap = r.nextInt(11);
-		resCap += 20;
-		int sumCaps = strCap + speedCap + skillCap + defCap + resCap;
-
-		if (sumCaps != 130) {
-			generateCaps(r);
-		}
-
-	}
-
 	private void generateGRs(Random r) {
 
 		hpGr = r.nextInt(13);
-		hpGr += 4;
+		hpGr += 5;
 		hpGr *= 5;
 		strGr = r.nextInt(13);
 		strGr += 4;
@@ -194,7 +166,7 @@ public class CustomUnitGenerator {
 		resGr *= 5;
 		int sumGRs = hpGr + strGr + skillGr + speedGr + luckGr + defGr + resGr;
 
-		if (sumGRs != 320) {
+		if (sumGRs != 330) {
 			generateGRs(r);
 		}
 	}
@@ -211,9 +183,7 @@ public class CustomUnitGenerator {
 				+ '\n' + "    this.setStrGr(" + strGr + ");" + '\n' + "    this.setSkillGr(" + skillGr + ");" + '\n'
 				+ "    this.setSpeedGr(" + speedGr + ");" + '\n' + "    this.setLuckGr(" + luckGr + ");" + '\n'
 				+ "    this.setDefGr(" + defGr + ");" + '\n' + "    this.setResGr(" + resGr + ");" + '\n' + '\n'
-				+ "    this.setStrCap(" + strCap + ");" + '\n' + "    this.setSkillCap(" + skillCap + ");" + '\n'
-				+ "    this.setSpeedCap(" + speedCap + ");" + '\n' + "    this.setDefCap(" + defCap + ");" + '\n'
-				+ "    this.setResCap(" + resCap + ");" + '\n' + "    }" + '\n' + "}" + '\n');
+				+ "    }" + '\n' + "}" + '\n');
 	}
 
 	public void populateArmory(String mostCommonWeapon) {

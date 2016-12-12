@@ -8,28 +8,22 @@ public class Beginner extends Unit {
 public Beginner() {
 
     this.setJob("Beginner");
-    this.setWeapon(new IronSword());
+    this.setWeapon(new Stick());
 	this.setHpBase(24);
 	this.setCurrentHp(this.getHpBase());
     this.setStrBase(7);
     this.setSkillBase(7);
     this.setSpeedBase(7);
-    this.setLuckBase(5);
-    this.setDefBase(6);
-    this.setResBase(5);
+    this.setLuckBase(7);
+    this.setDefBase(7);
+    this.setResBase(6);
 
-    this.setHpGr(50);
-    this.setStrGr(50);
-    this.setSkillGr(50);
-    this.setSpeedGr(50);
-    this.setLuckGr(40);
-    this.setDefGr(40);
-    this.setResGr(40);
-
-    this.setStrCap(26);
-    this.setSkillCap(26);
-    this.setSpeedCap(26);
-    this.setDefCap(26);
-    this.setResCap(26);
+    this.setHpGr(48);
+    this.setStrGr(49);
+    this.setSkillGr(49);
+    this.setSpeedGr(49);
+    this.setLuckGr(45);
+    this.setDefGr(45);
+    this.setResGr(45);
     }
 }

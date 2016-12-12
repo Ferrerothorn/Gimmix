@@ -9,27 +9,21 @@ public class Gunslinger extends Unit {
 
 		this.setJob("Gunslinger");
 		this.setWeapon(new IronGun());
-		this.setHpBase(25);
+		this.setHpBase(24);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(7);
-		this.setSkillBase(9);
-		this.setSpeedBase(8);
+		this.setSkillBase(10);
+		this.setSpeedBase(9);
 		this.setLuckBase(6);
-		this.setDefBase(5);
-		this.setResBase(2);
+		this.setDefBase(6);
+		this.setResBase(3);
 
 		this.setHpGr(45);
 		this.setStrGr(55);
-		this.setSkillGr(55);
+		this.setSkillGr(60);
 		this.setSpeedGr(55);
 		this.setLuckGr(40);
 		this.setDefGr(45);
-		this.setResGr(25);
-
-		this.setStrCap(25);
-		this.setSkillCap(30);
-		this.setSpeedCap(23);
-		this.setDefCap(27);
-		this.setResCap(25);
+		this.setResGr(30);
 	}
 }

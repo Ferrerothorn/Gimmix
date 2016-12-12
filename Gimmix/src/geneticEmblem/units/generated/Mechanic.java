@@ -11,25 +11,19 @@ public class Mechanic extends Unit {
 		this.setWeapon(new Machine());
 		this.setHpBase(25);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(7);
-		this.setSkillBase(8);
-		this.setSpeedBase(5);
-		this.setLuckBase(5);
-		this.setDefBase(7);
+		this.setStrBase(8);
+		this.setSkillBase(9);
+		this.setSpeedBase(7);
+		this.setLuckBase(4);
+		this.setDefBase(8);
 		this.setResBase(5);
 
 		this.setHpGr(45);
-		this.setStrGr(55);
-		this.setSkillGr(40);
+		this.setStrGr(60);
+		this.setSkillGr(45);
 		this.setSpeedGr(40);
 		this.setLuckGr(40);
 		this.setDefGr(60);
 		this.setResGr(40);
-
-		this.setStrCap(25);
-		this.setSkillCap(30);
-		this.setSpeedCap(23);
-		this.setDefCap(27);
-		this.setResCap(25);
 	}
 }

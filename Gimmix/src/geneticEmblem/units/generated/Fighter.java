@@ -10,27 +10,19 @@ public class Fighter extends Unit {
 		this.setWeapon(new IronSword());
 		this.setHpBase(26);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(8);
+		this.setStrBase(10);
 		this.setSkillBase(7);
 		this.setSpeedBase(6);
 		this.setLuckBase(6);
-		this.setDefBase(7);
-		this.setResBase(3);
+		this.setDefBase(8);
+		this.setResBase(4);
 
 		this.setHpGr(60);
 		this.setStrGr(65);
 		this.setSkillGr(55);
 		this.setSpeedGr(40);
-		this.setLuckGr(25);
-		this.setDefGr(50);
+		this.setLuckGr(30);
+		this.setDefGr(55);
 		this.setResGr(25);
-
-		this.setStrCap(29);
-		this.setSkillCap(25);
-		this.setSpeedCap(25);
-		this.setDefCap(27);
-		this.setResCap(24);
-
-	}
-	
+	}	
 }

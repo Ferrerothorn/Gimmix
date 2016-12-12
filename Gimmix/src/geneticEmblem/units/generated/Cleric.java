@@ -11,25 +11,19 @@ public Cleric() {
     this.setWeapon(new HolyArrow());
     this.setHpBase(23);
     this.setCurrentHp(this.getHpBase());
-    this.setStrBase(6);
+    this.setStrBase(7);
     this.setSkillBase(6);
-    this.setSpeedBase(7);
-    this.setLuckBase(5);
+    this.setSpeedBase(8);
+    this.setLuckBase(6);
     this.setDefBase(6);
-    this.setResBase(7);
+    this.setResBase(8);
 
     this.setHpGr(55);
-    this.setStrGr(70);
-    this.setSkillGr(25);
-    this.setSpeedGr(60);
+    this.setStrGr(50);
+    this.setSkillGr(45);
+    this.setSpeedGr(50);
     this.setLuckGr(30);
-    this.setDefGr(35);
-    this.setResGr(45);
-
-    this.setStrCap(24);
-    this.setSkillCap(27);
-    this.setSpeedCap(24);
-    this.setDefCap(27);
-    this.setResCap(28);
+    this.setDefGr(45);
+    this.setResGr(55);
     }
 }

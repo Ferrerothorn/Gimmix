@@ -10,27 +10,20 @@ public class WindBreaker extends Unit {
 		this.setWeapon(new WindBow());
 		this.setHpBase(22);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(7);
-		this.setSkillBase(8);
-		this.setSpeedBase(8);
+		this.setStrBase(8);
+		this.setSkillBase(9);
+		this.setSpeedBase(9);
 		this.setLuckBase(5);
 		this.setDefBase(5);
-		this.setResBase(4);
+		this.setResBase(5);
 
-		this.setHpGr(50);
-		this.setStrGr(45);
+		this.setHpGr(45);
+		this.setStrGr(50);
 		this.setSkillGr(60);
 		this.setSpeedGr(60);
 		this.setLuckGr(40);
-		this.setDefGr(30);
+		this.setDefGr(40);
 		this.setResGr(35);
-
-		this.setStrCap(24);
-		this.setSkillCap(28);
-		this.setSpeedCap(28);
-		this.setDefCap(25);
-		this.setResCap(25);
-
 	}
 	
 }

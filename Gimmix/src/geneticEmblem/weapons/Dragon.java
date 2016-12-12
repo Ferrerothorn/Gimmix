@@ -6,8 +6,8 @@ public class Dragon extends Weapon {
 		super.setTrinity("Melee");
 		super.setTrinity("Bow");
 		super.setTrinity("Magic");
-		super.setPow(9);
-		super.setAcc(65);
+		super.setPow(7);
+		super.setAcc(80);
 		super.setPhys(false);
 		super.setName("Dragon");
 	}

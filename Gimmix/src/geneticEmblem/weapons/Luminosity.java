@@ -6,8 +6,8 @@ public class Luminosity extends Weapon {
 		super.setTrinity("Melee");
 		super.setTrinity("Seafare");
 		super.setTrinity("Magic");
-		super.setPow(8);
-		super.setAcc(65);
+		super.setPow(7);
+		super.setAcc(75);
 		super.setPhys(false);
 		super.setName("Luminosity");
 	}

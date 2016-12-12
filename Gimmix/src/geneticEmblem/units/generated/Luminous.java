@@ -10,19 +10,19 @@ public class Luminous extends Unit {
 		this.setWeapon(new Luminosity());
 	    this.setHpBase(22);
 	    this.setCurrentHp(this.getHpBase());
-		this.setStrBase(9);
+		this.setStrBase(10);
 		this.setSkillBase(6);
-		this.setSpeedBase(6);
+		this.setSpeedBase(8);
 		this.setLuckBase(5);
 		this.setDefBase(5);
-		this.setResBase(6);
+		this.setResBase(7);
 
 		this.setHpGr(40);
 		this.setStrGr(65);
-		this.setSkillGr(50);
-		this.setSpeedGr(50);
-		this.setLuckGr(35);
-		this.setDefGr(30);
+		this.setSkillGr(45);
+		this.setSpeedGr(55);
+		this.setLuckGr(40);
+		this.setDefGr(35);
 		this.setResGr(50);
 
 		this.setStrCap(30);

@@ -10,27 +10,19 @@ public class Assassin extends Unit {
 		this.setWeapon(new IronClaw());
 	    this.setHpBase(21);
 	    this.setCurrentHp(this.getHpBase());
-		this.setStrBase(8);
-		this.setSkillBase(8);
-		this.setSpeedBase(8);
+		this.setStrBase(9);
+		this.setSkillBase(9);
+		this.setSpeedBase(9);
 		this.setLuckBase(6);
-		this.setDefBase(4);
+		this.setDefBase(5);
 		this.setResBase(3);
 
-		this.setHpGr(35);
+		this.setHpGr(40);
 		this.setStrGr(60);
 		this.setSkillGr(60);
 		this.setSpeedGr(60);
 		this.setLuckGr(40);
 		this.setDefGr(40);
-		this.setResGr(25);
-
-		this.setStrCap(25);
-		this.setSkillCap(30);
-		this.setSpeedCap(30);
-		this.setDefCap(22);
-		this.setResCap(23);
-
+		this.setResGr(30);
 	}
-	
 }
