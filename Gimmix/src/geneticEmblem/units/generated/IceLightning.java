@@ -8,14 +8,14 @@ public class IceLightning extends Unit {
 	public IceLightning() {
 		this.setJob("Ice / Lightning");
 		this.setWeapon(new Lightning());
-		this.setHpBase(21);
+		this.setHpBase(24);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(10);
+		this.setStrBase(9);
 		this.setSkillBase(5);
-		this.setSpeedBase(10);
-		this.setLuckBase(7);
-		this.setDefBase(2);
-		this.setResBase(7);
+		this.setSpeedBase(7);
+		this.setLuckBase(4);
+		this.setDefBase(3);
+		this.setResBase(8);
 
 		this.setHpGr(35);
 		this.setStrGr(60);

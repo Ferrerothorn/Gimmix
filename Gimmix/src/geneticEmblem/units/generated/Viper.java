@@ -9,7 +9,7 @@ public Viper() {
 
     this.setJob("Viper");
     this.setWeapon(new Knuckleduster());
-    this.setHpBase(26);
+    this.setHpBase(27);
     this.setCurrentHp(this.getHpBase());
     this.setStrBase(8);
     this.setSkillBase(7);

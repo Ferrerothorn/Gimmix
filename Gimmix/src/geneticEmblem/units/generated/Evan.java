@@ -8,12 +8,12 @@ public class Evan extends Unit {
 	public Evan() {
 		this.setJob("Evan");
 		this.setWeapon(new Dragon());
-	    this.setHpBase(22);
+	    this.setHpBase(25);
 	    this.setCurrentHp(this.getHpBase());
-		this.setStrBase(10);
-		this.setSkillBase(7);
+		this.setStrBase(7);
+		this.setSkillBase(6);
 		this.setSpeedBase(7);
-		this.setLuckBase(5);
+		this.setLuckBase(4);
 		this.setDefBase(5);
 		this.setResBase(7);
 

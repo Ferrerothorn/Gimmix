@@ -9,14 +9,14 @@ public Aran() {
 
     this.setJob("Aran");
     this.setWeapon(new IronLance());
-    this.setHpBase(23);
+    this.setHpBase(28);
     this.setCurrentHp(this.getHpBase());
-    this.setStrBase(10);
-    this.setSkillBase(6);
+    this.setStrBase(8);
+    this.setSkillBase(7);
     this.setSpeedBase(6);
-    this.setLuckBase(6);
-    this.setDefBase(5);
-    this.setResBase(8);
+    this.setLuckBase(4);
+    this.setDefBase(7);
+    this.setResBase(4);
 
     this.setHpGr(60);
     this.setStrGr(65);

@@ -9,14 +9,14 @@ public Beggar() {
 
     this.setJob("Beggar");
     this.setWeapon(new IronRake());
-    this.setHpBase(21);
+    this.setHpBase(26);
     this.setCurrentHp(this.getHpBase());
-    this.setStrBase(10);
+    this.setStrBase(6);
     this.setSkillBase(6);
     this.setSpeedBase(6);
-    this.setLuckBase(2);
-    this.setDefBase(10);
-    this.setResBase(7);
+    this.setLuckBase(6);
+    this.setDefBase(6);
+    this.setResBase(6);
 
     this.setHpGr(70);
     this.setStrGr(30);

@@ -9,14 +9,14 @@ public class DualBlade extends Unit {
 
 		this.setJob("Dual Blade");
 		this.setWeapon(new IronDagger());
-		this.setHpBase(21);
+		this.setHpBase(23);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(8);
-		this.setSkillBase(9);
-		this.setSpeedBase(10);
+		this.setSkillBase(8);
+		this.setSpeedBase(8);
 		this.setLuckBase(6);
-		this.setDefBase(4);
-		this.setResBase(4);
+		this.setDefBase(3);
+		this.setResBase(3);
 
 		this.setHpGr(40);
 		this.setStrGr(60);

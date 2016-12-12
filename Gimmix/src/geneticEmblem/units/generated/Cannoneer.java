@@ -9,12 +9,12 @@ public Cannoneer() {
 
     this.setJob("Cannoneer");
     this.setWeapon(new Cannon());
-    this.setHpBase(24);
+    this.setHpBase(26);
     this.setCurrentHp(this.getHpBase());
-    this.setStrBase(9);
-    this.setSkillBase(7);
-    this.setSpeedBase(7);
-    this.setLuckBase(6);
+    this.setStrBase(8);
+    this.setSkillBase(6);
+    this.setSpeedBase(6);
+    this.setLuckBase(4);
     this.setDefBase(7);
     this.setResBase(5);
 

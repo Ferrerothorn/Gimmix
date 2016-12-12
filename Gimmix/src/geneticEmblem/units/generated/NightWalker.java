@@ -9,7 +9,7 @@ public NightWalker() {
 
     this.setJob("Night Walker");
     this.setWeapon(new IronClaw());
-    this.setHpBase(21);
+    this.setHpBase(23);
     this.setCurrentHp(this.getHpBase());
     this.setStrBase(10);
     this.setSkillBase(10);

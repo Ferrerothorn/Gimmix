@@ -8,7 +8,7 @@ public class Merchant extends Unit {
 	public Merchant() {
 		this.setJob("Merchant");
 		this.setWeapon(new PumpkinLance());
-		this.setHpBase(24);
+		this.setHpBase(26);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(8);
 		this.setSkillBase(7);

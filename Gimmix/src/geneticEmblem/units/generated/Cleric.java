@@ -9,13 +9,13 @@ public Cleric() {
 
     this.setJob("Cleric");
     this.setWeapon(new HolyArrow());
-    this.setHpBase(23);
+    this.setHpBase(25);
     this.setCurrentHp(this.getHpBase());
-    this.setStrBase(7);
-    this.setSkillBase(6);
-    this.setSpeedBase(8);
+    this.setStrBase(6);
+    this.setSkillBase(5);
+    this.setSpeedBase(7);
     this.setLuckBase(6);
-    this.setDefBase(6);
+    this.setDefBase(4);
     this.setResBase(8);
 
     this.setHpGr(55);

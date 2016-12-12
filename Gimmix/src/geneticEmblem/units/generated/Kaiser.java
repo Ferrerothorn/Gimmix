@@ -9,14 +9,14 @@ public class Kaiser extends Unit {
 
 		this.setJob("Kaiser");
 		this.setWeapon(new Greatsword());
-		this.setHpBase(25);
+		this.setHpBase(28);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(9);
-		this.setSkillBase(8);
-		this.setSpeedBase(7);
+		this.setSkillBase(5);
+		this.setSpeedBase(6);
 		this.setLuckBase(5);
-		this.setDefBase(7);
-		this.setResBase(5);
+		this.setDefBase(8);
+		this.setResBase(3);
 
 		this.setHpGr(55);
 		this.setStrGr(65);

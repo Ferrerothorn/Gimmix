@@ -9,14 +9,14 @@ public Captain() {
 
     this.setJob("Captain");
     this.setWeapon(new IronGun());
-    this.setHpBase(23);
+    this.setHpBase(25);
     this.setCurrentHp(this.getHpBase());
     this.setStrBase(7);
-    this.setSkillBase(9);
+    this.setSkillBase(7);
     this.setSpeedBase(7);
-    this.setLuckBase(3);
-    this.setDefBase(10);
-    this.setResBase(5);
+    this.setLuckBase(4);
+    this.setDefBase(7);
+    this.setResBase(4);
 
     this.setHpGr(55);
     this.setStrGr(35);

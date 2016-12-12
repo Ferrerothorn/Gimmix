@@ -8,7 +8,7 @@ public class NXHoe extends Unit {
 public NXHoe() {
     this.setJob("NXHoe");
     this.setWeapon(new Snowflake());
-    this.setHpBase(24);
+    this.setHpBase(26);
     this.setCurrentHp(this.getHpBase());
     this.setStrBase(7);
     this.setSkillBase(8);

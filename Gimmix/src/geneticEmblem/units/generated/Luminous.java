@@ -8,14 +8,14 @@ public class Luminous extends Unit {
 	public Luminous() {
 		this.setJob("Luminous");
 		this.setWeapon(new Luminosity());
-	    this.setHpBase(22);
+	    this.setHpBase(24);
 	    this.setCurrentHp(this.getHpBase());
-		this.setStrBase(10);
-		this.setSkillBase(6);
-		this.setSpeedBase(8);
+		this.setStrBase(8);
+		this.setSkillBase(5);
+		this.setSpeedBase(7);
 		this.setLuckBase(5);
-		this.setDefBase(5);
-		this.setResBase(7);
+		this.setDefBase(3);
+		this.setResBase(8);
 
 		this.setHpGr(40);
 		this.setStrGr(65);

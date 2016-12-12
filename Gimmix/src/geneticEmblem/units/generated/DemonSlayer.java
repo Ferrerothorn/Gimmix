@@ -8,15 +8,15 @@ public class DemonSlayer extends Unit {
 public DemonSlayer() {
 
     this.setJob("Demon Slayer");
-    this.setWeapon(new IronSword());
-    this.setHpBase(25);
+    this.setWeapon(new IronAxe());
+    this.setHpBase(28);
     this.setCurrentHp(this.getHpBase());
-    this.setStrBase(8);
-    this.setSkillBase(7);
-    this.setSpeedBase(7);
-    this.setLuckBase(5);
+    this.setStrBase(7);
+    this.setSkillBase(6);
+    this.setSpeedBase(5);
+    this.setLuckBase(3);
     this.setDefBase(8);
-    this.setResBase(6);
+    this.setResBase(7);
 
     this.setHpGr(60);
     this.setStrGr(60);

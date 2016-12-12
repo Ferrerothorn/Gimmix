@@ -8,7 +8,7 @@ public class WildHunter extends Unit {
 	public WildHunter() {
 		this.setJob("Wild Hunter");
 		this.setWeapon(new Panther());
-		this.setHpBase(23);
+		this.setHpBase(27);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(9);
 		this.setSkillBase(9);

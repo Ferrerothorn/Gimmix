@@ -9,14 +9,14 @@ public Beginner() {
 
     this.setJob("Beginner");
     this.setWeapon(new Stick());
-	this.setHpBase(24);
+	this.setHpBase(26);
 	this.setCurrentHp(this.getHpBase());
-    this.setStrBase(7);
-    this.setSkillBase(7);
+    this.setStrBase(6);
+    this.setSkillBase(6);
     this.setSpeedBase(7);
-    this.setLuckBase(7);
+    this.setLuckBase(5);
     this.setDefBase(7);
-    this.setResBase(6);
+    this.setResBase(5);
 
     this.setHpGr(48);
     this.setStrGr(49);

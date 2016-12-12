@@ -8,13 +8,13 @@ public class Bandit extends Unit {
 	public Bandit() {
 		this.setJob("Bandit");
 		this.setWeapon(new IronDagger());
-	    this.setHpBase(24);
+	    this.setHpBase(26);
 	    this.setCurrentHp(this.getHpBase());
 		this.setStrBase(7);
-		this.setSkillBase(9);
-		this.setSpeedBase(8);
-		this.setLuckBase(6);
-		this.setDefBase(7);
+		this.setSkillBase(6);
+		this.setSpeedBase(7);
+		this.setLuckBase(5);
+		this.setDefBase(6);
 		this.setResBase(5);
 
 		this.setHpGr(45);

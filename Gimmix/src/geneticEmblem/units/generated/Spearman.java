@@ -8,7 +8,7 @@ public class Spearman extends Unit {
 	public Spearman() {
 		this.setJob("Spearman");
 		this.setWeapon(new IronLance());
-		this.setHpBase(26);
+		this.setHpBase(28);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(10);
 		this.setSkillBase(7);

@@ -8,14 +8,14 @@ public class Fighter extends Unit {
 	public Fighter() {
 		this.setJob("Fighter");
 		this.setWeapon(new IronSword());
-		this.setHpBase(26);
+		this.setHpBase(28);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(10);
-		this.setSkillBase(7);
+		this.setStrBase(9);
+		this.setSkillBase(6);
 		this.setSpeedBase(6);
-		this.setLuckBase(6);
+		this.setLuckBase(5);
 		this.setDefBase(8);
-		this.setResBase(4);
+		this.setResBase(2);
 
 		this.setHpGr(60);
 		this.setStrGr(65);

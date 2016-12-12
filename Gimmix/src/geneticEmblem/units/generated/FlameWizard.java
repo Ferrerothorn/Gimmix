@@ -8,13 +8,13 @@ public class FlameWizard extends Unit {
 	public FlameWizard() {
 		this.setJob("Flame Wizard");
 		this.setWeapon(new Fire());
-		this.setHpBase(21);
+		this.setHpBase(23);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(10);
-		this.setSkillBase(6);
-		this.setSpeedBase(9);
-		this.setLuckBase(6);
-		this.setDefBase(3);
+		this.setStrBase(8);
+		this.setSkillBase(5);
+		this.setSpeedBase(7);
+		this.setLuckBase(5);
+		this.setDefBase(4);
 		this.setResBase(7);
 
 		this.setHpGr(40);

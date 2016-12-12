@@ -8,7 +8,7 @@ public class Xenon extends Unit {
 	public Xenon() {
 		this.setJob("Xenon");
 		this.setWeapon(new RedWhip());
-	    this.setHpBase(23);
+	    this.setHpBase(25);
 	    this.setCurrentHp(this.getHpBase());
 		this.setStrBase(8);
 		this.setSkillBase(8);

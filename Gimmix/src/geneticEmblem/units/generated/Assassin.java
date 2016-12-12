@@ -8,14 +8,14 @@ public class Assassin extends Unit {
 	public Assassin() {
 		this.setJob("Assassin");
 		this.setWeapon(new IronClaw());
-	    this.setHpBase(21);
+	    this.setHpBase(25);
 	    this.setCurrentHp(this.getHpBase());
-		this.setStrBase(9);
-		this.setSkillBase(9);
-		this.setSpeedBase(9);
-		this.setLuckBase(6);
-		this.setDefBase(5);
-		this.setResBase(3);
+		this.setStrBase(8);
+		this.setSkillBase(8);
+		this.setSpeedBase(8);
+		this.setLuckBase(7);
+		this.setDefBase(3);
+		this.setResBase(2);
 
 		this.setHpGr(40);
 		this.setStrGr(60);

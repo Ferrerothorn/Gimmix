@@ -9,7 +9,7 @@ public Phantom() {
 
     this.setJob("Phantom");
     this.setWeapon(new Cane());
-    this.setHpBase(22);
+    this.setHpBase(24);
     this.setCurrentHp(this.getHpBase());
     
     this.setStrBase(7);

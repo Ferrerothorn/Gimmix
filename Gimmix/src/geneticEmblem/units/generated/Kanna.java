@@ -8,14 +8,14 @@ public class Kanna extends Unit {
 	public Kanna() {
 		this.setJob("Kanna");
 		this.setWeapon(new KannaFan());
-	    this.setHpBase(20);
+	    this.setHpBase(23);
 	    this.setCurrentHp(this.getHpBase());
-		this.setStrBase(7);
-		this.setSkillBase(6);
+		this.setStrBase(9);
+		this.setSkillBase(4);
 		this.setSpeedBase(8);
-		this.setLuckBase(9);
-		this.setDefBase(4);
-		this.setResBase(7);
+		this.setLuckBase(6);
+		this.setDefBase(3);
+		this.setResBase(6);
 
 		this.setHpGr(40);
 		this.setStrGr(65);
