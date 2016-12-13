@@ -10,11 +10,11 @@ public class Spearman extends Unit {
 		this.setWeapon(new IronLance());
 		this.setHpBase(28);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(10);
-		this.setSkillBase(7);
-		this.setSpeedBase(7);
-		this.setLuckBase(7);
-		this.setDefBase(7);
+		this.setStrBase(8);
+		this.setSkillBase(6);
+		this.setSpeedBase(6);
+		this.setLuckBase(5);
+		this.setDefBase(8);
 		this.setResBase(3);
 
 		this.setHpGr(60);

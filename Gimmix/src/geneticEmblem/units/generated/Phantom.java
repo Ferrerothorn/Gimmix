@@ -12,12 +12,12 @@ public Phantom() {
     this.setHpBase(24);
     this.setCurrentHp(this.getHpBase());
     
-    this.setStrBase(7);
+    this.setStrBase(6);
     this.setSkillBase(6);
     this.setSpeedBase(8);
-    this.setLuckBase(8);
-    this.setDefBase(8);
-    this.setResBase(4);
+    this.setLuckBase(6);
+    this.setDefBase(5);
+    this.setResBase(5);
 
     this.setHpGr(60);
     this.setStrGr(45);

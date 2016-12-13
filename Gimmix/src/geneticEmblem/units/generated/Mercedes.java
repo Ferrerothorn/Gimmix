@@ -11,12 +11,12 @@ public Mercedes() {
     this.setWeapon(new DualBowgun());
     this.setHpBase(23);
     this.setCurrentHp(this.getHpBase());
-    this.setStrBase(7);
-    this.setSkillBase(9);
-    this.setSpeedBase(10);
-    this.setLuckBase(5);
-    this.setDefBase(5);
-    this.setResBase(5);
+    this.setStrBase(6);
+    this.setSkillBase(8);
+    this.setSpeedBase(8);
+    this.setLuckBase(4);
+    this.setDefBase(4);
+    this.setResBase(6);
 
     this.setHpGr(40);
     this.setStrGr(45);

@@ -11,11 +11,11 @@ public NXHoe() {
     this.setHpBase(26);
     this.setCurrentHp(this.getHpBase());
     this.setStrBase(7);
-    this.setSkillBase(8);
-    this.setSpeedBase(8);
-    this.setLuckBase(5);
+    this.setSkillBase(4);
+    this.setSpeedBase(7);
+    this.setLuckBase(6);
     this.setDefBase(6);
-    this.setResBase(7);
+    this.setResBase(6);
 
     this.setHpGr(50);
     this.setStrGr(55);

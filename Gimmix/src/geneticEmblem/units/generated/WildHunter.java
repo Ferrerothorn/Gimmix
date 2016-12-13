@@ -10,12 +10,12 @@ public class WildHunter extends Unit {
 		this.setWeapon(new Panther());
 		this.setHpBase(27);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(9);
-		this.setSkillBase(9);
-		this.setSpeedBase(8);
-		this.setLuckBase(5);
-		this.setDefBase(6);
-		this.setResBase(4);
+		this.setStrBase(8);
+		this.setSkillBase(6);
+		this.setSpeedBase(6);
+		this.setLuckBase(4);
+		this.setDefBase(7);
+		this.setResBase(5);
 
 		this.setHpGr(50);
 		this.setStrGr(60);

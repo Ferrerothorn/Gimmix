@@ -12,10 +12,10 @@ public class Xenon extends Unit {
 	    this.setCurrentHp(this.getHpBase());
 		this.setStrBase(8);
 		this.setSkillBase(8);
-		this.setSpeedBase(8);
-		this.setLuckBase(5);
-		this.setDefBase(7);
-		this.setResBase(5);
+		this.setSpeedBase(6);
+		this.setLuckBase(4);
+		this.setDefBase(6);
+		this.setResBase(4);
 
 		this.setHpGr(40);
 		this.setStrGr(50);
