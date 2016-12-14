@@ -7,7 +7,7 @@ public class BattleMage extends Unit {
 
 	public BattleMage() {
 		this.setJob("Battle Mage");
-		this.setWeapon(new Staff());		
+		this.setWeapon(new Staff());
 		this.setHpBase(27);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(8);
@@ -17,13 +17,12 @@ public class BattleMage extends Unit {
 		this.setDefBase(6);
 		this.setResBase(7);
 
-		this.setHpGr(45);
-		this.setStrGr(50);
-		this.setSkillGr(40);
-		this.setSpeedGr(45);
-		this.setLuckGr(40);
-		this.setDefGr(50);
-		this.setResGr(60);
+		this.setHpGr(5);
+		this.setStrGr(5);
+		this.setSkillGr(5);
+		this.setSpeedGr(5);
+		this.setLuckGr(5);
+		this.setDefGr(5);
+		this.setResGr(5);
 	}
-
 }

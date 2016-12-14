@@ -17,13 +17,12 @@ public class WindBreaker extends Unit {
 		this.setDefBase(3);
 		this.setResBase(6);
 
-		this.setHpGr(45);
-		this.setStrGr(50);
-		this.setSkillGr(60);
-		this.setSpeedGr(60);
-		this.setLuckGr(40);
-		this.setDefGr(40);
-		this.setResGr(35);
+		this.setHpGr(5);
+		this.setStrGr(5);
+		this.setSkillGr(5);
+		this.setSpeedGr(5);
+		this.setLuckGr(5);
+		this.setDefGr(5);
+		this.setResGr(5);
 	}
-	
 }

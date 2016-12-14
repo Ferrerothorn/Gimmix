@@ -18,12 +18,12 @@ public NightWalker() {
     this.setDefBase(3);
     this.setResBase(3);
 
-    this.setHpGr(35);
-    this.setStrGr(65);
-    this.setSkillGr(65);
-    this.setSpeedGr(65);
-    this.setLuckGr(40);
-    this.setDefGr(35);
-    this.setResGr(25);
+	this.setHpGr(5);
+	this.setStrGr(5);
+	this.setSkillGr(5);
+	this.setSpeedGr(5);
+	this.setLuckGr(5);
+	this.setDefGr(5);
+	this.setResGr(5);
     }
 }

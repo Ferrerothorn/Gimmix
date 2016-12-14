@@ -17,13 +17,12 @@ public class Evan extends Unit {
 		this.setDefBase(5);
 		this.setResBase(7);
 
-		this.setHpGr(45);
-		this.setStrGr(60);
-		this.setSkillGr(45);
-		this.setSpeedGr(50);
-		this.setLuckGr(45);
-		this.setDefGr(35);
-		this.setResGr(50);
+		this.setHpGr(5);
+		this.setStrGr(5);
+		this.setSkillGr(5);
+		this.setSpeedGr(5);
+		this.setLuckGr(5);
+		this.setDefGr(5);
+		this.setResGr(5);
 	}
-	
 }

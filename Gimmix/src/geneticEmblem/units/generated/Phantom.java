@@ -19,12 +19,12 @@ public Phantom() {
     this.setDefBase(5);
     this.setResBase(5);
 
-    this.setHpGr(60);
-    this.setStrGr(45);
-    this.setSkillGr(55);
-    this.setSpeedGr(65);
-    this.setLuckGr(30);
-    this.setDefGr(40);
-    this.setResGr(35);
+	this.setHpGr(5);
+	this.setStrGr(5);
+	this.setSkillGr(5);
+	this.setSpeedGr(5);
+	this.setLuckGr(5);
+	this.setDefGr(5);
+	this.setResGr(5);
     }
 }

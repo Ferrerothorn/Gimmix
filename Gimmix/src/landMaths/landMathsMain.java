@@ -5,8 +5,8 @@ import java.util.Collections;
 
 public class landMathsMain {
 	
-	static int startWithThisManyLands = 9;
-	static int testUpToThisManyLands = 35;
+	static int startWithThisManyLands = 21;
+	static int testUpToThisManyLands = 21;
 	
 	public static void main (String[] args) {
 		
@@ -23,7 +23,7 @@ public class landMathsMain {
 			ArrayList<Card> deck = new ArrayList<Card>();
 			ArrayList<Card> hand = new ArrayList<Card>();
 			populateDeck(deck, i);
-			draw(deck, hand, 8);
+			draw(deck, hand, 7);
 			if (processHand(hand)) {
 				decentHands++;
 			}
@@ -31,7 +31,7 @@ public class landMathsMain {
 		decentHands /= 4000;
 		
 
-		return "" + i + " of a kind in the deck gives you a " + decentHands + "% chance of having your scenario on turn 1.";
+		return "" + i + " lands in the deck gives you a " + decentHands + "% chance of having your ideal number in your opening hand.";
 	}
 
 	private static void draw(ArrayList<Card> deck, ArrayList<Card> hand, int i) {
@@ -57,6 +57,6 @@ public class landMathsMain {
 				lands++;
 			}
 		}
-		return (lands == 3 || lands == 4);
+		return (lands == 3);
 	}
 }

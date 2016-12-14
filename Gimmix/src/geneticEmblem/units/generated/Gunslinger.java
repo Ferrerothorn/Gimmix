@@ -18,12 +18,12 @@ public class Gunslinger extends Unit {
 		this.setDefBase(5);
 		this.setResBase(4);
 
-		this.setHpGr(45);
-		this.setStrGr(55);
-		this.setSkillGr(60);
-		this.setSpeedGr(55);
-		this.setLuckGr(40);
-		this.setDefGr(45);
-		this.setResGr(30);
+		this.setHpGr(5);
+		this.setStrGr(5);
+		this.setSkillGr(5);
+		this.setSpeedGr(5);
+		this.setLuckGr(5);
+		this.setDefGr(5);
+		this.setResGr(5);
 	}
 }

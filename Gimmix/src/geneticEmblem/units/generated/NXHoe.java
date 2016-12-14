@@ -17,12 +17,12 @@ public NXHoe() {
     this.setDefBase(6);
     this.setResBase(6);
 
-    this.setHpGr(50);
-    this.setStrGr(55);
-    this.setSkillGr(55);
-    this.setSpeedGr(60);
-    this.setLuckGr(35);
-    this.setDefGr(40);
-    this.setResGr(35);
+	this.setHpGr(5);
+	this.setStrGr(5);
+	this.setSkillGr(5);
+	this.setSpeedGr(5);
+	this.setLuckGr(5);
+	this.setDefGr(5);
+	this.setResGr(5);
     }
 }

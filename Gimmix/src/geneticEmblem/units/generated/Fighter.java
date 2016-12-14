@@ -17,12 +17,12 @@ public class Fighter extends Unit {
 		this.setDefBase(8);
 		this.setResBase(2);
 
-		this.setHpGr(60);
-		this.setStrGr(65);
-		this.setSkillGr(55);
-		this.setSpeedGr(40);
-		this.setLuckGr(30);
-		this.setDefGr(55);
-		this.setResGr(25);
+		this.setHpGr(5);
+		this.setStrGr(5);
+		this.setSkillGr(5);
+		this.setSpeedGr(5);
+		this.setLuckGr(5);
+		this.setDefGr(5);
+		this.setResGr(5);
 	}	
 }
