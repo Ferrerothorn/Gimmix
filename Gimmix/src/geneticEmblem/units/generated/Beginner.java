@@ -18,12 +18,12 @@ public class Beginner extends Unit {
 		this.setDefBase(7);
 		this.setResBase(5);
 
-		this.setHpGr(5);
-		this.setStrGr(5);
-		this.setSkillGr(5);
-		this.setSpeedGr(5);
-		this.setLuckGr(5);
-		this.setDefGr(5);
-		this.setResGr(5);
+		this.setHpGr(45);
+		this.setStrGr(45);
+		this.setSkillGr(45);
+		this.setSpeedGr(50);
+		this.setLuckGr(50);
+		this.setDefGr(50);
+		this.setResGr(45);
 	}
 }

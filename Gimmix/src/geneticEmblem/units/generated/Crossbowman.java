@@ -18,12 +18,12 @@ public class Crossbowman extends Unit {
 		this.setDefBase(7);
 		this.setResBase(6);
 
-		this.setHpGr(5);
-		this.setStrGr(5);
-		this.setSkillGr(5);
-		this.setSpeedGr(5);
-		this.setLuckGr(5);
-		this.setDefGr(5);
-		this.setResGr(5);
+		this.setHpGr(55);
+		this.setStrGr(60);
+		this.setSkillGr(60);
+		this.setSpeedGr(40);
+		this.setLuckGr(30);
+		this.setDefGr(45);
+		this.setResGr(40);
 	}
 }

@@ -17,12 +17,12 @@ public class Spearman extends Unit {
 		this.setDefBase(8);
 		this.setResBase(3);
 
-		this.setHpGr(5);
-		this.setStrGr(5);
-		this.setSkillGr(5);
-		this.setSpeedGr(5);
-		this.setLuckGr(5);
-		this.setDefGr(5);
-		this.setResGr(5);
+		this.setHpGr(50);
+		this.setStrGr(55);
+		this.setSkillGr(50);
+		this.setSpeedGr(40);
+		this.setLuckGr(40);
+		this.setDefGr(60);
+		this.setResGr(35);
 	}
 }

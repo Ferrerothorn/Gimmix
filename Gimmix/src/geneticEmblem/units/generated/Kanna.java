@@ -17,12 +17,12 @@ public class Kanna extends Unit {
 		this.setDefBase(3);
 		this.setResBase(6);
 
-		this.setHpGr(5);
-		this.setStrGr(5);
-		this.setSkillGr(5);
-		this.setSpeedGr(5);
-		this.setLuckGr(5);
-		this.setDefGr(5);
-		this.setResGr(5);
+		this.setHpGr(35);
+		this.setStrGr(65);
+		this.setSkillGr(35);
+		this.setSpeedGr(65);
+		this.setLuckGr(45);
+		this.setDefGr(30);
+		this.setResGr(55);
 	}
 }
