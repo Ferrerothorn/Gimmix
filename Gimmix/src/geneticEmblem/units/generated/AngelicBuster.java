@@ -21,8 +21,8 @@ public class AngelicBuster extends Unit {
 		this.setStrGr(45);
 		this.setSkillGr(55);
 		this.setSpeedGr(50);
-		this.setLuckGr(50);
+		this.setLuckGr(40);
 		this.setDefGr(35);
-		this.setResGr(50);
+		this.setResGr(45);
 	}
 }

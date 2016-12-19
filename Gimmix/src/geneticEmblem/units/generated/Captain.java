@@ -18,12 +18,12 @@ public class Captain extends Unit {
 		this.setDefBase(7);
 		this.setResBase(4);
 
-		this.setHpGr(5);
-		this.setStrGr(5);
-		this.setSkillGr(5);
-		this.setSpeedGr(5);
-		this.setLuckGr(5);
-		this.setDefGr(5);
-		this.setResGr(5);
+		this.setHpGr(40);
+		this.setStrGr(50);
+		this.setSkillGr(60);
+		this.setSpeedGr(40);
+		this.setLuckGr(35);
+		this.setDefGr(50);
+		this.setResGr(40);
 	}
 }

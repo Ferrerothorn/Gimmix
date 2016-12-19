@@ -18,11 +18,11 @@ public class Merchant extends Unit {
 		this.setResBase(8);
 
 		this.setHpGr(50);
-		this.setStrGr(30);
-		this.setSkillGr(50);
+		this.setStrGr(35);
+		this.setSkillGr(45);
 		this.setSpeedGr(40);
-		this.setLuckGr(50);
-		this.setDefGr(50);
+		this.setLuckGr(45);
+		this.setDefGr(40);
 		this.setResGr(60);
 	}
 }

@@ -18,12 +18,12 @@ public class Cleric extends Unit {
 		this.setDefBase(4);
 		this.setResBase(8);
 
-		this.setHpGr(5);
-		this.setStrGr(5);
-		this.setSkillGr(5);
-		this.setSpeedGr(5);
-		this.setLuckGr(5);
-		this.setDefGr(5);
-		this.setResGr(5);
+		this.setHpGr(45);
+		this.setStrGr(35);
+		this.setSkillGr(40);
+		this.setSpeedGr(55);
+		this.setLuckGr(50);
+		this.setDefGr(35);
+		this.setResGr(55);
 	}
 }

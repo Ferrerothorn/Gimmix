@@ -17,12 +17,12 @@ public class WildHunter extends Unit {
 		this.setDefBase(7);
 		this.setResBase(5);
 
-		this.setHpGr(55);
-		this.setStrGr(55);
+		this.setHpGr(50);
+		this.setStrGr(50);
 		this.setSkillGr(60);
 		this.setSpeedGr(45);
 		this.setLuckGr(30);
 		this.setDefGr(45);
-		this.setResGr(40);
+		this.setResGr(35);
 	}
 }

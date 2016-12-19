@@ -19,10 +19,10 @@ public NightWalker() {
     this.setResBase(3);
 
 	this.setHpGr(35);
-	this.setStrGr(60);
+	this.setStrGr(55);
 	this.setSkillGr(40);
 	this.setSpeedGr(65);
-	this.setLuckGr(60);
+	this.setLuckGr(50);
 	this.setDefGr(35);
 	this.setResGr(35);
     }

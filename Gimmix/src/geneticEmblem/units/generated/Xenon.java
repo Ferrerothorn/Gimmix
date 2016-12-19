@@ -17,13 +17,13 @@ public class Xenon extends Unit {
 		this.setDefBase(6);
 		this.setResBase(4);
 
-		this.setHpGr(5);
-		this.setStrGr(5);
-		this.setSkillGr(5);
-		this.setSpeedGr(5);
-		this.setLuckGr(5);
-		this.setDefGr(5);
-		this.setResGr(5);
+		this.setHpGr(50);
+		this.setStrGr(40);
+		this.setSkillGr(50);
+		this.setSpeedGr(45);
+		this.setLuckGr(40);
+		this.setDefGr(45);
+		this.setResGr(45);
 	}
 
 }

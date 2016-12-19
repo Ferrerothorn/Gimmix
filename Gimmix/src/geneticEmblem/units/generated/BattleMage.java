@@ -18,11 +18,11 @@ public class BattleMage extends Unit {
 		this.setResBase(7);
 
 		this.setHpGr(50);
-		this.setStrGr(50);
+		this.setStrGr(45);
 		this.setSkillGr(35);
 		this.setSpeedGr(45);
-		this.setLuckGr(40);
-		this.setDefGr(50);
+		this.setLuckGr(35);
+		this.setDefGr(45);
 		this.setResGr(60);
 	}
 }

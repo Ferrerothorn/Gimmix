@@ -5,8 +5,8 @@ import java.util.Collections;
 
 public class landMathsMain {
 	
-	static int startWithThisManyLands = 21;
-	static int testUpToThisManyLands = 21;
+	static int startWithThisManyLands = 16;
+	static int testUpToThisManyLands = 30;
 	
 	public static void main (String[] args) {
 		
@@ -23,7 +23,7 @@ public class landMathsMain {
 			ArrayList<Card> deck = new ArrayList<Card>();
 			ArrayList<Card> hand = new ArrayList<Card>();
 			populateDeck(deck, i);
-			draw(deck, hand, 7);
+			draw(deck, hand, 10);
 			if (processHand(hand)) {
 				decentHands++;
 			}
@@ -57,6 +57,6 @@ public class landMathsMain {
 				lands++;
 			}
 		}
-		return (lands == 3);
+		return (lands == 4);
 	}
 }

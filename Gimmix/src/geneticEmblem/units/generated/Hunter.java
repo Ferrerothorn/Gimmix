@@ -17,12 +17,12 @@ public class Hunter extends Unit {
 		this.setDefBase(6);
 		this.setResBase(5);
 
-		this.setHpGr(45);
+		this.setHpGr(40);
 		this.setStrGr(45);
 		this.setSkillGr(65);
 		this.setSpeedGr(55);
-		this.setLuckGr(40);
+		this.setLuckGr(35);
 		this.setDefGr(40);
-		this.setResGr(40);
+		this.setResGr(35);
 	}
 }

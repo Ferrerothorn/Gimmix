@@ -21,9 +21,9 @@ public class Beginner extends Unit {
 		this.setHpGr(45);
 		this.setStrGr(45);
 		this.setSkillGr(45);
-		this.setSpeedGr(50);
-		this.setLuckGr(50);
-		this.setDefGr(50);
+		this.setSpeedGr(45);
+		this.setLuckGr(45);
+		this.setDefGr(45);
 		this.setResGr(45);
 	}
 }

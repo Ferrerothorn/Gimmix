@@ -17,12 +17,12 @@ public class Bandit extends Unit {
 		this.setDefBase(6);
 		this.setResBase(5);
 
-		this.setHpGr(5);
-		this.setStrGr(5);
-		this.setSkillGr(5);
-		this.setSpeedGr(5);
-		this.setLuckGr(5);
-		this.setDefGr(5);
-		this.setResGr(5);
+		this.setHpGr(45);
+		this.setStrGr(40);
+		this.setSkillGr(50);
+		this.setSpeedGr(50);
+		this.setLuckGr(45);
+		this.setDefGr(50);
+		this.setResGr(35);
 	}
 }

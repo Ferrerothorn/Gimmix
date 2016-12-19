@@ -20,10 +20,10 @@ public Mercedes() {
 
 	this.setHpGr(40);
 	this.setStrGr(45);
-	this.setSkillGr(55);
+	this.setSkillGr(50);
 	this.setSpeedGr(60);
 	this.setLuckGr(45);
 	this.setDefGr(35);
-	this.setResGr(50);
+	this.setResGr(40);
     }
 }

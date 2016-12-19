@@ -6,7 +6,6 @@ import geneticEmblem.weapons.*;
 public class DemonSlayer extends Unit {
 
 	public DemonSlayer() {
-
 		this.setJob("Demon Slayer");
 		this.setWeapon(new IronAxe());
 		this.setHpBase(28);
@@ -18,12 +17,12 @@ public class DemonSlayer extends Unit {
 		this.setDefBase(8);
 		this.setResBase(7);
 
-		this.setHpGr(5);
-		this.setStrGr(5);
-		this.setSkillGr(5);
-		this.setSpeedGr(5);
-		this.setLuckGr(5);
-		this.setDefGr(5);
-		this.setResGr(5);
+		this.setHpGr(55);
+		this.setStrGr(50);
+		this.setSkillGr(40);
+		this.setSpeedGr(45);
+		this.setLuckGr(30);
+		this.setDefGr(55);
+		this.setResGr(45);
 	}
 }

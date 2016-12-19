@@ -6,7 +6,7 @@ import geneticEmblem.weapons.*;
 public class NXHoe extends Unit { 
 
 public NXHoe() {
-    this.setJob("NXHoe");
+    this.setJob("NX Hoe");
     this.setWeapon(new Snowflake());
     this.setHpBase(26);
     this.setCurrentHp(this.getHpBase());
@@ -17,12 +17,12 @@ public NXHoe() {
     this.setDefBase(6);
     this.setResBase(6);
 
-	this.setHpGr(40);
+	this.setHpGr(35);
 	this.setStrGr(40);
 	this.setSkillGr(50);
 	this.setSpeedGr(55);
 	this.setLuckGr(55);
-	this.setDefGr(40);
-	this.setResGr(50);
+	this.setDefGr(35);
+	this.setResGr(45);
     }
 }

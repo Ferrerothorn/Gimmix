@@ -18,12 +18,12 @@ public class Cannoneer extends Unit {
 		this.setDefBase(7);
 		this.setResBase(5);
 
-		this.setHpGr(5);
-		this.setStrGr(5);
-		this.setSkillGr(5);
-		this.setSpeedGr(5);
-		this.setLuckGr(5);
-		this.setDefGr(5);
-		this.setResGr(5);
+		this.setHpGr(50);
+		this.setStrGr(60);
+		this.setSkillGr(40);
+		this.setSpeedGr(40);
+		this.setLuckGr(35);
+		this.setDefGr(55);
+		this.setResGr(35);
 	}
 }

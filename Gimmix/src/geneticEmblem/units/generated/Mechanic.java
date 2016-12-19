@@ -18,12 +18,12 @@ public class Mechanic extends Unit {
 		this.setDefBase(8);
 		this.setResBase(5);
 
-		this.setHpGr(50);
+		this.setHpGr(45);
 		this.setStrGr(50);
 		this.setSkillGr(55);
 		this.setSpeedGr(35);
-		this.setLuckGr(35);
+		this.setLuckGr(30);
 		this.setDefGr(55);
-		this.setResGr(50);
+		this.setResGr(45);
 	}
 }

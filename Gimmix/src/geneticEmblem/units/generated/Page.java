@@ -18,12 +18,12 @@ public Page() {
     this.setDefBase(8);
     this.setResBase(6);
 
-	this.setHpGr(5);
-	this.setStrGr(5);
-	this.setSkillGr(5);
-	this.setSpeedGr(5);
-	this.setLuckGr(5);
-	this.setDefGr(5);
-	this.setResGr(5);
+	this.setHpGr(55);
+	this.setStrGr(40);
+	this.setSkillGr(40);
+	this.setSpeedGr(35);
+	this.setLuckGr(40);
+	this.setDefGr(65);
+	this.setResGr(40);
     }
 }

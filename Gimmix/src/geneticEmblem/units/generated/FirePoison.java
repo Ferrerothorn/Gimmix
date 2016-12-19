@@ -17,12 +17,12 @@ public class FirePoison extends Unit {
 		this.setDefBase(4);
 		this.setResBase(7);
 
-		this.setHpGr(5);
-		this.setStrGr(5);
-		this.setSkillGr(5);
-		this.setSpeedGr(5);
-		this.setLuckGr(5);
-		this.setDefGr(5);
-		this.setResGr(5);
+		this.setHpGr(35);
+		this.setStrGr(40);
+		this.setSkillGr(35);
+		this.setSpeedGr(55);
+		this.setLuckGr(50);
+		this.setDefGr(40);
+		this.setResGr(60);
 	}
 }

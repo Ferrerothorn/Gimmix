@@ -18,10 +18,10 @@ public class Luminous extends Unit {
 		this.setResBase(8);
 
 		this.setHpGr(35);
-		this.setStrGr(60);
+		this.setStrGr(55);
 		this.setSkillGr(35);
-		this.setSpeedGr(55);
-		this.setLuckGr(60);
+		this.setSpeedGr(50);
+		this.setLuckGr(55);
 		this.setDefGr(35);
 		this.setResGr(50);
 	}

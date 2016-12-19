@@ -21,8 +21,8 @@ public class IceLightning extends Unit {
 		this.setStrGr(50);
 		this.setSkillGr(30);
 		this.setSpeedGr(60);
-		this.setLuckGr(60);
-		this.setDefGr(35);
-		this.setResGr(60);
+		this.setLuckGr(55);
+		this.setDefGr(30);
+		this.setResGr(55);
 	}
 }

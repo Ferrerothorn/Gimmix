@@ -18,10 +18,10 @@ public class Assassin extends Unit {
 		this.setResBase(2);
 
 		this.setHpGr(40);
-		this.setStrGr(60);
+		this.setStrGr(55);
 		this.setSkillGr(45);
-		this.setSpeedGr(60);
-		this.setLuckGr(65);
+		this.setSpeedGr(55);
+		this.setLuckGr(60);
 		this.setDefGr(30);
 		this.setResGr(30);
 	}

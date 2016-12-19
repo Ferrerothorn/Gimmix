@@ -17,12 +17,12 @@ public class FlameWizard extends Unit {
 		this.setDefBase(4);
 		this.setResBase(7);
 
-		this.setHpGr(5);
-		this.setStrGr(5);
-		this.setSkillGr(5);
-		this.setSpeedGr(5);
-		this.setLuckGr(5);
-		this.setDefGr(5);
-		this.setResGr(5);
+		this.setHpGr(30);
+		this.setStrGr(55);
+		this.setSkillGr(30);
+		this.setSpeedGr(60);
+		this.setLuckGr(50);
+		this.setDefGr(30);
+		this.setResGr(60);
 	}
 }

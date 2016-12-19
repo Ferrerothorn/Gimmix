@@ -19,10 +19,10 @@ public class DualBlade extends Unit {
 		this.setResBase(3);
 
 		this.setHpGr(30);
-		this.setStrGr(60);
-		this.setSkillGr(60);
+		this.setStrGr(55);
+		this.setSkillGr(55);
 		this.setSpeedGr(60);
-		this.setLuckGr(60);
+		this.setLuckGr(55);
 		this.setDefGr(30);
 		this.setResGr(30);
 	}

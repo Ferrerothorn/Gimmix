@@ -18,10 +18,10 @@ public class Jett extends Unit {
 		this.setResBase(7);
 
 		this.setHpGr(35);
-		this.setStrGr(35);
-		this.setSkillGr(45);
+		this.setStrGr(40);
+		this.setSkillGr(40);
 		this.setSpeedGr(40);
-		this.setLuckGr(55);
+		this.setLuckGr(40);
 		this.setDefGr(60);
 		this.setResGr(60);
 	}
