@@ -6,7 +6,7 @@ public class Burn extends Deck {
 
 	public Burn() {
 		super.setArchetype("Burn");
-		super.setStats(90, 10, 0, 0);
+		super.setStats(95, 5, 0, 0);
 	}
 
 }

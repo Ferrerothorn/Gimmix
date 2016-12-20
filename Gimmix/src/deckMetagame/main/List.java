@@ -14,16 +14,16 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
 
-import geneticEmblem.units.factory.*;
+import deckMetagame.units.factory.*;
+import deckMetagame.units.factory.Deck;
 
 public class List {
 
-	static ArrayList<Unit> arena = new ArrayList<Unit>();
+	static ArrayList<Deck> arena = new ArrayList<Deck>();
 	static Boolean on = true;
 	static Scanner input = new Scanner(System.in);
 	static CustomUnitGenerator customUnitGenerator;
-	static ClassList classList;
-	static int defaultLevelForExperiments = 25;
+	static ListOfDecks deckList;
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
@@ -32,14 +32,14 @@ public class List {
 			System.out.println();
 			System.out.println("===Choose a command===");
 			System.out.println("0: The usual (Add 25k each, 2048 remain, report).");
-			System.out.println("1: Add a number of each class to the arena.");
-			System.out.println("2: View a single match.");
+			System.out.println("1: Add a number of each deck to the arena.");
+			System.out.println("2: Run a single match.");
 			System.out.println("222: Run until specified number remain.");
-			System.out.println("3: See the top 8 in the arena.");
-			System.out.println("5: Report on the surviving units.");
-			System.out.println("55: Report statistics on surviving race.");
-			System.out.println("69: Genetically modify a new unit.");
-			System.out.println("88: Determine which class is healthiest to cull.");
+			System.out.println("3: See the next 8 in the arena.");
+			System.out.println("5: Report on the surviving decks.");
+			System.out.println("55: Show Standard Deviation.");
+			System.out.println("69: Genetically modify a new deck.");
+			System.out.println("88: Determine which deck is healthiest to cull.");
 			System.out.println("999: Quit.");
 			System.out.println();
 			int choice = input.nextInt();
@@ -49,7 +49,6 @@ public class List {
 
 			case 0:
 				addEachClass(25000, arena);
-				levelTheDudesTo(defaultLevelForExperiments, arena);
 				deathmatch(2048, arena);
 				System.out.println();
 				showSurvivors(arena);
@@ -63,7 +62,6 @@ public class List {
 				addEachClass(number, arena);
 				System.out.println("What level should everyone start at?");
 				number = input.nextInt();
-				levelTheDudesTo(number, arena);
 				break;
 
 			case 2:
@@ -94,30 +92,23 @@ public class List {
 
 			case 69:
 				addEachClass(15000, arena);
-				levelTheDudesTo(defaultLevelForExperiments, arena);
 				deathmatch(2048, arena);
 				System.out.println();
 				double initialStDev = metagameBalanceMetrics(arena);
 
-				String mostCommonWeapon = getWeaponMetagame(arena);
-				System.out.println("The metagame is overpopulated by " + mostCommonWeapon + ".");
-				System.out.println("Generating units endlessly...");
-
-				customUnitGenerator = new CustomUnitGenerator(mostCommonWeapon);
-				customUnitGenerator.populateArmory(mostCommonWeapon);
+				System.out.println("Generating decks.");
 
 				while (true) {
 					arena.clear();
 					addEachClass(15000, arena);
-					Custom custom = customUnitGenerator.buildUnit();
+					Custom custom = customUnitGenerator.buildDeck();
 
 					for (int i = 0; i < 15000; i++) {
 						arena.add(custom);
 					}
-					customUnitGenerator.generateNewUnitStats();
+					customUnitGenerator.generateNewDeckStats();
 
 					Collections.shuffle(arena);
-					levelTheDudesTo(defaultLevelForExperiments, arena);
 					deathmatch(2048, arena);
 
 					double newStDev = metagameBalanceMetrics(arena);
@@ -150,7 +141,7 @@ public class List {
 				}
 
 			case 88:
-				ArrayList<Unit> counter = new ArrayList<Unit>();
+				ArrayList<Deck> counter = new ArrayList<Deck>();
 				addEachClass(1, counter);
 				Collections.shuffle(counter);
 				analyseDisposableClasses(counter, true);
@@ -164,15 +155,13 @@ public class List {
 		}
 	}
 
-	private static void analyseDisposableClasses(ArrayList<Unit> counter, boolean firstIteration) {
+	private static void analyseDisposableClasses(ArrayList<Deck> counter, boolean firstIteration) {
 
-		ArrayList<Unit> tempArena = null;
+		ArrayList<Deck> tempArena = null;
 		HashMap<String, Double> metagameHealth = new HashMap<String, Double>();
 
 		System.out.println("Adding 12500 of each class to arena.");
 		addEachClass(12500, arena);
-		System.out.println("Leveled them all to " + defaultLevelForExperiments + ".");
-		levelTheDudesTo(defaultLevelForExperiments, arena);
 		System.out.println("Running deathmatch to 2048.");
 		System.out.println();
 		deathmatch(2048, arena);
@@ -182,17 +171,16 @@ public class List {
 		System.out.println("Default metagame health determined @ " + defaultMetagameHealth + ".");
 		metagameHealth.put("Default", defaultMetagameHealth);
 
-		ArrayList<Unit> recheckThese = new ArrayList<Unit>();
+		ArrayList<Deck> recheckThese = new ArrayList<Deck>();
 
-		for (Unit placeholder : counter) {
+		for (Deck placeholder : counter) {
 			String withoutThisClass = placeholder.getJob();
-			tempArena = new ArrayList<Unit>();
+			tempArena = new ArrayList<Deck>();
 			System.out.println("Testing what life would be like without " + withoutThisClass + ".");
 
 			addEachClass(12500, arena);
-			levelTheDudesTo(defaultLevelForExperiments, arena);
 
-			for (Unit u : arena) {
+			for (Deck u : arena) {
 				if (!u.getJob().equals(withoutThisClass)) {
 					tempArena.add(u);
 				}
@@ -238,56 +226,11 @@ public class List {
 		while (it.hasNext()) {
 			@SuppressWarnings("rawtypes")
 			Map.Entry pair = (Map.Entry) it.next();
-			System.out.println(pair.getKey() + "s: " + pair.getValue());
+			System.out.println(pair.getKey() + ": " + pair.getValue());
 		}
 	}
 
-	private static String getWeaponMetagame(ArrayList<Unit> arena2) {
-		int melee = 0;
-		int bow = 0;
-		int magic = 0;
-		int stealth = 0;
-		int seafare = 0;
-
-		for (Unit u : arena) {
-			ArrayList<String> s = u.getWeapon().getTrinity();
-			if (s.contains("Melee")) {
-				melee++;
-			}
-			if (s.contains("Bow")) {
-				bow++;
-			}
-			if (s.contains("Magic")) {
-				magic++;
-			}
-			if (s.contains("Stealth")) {
-				stealth++;
-			}
-			if (s.contains("Seafare")) {
-				seafare++;
-			}
-		}
-
-		System.out.println("Melee: " + melee);
-		System.out.println("Magic: " + magic);
-		System.out.println("Bow: " + bow);
-		System.out.println("Stealth: " + stealth);
-		System.out.println("Seafare: " + seafare);
-		System.out.println();
-
-		if (melee > magic && melee > bow && melee > stealth && melee > seafare) {
-			return "Melee";
-		} else if (magic > bow && magic > stealth && magic > seafare) {
-			return "Magic";
-		} else if (bow > stealth && bow > seafare) {
-			return "Bow";
-		} else if (stealth > seafare) {
-			return "Stealth";
-		} else
-			return "Seafare";
-	}
-
-	private static double metagameBalanceMetrics(ArrayList<Unit> anArena) {
+	private static double metagameBalanceMetrics(ArrayList<Deck> anArena) {
 		HashMap<String, Integer> survivors = reportOnSurvivors(anArena);
 		double total = 0;
 		double index = survivors.size();
@@ -320,14 +263,14 @@ public class List {
 		return sum / survivors.size();
 	}
 
-	private static void showSurvivors(ArrayList<Unit> anArena) {
+	private static void showSurvivors(ArrayList<Deck> anArena) {
 		HashMap<String, Integer> survivors = reportOnSurvivors(anArena);
 		printMap(survivors);
 	}
 
-	private static HashMap<String, Integer> reportOnSurvivors(ArrayList<Unit> anArena) {
+	private static HashMap<String, Integer> reportOnSurvivors(ArrayList<Deck> anArena) {
 		HashMap<String, Integer> survivors = new HashMap<String, Integer>();
-		for (Unit u : anArena) {
+		for (Deck u : anArena) {
 			if (!survivors.containsKey(u.getJob())) {
 				survivors.put(u.getJob(), 1);
 			} else {
@@ -351,15 +294,14 @@ public class List {
 		}
 	}
 
-	private static void deathmatch(int i, ArrayList<Unit> u) {
+	private static void deathmatch(int i, ArrayList<Deck> u) {
 
 		if (i > 0) {
 			while (u.size() > i) {
-				Unit unit1 = u.remove(0);
-				Unit unit2 = u.remove(0);
-				Unit victor = unit1.fight(unit2);
+				Deck unit1 = u.remove(0);
+				Deck unit2 = u.remove(0);
+				Deck victor = unit1.fight(unit2);
 
-				victor.levelUp();
 				u.add(victor);
 			}
 		}
@@ -367,29 +309,21 @@ public class List {
 
 	private static void scry(int i) {
 		for (int x = 0; x < i && x < arena.size(); x++) {
-			arena.get(x).printDetailedUnitDescription(x + 1);
+			arena.get(x).printDetailedDescription(x + 1);
 		}
 	}
 
-	private static void addEachClass(int i, ArrayList<Unit> theArena) {
+	private static void addEachClass(int i, ArrayList<Deck> theArena) {
 		for (int x = 0; x < i; x++) {
-			classList = new ClassList();
-			addEach(classList.getReleasedUnits(), theArena);
+			deckList = new ListOfDecks();
+			addEach(deckList.getReleasedUnits(), theArena);
 		}
 		Collections.shuffle(arena);
 	}
 
-	private static void addEach(ArrayList<Unit> released, ArrayList<Unit> theArena) {
-		for (Unit u : released) {
+	private static void addEach(ArrayList<Deck> hall, ArrayList<Deck> theArena) {
+		for (Deck u : hall) {
 			theArena.add(u);
-		}
-	}
-
-	public static void levelTheDudesTo(int lv, ArrayList<Unit> dudes) {
-		for (Unit u : dudes) {
-			for (int i = 1; i < lv; i++) {
-				u.levelUp();
-			}
 		}
 	}
 
