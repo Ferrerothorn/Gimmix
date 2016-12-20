@@ -13,15 +13,15 @@ public class Merchant extends Unit {
 		this.setStrBase(6);
 		this.setSkillBase(4);
 		this.setSpeedBase(7);
-		this.setLuckBase(6);
-		this.setDefBase(5);
+		this.setLuckBase(5);
+		this.setDefBase(6);
 		this.setResBase(8);
 
-		this.setHpGr(50);
-		this.setStrGr(35);
-		this.setSkillGr(45);
-		this.setSpeedGr(40);
-		this.setLuckGr(45);
+		this.setHpGr(40);
+		this.setStrGr(50);
+		this.setSkillGr(35);
+		this.setSpeedGr(45);
+		this.setLuckGr(40);
 		this.setDefGr(40);
 		this.setResGr(60);
 	}

@@ -11,10 +11,10 @@ public NightWalker() {
     this.setWeapon(new IronClaw());
     this.setHpBase(23);
     this.setCurrentHp(this.getHpBase());
-    this.setStrBase(9);
+    this.setStrBase(8);
     this.setSkillBase(8);
     this.setSpeedBase(8);
-    this.setLuckBase(5);
+    this.setLuckBase(6);
     this.setDefBase(3);
     this.setResBase(3);
 

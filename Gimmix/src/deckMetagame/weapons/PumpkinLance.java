@@ -1,4 +1,4 @@
-package geneticEmblem.weapons;
+package deckMetagame.weapons;
 
 public class PumpkinLance extends Weapon {
 

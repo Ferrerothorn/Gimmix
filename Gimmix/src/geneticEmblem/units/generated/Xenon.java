@@ -10,20 +10,20 @@ public class Xenon extends Unit {
 		this.setWeapon(new RedWhip());
 	    this.setHpBase(25);
 	    this.setCurrentHp(this.getHpBase());
-		this.setStrBase(8);
+		this.setStrBase(7);
 		this.setSkillBase(8);
-		this.setSpeedBase(6);
+		this.setSpeedBase(7);
 		this.setLuckBase(4);
 		this.setDefBase(6);
 		this.setResBase(4);
 
-		this.setHpGr(50);
-		this.setStrGr(40);
-		this.setSkillGr(50);
-		this.setSpeedGr(45);
+		this.setHpGr(45);
+		this.setStrGr(50);
+		this.setSkillGr(55);
+		this.setSpeedGr(55);
 		this.setLuckGr(40);
-		this.setDefGr(45);
-		this.setResGr(45);
+		this.setDefGr(35);
+		this.setResGr(35);
 	}
 
 }
