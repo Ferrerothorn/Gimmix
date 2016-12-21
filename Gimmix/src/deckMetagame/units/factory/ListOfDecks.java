@@ -9,15 +9,21 @@ public class ListOfDecks {
 
 	public ListOfDecks() {
 
-		releasedClasses.add(new Reanimator());
-		releasedClasses.add(new Abzan());
-		releasedClasses.add(new Burn());
-		releasedClasses.add(new EsperControl());
+		releasedClasses.add(new Infect());
+		releasedClasses.add(new Jund());
+		releasedClasses.add(new Tron());
 		releasedClasses.add(new Dredge());
-		releasedClasses.add(new Miracles());
-		releasedClasses.add(new DrawGo());
-		releasedClasses.add(new ShardlessBug());
-		releasedClasses.add(new ANT());
+		releasedClasses.add(new NayaBurn());
+		releasedClasses.add(new Affinity());
+		releasedClasses.add(new Merfolk());
+		releasedClasses.add(new Abzan());
+		releasedClasses.add(new WRPrison());
+		releasedClasses.add(new ValakutBreach());
+		releasedClasses.add(new GrixisControl());
+		releasedClasses.add(new LanternControl());
+		releasedClasses.add(new BantEldrazi());
+		releasedClasses.add(new Infect());
+		releasedClasses.add(new JeskaiControl());
 	}
 
 	public ArrayList<Deck> getReleasedUnits() {

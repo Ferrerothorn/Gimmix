@@ -6,7 +6,7 @@ public class Abzan extends Deck {
 
 	public Abzan() {
 		super.setArchetype("Abzan");
-		super.setStats(10, 15, 0, 75);
+		super.setStats(0, 10, 0, 90);
 	}
 
 }
