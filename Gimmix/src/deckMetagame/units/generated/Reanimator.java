@@ -6,6 +6,6 @@ public class Reanimator extends Deck {
 
 	public Reanimator() {
 		super.setArchetype("Reanimator");
-		super.setStats(0, 0, 100, 0);
+		super.setStats(5, 0, 95, 0);
 	}
 }

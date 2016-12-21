@@ -48,7 +48,8 @@ public class List {
 			switch (choice) {
 
 			case 0:
-				addEachClass(25000, arena);
+				addEachClass(33333);
+				Collections.shuffle(arena);
 				deathmatch(2048, arena);
 				System.out.println();
 				showSurvivors(arena);
@@ -59,7 +60,7 @@ public class List {
 			case 1:
 				System.out.println("How many of each class should be added?");
 				int number = input.nextInt();
-				addEachClass(number, arena);
+				addEachClass(number);
 				System.out.println("What level should everyone start at?");
 				number = input.nextInt();
 				break;
@@ -78,10 +79,6 @@ public class List {
 				deathmatch(number1, arena);
 				break;
 
-			case 3:
-				scry(8);
-				break;
-
 			case 5:
 				showSurvivors(arena);
 				break;
@@ -91,7 +88,7 @@ public class List {
 				break;
 
 			case 69:
-				addEachClass(15000, arena);
+				addEachClass(15000);
 				deathmatch(2048, arena);
 				System.out.println();
 				double initialStDev = metagameBalanceMetrics(arena);
@@ -100,7 +97,7 @@ public class List {
 
 				while (true) {
 					arena.clear();
-					addEachClass(15000, arena);
+					addEachClass(15000);
 					Custom custom = customUnitGenerator.buildDeck();
 
 					for (int i = 0; i < 15000; i++) {
@@ -142,7 +139,7 @@ public class List {
 
 			case 88:
 				ArrayList<Deck> counter = new ArrayList<Deck>();
-				addEachClass(1, counter);
+				// addEachClass(1, counter);
 				Collections.shuffle(counter);
 				analyseDisposableClasses(counter, true);
 				break;
@@ -161,7 +158,7 @@ public class List {
 		HashMap<String, Double> metagameHealth = new HashMap<String, Double>();
 
 		System.out.println("Adding 12500 of each class to arena.");
-		addEachClass(12500, arena);
+		addEachClass(12500);
 		System.out.println("Running deathmatch to 2048.");
 		System.out.println();
 		deathmatch(2048, arena);
@@ -174,14 +171,14 @@ public class List {
 		ArrayList<Deck> recheckThese = new ArrayList<Deck>();
 
 		for (Deck placeholder : counter) {
-			String withoutThisClass = placeholder.getJob();
+			String withoutThisClass = placeholder.getArchetype();
 			tempArena = new ArrayList<Deck>();
 			System.out.println("Testing what life would be like without " + withoutThisClass + ".");
 
-			addEachClass(12500, arena);
+			addEachClass(12500);
 
 			for (Deck u : arena) {
-				if (!u.getJob().equals(withoutThisClass)) {
+				if (!u.getArchetype().equals(withoutThisClass)) {
 					tempArena.add(u);
 				}
 			}
@@ -271,10 +268,10 @@ public class List {
 	private static HashMap<String, Integer> reportOnSurvivors(ArrayList<Deck> anArena) {
 		HashMap<String, Integer> survivors = new HashMap<String, Integer>();
 		for (Deck u : anArena) {
-			if (!survivors.containsKey(u.getJob())) {
-				survivors.put(u.getJob(), 1);
+			if (!survivors.containsKey(u.getArchetype())) {
+				survivors.put(u.getArchetype(), 1);
 			} else {
-				survivors.put(u.getJob(), survivors.get(u.getJob()) + 1);
+				survivors.put(u.getArchetype(), survivors.get(u.getArchetype()) + 1);
 			}
 		}
 		return survivors;
@@ -290,7 +287,7 @@ public class List {
 		while (it.hasNext()) {
 			@SuppressWarnings("rawtypes")
 			Map.Entry pair = (Map.Entry) it.next();
-			System.out.println(pair.getKey() + "s: " + pair.getValue());
+			System.out.println(pair.getKey() + ": " + pair.getValue());
 		}
 	}
 
@@ -307,16 +304,10 @@ public class List {
 		}
 	}
 
-	private static void scry(int i) {
-		for (int x = 0; x < i && x < arena.size(); x++) {
-			arena.get(x).printDetailedDescription(x + 1);
-		}
-	}
-
-	private static void addEachClass(int i, ArrayList<Deck> theArena) {
+	private static void addEachClass(int i) {
 		for (int x = 0; x < i; x++) {
 			deckList = new ListOfDecks();
-			addEach(deckList.getReleasedUnits(), theArena);
+			addEach(deckList.getReleasedUnits(), arena);
 		}
 		Collections.shuffle(arena);
 	}
