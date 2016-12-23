@@ -20,7 +20,7 @@ public class ClassList {
 		releasedClasses.add(new Canas());
 		releasedClasses.add(new Colm());
 		releasedClasses.add(new Cormag());
-		// releasedClasses.add(new Dart());
+		releasedClasses.add(new Dart());
 		// releasedClasses.add(new Dorcas());
 		releasedClasses.add(new Eirika());
 		releasedClasses.add(new Eliwood());
