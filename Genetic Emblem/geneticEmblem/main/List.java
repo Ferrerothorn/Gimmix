@@ -23,7 +23,7 @@ public class List {
 	static Scanner input = new Scanner(System.in);
 	static CustomUnitGenerator customUnitGenerator;
 	static ClassList classList;
-	static int defaultLevelForExperiments = 25;
+	static int defaultLevelForExperiments = 30;
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
