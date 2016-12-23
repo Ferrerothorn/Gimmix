@@ -1,13 +1,13 @@
 package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
-import geneticEmblem.weapons.Javelin;
+import geneticEmblem.weapons.IronLance;
 
 public class Ephraim extends Unit {
 
 	public Ephraim() {
 		this.setJob("Ephraim");
-		this.setWeapon(new Javelin());
+		this.setWeapon(new IronLance());
 		this.setHpBase(21);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(6);

@@ -1,13 +1,13 @@
 package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
-import geneticEmblem.weapons.IronSword;
+import geneticEmblem.weapons.SteelSword;
 
 public class Marisa extends Unit {
 
 	public Marisa() {
 		this.setJob("Marisa");
-		this.setWeapon(new IronSword());
+		this.setWeapon(new SteelSword());
 		this.setHpBase(20);
 		this.setBaseCrit(15);
 		this.setCurrentHp(this.getHpBase());

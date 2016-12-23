@@ -41,7 +41,7 @@ public class CustomUnitGenerator {
 		armory.add(new IronAxe());
 		armory.add(new IronBow());
 		armory.add(new IronLance());
-		armory.add(new IronSword());
+		armory.add(new SteelSword());
 		armory.add(new Javelin());
 		armory.add(new Lightning());
 		armory.add(new Rapier());

@@ -11,9 +11,9 @@ public class Lyon extends Unit {
 		this.setHpBase(16);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(6);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
-		this.setLuckBase(0);
+		this.setSkillBase(-5);
+		this.setSpeedBase(-7);
+		this.setLuckBase(-6);
 		this.setDefBase(2);
 		this.setResBase(1);
 

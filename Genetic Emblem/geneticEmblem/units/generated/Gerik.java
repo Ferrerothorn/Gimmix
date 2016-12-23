@@ -1,13 +1,13 @@
 package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
-import geneticEmblem.weapons.IronSword;
+import geneticEmblem.weapons.SteelSword;
 
 public class Gerik extends Unit {
 
 	public Gerik() {
 		this.setJob("Gerik");
-		this.setWeapon(new IronSword());
+		this.setWeapon(new SteelSword());
 		this.setHpBase(24);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(10);
