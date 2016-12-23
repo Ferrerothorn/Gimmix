@@ -10,9 +10,11 @@ public class ClassList {
 
 	public ClassList() {
 
+		releasedClasses.add(new Ephraim());
+
 		releasedClasses.add(new Amelia());
 		releasedClasses.add(new Artur());
-		// releasedClasses.add(new Astrid());
+		releasedClasses.add(new Astrid());
 		// releasedClasses.add(new Bartre());
 		// releasedClasses.add(new Boyd());
 		// releasedClasses.add(new Brom());
@@ -53,7 +55,7 @@ public class ClassList {
 		releasedClasses.add(new Larachel());
 		releasedClasses.add(new Largo());
 		// releasedClasses.add(new Lethe());
-		// releasedClasses.add(new Lowen());
+		releasedClasses.add(new Lowen());
 		// releasedClasses.add(new Lucius());
 		releasedClasses.add(new Lute());
 		releasedClasses.add(new Lyn());
@@ -62,7 +64,7 @@ public class ClassList {
 		// releasedClasses.add(new Marcia());
 		releasedClasses.add(new Marisa());
 		releasedClasses.add(new Marth());
-		// releasedClasses.add(new Mia());
+		releasedClasses.add(new Mia());
 		// releasedClasses.add(new Mordecai());
 		releasedClasses.add(new Natasha());
 		releasedClasses.add(new Neimi());
@@ -92,7 +94,7 @@ public class ClassList {
 		releasedClasses.add(new Ulki());
 		// releasedClasses.add(new Volke());
 		// releasedClasses.add(new Wil());
-		// releasedClasses.add(new Zihark());
+		releasedClasses.add(new Zihark());
 	}
 
 	public ArrayList<Unit> getReleasedUnits() {
@@ -103,7 +105,6 @@ public class ClassList {
 
 // releasedClasses.add(new Hector());
 // releasedClasses.add(new Ena());
-// releasedClasses.add(new Ephraim());
 // releasedClasses.add(new Muarim());
 // releasedClasses.add(new Naesala());
 // releasedClasses.add(new Tibarn());
