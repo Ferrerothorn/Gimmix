@@ -8,7 +8,7 @@ public class Beggar extends Unit {
 	public Beggar() {
 
 		this.setJob("Beggar");
-		this.setWeapon(new IronRake());
+		this.setWeapon(new Rake());
 		this.setHpBase(26);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(7);

@@ -67,43 +67,7 @@ public class Main {
 	}
 
 	private static void populateDeck() {
-		// Dredge
-		// addThisCard("Balustrade Spy", 4);
-		// addThisCard("Bridge From Below", 4);
-		// addThisCard("Cabal Therapy", 4);
-		// addThisCard("Dread Return", 4);
-		// addThisCard("Flame-Kin Zealot", 1);
-		// addThisCard("Flayer of the Hatebound", 1);
-		// addThisCard("Gitaxian Probe", 4);
-		// addThisCard("Golgari Grave Troll", 4);
-		// addThisCard("Golgari Thug", 3);
-		// addThisCard("Ichorid", 4);
-		// addThisCard("Narcomoeba", 4);
-		// addThisCard("Nether Shadow", 4);
-		// addThisCard("Phantasmagorian", 4);
-		// addThisCard("Prized Amalgam", 4);
-		// addThisCard("Shambling Shell", 3);
-		// addThisCard("Stinkweed Imp", 4);
-		// addThisCard("Street Wraith", 4);
-
-		// Burn
-		// addThisCard("Mountain", 18);
-		// addThisCard("Geier Reach", 2);
-		// addThisCard("Lightning Bolt", 4);
-		// addThisCard("Rift Bolt", 4);
-		// addThisCard("Lava Spike", 4);
-		// addThisCard("Magma Jet", 4);
-		// addThisCard("Browbeat", 4);
-		// addThisCard("Keldon Marauders", 4);
-		// addThisCard("Abbot of Keral Keep", 4);
-		// addThisCard("Needle Drop", 3);
-		// addThisCard("Chain Lightning", 3);
-		// addThisCard("Bedlam Reveler", 2);
-		// addThisCard("Searing Blaze", 2);
-		// addThisCard("Collective Defiance", 1);
-		// addThisCard("Exquisite Firecraft", 1);
-
-		// Goblin Land destruction
+		// Dark Dwellers
 		// addThisCard("Arbor Elf", 4);
 		// addThisCard("Birds of Paradise", 2);
 		// addThisCard("Avalanche Riders", 1);
@@ -121,7 +85,7 @@ public class Main {
 		// addThisCard("Forest", 11);
 		// addThisCard("Mountain", 7);
 
-		// N-RG
+		// NRG
 		// addThisCard("Aether Hub", 4);
 		// addThisCard("Cinder Glade", 3);
 		// addThisCard("Game Trail", 4);
@@ -140,26 +104,6 @@ public class Main {
 		// addThisCard("Collective Defiance", 3);
 		// addThisCard("Renegade Tactics", 2);
 		// addThisCard("Attune with Aether", 2);
-
-		// Lupine Vehicles
-		// addThisCard("Cinder Glade", 4);
-		// addThisCard("Game Trail", 4);
-		// addThisCard("Westvale Abbey", 1);
-		// addThisCard("Forest", 7);
-		// addThisCard("Mountain", 7);
-		// addThisCard("Elvish Mystic", 4);
-		// addThisCard("Lupine Prototype", 4);
-		// addThisCard("Noose Constrictor", 4);
-		// addThisCard("Bomat Courier", 4);
-		// addThisCard("Inventor's Apprentice", 4);
-		// addThisCard("Fiery Temper", 4);
-		// addThisCard("Demolition Stomper", 1);
-		// addThisCard("Bomat Bazaar Barge", 1);
-		// addThisCard("Aradara Express", 1);
-		// addThisCard("Fleetwheel Cruiser", 1);
-		// addThisCard("Nahiri's Wrath", 3);
-		// addThisCard("Ghirapur Orrery", 4);
-		// addThisCard("Lightning Axe", 2);
 
 		// SUPERFRIENDS
 		// addThisCard("Chandra, Flamecaller", 2);
@@ -200,26 +144,27 @@ public class Main {
 		// addThisCard("Evolving Wilds", 2);
 
 		//MUD
-		addThisCard("Lodestone Golem", 4);
-		addThisCard("Smokestack", 4);
-		addThisCard("Cloudpost", 4);
-		addThisCard("Metalworker", 4);
-		addThisCard("Tangle Wire", 4);
-		addThisCard("Glimmerpost", 4);
-		addThisCard("Steel Hellkite", 3);
-		addThisCard("Trinisphere", 4);
-		addThisCard("Thespian's Stage", 4);
-		addThisCard("Wurmcoil Engine", 2);
-		addThisCard("Thorn of Amethyst", 4);
-		addThisCard("Crystal Vein", 4);
-		addThisCard("Winter Orb", 2);
-		addThisCard("Inventor's Fair", 4);
-		addThisCard("Expedition Map", 3);
-		addThisCard("Buried Ruin", 4);
-		addThisCard("Mind's Eye", 1);
-		addThisCard("Ghirapur Orrery", 1);
-		addThisCard("Staff of Nin", 1);
+//		addThisCard("Lodestone Golem", 4);
+//		addThisCard("Smokestack", 4);
+//		addThisCard("Cloudpost", 4);
+//		addThisCard("Metalworker", 4);
+//		addThisCard("Tangle Wire", 4);
+//		addThisCard("Glimmerpost", 4);
+//		addThisCard("Steel Hellkite", 3);
+//		addThisCard("Trinisphere", 4);
+//		addThisCard("Thespian's Stage", 4);
+//		addThisCard("Wurmcoil Engine", 1);
+//		addThisCard("Thorn of Amethyst", 4);
+//		addThisCard("Crystal Vein", 4);
+//		addThisCard("Winter Orb", 2);
+//		addThisCard("Inventor's Fair", 4);
+//		addThisCard("Expedition Map", 3);
+//		addThisCard("Buried Ruin", 4);
+//		addThisCard("Ghirapur Orrery", 1);
+//		addThisCard("Staff of Nin", 1);
+//		addThisCard("Bottled Cloister", 1);
 
+		//Maverick
 		// addThisCard("Birds of Paradise", 4);
 		// addThisCard("Dryad Arbor", 1);
 		// addThisCard("Scavenging Ooze", 2);
@@ -248,30 +193,31 @@ public class Main {
 		
 		
 		// Shardless BUG
-//		addThisCard("Shardless Agent", 4);
-//		addThisCard("Ancestral Vision", 4);
-//		addThisCard("Evolving Wilds", 4);
-//		addThisCard("Tarmogoyf", 4);
-//		addThisCard("Brainstorm", 4);
-//		addThisCard("Opulent Palace", 4);
-//		addThisCard("Deathrite Shaman", 4);
-//		addThisCard("Abrupt Decay", 4);
-//		addThisCard("Island", 2);
-//		addThisCard("Baleful Strix", 3);
-//		addThisCard("Force of Will", 3);
-//		addThisCard("Swamp", 2);
-//		addThisCard("Leovold-Emissary of Trest", 2);
-//		addThisCard("Hymn to Tourach", 2);
-//		addThisCard("Forest", 2);
-//		addThisCard("Toxic Deluge", 1);
-//		addThisCard("Underground River", 2);
-//		addThisCard("Disfigure", 1);
-//		addThisCard("Yavimaya Coast", 2);
-//		addThisCard("Sylvan Library", 1);
-//		addThisCard("Llanowar Wastes", 2);
-//		addThisCard("Golgari Charm", 1);
-//		addThisCard("Wasteland", 1);
-//		addThisCard("Ponder", 1);
+		addThisCard("Shardless Agent", 4);
+		addThisCard("Tarmogoyf", 4);
+		addThisCard("Deathrite Shaman", 4);
+		addThisCard("Baleful Strix", 3);
+		addThisCard("Leovold EoTt", 2);
+		
+		addThisCard("Ancestral Vision", 4);
+		addThisCard("Brainstorm", 4);
+		addThisCard("Abrupt Decay", 4);
+		addThisCard("Force of Will", 3);
+		addThisCard("Jace TMS", 2);
+		addThisCard("Hymn to Tourach", 2);
+		addThisCard("Toxic Deluge", 1);
+		addThisCard("Sylvan Library", 1);
+		addThisCard("Golgari Charm", 1);
+
+		addThisCard("Opulent Palace", 4);
+		addThisCard("Evolving Wilds", 4);
+		addThisCard("Island", 2);
+		addThisCard("Swamp", 2);
+		addThisCard("Forest", 2);
+		addThisCard("Underground River", 2);
+		addThisCard("Yavimaya Coast", 2);
+		addThisCard("Llanowar Wastes", 2);
+		addThisCard("Wasteland", 1);
 
 		// Colossus Affinity
 		// addThisCard("Sunken Hollow", 3);

@@ -2,14 +2,14 @@ package geneticMaple.weapons;
 
 import geneticMaple.weapons.Weapon;
 
-public class IronGun extends Weapon {
+public class Bow extends Weapon {
 
-	public IronGun() {
-		super.setTrinity("Seafare");
+	public Bow() {
+		super.setTrinity("Bow");
 		super.setPow(6);
 		super.setAcc(85);
 		super.setPhys(true);
-		super.setName("IronGun");
+		super.addTrait("Arrow");
+		super.setName("IronBow");
 	}
-
 }

@@ -7,7 +7,7 @@ public class FirePoison extends Unit {
 
 	public FirePoison() {
 		this.setJob("Fire / Poison");
-		this.setWeapon(new Flux());
+		this.setWeapon(new PoisonMagic());
 		this.setHpBase(24);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(6);

@@ -8,7 +8,7 @@ public class Crossbowman extends Unit {
 	public Crossbowman() {
 
 		this.setJob("Crossbowman");
-		this.setWeapon(new IronCrossbow());
+		this.setWeapon(new Crossbow());
 		this.setHpBase(27);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(8);

@@ -11,5 +11,4 @@ public class IronAxe extends Weapon {
 		super.setPhys(true);
 		super.setName("IronAxe");
 	}
-
 }

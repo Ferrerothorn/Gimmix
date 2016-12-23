@@ -1,13 +1,13 @@
 package geneticMaple.units.generated;
 
 import geneticMaple.units.factory.Unit;
-import geneticMaple.weapons.KannaFan;
+import geneticMaple.weapons.Fan;
 
 public class Kanna extends Unit {
 
 	public Kanna() {
 		this.setJob("Kanna");
-		this.setWeapon(new KannaFan());
+		this.setWeapon(new Fan());
 	    this.setHpBase(23);
 	    this.setCurrentHp(this.getHpBase());
 		this.setStrBase(8);

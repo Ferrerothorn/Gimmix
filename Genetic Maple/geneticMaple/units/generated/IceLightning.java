@@ -1,13 +1,13 @@
 package geneticMaple.units.generated;
 
 import geneticMaple.units.factory.Unit;
-import geneticMaple.weapons.Lightning;
+import geneticMaple.weapons.LightningMagic;
 
 public class IceLightning extends Unit {
 
 	public IceLightning() {
 		this.setJob("Ice / Lightning");
-		this.setWeapon(new Lightning());
+		this.setWeapon(new LightningMagic());
 		this.setHpBase(24);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(9);

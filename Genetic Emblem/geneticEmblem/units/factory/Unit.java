@@ -255,10 +255,6 @@ public abstract class Unit {
 			hitDamage = thisPower - target.ResBase;
 		}
 
-		if (this.weapon.getTraits().contains("Arrow") && target.getWeapon().getTraits().contains("Shield")) {
-			hitDamage /= 1.5;
-		}
-
 		if (hitDamage < 0) {
 			hitDamage = 0;
 		}
@@ -280,15 +276,6 @@ public abstract class Unit {
 	private int triangleDamageBonus(Unit target) {
 		int bonus = 0;
 
-		if (this.weapon.getTrinity().contains("Bow") && target.weapon.getTrinity().contains("Claw")) {
-			bonus += 1;
-		}
-		if (this.weapon.getTrinity().contains("Claw") && target.weapon.getTrinity().contains("Shield")) {
-			bonus += 1;
-		}
-		if (this.weapon.getTrinity().contains("Shield") && target.weapon.getTrinity().contains("Bow")) {
-			bonus += 1;
-		}
 		if (this.weapon.getTrinity().contains("Lance") && target.weapon.getTrinity().contains("Sword")) {
 			bonus += 1;
 		}
@@ -307,6 +294,7 @@ public abstract class Unit {
 		if (this.weapon.getTrinity().contains("Dark") && target.weapon.getTrinity().contains("Anima")) {
 			bonus += 1;
 		}
+		
 		if (this.weapon.getTrinity().contains("Sword") && target.weapon.getTrinity().contains("Lance")) {
 			bonus -= 1;
 		}
@@ -323,15 +311,6 @@ public abstract class Unit {
 			bonus -= 1;
 		}
 		if (this.weapon.getTrinity().contains("Anima") && target.weapon.getTrinity().contains("Dark")) {
-			bonus -= 1;
-		}
-		if (this.weapon.getTrinity().contains("Claw") && target.weapon.getTrinity().contains("Bow")) {
-			bonus -= 1;
-		}
-		if (this.weapon.getTrinity().contains("Shield") && target.weapon.getTrinity().contains("Claw")) {
-			bonus -= 1;
-		}
-		if (this.weapon.getTrinity().contains("Bow") && target.weapon.getTrinity().contains("Shield")) {
 			bonus -= 1;
 		}
 		return bonus;
@@ -339,15 +318,6 @@ public abstract class Unit {
 
 	private int triangleAccuracyBonus(Unit target) {
 		int bonus = 0;
-		if (this.weapon.getTrinity().contains("Bow") && target.weapon.getTrinity().contains("Claw")) {
-			bonus += 15;
-		}
-		if (this.weapon.getTrinity().contains("Claw") && target.weapon.getTrinity().contains("Shield")) {
-			bonus += 15;
-		}
-		if (this.weapon.getTrinity().contains("Shield") && target.weapon.getTrinity().contains("Bow")) {
-			bonus += 15;
-		}
 		if (this.weapon.getTrinity().contains("Lance") && target.weapon.getTrinity().contains("Sword")) {
 			bonus += 15;
 		}
@@ -382,15 +352,6 @@ public abstract class Unit {
 			bonus -= 15;
 		}
 		if (this.weapon.getTrinity().contains("Anima") && target.weapon.getTrinity().contains("Dark")) {
-			bonus -= 15;
-		}
-		if (this.weapon.getTrinity().contains("Claw") && target.weapon.getTrinity().contains("Bow")) {
-			bonus -= 15;
-		}
-		if (this.weapon.getTrinity().contains("Shield") && target.weapon.getTrinity().contains("Claw")) {
-			bonus -= 15;
-		}
-		if (this.weapon.getTrinity().contains("Bow") && target.weapon.getTrinity().contains("Shield")) {
 			bonus -= 15;
 		}
 		return bonus;

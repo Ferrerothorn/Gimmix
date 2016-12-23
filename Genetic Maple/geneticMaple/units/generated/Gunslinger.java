@@ -8,7 +8,7 @@ public class Gunslinger extends Unit {
 	public Gunslinger() {
 
 		this.setJob("Gunslinger");
-		this.setWeapon(new IronGun());
+		this.setWeapon(new Gun());
 		this.setHpBase(24);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(7);

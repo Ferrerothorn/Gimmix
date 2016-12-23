@@ -36,15 +36,15 @@ public class CustomUnitGenerator {
 	Weapon weapon;
 
 	private void fillWeaponLists() {
-		weaponList.add(new IronSword());
-		weaponList.add(new IronLance());
-		weaponList.add(new IronAxe());
-		weaponList.add(new Fire());
-		weaponList.add(new Flux());
-		weaponList.add(new IronBow());
-		weaponList.add(new Lightning());
-
-
+		armory.add(new Fire());
+		armory.add(new Flux());
+		armory.add(new IronAxe());
+		armory.add(new IronBow());
+		armory.add(new IronLance());
+		armory.add(new IronSword());
+		armory.add(new Javelin());
+		armory.add(new Lightning());
+		armory.add(new Rapier());
 	}
 
 	public void generateNewUnitStats() {
@@ -163,11 +163,12 @@ public class CustomUnitGenerator {
 		defBase += 2;
 		resBase = r.nextInt(6);
 		resBase += 1;
-		int sumBases = strBase + skillBase + speedBase + luckBase + defBase + resBase;
+		// int sumBases = strBase + skillBase + speedBase + luckBase + defBase +
+		// resBase;
 
-		if (sumBases != 37) {
-			generateBases(r);
-		}
+		// if (sumBases != 37) {
+		// generateBases(r);
+		// }
 	}
 
 	public void chooseWeapon(Random r) {
@@ -187,11 +188,11 @@ public class CustomUnitGenerator {
 		defCap += 20;
 		resCap = r.nextInt(11);
 		resCap += 20;
-		int sumCaps = strCap + speedCap + skillCap + defCap + resCap;
+		// int sumCaps = strCap + speedCap + skillCap + defCap + resCap;
 
-		if (sumCaps < 127 || sumCaps > 131) {
-			generateCaps(r);
-		}
+		// if (sumCaps < 127 || sumCaps > 131) {
+		// generateCaps(r);
+		// }
 
 	}
 
@@ -220,13 +221,13 @@ public class CustomUnitGenerator {
 		resGr *= 5;
 		int sumGRs = hpGr + strGr + skillGr + speedGr + luckGr + defGr + resGr;
 
-		if (sumGRs != 320) {
+		if (sumGRs < 290 || sumGRs > 360) {
 			generateGRs(r);
 		}
 	}
 
 	public String generateCode(double stDev) {
-		return ("" + '\n' + "import geneticEmblem.units.factory.Unit;" + '\n' + "import geneticEmblem.weapons.*;" + '\n'
+		return ("package geneticEmblem.units.generated;" + '\n' + '\n' + "import geneticEmblem.units.factory.Unit;" + '\n' + "import geneticEmblem.weapons.*;" + '\n'
 				+ '\n' + "public class " + stDev + " extends Unit { " + '\n' + '\n' + "public " + stDev + "() {" + '\n'
 				+ '\n' + "    this.setJob(\"" + stDev + "\");" + '\n' + "    this.setWeapon(new " + weapon.getName()
 				+ "());" + '\n' + "    this.setHpBase(" + baseHP + ");" + '\n'

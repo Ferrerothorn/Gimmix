@@ -1,13 +1,13 @@
 package geneticMaple.units.generated;
 
-import geneticMaple.weapons.IronAxe;
+import geneticMaple.weapons.Axe;
 import geneticMaple.units.factory.Unit;
 
 public class DemonSlayer extends Unit {
 
 	public DemonSlayer() {
 		this.setJob("Demon Slayer");
-		this.setWeapon(new IronAxe());
+		this.setWeapon(new Axe());
 		this.setHpBase(28);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(7);

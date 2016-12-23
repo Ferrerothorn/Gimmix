@@ -2,9 +2,9 @@ package geneticMaple.weapons;
 
 import geneticMaple.weapons.Weapon;
 
-public class KannaFan extends Weapon {
+public class Fan extends Weapon {
 
-	public KannaFan() {
+	public Fan() {
 		super.setTrinity("Magic");
 		super.setTrinity("Stealth");
 		super.setTrinity("Seafare");

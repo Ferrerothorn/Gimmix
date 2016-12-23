@@ -2,9 +2,9 @@ package geneticMaple.weapons;
 
 import geneticMaple.weapons.Weapon;
 
-public class IronAxe extends Weapon {
+public class Axe extends Weapon {
 
-	public IronAxe() {
+	public Axe() {
 		super.setTrinity("Melee");
 		super.setPow(8);
 		super.setAcc(75);

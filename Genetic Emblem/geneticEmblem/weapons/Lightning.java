@@ -5,7 +5,7 @@ import geneticEmblem.weapons.Weapon;
 public class Lightning extends Weapon {
 
 	public Lightning() {
-		super.setTrinity("Magic");
+		super.setTrinity("Light");
 		super.setPow(4);
 		super.setAcc(95);
 		super.setCrit(5);

@@ -1,13 +1,13 @@
 package geneticMaple.units.generated;
 
 import geneticMaple.units.factory.Unit;
-import geneticMaple.weapons.IronClaw;
+import geneticMaple.weapons.Claw;
 
 public class Assassin extends Unit {
 
 	public Assassin() {
 		this.setJob("Assassin");
-		this.setWeapon(new IronClaw());
+		this.setWeapon(new Claw());
 		this.setHpBase(25);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(8);

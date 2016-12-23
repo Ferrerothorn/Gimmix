@@ -1,13 +1,13 @@
 package geneticMaple.units.generated;
 
 import geneticMaple.units.factory.Unit;
-import geneticMaple.weapons.IronDagger;
+import geneticMaple.weapons.Dagger;
 
 public class Bandit extends Unit {
 
 	public Bandit() {
 		this.setJob("Bandit");
-		this.setWeapon(new IronDagger());
+		this.setWeapon(new Dagger());
 	    this.setHpBase(26);
 	    this.setCurrentHp(this.getHpBase());
 		this.setStrBase(7);

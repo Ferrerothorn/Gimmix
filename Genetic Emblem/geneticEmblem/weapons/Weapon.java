@@ -10,8 +10,7 @@ public abstract class Weapon {
 	public int acc;
 	public int pow;
 	public int wepCrit;
-	public ArrayList<String> traits = new ArrayList<String>();
-
+	
 	public boolean isPhys() {
 		return phys;
 	}
@@ -50,14 +49,6 @@ public abstract class Weapon {
 
 	public void setCrit(int newCrit) {
 		wepCrit = newCrit;
-	}
-
-	public void addTrait(String string) {
-		traits.add(string);
-	}
-
-	public ArrayList<String> getTraits() {
-		return traits;
 	}
 
 	public String getName() {

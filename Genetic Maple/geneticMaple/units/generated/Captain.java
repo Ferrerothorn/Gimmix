@@ -8,7 +8,7 @@ public class Captain extends Unit {
 	public Captain() {
 
 		this.setJob("Captain");
-		this.setWeapon(new IronGun());
+		this.setWeapon(new Gun());
 		this.setHpBase(25);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(7);

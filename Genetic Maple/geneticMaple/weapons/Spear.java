@@ -2,14 +2,14 @@ package geneticMaple.weapons;
 
 import geneticMaple.weapons.Weapon;
 
-public class LightBrand extends Weapon {
+public class Spear extends Weapon {
 
-	public LightBrand() {
-		super.setTrinity("Magic");
+	public Spear() {
 		super.setTrinity("Melee");
 		super.setPow(7);
-		super.setAcc(90);
+		super.setAcc(80);
 		super.setPhys(true);
-		super.setName("LightBrand");
+		super.setName("IronLance");
 	}
+
 }

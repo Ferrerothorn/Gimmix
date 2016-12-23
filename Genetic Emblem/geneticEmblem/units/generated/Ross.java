@@ -9,6 +9,7 @@ public class Ross extends Unit {
 		this.setJob("Ross");
 		this.setWeapon(new IronAxe());
 		this.setHpBase(21);
+		this.setBaseCrit(15);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(9);
 		this.setSkillBase(5);
@@ -26,10 +27,9 @@ public class Ross extends Unit {
 		this.setResGr(20);
 
 		this.setStrCap(30);
-		this.setSkillCap(28);
-		this.setSpeedCap(26);
-		this.setDefCap(26);
-		this.setResCap(22);
+		this.setSkillCap(29);
+		this.setSpeedCap(28);
+		this.setDefCap(23);
+		this.setResCap(21);
 	}
-
 }

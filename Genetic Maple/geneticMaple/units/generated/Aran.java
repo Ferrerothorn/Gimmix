@@ -8,7 +8,7 @@ public class Aran extends Unit {
 	public Aran() {
 
 		this.setJob("Aran");
-		this.setWeapon(new IronLance());
+		this.setWeapon(new Spear());
 		this.setHpBase(28);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(8);

@@ -2,9 +2,9 @@ package geneticMaple.weapons;
 
 import geneticMaple.weapons.Weapon;
 
-public class IronDagger extends Weapon {
+public class Dagger extends Weapon {
 
-	public IronDagger() {
+	public Dagger() {
 		super.setTrinity("Stealth");
 		super.setPow(5);
 		super.setAcc(100);

@@ -1,13 +1,13 @@
 package geneticMaple.units.generated;
 
 import geneticMaple.units.factory.Unit;
-import geneticMaple.weapons.IronLance;
+import geneticMaple.weapons.Spear;
 
 public class Spearman extends Unit {
 
 	public Spearman() {
 		this.setJob("Spearman");
-		this.setWeapon(new IronLance());
+		this.setWeapon(new Spear());
 		this.setHpBase(28);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(8);

@@ -2,15 +2,14 @@ package geneticMaple.weapons;
 
 import geneticMaple.weapons.Weapon;
 
-public class SteelBow extends Weapon {
+public class Crossbow extends Weapon {
 
-	public SteelBow() {
+	public Crossbow() {
 		super.setTrinity("Bow");
-		super.setPow(9);
+		super.setTrinity("Melee");
+		super.setPow(7);
 		super.setAcc(70);
 		super.setPhys(true);
-		super.addTrait("Arrow");
-		super.setName("SteelBow");
+		super.setName("IronCrossbow");
 	}
-
 }

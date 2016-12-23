@@ -1,13 +1,13 @@
 package geneticMaple.units.generated;
 
 import geneticMaple.units.factory.Unit;
-import geneticMaple.weapons.Fire;
+import geneticMaple.weapons.FireMagic;
 
 public class FlameWizard extends Unit {
 
 	public FlameWizard() {
 		this.setJob("Flame Wizard");
-		this.setWeapon(new Fire());
+		this.setWeapon(new FireMagic());
 		this.setHpBase(23);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(8);

@@ -8,7 +8,7 @@ public class DualBlade extends Unit {
 	public DualBlade() {
 
 		this.setJob("Dual Blade");
-		this.setWeapon(new IronDagger());
+		this.setWeapon(new Dagger());
 		this.setHpBase(23);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(8);
