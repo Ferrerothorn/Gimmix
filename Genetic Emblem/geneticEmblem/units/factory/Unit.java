@@ -294,7 +294,7 @@ public abstract class Unit {
 		if (this.weapon.getTrinity().contains("Dark") && target.weapon.getTrinity().contains("Anima")) {
 			bonus += 1;
 		}
-		
+
 		if (this.weapon.getTrinity().contains("Sword") && target.weapon.getTrinity().contains("Lance")) {
 			bonus -= 1;
 		}
@@ -379,6 +379,11 @@ public abstract class Unit {
 				victor = this;
 			}
 		} else {
+			
+			if (1 == 0/*Opponent is an archer*/) {
+		}
+			
+		else {
 			int turnCounter = 1;
 			while (this.isAlive() && opponent.isAlive() && turnCounter < 51) {
 				if (this.isAlive() && opponent.isAlive()) {
@@ -413,6 +418,7 @@ public abstract class Unit {
 					victor = this;
 				}
 			}
+		}
 		}
 		return victor;
 	}
