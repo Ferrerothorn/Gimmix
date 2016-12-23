@@ -10,12 +10,11 @@ public class ClassList {
 
 	public ClassList() {
 
-		releasedClasses.add(new Ephraim());
-
 		releasedClasses.add(new Amelia());
 		releasedClasses.add(new Artur());
 		releasedClasses.add(new Astrid());
-		// releasedClasses.add(new Bartre());
+		// releasedClasses.add(new Barst());
+		releasedClasses.add(new Bartre());
 		// releasedClasses.add(new Boyd());
 		// releasedClasses.add(new Brom());
 		releasedClasses.add(new Canas());
@@ -51,7 +50,6 @@ public class ClassList {
 		releasedClasses.add(new Kieran());
 		releasedClasses.add(new Knoll());
 		releasedClasses.add(new Kyle());
-		releasedClasses.add(new Kyle());
 		releasedClasses.add(new Larachel());
 		releasedClasses.add(new Largo());
 		// releasedClasses.add(new Lethe());
@@ -70,22 +68,19 @@ public class ClassList {
 		releasedClasses.add(new Neimi());
 		releasedClasses.add(new Nephenee());
 		releasedClasses.add(new Nino());
-		// releasedClasses.add(new Oscar());
-		releasedClasses.add(new Oswin());
+		releasedClasses.add(new Oscar());
 		releasedClasses.add(new Pent());
-		// releasedClasses.add(new Priscilla());
-		// releasedClasses.add(new Ranulf());
+		releasedClasses.add(new Priscilla());
 		// releasedClasses.add(new Rath());
 		// releasedClasses.add(new Raven());
 		releasedClasses.add(new Rebecca());
-		// releasedClasses.add(new Renault());
 		// releasedClasses.add(new Rhys());
 		// releasedClasses.add(new Rolf());
 		releasedClasses.add(new Ross());
 		// releasedClasses.add(new Sain());
 		// releasedClasses.add(new Serra());
 		// releasedClasses.add(new Shinon());
-		// releasedClasses.add(new Soren());
+		releasedClasses.add(new Soren());
 		// releasedClasses.add(new Sothe());
 		// releasedClasses.add(new Stefan());
 		releasedClasses.add(new Tana());
@@ -103,6 +98,9 @@ public class ClassList {
 
 }
 
+// releasedClasses.add(new Oswin());
+// releasedClasses.add(new Ranulf());
+// releasedClasses.add(new Ephraim());
 // releasedClasses.add(new Hector());
 // releasedClasses.add(new Ena());
 // releasedClasses.add(new Muarim());

@@ -1,5 +1,6 @@
 package geneticEmblem.units.factory;
 
+import java.util.ArrayList;
 import java.util.Random;
 import geneticEmblem.weapons.Weapon;
 
@@ -366,61 +367,65 @@ public abstract class Unit {
 
 	public Unit fight(Unit opponent) {
 
-		Unit victor = null;
-
 		if (this.getJob().equals(opponent.getJob())) {
 			int thistotal = this.getHpBase() + this.getStrBase() + this.getSkillBase() + this.getLuckBase()
 					+ this.getSpeedBase() + this.getDefBase() + this.getResBase();
 			int unit2total = opponent.getHpBase() + opponent.getStrBase() + opponent.getSkillBase()
 					+ opponent.getLuckBase() + opponent.getSpeedBase() + opponent.getDefBase() + opponent.getResBase();
 			if (unit2total > thistotal) {
-				victor = opponent;
+				return opponent;
 			} else {
-				victor = this;
+				return this;
 			}
 		} else {
-			
-			if (1 == 0/*Opponent is an archer*/) {
-		}
-			
-		else {
-			int turnCounter = 1;
-			while (this.isAlive() && opponent.isAlive() && turnCounter < 51) {
-				if (this.isAlive() && opponent.isAlive()) {
-					this.swingAt(opponent);
-				}
-				if (this.isAlive() && opponent.isAlive()) {
-					opponent.swingAt(this);
-				}
-				if (this.isAlive() && opponent.isAlive() && this.greatlyOutspeeds(opponent)
-						&& !opponent.greatlyOutspeeds(this)) {
-					this.swingAt(opponent);
-				} else if (this.isAlive() && opponent.isAlive() && !this.greatlyOutspeeds(opponent)
-						&& opponent.greatlyOutspeeds(this)) {
-					opponent.swingAt(this);
-				}
-				turnCounter++;
+
+			ArrayList<String> opponentWepType = opponent.getWeapon().getTrinity();
+			ArrayList<String> myWepType = this.getWeapon().getTrinity();
+
+			if ((opponentWepType.contains("Bow") || opponentWepType.contains("Light")
+					|| opponentWepType.contains("Anima") || opponentWepType.contains("Dark"))
+					&& (!myWepType.contains("Bow") && !myWepType.contains("Light") && !myWepType.contains("Anima")
+							&& !myWepType.contains("Dark"))) {
+				return opponent.fight(this);
 			}
 
-			if (this.isAlive() && !opponent.isAlive()) {
-				victor = this;
-			} else if (!this.isAlive() && opponent.isAlive()) {
-				victor = opponent;
-			} else {
-				int thistotal = this.getHpBase() + this.getStrBase() + this.getSkillBase() + this.getLuckBase()
-						+ this.getSpeedBase() + this.getDefBase() + this.getResBase();
-				int unit2total = opponent.getHpBase() + opponent.getStrBase() + opponent.getSkillBase()
-						+ opponent.getLuckBase() + opponent.getSpeedBase() + opponent.getDefBase()
-						+ opponent.getResBase();
-				if (unit2total > thistotal) {
-					victor = opponent;
+			else {
+				int turnCounter = 1;
+				while (this.isAlive() && opponent.isAlive() && turnCounter < 51) {
+					if (this.isAlive() && opponent.isAlive()) {
+						this.swingAt(opponent);
+					}
+					if (this.isAlive() && opponent.isAlive()) {
+						opponent.swingAt(this);
+					}
+					if (this.isAlive() && opponent.isAlive() && this.greatlyOutspeeds(opponent)
+							&& !opponent.greatlyOutspeeds(this)) {
+						this.swingAt(opponent);
+					} else if (this.isAlive() && opponent.isAlive() && !this.greatlyOutspeeds(opponent)
+							&& opponent.greatlyOutspeeds(this)) {
+						opponent.swingAt(this);
+					}
+					turnCounter++;
+				}
+
+				if (this.isAlive() && !opponent.isAlive()) {
+					return this;
+				} else if (!this.isAlive() && opponent.isAlive()) {
+					return opponent;
 				} else {
-					victor = this;
+					int thistotal = this.getHpBase() + this.getStrBase() + this.getSkillBase() + this.getLuckBase()
+							+ this.getSpeedBase() + this.getDefBase() + this.getResBase();
+					int unit2total = opponent.getHpBase() + opponent.getStrBase() + opponent.getSkillBase()
+							+ opponent.getLuckBase() + opponent.getSpeedBase() + opponent.getDefBase()
+							+ opponent.getResBase();
+					if (unit2total > thistotal) {
+						return opponent;
+					} else {
+						return this;
+					}
 				}
 			}
 		}
-		}
-		return victor;
 	}
 
 	public void levelUp() {
