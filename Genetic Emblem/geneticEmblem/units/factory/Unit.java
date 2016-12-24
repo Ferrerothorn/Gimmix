@@ -1,6 +1,5 @@
 package geneticEmblem.units.factory;
 
-import java.util.ArrayList;
 import java.util.Random;
 import geneticEmblem.weapons.Weapon;
 
@@ -379,13 +378,10 @@ public abstract class Unit {
 			}
 		} else {
 
-			ArrayList<String> opponentWepType = opponent.getWeapon().getTrinity();
-			ArrayList<String> myWepType = this.getWeapon().getTrinity();
+			Weapon opponentWep = opponent.getWeapon();
+			Weapon myWep = this.getWeapon();
 
-			if ((opponentWepType.contains("Bow") || opponentWepType.contains("Light")
-					|| opponentWepType.contains("Anima") || opponentWepType.contains("Dark"))
-					&& (!myWepType.contains("Bow") && !myWepType.contains("Light") && !myWepType.contains("Anima")
-							&& !myWepType.contains("Dark"))) {
+			if (opponentWep.getTraits().contains("Ranged") && !myWep.getTraits().contains("Ranged")) {
 				return opponent.fight(this);
 			}
 

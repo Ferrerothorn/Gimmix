@@ -6,6 +6,7 @@ public abstract class Weapon {
 
 	public boolean phys;
 	public ArrayList<String> trinity = new ArrayList<String>();
+	public ArrayList<String> traits = new ArrayList<String>();
 	public String name;
 	public int acc;
 	public int pow;
@@ -59,4 +60,11 @@ public abstract class Weapon {
 		name = string;
 	}
 
+	public ArrayList<String> getTraits() {
+		return traits;
+	}
+	
+	public void setTraits(String trait) {
+		traits.add(trait);
+	}
 }

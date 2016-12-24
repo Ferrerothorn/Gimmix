@@ -2,12 +2,13 @@ package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.Fire;
+import geneticEmblem.weapons.Wind;
 
 public class Soren extends Unit {
 
 	public Soren() {
 		this.setJob("Soren");
-		this.setWeapon(new Fire());
+		this.setWeapon(new Wind());
 		this.setHpBase(18);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(6);

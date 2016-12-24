@@ -2,14 +2,14 @@ package geneticEmblem.weapons;
 
 import geneticEmblem.weapons.Weapon;
 
-public class Fire extends Weapon {
+public class Wind extends Weapon {
 
-	public Fire() {
+	public Wind() {
 		super.setTrinity("Anima");
 		super.setTraits("Ranged");
-		super.setPow(5);
-		super.setAcc(90);
+		super.setPow(2);
+		super.setAcc(100);
 		super.setPhys(false);
-		super.setName("Fire");
+		super.setName("Wind");
 	}
 }
