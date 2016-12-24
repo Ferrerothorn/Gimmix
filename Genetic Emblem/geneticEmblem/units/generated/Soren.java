@@ -1,7 +1,6 @@
 package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
-import geneticEmblem.weapons.Fire;
 import geneticEmblem.weapons.Wind;
 
 public class Soren extends Unit {
