@@ -1,4 +1,4 @@
-package geneticEmblem.units.generated;
+package geneticEmblem.units.banlist;
 
 import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.IronAxe;
