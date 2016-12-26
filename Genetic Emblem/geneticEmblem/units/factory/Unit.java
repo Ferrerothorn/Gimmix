@@ -1,11 +1,13 @@
 package geneticEmblem.units.factory;
 
+import java.util.ArrayList;
 import java.util.Random;
 import geneticEmblem.weapons.Weapon;
 
 public abstract class Unit {
 
 	String job = "";
+	ArrayList<String> traits = new ArrayList<String>();
 	Weapon weapon;
 	int lv = 1;
 	int currentHp;
@@ -247,6 +249,10 @@ public abstract class Unit {
 		int thisAccu = 2 * this.getSkillBase() + this.LuckBase + weapon.getAcc() + this.triangleAccuracyBonus(target);
 		int thisPower = this.StrBase + weapon.getPow() + this.triangleDamageBonus(target);
 
+		if (target.getTraits().contains("Flying") && this.getWeapon().getTraits().contains("Arrow")) {
+			thisPower += (weapon.getPow() * 2);
+		}
+
 		int thisCrit = this.SkillBase / 2 + this.getBaseCrit() + this.weapon.getCrit() - target.getLuckBase();
 		int hitDamage;
 		if (this.weapon.isPhys()) {
@@ -378,50 +384,70 @@ public abstract class Unit {
 			}
 		} else {
 
-			Weapon opponentWep = opponent.getWeapon();
-			Weapon myWep = this.getWeapon();
-
-			if (opponentWep.getTraits().contains("Ranged") && !myWep.getTraits().contains("Ranged")) {
-				return opponent.fight(this);
+			int turnCounter = 1;
+			while (this.isAlive() && opponent.isAlive() && turnCounter < 51) {
+				if (this.isAlive() && opponent.isAlive()) {
+					this.swingAt(opponent);
+				}
+				if (this.isAlive() && opponent.isAlive()) {
+					opponent.swingAt(this);
+				}
+				if (this.isAlive() && opponent.isAlive() && this.greatlyOutspeeds(opponent)
+						&& !opponent.greatlyOutspeeds(this)) {
+					this.swingAt(opponent);
+				} else if (this.isAlive() && opponent.isAlive() && !this.greatlyOutspeeds(opponent)
+						&& opponent.greatlyOutspeeds(this)) {
+					opponent.swingAt(this);
+				}
+				turnCounter++;
 			}
 
-			else {
-				int turnCounter = 1;
-				while (this.isAlive() && opponent.isAlive() && turnCounter < 51) {
-					if (this.isAlive() && opponent.isAlive()) {
-						this.swingAt(opponent);
-					}
-					if (this.isAlive() && opponent.isAlive()) {
-						opponent.swingAt(this);
-					}
-					if (this.isAlive() && opponent.isAlive() && this.greatlyOutspeeds(opponent)
-							&& !opponent.greatlyOutspeeds(this)) {
-						this.swingAt(opponent);
-					} else if (this.isAlive() && opponent.isAlive() && !this.greatlyOutspeeds(opponent)
-							&& opponent.greatlyOutspeeds(this)) {
-						opponent.swingAt(this);
-					}
-					turnCounter++;
-				}
-
-				if (this.isAlive() && !opponent.isAlive()) {
-					return this;
-				} else if (!this.isAlive() && opponent.isAlive()) {
+			if (this.isAlive() && !opponent.isAlive()) {
+				return this;
+			} else if (!this.isAlive() && opponent.isAlive()) {
+				return opponent;
+			} else {
+				int thistotal = this.getHpBase() + this.getStrBase() + this.getSkillBase() + this.getLuckBase()
+						+ this.getSpeedBase() + this.getDefBase() + this.getResBase();
+				int unit2total = opponent.getHpBase() + opponent.getStrBase() + opponent.getSkillBase()
+						+ opponent.getLuckBase() + opponent.getSpeedBase() + opponent.getDefBase()
+						+ opponent.getResBase();
+				if (unit2total > thistotal) {
 					return opponent;
 				} else {
-					int thistotal = this.getHpBase() + this.getStrBase() + this.getSkillBase() + this.getLuckBase()
-							+ this.getSpeedBase() + this.getDefBase() + this.getResBase();
-					int unit2total = opponent.getHpBase() + opponent.getStrBase() + opponent.getSkillBase()
-							+ opponent.getLuckBase() + opponent.getSpeedBase() + opponent.getDefBase()
-							+ opponent.getResBase();
-					if (unit2total > thistotal) {
-						return opponent;
-					} else {
-						return this;
-					}
+					return this;
 				}
 			}
 		}
+	}
+
+	public Unit settleFirstStrikePriority(Unit unit, Unit opponent) {
+		Weapon opponentWep = opponent.getWeapon();
+		Weapon myWep = this.getWeapon();
+
+		if (opponentWep.getTraits().contains("Arrow") && !myWep.getTraits().contains("Arrow")) {
+			return opponent.fight(this);
+		}
+
+		if (opponent.getTraits().contains("Flying") && !this.getTraits().contains("Flying")) {
+			return opponent.fight(this);
+		}
+
+		if (opponent.getTraits().contains("Mounted") && !this.getTraits().contains("Mounted")) {
+			return opponent.fight(this);
+		}
+		if (opponentWep.getTraits().contains("Ranged") && !myWep.getTraits().contains("Ranged")) {
+			return opponent.fight(this);
+		}
+		return this.fight(opponent);
+	}
+
+	private ArrayList<String> getTraits() {
+		return traits;
+	}
+
+	protected void setTrait(String trait) {
+		traits.add(trait);
 	}
 
 	public void levelUp() {
