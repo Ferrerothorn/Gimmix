@@ -8,6 +8,7 @@ public class Kyle extends Unit {
 	public Kyle() {
 		this.setJob("Kyle");
 		this.setWeapon(new IronAxe());
+		this.setTrait("Mounted");
 		this.setHpBase(21);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(7);

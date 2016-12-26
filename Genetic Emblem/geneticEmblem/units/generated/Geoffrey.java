@@ -7,6 +7,7 @@ public class Geoffrey extends Unit {
 
 	public Geoffrey() {
 		this.setJob("Geoffrey");
+		this.setTrait("Mounted");
 		this.setWeapon(new IronLance());
 		this.setHpBase(24);
 		this.setCurrentHp(this.getHpBase());

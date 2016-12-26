@@ -8,6 +8,7 @@ public class Lowen extends Unit {
 	public Lowen() {
 		this.setJob("Lowen");
 		this.setWeapon(new SteelSword());
+		this.setTrait("Mounted");
 		this.setHpBase(22);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(7);

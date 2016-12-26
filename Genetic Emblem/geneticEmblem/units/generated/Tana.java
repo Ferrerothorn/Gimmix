@@ -8,6 +8,8 @@ public class Tana extends Unit {
 	public Tana() {
 		this.setJob("Tana");
 		this.setWeapon(new IronLance());
+		this.setTrait("Mounted");
+		this.setTrait("Flying");
 		this.setHpBase(18);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(6);

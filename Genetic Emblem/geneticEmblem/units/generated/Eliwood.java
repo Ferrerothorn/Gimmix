@@ -8,6 +8,7 @@ public class Eliwood extends Unit {
 	public Eliwood() {
 		this.setJob("Eliwood");
 		this.setWeapon(new Rapier());
+		this.setTrait("Mounted");
 		this.setHpBase(18);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(5);

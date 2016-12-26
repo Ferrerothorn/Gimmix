@@ -8,6 +8,8 @@ public class Farina extends Unit {
 	public Farina() {
 		this.setJob("Farina");
 		this.setWeapon(new IronLance());
+		this.setTrait("Mounted");
+		this.setTrait("Flying");
 		this.setHpBase(16);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(6);

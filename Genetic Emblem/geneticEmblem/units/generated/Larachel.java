@@ -8,6 +8,7 @@ public class Larachel extends Unit {
 	public Larachel() {
 		this.setJob("Larachel");
 		this.setWeapon(new Fire());
+		this.setTrait("Mounted");
 		this.setHpBase(17);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(5);

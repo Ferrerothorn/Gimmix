@@ -8,6 +8,7 @@ public class Oscar extends Unit {
 	public Oscar() {
 		this.setJob("Oscar");
 		this.setWeapon(new IronLance());
+		this.setTrait("Mounted");
 		this.setHpBase(25);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(5);

@@ -8,6 +8,7 @@ public class Eirika extends Unit {
 	public Eirika() {
 		this.setJob("Eirika");
 		this.setWeapon(new SteelSword());
+		this.setTrait("Mounted");
 		this.setHpBase(16);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(4);

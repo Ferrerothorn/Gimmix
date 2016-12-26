@@ -8,6 +8,8 @@ public class Cormag extends Unit {
 	public Cormag() {
 		this.setJob("Cormag");
 		this.setWeapon(new IronLance());
+		this.setTrait("Mounted");
+		this.setTrait("Flying");
 		this.setHpBase(23);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(10);

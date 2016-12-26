@@ -8,7 +8,7 @@ public class Rebecca extends Unit {
 	public Rebecca() {
 		this.setJob("Rebecca");
 		this.setWeapon(new IronBow());
-		this.setHpBase(27);
+		this.setHpBase(17);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(4);
 		this.setSkillBase(5);

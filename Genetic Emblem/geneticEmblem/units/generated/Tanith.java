@@ -8,6 +8,8 @@ public class Tanith extends Unit {
 	public Tanith() {
 		this.setJob("Tanith");
 		this.setWeapon(new IronLance());
+		this.setTrait("Mounted");
+		this.setTrait("Flying");
 		this.setHpBase(15);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(4);

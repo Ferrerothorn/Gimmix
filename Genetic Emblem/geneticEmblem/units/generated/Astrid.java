@@ -8,6 +8,7 @@ public class Astrid extends Unit {
 	public Astrid() {
 		this.setJob("Astrid");
 		this.setWeapon(new IronBow());
+		this.setTrait("Mounted");
 		this.setHpBase(20);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(6);

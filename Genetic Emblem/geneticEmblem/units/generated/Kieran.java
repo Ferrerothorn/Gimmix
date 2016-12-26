@@ -8,6 +8,7 @@ public class Kieran extends Unit {
 	public Kieran() {
 		this.setJob("Kieran");
 		this.setWeapon(new IronAxe());
+		this.setTrait("Mounted");
 		this.setHpBase(23);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(6);

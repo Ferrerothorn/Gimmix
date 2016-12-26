@@ -8,6 +8,7 @@ public class Franz extends Unit {
 	public Franz() {
 		this.setJob("Franz");
 		this.setWeapon(new IronLance());
+		this.setTrait("Mounted");
 		this.setHpBase(20);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(7);

@@ -8,6 +8,8 @@ public class Jill extends Unit {
 	public Jill() {
 		this.setJob("Jill");
 		this.setWeapon(new IronLance());
+		this.setTrait("Mounted");
+		this.setTrait("Flying");
 		this.setHpBase(20);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(8);

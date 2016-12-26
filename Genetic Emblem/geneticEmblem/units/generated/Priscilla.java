@@ -8,6 +8,7 @@ public class Priscilla extends Unit {
 	public Priscilla() {
 		this.setJob("Priscilla");
 		this.setWeapon(new Fire());
+		this.setTrait("Mounted");
 		this.setHpBase(15);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(5);

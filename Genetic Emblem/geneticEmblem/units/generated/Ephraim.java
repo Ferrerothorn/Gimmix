@@ -8,6 +8,7 @@ public class Ephraim extends Unit {
 	public Ephraim() {
 		this.setJob("Ephraim");
 		this.setWeapon(new IronLance());
+		this.setTrait("Mounted");
 		this.setHpBase(21);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(6);

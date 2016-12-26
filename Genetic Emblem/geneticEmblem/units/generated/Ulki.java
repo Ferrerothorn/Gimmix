@@ -8,7 +8,7 @@ public class Ulki extends Unit {
 	public Ulki() {
 		this.setJob("Ulki");
 		this.setWeapon(new Beak());
-		
+		this.setTrait("Flying");
 		this.setHpBase(15);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(-1);
