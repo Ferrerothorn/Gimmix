@@ -314,10 +314,11 @@ public class List {
 			while (u.size() > i) {
 				Unit unit1 = u.remove(0);
 				Unit unit2 = u.remove(0);
-				Unit victor = unit1.fight(unit2);
+				Unit victor = unit1.settleFirstStrikePriority(unit1, unit2);
 
 				victor.levelUp();
 				u.add(victor);
+				System.out.println("" + arena.size());
 			}
 		}
 	}
