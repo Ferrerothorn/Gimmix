@@ -6,7 +6,6 @@ public class Merfolk extends Deck {
 
 	public Merfolk() {
 		super.setArchetype("Merfolk");
-		super.setStats(30, 50, 0, 20);
+		super.setStats(45, 45, 0, 10);
 	}
-
 }

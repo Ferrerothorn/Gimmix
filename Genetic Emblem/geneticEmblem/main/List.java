@@ -24,8 +24,6 @@ public class List {
 	static CustomUnitGenerator customUnitGenerator;
 	static ClassList classList;
 	static int defaultLevelForExperiments = 40;
-
-	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 
 		while (on) {
@@ -157,6 +155,8 @@ public class List {
 			case 999:
 				on = false;
 				input.close();
+				break;
+			default:
 				break;
 			}
 		}
@@ -310,7 +310,7 @@ public class List {
 			while (u.size() > i) {
 				Unit unit1 = u.remove(0);
 				Unit unit2 = u.remove(0);
-				Unit victor = unit1.settleFirstStrikePriority(unit1, unit2);
+				Unit victor = unit1.settleFirstStrikePriority(unit2);
 
 				victor.levelUp();
 				u.add(victor);

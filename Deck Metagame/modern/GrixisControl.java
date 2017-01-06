@@ -6,6 +6,6 @@ public class GrixisControl extends Deck {
 
 	public GrixisControl() {
 		super.setArchetype("Grixis Control");
-		super.setStats(0, 65, 0, 35);
+		super.setStats(20, 60, 0, 20);
 	}
 }

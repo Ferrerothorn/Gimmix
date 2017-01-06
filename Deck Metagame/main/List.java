@@ -1,9 +1,5 @@
 package main;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -22,8 +18,8 @@ public class List {
 	static Boolean on = true;
 	static Scanner input = new Scanner(System.in);
 	static ListOfDecks deckList;
+	static int numberForExperiments = 500;
 
-	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 
 		while (on) {
@@ -45,9 +41,9 @@ public class List {
 			switch (choice) {
 
 			case 0:
-				addEachClass(33333);
+				addEachClass(numberForExperiments, arena);
 				Collections.shuffle(arena);
-				deathmatch(2048, arena);
+				deathmatch(128, arena);
 				System.out.println();
 				showSurvivors(arena);
 				System.out.println();
@@ -57,9 +53,7 @@ public class List {
 			case 1:
 				System.out.println("How many of each class should be added?");
 				int number = input.nextInt();
-				addEachClass(number);
-				System.out.println("What level should everyone start at?");
-				number = input.nextInt();
+				addEachClass(number, arena);
 				break;
 
 			case 2:
@@ -86,7 +80,7 @@ public class List {
 
 			case 88:
 				ArrayList<Deck> counter = new ArrayList<>();
-				// addEachClass(1, counter);
+				addEachClass(1, counter);
 				Collections.shuffle(counter);
 				analyseDisposableClasses(counter, true);
 				break;
@@ -104,10 +98,10 @@ public class List {
 	private static void analyseDisposableClasses(ArrayList<Deck> counter, boolean firstIteration) {
 
 		ArrayList<Deck> tempArena = null;
-		HashMap<String, Double> metagameHealth = new HashMap<String, Double>();
+		HashMap<String, Double> metagameHealth = new HashMap<>();
 
 		System.out.println("Adding 12500 of each class to arena.");
-		addEachClass(12500);
+		addEachClass(12500, arena);
 		System.out.println("Running deathmatch to 2048.");
 		System.out.println();
 		deathmatch(2048, arena);
@@ -124,7 +118,7 @@ public class List {
 			tempArena = new ArrayList<>();
 			System.out.println("Testing what life would be like without " + withoutThisClass + ".");
 
-			addEachClass(12500);
+			addEachClass(12500, arena);
 
 			for (Deck u : arena) {
 				if (!u.getArchetype().equals(withoutThisClass)) {
@@ -155,7 +149,7 @@ public class List {
 		printAlternateMetagameHealth(metagameHealth);
 	}
 
-	private static void populate(ArrayList<Quantity> metagamePairs, HashMap<String, Integer> toBeSorted) {
+	public static void populate(ArrayList<Quantity> metagamePairs, HashMap<String, Integer> toBeSorted) {
 		for (Map.Entry<String, Integer> entry : toBeSorted.entrySet()) {
 			metagamePairs.add(new Quantity(entry.getKey(), entry.getValue()));
 		}
@@ -189,7 +183,7 @@ public class List {
 		}
 		double mean = total / index;
 
-		ArrayList<Double> meanSubs = new ArrayList<Double>();
+		ArrayList<Double> meanSubs = new ArrayList<>();
 		@SuppressWarnings("rawtypes")
 		Iterator it2 = survivors.entrySet().iterator();
 		while (it2.hasNext()) {
@@ -215,7 +209,7 @@ public class List {
 	}
 
 	private static HashMap<String, Integer> reportOnSurvivors(ArrayList<Deck> anArena) {
-		HashMap<String, Integer> survivors = new HashMap<String, Integer>();
+		HashMap<String, Integer> survivors = new HashMap<>();
 		for (Deck u : anArena) {
 			if (!survivors.containsKey(u.getArchetype())) {
 				survivors.put(u.getArchetype(), 1);
@@ -253,12 +247,12 @@ public class List {
 		}
 	}
 
-	private static void addEachClass(int i) {
+	private static void addEachClass(int i, ArrayList<Deck> counter) {
 		for (int x = 0; x < i; x++) {
 			deckList = new ListOfDecks();
-			addEach(deckList.getReleasedUnits(), arena);
+			addEach(deckList.getReleasedUnits(), counter);
 		}
-		Collections.shuffle(arena);
+		Collections.shuffle(counter);
 	}
 
 	private static void addEach(ArrayList<Deck> hall, ArrayList<Deck> theArena) {
@@ -271,6 +265,7 @@ public class List {
 	private static HashMap sortByValues(HashMap map) {
 		LinkedList list = new LinkedList(map.entrySet());
 		Collections.sort(list, new Comparator() {
+			@Override
 			public int compare(Object o1, Object o2) {
 				return ((Comparable) ((Map.Entry) (o2)).getValue()).compareTo(((Map.Entry) (o1)).getValue());
 			}

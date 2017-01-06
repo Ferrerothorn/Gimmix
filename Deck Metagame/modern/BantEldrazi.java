@@ -6,6 +6,6 @@ public class BantEldrazi extends Deck {
 
 	public BantEldrazi() {
 		super.setArchetype("Bant Eldrazi");
-		super.setStats(60, 20, 15, 5);
+		super.setStats(5, 30, 5, 60);
 	}
 }

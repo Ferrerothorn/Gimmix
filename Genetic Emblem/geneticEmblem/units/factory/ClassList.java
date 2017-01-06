@@ -36,12 +36,12 @@ public class ClassList {
 		releasedClasses.add(new Gilliam());
 		releasedClasses.add(new Guy());
 		releasedClasses.add(new Haar());
-		releasedClasses.add(new Heath());
+	//	releasedClasses.add(new Heath());
 		releasedClasses.add(new Ike());
-		releasedClasses.add(new Ilyana());
+		//releasedClasses.add(new Ilyana());
 		releasedClasses.add(new Innes());
-		releasedClasses.add(new Jaffar());
-		releasedClasses.add(new Janaff());
+	//	releasedClasses.add(new Jaffar());
+		//releasedClasses.add(new Janaff());
 		releasedClasses.add(new Jill());
 		releasedClasses.add(new Joshua());
 		releasedClasses.add(new Karel());
@@ -57,7 +57,7 @@ public class ClassList {
 		releasedClasses.add(new Lyn());
 		releasedClasses.add(new Lyon());
 		releasedClasses.add(new Makalov());
-		releasedClasses.add(new Marcia());
+	//	releasedClasses.add(new Marcia());
 		releasedClasses.add(new Marisa());
 		releasedClasses.add(new Marth());
 		releasedClasses.add(new Mia());
@@ -68,7 +68,7 @@ public class ClassList {
 		releasedClasses.add(new Oscar());
 		releasedClasses.add(new Pent());
 		releasedClasses.add(new Priscilla());
-		releasedClasses.add(new Rath());
+		//releasedClasses.add(new Rath());
 		releasedClasses.add(new Raven());
 		releasedClasses.add(new Rebecca());
 		releasedClasses.add(new Rhys());
@@ -79,7 +79,7 @@ public class ClassList {
 		releasedClasses.add(new Shinon());
 		releasedClasses.add(new Soren());
 		releasedClasses.add(new Sothe());
-		releasedClasses.add(new Stefan());
+	//	releasedClasses.add(new Stefan());
 		releasedClasses.add(new Tana());
 		releasedClasses.add(new Tanith());
 		releasedClasses.add(new Tormod());

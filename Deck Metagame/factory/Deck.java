@@ -8,7 +8,7 @@ public abstract class Deck {
 
 	String archetype = "";
 
-	ArrayList<String> cards = new ArrayList<String>();
+	ArrayList<String> cards = new ArrayList<>();
 
 	public String getName() {
 		return archetype;

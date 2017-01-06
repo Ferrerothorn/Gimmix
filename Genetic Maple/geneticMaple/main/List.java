@@ -98,7 +98,7 @@ public class List {
 				System.out.println();
 				double initialStDev = metagameBalanceMetrics(arena);
 
-				String mostCommonWeapon = getWeaponMetagame(arena);
+				String mostCommonWeapon = getWeaponMetagame();
 				System.out.println("The metagame is overpopulated by " + mostCommonWeapon + ".");
 				System.out.println("Generating units endlessly...");
 
@@ -129,10 +129,6 @@ public class List {
 
 						String fileName = "" + newStDev;
 						String filePath = "C:\\Users\\sdolman\\Desktop\\Gimmix\\Gimmix\\Genetic Maple\\geneticMaple\\units\\newfags\\";
-						// String filePath = "C:\\Users\\User\\workspace\\Git
-						// Repo\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
-						File readDirectory = new File("FileWritePath.txt");
-
 						String output = customUnitGenerator.generateCode(newStDev);
 
 						File file = new File(filePath + fileName + ".java");
@@ -159,6 +155,8 @@ public class List {
 				on = false;
 				input.close();
 				break;
+			default:
+				break;
 			}
 		}
 	}
@@ -166,7 +164,7 @@ public class List {
 	private static void analyseDisposableClasses(ArrayList<Unit> counter, boolean firstIteration) {
 
 		ArrayList<Unit> tempArena = null;
-		HashMap<String, Double> metagameHealth = new HashMap<String, Double>();
+		HashMap<String, Double> metagameHealth = new HashMap<>();
 
 		System.out.println("Adding 12500 of each class to arena.");
 		addEachClass(12500, arena);
@@ -325,7 +323,7 @@ public class List {
 	}
 
 	private static HashMap<String, Integer> reportOnSurvivors(ArrayList<Unit> anArena) {
-		HashMap<String, Integer> survivors = new HashMap<String, Integer>();
+		HashMap<String, Integer> survivors = new HashMap<>();
 		for (Unit u : anArena) {
 			if (!survivors.containsKey(u.getJob())) {
 				survivors.put(u.getJob(), 1);
@@ -396,6 +394,7 @@ public class List {
 	private static HashMap sortByValues(HashMap map) {
 		LinkedList list = new LinkedList(map.entrySet());
 		Collections.sort(list, new Comparator() {
+			@Override
 			public int compare(Object o1, Object o2) {
 				return ((Comparable) ((Map.Entry) (o2)).getValue()).compareTo(((Map.Entry) (o1)).getValue());
 			}
