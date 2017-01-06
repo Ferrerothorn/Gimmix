@@ -7,7 +7,7 @@ import geneticMaple.units.generated.*;
 
 public class ClassList {
 
-	ArrayList<Unit> releasedClasses = new ArrayList<Unit>();
+	ArrayList<Unit> releasedClasses = new ArrayList<>();
 
 	public ClassList() {
 

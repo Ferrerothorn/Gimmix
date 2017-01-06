@@ -1,7 +1,6 @@
 package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
-import geneticEmblem.weapons.Knife;
 import geneticEmblem.weapons.SteelAxe;
 
 public class Haar extends Unit {

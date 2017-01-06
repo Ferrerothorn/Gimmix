@@ -1,7 +1,7 @@
 package geneticMaple.units.generated;
 
 import geneticMaple.units.factory.Unit;
-import geneticMaple.weapons.Sword;;
+import geneticMaple.weapons.Sword;
 
 public class Page extends Unit { 
 

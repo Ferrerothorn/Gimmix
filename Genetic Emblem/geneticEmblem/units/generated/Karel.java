@@ -1,7 +1,6 @@
 package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
-import geneticEmblem.weapons.IronAxe;
 import geneticEmblem.weapons.KillingEdge;
 
 public class Karel extends Unit {

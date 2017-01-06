@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Player {
 
 	public String name;
-	private ArrayList<String> pHand = new ArrayList<String>();
-	private ArrayList<String> pPool = new ArrayList<String>();
+	private ArrayList<String> pHand = new ArrayList<>();
+	private ArrayList<String> pPool = new ArrayList<>();
 
 	public Player(String myName) {
 		name = myName;

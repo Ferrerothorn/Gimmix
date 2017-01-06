@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public abstract class Weapon {
 
 	public boolean phys;
-	public ArrayList<String> trinity = new ArrayList<String>();
+	public ArrayList<String> trinity = new ArrayList<>();
 	public String name;
 	public int acc;
 	public int pow;
 	public int wepCrit;
-	public ArrayList<String> traits = new ArrayList<String>();
+	public ArrayList<String> traits = new ArrayList<>();
 
 	public boolean isPhys() {
 		return phys;

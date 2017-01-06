@@ -40,7 +40,7 @@ public abstract class Unit {
 	int ResBase;
 
 	public Unit() {
-		generateName(name);
+		generateName();
 	}
 
 	public String getName() {
@@ -247,11 +247,11 @@ public abstract class Unit {
 		ResBase = resBase;
 	}
 
-	private void generateName(String name2) {
-		ArrayList<String> cons = new ArrayList<String>();
+	private void generateName() {
+		ArrayList<String> cons = new ArrayList<>();
 		cons.addAll(Arrays.asList("b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "r", "s", "t", "v", "w",
 				"z"));
-		ArrayList<String> vow = new ArrayList<String>();
+		ArrayList<String> vow = new ArrayList<>();
 		vow.addAll(Arrays.asList("a", "e", "i", "o", "u", "y"));
 
 		Random r = new Random();
@@ -340,7 +340,7 @@ public abstract class Unit {
 		}
 		if (this.weapon.getTrinity().contains("Stealth") && target.weapon.getTrinity().contains("Bow")) {
 			bonus += 2;
-		}		
+		}
 		if (this.weapon.getTrinity().contains("Melee") && target.weapon.getTrinity().contains("Magic")) {
 			bonus -= 2;
 		}
@@ -432,13 +432,13 @@ public abstract class Unit {
 		}
 		if (this.weapon.getTrinity().contains("Bow") && target.weapon.getTrinity().contains("Seafare")) {
 			bonus -= 10;
-		}		
+		}
 		if (this.weapon.getTrinity().contains("Stealth") && target.weapon.getTrinity().contains("Seafare")) {
 			bonus -= 20;
 		}
 		return bonus;
 	}
-	
+
 	public boolean greatlyOutspeeds(Unit target) {
 		if (SpeedBase - 4 >= target.SpeedBase) {
 			return true;

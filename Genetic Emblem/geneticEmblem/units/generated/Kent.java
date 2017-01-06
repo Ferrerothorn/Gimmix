@@ -1,7 +1,6 @@
 package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
-import geneticEmblem.weapons.Rapier;
 import geneticEmblem.weapons.SilverSword;
 
 public class Kent extends Unit {

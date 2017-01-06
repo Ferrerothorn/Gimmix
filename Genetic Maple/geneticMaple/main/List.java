@@ -18,14 +18,13 @@ import geneticMaple.units.factory.*;
 
 public class List {
 
-	static ArrayList<Unit> arena = new ArrayList<Unit>();
+	static ArrayList<Unit> arena = new ArrayList<>();
 	static Boolean on = true;
 	static Scanner input = new Scanner(System.in);
 	static CustomUnitGenerator customUnitGenerator;
 	static ClassList classList;
 	static int defaultLevelForExperiments = 25;
 
-	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 
 		while (on) {
@@ -121,7 +120,7 @@ public class List {
 					deathmatch(2048, arena);
 
 					double newStDev = metagameBalanceMetrics(arena);
-					ArrayList<Quantity> metagamePairs = new ArrayList<Quantity>();
+					ArrayList<Quantity> metagamePairs = new ArrayList<>();
 					HashMap<String, Integer> toBeSorted = reportOnSurvivors(arena);
 					sortByValues(toBeSorted);
 					populate(metagamePairs, toBeSorted);
@@ -150,7 +149,7 @@ public class List {
 				}
 
 			case 88:
-				ArrayList<Unit> counter = new ArrayList<Unit>();
+				ArrayList<Unit> counter = new ArrayList<>();
 				addEachClass(1, counter);
 				Collections.shuffle(counter);
 				analyseDisposableClasses(counter, true);
@@ -182,11 +181,11 @@ public class List {
 		System.out.println("Default metagame health determined @ " + defaultMetagameHealth + ".");
 		metagameHealth.put("Default", defaultMetagameHealth);
 
-		ArrayList<Unit> recheckThese = new ArrayList<Unit>();
+		ArrayList<Unit> recheckThese = new ArrayList<>();
 
 		for (Unit placeholder : counter) {
 			String withoutThisClass = placeholder.getJob();
-			tempArena = new ArrayList<Unit>();
+			tempArena = new ArrayList<>();
 			System.out.println("Testing what life would be like without " + withoutThisClass + ".");
 
 			addEachClass(12500, arena);
@@ -242,7 +241,7 @@ public class List {
 		}
 	}
 
-	private static String getWeaponMetagame(ArrayList<Unit> arena2) {
+	private static String getWeaponMetagame() {
 		int melee = 0;
 		int bow = 0;
 		int magic = 0;
@@ -300,7 +299,7 @@ public class List {
 		}
 		double mean = total / index;
 
-		ArrayList<Double> meanSubs = new ArrayList<Double>();
+		ArrayList<Double> meanSubs = new ArrayList<>();
 		@SuppressWarnings("rawtypes")
 		Iterator it2 = survivors.entrySet().iterator();
 		while (it2.hasNext()) {

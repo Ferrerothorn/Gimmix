@@ -13,12 +13,12 @@ import snakeDraftManager.Player;
 
 public class RunSnakeDraft {
 
-	public static ArrayList<Player> players = new ArrayList<Player>();
-	public static ArrayList<String> ouPool = new ArrayList<String>();
-	public static ArrayList<String> blPool = new ArrayList<String>();
-	public static ArrayList<String> uuPool = new ArrayList<String>();
-	public static ArrayList<String> bl2Pool = new ArrayList<String>();
-	public static ArrayList<String> ruPool = new ArrayList<String>();
+	public static ArrayList<Player> players = new ArrayList<>();
+	public static ArrayList<String> ouPool = new ArrayList<>();
+	public static ArrayList<String> blPool = new ArrayList<>();
+	public static ArrayList<String> uuPool = new ArrayList<>();
+	public static ArrayList<String> bl2Pool = new ArrayList<>();
+	public static ArrayList<String> ruPool = new ArrayList<>();
 
 	public static String swappingPool = "Swapping pool:" + '\n';
 
@@ -249,7 +249,6 @@ public class RunSnakeDraft {
 
 	private static void capturePlayers() throws Exception {
 		try {
-			@SuppressWarnings("resource")
 			Scanner scanner = new Scanner(System.in);
 			System.out.println("Enter the number of players in this draft!");
 			int numberOfPlayers = scanner.nextInt();
@@ -260,7 +259,6 @@ public class RunSnakeDraft {
 		}
 	}
 
-	@SuppressWarnings("resource")
 	private static void generatePlayers(int numberOfPlayers) {
 		Scanner scanner = new Scanner(System.in);
 		for (int i = 0; i < numberOfPlayers; i++) {
@@ -306,7 +304,6 @@ public class RunSnakeDraft {
 	}
 
 	private static void askPlayerToPickOne(Player p, ArrayList<String> tier, int amountFromTier) {
-		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		try {
 			System.out.println(p.getName() + ", your picks are as follows!" + '\n' + "(Already in your arsenal: "
@@ -331,7 +328,6 @@ public class RunSnakeDraft {
 		}
 	}
 
-	@SuppressWarnings("resource")
 	private static void tradingPost() throws Exception {
 		boolean allSatisfiedWithTrades = false;
 
@@ -347,8 +343,8 @@ public class RunSnakeDraft {
 			}
 			System.out.println("0) No thanks.");
 
-			Scanner inputs = new Scanner(System.in);
-			int buyerIndex = inputs.nextInt();
+			Scanner inputs1 = new Scanner(System.in);
+			int buyerIndex = inputs1.nextInt();
 
 			switch (buyerIndex) {
 			case 0:
@@ -365,7 +361,7 @@ public class RunSnakeDraft {
 							System.out.println("" + (i + 1) + ") " + players.get(i).getName());
 						}
 					}
-					int sellerIndex = inputs.nextInt();
+					int sellerIndex = inputs1.nextInt();
 					sellerIndex--;
 					Player seller = null;
 					if (sellerIndex <= players.size()) {
@@ -445,8 +441,8 @@ public class RunSnakeDraft {
 	}
 
 	private static String freshInsult() {
-		ArrayList<String> firsts = new ArrayList<String>();
-		ArrayList<String> seconds = new ArrayList<String>();
+		ArrayList<String> firsts = new ArrayList<>();
+		ArrayList<String> seconds = new ArrayList<>();
 		firsts.add("dismal");
 		firsts.add("empty");
 		firsts.add("ham-fisted");
@@ -508,7 +504,7 @@ public class RunSnakeDraft {
 	}
 
 	private static String listPhrase() {
-		ArrayList<String> lists = new ArrayList<String>();
+		ArrayList<String> lists = new ArrayList<>();
 		Random r = new Random();
 
 		lists.add("your Tesco shopping list");

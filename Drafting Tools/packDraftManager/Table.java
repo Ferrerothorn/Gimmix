@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+import packDraftManager.Player;
+
 public class Table {
 
-	public static ArrayList<Player> players = new ArrayList<Player>();
-	public static ArrayList<String> ouPool = new ArrayList<String>();
-	public static ArrayList<String> uuPool = new ArrayList<String>();
-	public static ArrayList<String> ruPool = new ArrayList<String>();
-	static ArrayList<ArrayList<String>> packs = new ArrayList<ArrayList<String>>();
+	public static ArrayList<Player> players = new ArrayList<>();
+	public static ArrayList<String> ouPool = new ArrayList<>();
+	public static ArrayList<String> uuPool = new ArrayList<>();
+	public static ArrayList<String> ruPool = new ArrayList<>();
+	static ArrayList<ArrayList<String>> packs = new ArrayList<>();
 
 	static Scanner sc = new Scanner(System.in);
 	static int numberOfPlayers;
@@ -27,7 +29,7 @@ public class Table {
 		trimPoolsToFitPlayers();
 
 		packs = generatePacks(ouPool);
-		distributePacks(packs);
+		distributePacks();
 
 		while (aPackContainsSomething()) {
 			for (Player p : players) {
@@ -69,7 +71,7 @@ public class Table {
 		players.get(players.size() - 1).setPack(firstGuyPack);
 	}
 
-	private static void distributePacks(ArrayList<ArrayList<String>> packs2) {
+	private static void distributePacks() {
 
 		for (int i = 0; i < players.size() && i < packs.size(); i++) {
 			Player p = players.get(i);
@@ -104,44 +106,44 @@ public class Table {
 	}
 
 	private static ArrayList<ArrayList<String>> generatePacks(ArrayList<String> pool) {
-		ArrayList<ArrayList<String>> everyonesPacks = new ArrayList<ArrayList<String>>();
+		ArrayList<ArrayList<String>> everyonesPacks = new ArrayList<>();
 
-		ArrayList<String> p1pix = new ArrayList<String>();
+		ArrayList<String> p1pix = new ArrayList<>();
 		everyonesPacks.add(p1pix);
 		if (numberOfPlayers > 1) {
-			ArrayList<String> p2pix = new ArrayList<String>();
+			ArrayList<String> p2pix = new ArrayList<>();
 			everyonesPacks.add(p2pix);
 		}
 		if (numberOfPlayers > 2) {
-			ArrayList<String> p3pix = new ArrayList<String>();
+			ArrayList<String> p3pix = new ArrayList<>();
 			everyonesPacks.add(p3pix);
 		}
 		if (numberOfPlayers > 3) {
-			ArrayList<String> p4pix = new ArrayList<String>();
+			ArrayList<String> p4pix = new ArrayList<>();
 			everyonesPacks.add(p4pix);
 		}
 		if (numberOfPlayers > 4) {
-			ArrayList<String> p5pix = new ArrayList<String>();
+			ArrayList<String> p5pix = new ArrayList<>();
 			everyonesPacks.add(p5pix);
 		}
 		if (numberOfPlayers > 5) {
-			ArrayList<String> p6pix = new ArrayList<String>();
+			ArrayList<String> p6pix = new ArrayList<>();
 			everyonesPacks.add(p6pix);
 		}
 		if (numberOfPlayers > 6) {
-			ArrayList<String> p7pix = new ArrayList<String>();
+			ArrayList<String> p7pix = new ArrayList<>();
 			everyonesPacks.add(p7pix);
 		}
 		if (numberOfPlayers > 7) {
-			ArrayList<String> p8pix = new ArrayList<String>();
+			ArrayList<String> p8pix = new ArrayList<>();
 			everyonesPacks.add(p8pix);
 		}
 		if (numberOfPlayers > 8) {
-			ArrayList<String> p9pix = new ArrayList<String>();
+			ArrayList<String> p9pix = new ArrayList<>();
 			everyonesPacks.add(p9pix);
 		}
 		if (numberOfPlayers > 9) {
-			ArrayList<String> p10pix = new ArrayList<String>();
+			ArrayList<String> p10pix = new ArrayList<>();
 			everyonesPacks.add(p10pix);
 		}
 
@@ -156,7 +158,6 @@ public class Table {
 	}
 
 	private static void createPlayers(int playerNo) {
-		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		for (int i = 1; i <= playerNo; i++) {
 			System.out.println("Gimme the name of player " + i + ".");

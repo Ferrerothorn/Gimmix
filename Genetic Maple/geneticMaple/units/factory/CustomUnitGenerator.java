@@ -24,7 +24,7 @@ public class CustomUnitGenerator {
 	int defGr = 0;
 	int resGr = 0;
 
-	ArrayList<Weapon> armory = new ArrayList<Weapon>();
+	ArrayList<Weapon> armory = new ArrayList<>();
 
 	Weapon weapon;
 

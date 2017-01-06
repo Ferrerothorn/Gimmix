@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 public class Tournament {
 
-	public ArrayList<Player> players = new ArrayList<Player>();
-	public ArrayList<Battle> currentBattles = new ArrayList<Battle>();
-	public ArrayList<Battle> totallyKosherPairings = new ArrayList<Battle>();
+	public ArrayList<Player> players = new ArrayList<>();
+	public ArrayList<Battle> currentBattles = new ArrayList<>();
+	public ArrayList<Battle> totallyKosherPairings = new ArrayList<>();
 	Scanner sc;
 
 	public int playerCap = 1;
@@ -87,7 +87,7 @@ public class Tournament {
 
 	public void generatePairings() {
 
-		Player notionalBye = containsBye(players);
+		Player notionalBye = containsBye();
 
 		if (notionalBye != null) {
 			Collections.reverse(players);
@@ -103,7 +103,7 @@ public class Tournament {
 		totallyKosherPairings.clear();
 	}
 
-	private Player containsBye(ArrayList<Player> players2) {
+	private Player containsBye() {
 		Player p = null;
 		for (Player player : players) {
 			if (player.getName().equals("BYE")) {
@@ -127,9 +127,8 @@ public class Tournament {
 					Battle b = new Battle(p1, temp);
 					targetBattleList.add(b);
 					break;
-				} else {
-					playerIndex++;
 				}
+				playerIndex++;
 			}
 		} catch (Exception e) {
 			System.out.println("We had a spot of bother finding " + p1.getName() + " a partner.");

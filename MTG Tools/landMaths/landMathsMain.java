@@ -20,8 +20,8 @@ public class landMathsMain {
 		double decentHands = 0;
 		
 		for (int count = 0; count < 400000; count++) {
-			ArrayList<Card> deck = new ArrayList<Card>();
-			ArrayList<Card> hand = new ArrayList<Card>();
+			ArrayList<Card> deck = new ArrayList<>();
+			ArrayList<Card> hand = new ArrayList<>();
 			populateDeck(deck, i);
 			draw(deck, hand, 10);
 			if (processHand(hand)) {

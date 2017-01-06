@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class Main {
 
-	static ArrayList<String> deck = new ArrayList<String>();
-	static ArrayList<String> hand = new ArrayList<String>();
+	static ArrayList<String> deck = new ArrayList<>();
+	static ArrayList<String> hand = new ArrayList<>();
 	static boolean on = true;
 	static int turnNumber = 1;
 	static Scanner sc = new Scanner(System.in);

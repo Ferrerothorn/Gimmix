@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public abstract class Weapon {
 
 	public boolean phys;
-	public ArrayList<String> trinity = new ArrayList<String>();
-	public ArrayList<String> traits = new ArrayList<String>();
+	public ArrayList<String> trinity = new ArrayList<>();
+	public ArrayList<String> traits = new ArrayList<>();
 	public String name;
 	public int acc;
 	public int pow;

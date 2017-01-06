@@ -18,10 +18,9 @@ import factory.*;
 
 public class List {
 
-	static ArrayList<Deck> arena = new ArrayList<Deck>();
+	static ArrayList<Deck> arena = new ArrayList<>();
 	static Boolean on = true;
 	static Scanner input = new Scanner(System.in);
-	static CustomUnitGenerator customUnitGenerator;
 	static ListOfDecks deckList;
 
 	@SuppressWarnings("unused")
@@ -37,7 +36,6 @@ public class List {
 			System.out.println("3: See the next 8 in the arena.");
 			System.out.println("5: Report on the surviving decks.");
 			System.out.println("55: Show Standard Deviation.");
-			System.out.println("69: Genetically modify a new deck.");
 			System.out.println("88: Determine which deck is healthiest to cull.");
 			System.out.println("999: Quit.");
 			System.out.println();
@@ -86,58 +84,8 @@ public class List {
 				System.out.println(metagameBalanceMetrics(arena));
 				break;
 
-			case 69:
-				addEachClass(15000);
-				deathmatch(2048, arena);
-				System.out.println();
-				double initialStDev = metagameBalanceMetrics(arena);
-
-				System.out.println("Generating decks.");
-
-				while (true) {
-					arena.clear();
-					addEachClass(15000);
-					Custom custom = customUnitGenerator.buildDeck();
-
-					for (int i = 0; i < 15000; i++) {
-						arena.add(custom);
-					}
-					customUnitGenerator.generateNewDeckStats();
-
-					Collections.shuffle(arena);
-					deathmatch(2048, arena);
-
-					double newStDev = metagameBalanceMetrics(arena);
-					ArrayList<Quantity> metagamePairs = new ArrayList<Quantity>();
-					HashMap<String, Integer> toBeSorted = reportOnSurvivors(arena);
-					sortByValues(toBeSorted);
-					populate(metagamePairs, toBeSorted);
-
-					if (newStDev <= initialStDev) {
-
-						String fileName = "" + newStDev;
-						String filePath = "C:\\Users\\sdolman\\Desktop\\Gimmix\\Gimmix\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
-						// String filePath = "C:\\Users\\User\\workspace\\Git
-						// Repo\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
-						File readDirectory = new File("FileWritePath.txt");
-
-						String output = customUnitGenerator.generateCode(newStDev);
-
-						File file = new File(filePath + fileName + ".java");
-						try {
-							PrintWriter writer = new PrintWriter(file, "UTF-8");
-							writer.print(output);
-							writer.close();
-						} catch (FileNotFoundException e) {
-							e.printStackTrace();
-						} catch (UnsupportedEncodingException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-
 			case 88:
-				ArrayList<Deck> counter = new ArrayList<Deck>();
+				ArrayList<Deck> counter = new ArrayList<>();
 				// addEachClass(1, counter);
 				Collections.shuffle(counter);
 				analyseDisposableClasses(counter, true);
@@ -146,6 +94,8 @@ public class List {
 			case 999:
 				on = false;
 				input.close();
+				break;
+			default:
 				break;
 			}
 		}
@@ -167,11 +117,11 @@ public class List {
 		System.out.println("Default metagame health determined @ " + defaultMetagameHealth + ".");
 		metagameHealth.put("Default", defaultMetagameHealth);
 
-		ArrayList<Deck> recheckThese = new ArrayList<Deck>();
+		ArrayList<Deck> recheckThese = new ArrayList<>();
 
 		for (Deck placeholder : counter) {
 			String withoutThisClass = placeholder.getArchetype();
-			tempArena = new ArrayList<Deck>();
+			tempArena = new ArrayList<>();
 			System.out.println("Testing what life would be like without " + withoutThisClass + ".");
 
 			addEachClass(12500);

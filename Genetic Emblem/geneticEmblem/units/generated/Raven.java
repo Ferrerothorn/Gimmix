@@ -1,7 +1,6 @@
 package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
-import geneticEmblem.weapons.Fire;
 import geneticEmblem.weapons.SteelSword;
 
 public class Raven extends Unit {

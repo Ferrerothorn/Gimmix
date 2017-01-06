@@ -18,7 +18,7 @@ import geneticEmblem.units.factory.*;
 
 public class List {
 
-	static ArrayList<Unit> arena = new ArrayList<Unit>();
+	static ArrayList<Unit> arena = new ArrayList<>();
 	static Boolean on = true;
 	static Scanner input = new Scanner(System.in);
 	static CustomUnitGenerator customUnitGenerator;
@@ -122,7 +122,7 @@ public class List {
 					deathmatch(2048, arena);
 
 					double newStDev = metagameBalanceMetrics(arena);
-					ArrayList<Quantity> metagamePairs = new ArrayList<Quantity>();
+					ArrayList<Quantity> metagamePairs = new ArrayList<>();
 					HashMap<String, Integer> toBeSorted = reportOnSurvivors(arena);
 					sortByValues(toBeSorted);
 					populate(metagamePairs, toBeSorted);
@@ -131,10 +131,6 @@ public class List {
 
 						String fileName = "" + newStDev;
 						String filePath = "C:\\Users\\sdolman\\Desktop\\Gimmix\\Gimmix\\Genetic Emblem\\geneticEmblem\\units\\newfags\\";
-						// String filePath = "C:\\Users\\User\\workspace\\Git
-						// Repo\\Gimmix\\src\\geneticEmblem\\units\\newfags\\";
-						File readDirectory = new File("FileWritePath.txt");
-
 						String output = customUnitGenerator.generateCode(newStDev);
 
 						File file = new File(filePath + fileName + ".java");
@@ -151,7 +147,7 @@ public class List {
 				}
 
 			case 88:
-				ArrayList<Unit> counter = new ArrayList<Unit>();
+				ArrayList<Unit> counter = new ArrayList<>();
 				addEachClass(1, counter);
 				Collections.shuffle(counter);
 				analyseDisposableClasses(counter, true);
@@ -169,7 +165,7 @@ public class List {
 	private static void analyseDisposableClasses(ArrayList<Unit> counter, boolean firstIteration) {
 
 		ArrayList<Unit> tempArena = null;
-		HashMap<String, Double> metagameHealth = new HashMap<String, Double>();
+		HashMap<String, Double> metagameHealth = new HashMap<>();
 
 		System.out.println("Adding 12500 of each class to arena.");
 		addEachClass(12500, arena);
@@ -184,11 +180,11 @@ public class List {
 		System.out.println("Default metagame health determined @ " + defaultMetagameHealth + ".");
 		metagameHealth.put("Default", defaultMetagameHealth);
 
-		ArrayList<Unit> recheckThese = new ArrayList<Unit>();
+		ArrayList<Unit> recheckThese = new ArrayList<>();
 
 		for (Unit placeholder : counter) {
 			String withoutThisClass = placeholder.getJob();
-			tempArena = new ArrayList<Unit>();
+			tempArena = new ArrayList<>();
 			System.out.println("Testing what life would be like without " + withoutThisClass + ".");
 
 			addEachClass(12500, arena);
@@ -257,7 +253,7 @@ public class List {
 		}
 		double mean = total / index;
 
-		ArrayList<Double> meanSubs = new ArrayList<Double>();
+		ArrayList<Double> meanSubs = new ArrayList<>();
 		@SuppressWarnings("rawtypes")
 		Iterator it2 = survivors.entrySet().iterator();
 		while (it2.hasNext()) {
@@ -283,7 +279,7 @@ public class List {
 	}
 
 	private static HashMap<String, Integer> reportOnSurvivors(ArrayList<Unit> anArena) {
-		HashMap<String, Integer> survivors = new HashMap<String, Integer>();
+		HashMap<String, Integer> survivors = new HashMap<>();
 		for (Unit u : anArena) {
 			if (!survivors.containsKey(u.getJob())) {
 				survivors.put(u.getJob(), 1);
@@ -355,6 +351,7 @@ public class List {
 	private static HashMap sortByValues(HashMap map) {
 		LinkedList list = new LinkedList(map.entrySet());
 		Collections.sort(list, new Comparator() {
+			@Override
 			public int compare(Object o1, Object o2) {
 				return ((Comparable) ((Map.Entry) (o2)).getValue()).compareTo(((Map.Entry) (o1)).getValue());
 			}

@@ -7,7 +7,7 @@ import geneticEmblem.weapons.Weapon;
 public abstract class Unit {
 
 	String job = "";
-	ArrayList<String> traits = new ArrayList<String>();
+	ArrayList<String> traits = new ArrayList<>();
 	Weapon weapon;
 	int lv = 1;
 	int currentHp;
@@ -379,49 +379,45 @@ public abstract class Unit {
 					+ opponent.getLuckBase() + opponent.getSpeedBase() + opponent.getDefBase() + opponent.getResBase();
 			if (unit2total > thistotal) {
 				return opponent;
-			} else {
-				return this;
 			}
+			return this;
+		}
+		int turnCounter = 1;
+		while (this.isAlive() && opponent.isAlive() && turnCounter < 51) {
+			if (this.isAlive() && opponent.isAlive()) {
+				this.swingAt(opponent);
+			}
+			if (this.isAlive() && opponent.isAlive()) {
+				opponent.swingAt(this);
+			}
+			if (this.isAlive() && opponent.isAlive() && this.greatlyOutspeeds(opponent)
+					&& !opponent.greatlyOutspeeds(this)) {
+				this.swingAt(opponent);
+			} else if (this.isAlive() && opponent.isAlive() && !this.greatlyOutspeeds(opponent)
+					&& opponent.greatlyOutspeeds(this)) {
+				opponent.swingAt(this);
+			}
+			turnCounter++;
+		}
+
+		if (this.isAlive() && !opponent.isAlive()) {
+			return this;
+		} else if (!this.isAlive() && opponent.isAlive()) {
+			return opponent;
 		} else {
-
-			int turnCounter = 1;
-			while (this.isAlive() && opponent.isAlive() && turnCounter < 51) {
-				if (this.isAlive() && opponent.isAlive()) {
-					this.swingAt(opponent);
-				}
-				if (this.isAlive() && opponent.isAlive()) {
-					opponent.swingAt(this);
-				}
-				if (this.isAlive() && opponent.isAlive() && this.greatlyOutspeeds(opponent)
-						&& !opponent.greatlyOutspeeds(this)) {
-					this.swingAt(opponent);
-				} else if (this.isAlive() && opponent.isAlive() && !this.greatlyOutspeeds(opponent)
-						&& opponent.greatlyOutspeeds(this)) {
-					opponent.swingAt(this);
-				}
-				turnCounter++;
-			}
-
-			if (this.isAlive() && !opponent.isAlive()) {
-				return this;
-			} else if (!this.isAlive() && opponent.isAlive()) {
+			int thistotal = this.getHpBase() + this.getStrBase() + this.getSkillBase() + this.getLuckBase()
+					+ this.getSpeedBase() + this.getDefBase() + this.getResBase();
+			int unit2total = opponent.getHpBase() + opponent.getStrBase() + opponent.getSkillBase()
+					+ opponent.getLuckBase() + opponent.getSpeedBase() + opponent.getDefBase()
+					+ opponent.getResBase();
+			if (unit2total > thistotal) {
 				return opponent;
-			} else {
-				int thistotal = this.getHpBase() + this.getStrBase() + this.getSkillBase() + this.getLuckBase()
-						+ this.getSpeedBase() + this.getDefBase() + this.getResBase();
-				int unit2total = opponent.getHpBase() + opponent.getStrBase() + opponent.getSkillBase()
-						+ opponent.getLuckBase() + opponent.getSpeedBase() + opponent.getDefBase()
-						+ opponent.getResBase();
-				if (unit2total > thistotal) {
-					return opponent;
-				} else {
-					return this;
-				}
 			}
+			return this;
 		}
 	}
 
-	public Unit settleFirstStrikePriority(Unit unit, Unit opponent) {
+	public Unit settleFirstStrikePriority(Unit opponent) {
 		Weapon opponentWep = opponent.getWeapon();
 		Weapon myWep = this.getWeapon();
 
