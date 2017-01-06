@@ -48,7 +48,7 @@ public class List {
 			switch (choice) {
 
 			case 0:
-				addEachClass(25000, arena);
+				addEachClass(20000, arena);
 				levelTheDudesTo(defaultLevelForExperiments, arena);
 				deathmatch(2048, arena);
 				System.out.println();
