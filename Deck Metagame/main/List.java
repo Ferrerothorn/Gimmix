@@ -1,5 +1,9 @@
 package main;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -18,7 +22,7 @@ public class List {
 	static Boolean on = true;
 	static Scanner input = new Scanner(System.in);
 	static ListOfDecks deckList;
-	static int numberForExperiments = 500;
+	static int numberForExperiments = 10000;
 
 	public static void main(String[] args) {
 
@@ -32,6 +36,7 @@ public class List {
 			System.out.println("3: See the next 8 in the arena.");
 			System.out.println("5: Report on the surviving decks.");
 			System.out.println("55: Show Standard Deviation.");
+			System.out.println("69: Generate new decks.");
 			System.out.println("88: Determine which deck is healthiest to cull.");
 			System.out.println("999: Quit.");
 			System.out.println();
@@ -43,11 +48,9 @@ public class List {
 			case 0:
 				addEachClass(numberForExperiments, arena);
 				Collections.shuffle(arena);
-				deathmatch(128, arena);
+				deathmatch(2048, arena);
 				System.out.println();
 				showSurvivors(arena);
-				System.out.println();
-				on = false;
 				break;
 
 			case 1:
@@ -77,6 +80,56 @@ public class List {
 			case 55:
 				System.out.println(metagameBalanceMetrics(arena));
 				break;
+				
+			case 69:
+				addEachClass(12500, arena);
+				deathmatch(2048, arena);
+				System.out.println();
+				double initialStDev = metagameBalanceMetrics(arena);
+
+				System.out.println("So far the metagame has a balance rating of " + initialStDev + ".");
+				System.out.println("Generating units endlessly...");
+
+				CustomUnitGenerator customUnitGenerator = new CustomUnitGenerator();
+
+				while (true) {
+					arena.clear();
+					addEachClass(12500, arena);
+					Custom custom = customUnitGenerator.buildUnit();
+					customUnitGenerator.generateNewUnitStats();
+
+					for (int i = 0; i < 12500; i++) {
+						arena.add(custom);
+					}
+					
+					Collections.shuffle(arena);
+					deathmatch(2048, arena);
+
+					double newStDev = metagameBalanceMetrics(arena);
+					ArrayList<Quantity> metagamePairs = new ArrayList<>();
+					HashMap<String, Integer> toBeSorted = reportOnSurvivors(arena);
+					sortByValues(toBeSorted);
+					populate(metagamePairs, toBeSorted);
+
+					if (newStDev <= initialStDev) {
+
+						initialStDev = newStDev;
+						String fileName = "" + newStDev;
+						String filePath = "C:\\Users\\sdolman\\Desktop\\Gimmix\\Gimmix\\Deck Metagame\\newfags\\";
+						String output = customUnitGenerator.generateCode(newStDev);
+
+						File file = new File(filePath + fileName + ".java");
+						try {
+							PrintWriter writer = new PrintWriter(file, "UTF-8");
+							writer.print(output);
+							writer.close();
+						} catch (FileNotFoundException e) {
+							e.printStackTrace();
+						} catch (UnsupportedEncodingException e) {
+							e.printStackTrace();
+						}
+					}
+				}
 
 			case 88:
 				ArrayList<Deck> counter = new ArrayList<>();

@@ -6,6 +6,6 @@ public class FoodChain extends Deck {
 
 	public FoodChain() {
 		super.setArchetype("Food Chain");
-		super.setStats(0, 20, 80, 0);
+		super.setStats(0, 0, 60, 40);
 	}
 }

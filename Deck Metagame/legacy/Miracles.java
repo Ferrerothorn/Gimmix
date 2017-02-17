@@ -6,6 +6,6 @@ public class Miracles extends Deck {
 
 	public Miracles() {
 		super.setArchetype("Miracles");
-		super.setStats(0, 67, 33, 0);
+		super.setStats(5, 75, 5, 15);
 	}
 }

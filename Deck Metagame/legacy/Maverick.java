@@ -6,6 +6,6 @@ public class Maverick extends Deck {
 
 	public Maverick() {
 		super.setArchetype("Maverick");
-		super.setStats(40, 0, 10, 50);
+		super.setStats(50, 0, 0, 50);
 	}
 }

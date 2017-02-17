@@ -6,7 +6,7 @@ public class ShardlessBUG extends Deck {
 
 	public ShardlessBUG() {
 		super.setArchetype("Shardless BUG");
-		super.setStats(5, 30, 0, 65);
+		super.setStats(0, 35, 15, 50);
 	}
 
 }

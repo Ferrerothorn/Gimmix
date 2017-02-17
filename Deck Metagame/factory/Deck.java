@@ -23,35 +23,45 @@ public abstract class Deck {
 		Collections.shuffle(cards);
 		Collections.shuffle(opponent.cards);
 
-		String myPlaystyle = this.getPlaystyle();
-		String theirPlaystyle = opponent.getPlaystyle();
+		ArrayList<String> myPlays = this.getPlaystyle();
+		ArrayList<String> theirPlays = opponent.getPlaystyle();
 
-		if (this.archetype.equals(opponent.getArchetype())) {
-			return this;
-		}
-		if (myPlaystyle.equals("Midrange") && theirPlaystyle.equals("Aggro")) {
-			return this;
-		}
-		if (myPlaystyle.equals("Aggro") && theirPlaystyle.equals("Control")) {
-			return this;
-		}
-		if (myPlaystyle.equals("Combo") && theirPlaystyle.equals("Midrange")) {
-			return this;
-		}
-		if (myPlaystyle.equals("Control") && theirPlaystyle.equals("Combo")) {
-			return this;
+		int myScore = 0;
+
+		while (myPlays.size() > 0 && theirPlays.size() > 0) {
+			String myCard = myPlays.remove(0);
+			String theirCard = theirPlays.remove(0);
+
+			if (myCard.equals("Midrange") && theirCard.equals("Aggro")) {
+				myScore++;
+			}
+			if (myCard.equals("Aggro") && theirCard.equals("Control")) {
+				myScore++;
+			}
+			if (myCard.equals("Combo") && theirCard.equals("Midrange")) {
+				myScore++;
+			}
+			if (myCard.equals("Control") && theirCard.equals("Combo")) {
+				myScore++;
+			}
+			if (theirCard.equals("Midrange") && myCard.equals("Aggro")) {
+				myScore--;
+			}
+			if (theirCard.equals("Aggro") && myCard.equals("Control")) {
+				myScore--;
+			}
+			if (theirCard.equals("Combo") && myCard.equals("Midrange")) {
+				myScore--;
+			}
+			if (theirCard.equals("Control") && myCard.equals("Combo")) {
+				myScore--;
+			}
 		}
 
-		if ((myPlaystyle.equals("Midrange") && theirPlaystyle.equals("Combo"))) {
-			return opponent;
+		if (myScore > 0) {
+			return this;
 		}
-		if (myPlaystyle.equals("Aggro") && theirPlaystyle.equals("Midrange")) {
-			return opponent;
-		}
-		if (myPlaystyle.equals("Combo") && theirPlaystyle.equals("Control")) {
-			return opponent;
-		}
-		if (myPlaystyle.equals("Control") && theirPlaystyle.equals("Aggro")) {
+		if (myScore < 0) {
 			return opponent;
 		}
 
@@ -63,9 +73,14 @@ public abstract class Deck {
 		return opponent;
 	}
 
-	private String getPlaystyle() {
+	private ArrayList<String> getPlaystyle() {
+		ArrayList<String> gamePlan = new ArrayList<>();
 		Collections.shuffle(cards);
-		return cards.get(0);
+
+		for (int i = 0; i < 15; i++) {
+			gamePlan.add(cards.get(i));
+		}
+		return gamePlan;
 	}
 
 	public void setStats(int i, int j, int k, int l) {

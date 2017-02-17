@@ -1,4 +1,4 @@
-package modern;
+package legacy;
 
 import factory.Deck;
 
@@ -6,7 +6,6 @@ public class Infect extends Deck {
 
 	public Infect() {
 		super.setArchetype("Infect");
-		super.setStats(85, 0, 15, 0);
+		super.setStats(25, 0, 75, 0);
 	}
-
 }

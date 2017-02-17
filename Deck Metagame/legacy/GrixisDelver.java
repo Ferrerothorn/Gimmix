@@ -6,7 +6,6 @@ public class GrixisDelver extends Deck {
 
 	public GrixisDelver() {
 		super.setArchetype("Grixis Delver");
-		super.setStats(30, 30, 0, 40);
+		super.setStats(40, 60, 0, 0);
 	}
-
 }

@@ -6,6 +6,6 @@ public class ANT extends Deck {
 
 	public ANT() {
 		super.setArchetype("ANT");
-		super.setStats(0, 5, 95, 0);
+		super.setStats(0, 15, 85, 0);
 	}
 }
