@@ -4,6 +4,7 @@ public class Battle {
 
 	Player p1;
 	Player p2;
+	int tableNumber;
 
 	public Battle(Player myP1, Player myP2) {
 		p1 = myP1;
@@ -20,6 +21,14 @@ public class Battle {
 
 	public int getPrestige() {
 		return p1.getScore() + p2.getScore();
+	}
+
+	public void setTableNumber(int tN) {
+		tableNumber = tN;
+	}
+	
+	public int getTableNumber() {
+		return tableNumber;
 	}
 
 }

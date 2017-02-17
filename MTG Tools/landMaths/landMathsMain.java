@@ -4,34 +4,34 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class landMathsMain {
-	
-	static int startWithThisManyLands = 16;
-	static int testUpToThisManyLands = 30;
-	
-	public static void main (String[] args) {
-		
+
+	static int startWithThisManyLands = 1;
+	static int testUpToThisManyLands = 59;
+
+	public static void main(String[] args) {
+
 		for (int i = startWithThisManyLands; i <= testUpToThisManyLands; i++) {
-			System.out.println(calculateTheOddsOfHavingThreeOrFourBasicsInYourOpeningHandWithIInTheDeck(i));	
+			System.out.println(calculateTheOddsOfHavingThreeOrFourBasicsInYourOpeningHandWithIInTheDeck(i));
 		}
 	}
 
 	private static String calculateTheOddsOfHavingThreeOrFourBasicsInYourOpeningHandWithIInTheDeck(int i) {
-		
+
 		double decentHands = 0;
-		
+
 		for (int count = 0; count < 400000; count++) {
 			ArrayList<Card> deck = new ArrayList<>();
 			ArrayList<Card> hand = new ArrayList<>();
 			populateDeck(deck, i);
-			draw(deck, hand, 10);
+			draw(deck, hand, 7);
 			if (processHand(hand)) {
 				decentHands++;
 			}
 		}
 		decentHands /= 4000;
-		
 
-		return "" + i + " lands in the deck gives you a " + decentHands + "% chance of having your ideal number in your opening hand.";
+		return "" + i + " lands in the deck gives you a " + decentHands
+				+ "% chance of having your ideal number in your opening hand.";
 	}
 
 	private static void draw(ArrayList<Card> deck, ArrayList<Card> hand, int i) {
@@ -57,6 +57,6 @@ public class landMathsMain {
 				lands++;
 			}
 		}
-		return (lands == 4);
+		return (lands == 2 || lands == 3);
 	}
 }

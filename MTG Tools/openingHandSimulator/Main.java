@@ -105,6 +105,24 @@ public class Main {
 		// addThisCard("Renegade Tactics", 2);
 		// addThisCard("Attune with Aether", 2);
 
+		// Belcher
+		addThisCard("Taiga", 1);
+		addThisCard("Elvish Spirit Guide", 4);
+		addThisCard("Simian Spirit Guide", 4);
+		addThisCard("Street Wraith", 4);
+		addThisCard("Tinder Wall", 4);
+		addThisCard("Desperate Ritual (CMC2, G3)", 4);
+		addThisCard("Empty the Warrens", 4);
+		addThisCard("Gitaxian Probe", 4);
+		addThisCard("Land Grant", 4);
+		addThisCard("Manamorphose", 4);
+		addThisCard("Pyretic Ritual (CMC2, G3)", 4);
+		addThisCard("Rite of Flame (CMC1, G2+gy)", 4);
+		addThisCard("Chrome Mox", 3);
+		addThisCard("Goblin Charbelcher", 4);
+		addThisCard("Lion's Eye Diamond", 4);
+		addThisCard("Lotus Petal", 4);
+
 		// SUPERFRIENDS
 		// addThisCard("Chandra, Flamecaller", 2);
 		// addThisCard("Xenagos, The Reveler", 1);
@@ -143,28 +161,28 @@ public class Main {
 		// addThisCard("Plains", 1);
 		// addThisCard("Evolving Wilds", 2);
 
-		//MUD
-//		addThisCard("Lodestone Golem", 4);
-//		addThisCard("Smokestack", 4);
-//		addThisCard("Cloudpost", 4);
-//		addThisCard("Metalworker", 4);
-//		addThisCard("Tangle Wire", 4);
-//		addThisCard("Glimmerpost", 4);
-//		addThisCard("Steel Hellkite", 3);
-//		addThisCard("Trinisphere", 4);
-//		addThisCard("Thespian's Stage", 4);
-//		addThisCard("Wurmcoil Engine", 1);
-//		addThisCard("Thorn of Amethyst", 4);
-//		addThisCard("Crystal Vein", 4);
-//		addThisCard("Winter Orb", 2);
-//		addThisCard("Inventor's Fair", 4);
-//		addThisCard("Expedition Map", 3);
-//		addThisCard("Buried Ruin", 4);
-//		addThisCard("Ghirapur Orrery", 1);
-//		addThisCard("Staff of Nin", 1);
-//		addThisCard("Bottled Cloister", 1);
+		// MUD
+		// addThisCard("Lodestone Golem", 4);
+		// addThisCard("Smokestack", 4);
+		// addThisCard("Cloudpost", 4);
+		// addThisCard("Metalworker", 4);
+		// addThisCard("Tangle Wire", 4);
+		// addThisCard("Glimmerpost", 4);
+		// addThisCard("Steel Hellkite", 3);
+		// addThisCard("Trinisphere", 4);
+		// addThisCard("Thespian's Stage", 4);
+		// addThisCard("Wurmcoil Engine", 1);
+		// addThisCard("Thorn of Amethyst", 4);
+		// addThisCard("Crystal Vein", 4);
+		// addThisCard("Winter Orb", 2);
+		// addThisCard("Inventor's Fair", 4);
+		// addThisCard("Expedition Map", 3);
+		// addThisCard("Buried Ruin", 4);
+		// addThisCard("Ghirapur Orrery", 1);
+		// addThisCard("Staff of Nin", 1);
+		// addThisCard("Bottled Cloister", 1);
 
-		//Maverick
+		// Maverick
 		// addThisCard("Birds of Paradise", 4);
 		// addThisCard("Dryad Arbor", 1);
 		// addThisCard("Scavenging Ooze", 2);
@@ -178,46 +196,43 @@ public class Main {
 		// addThisCard("Mother of Runes", 4);
 		// addThisCard("Swords to Plowshares", 4);
 		// addThisCard("Green Sun's Zenith", 4);
-		// addThisCard("Life from the Loam", 1);	
+		// addThisCard("Life from the Loam", 1);
 		// addThisCard("Sylvan Library", 1);
 		// addThisCard("Batterskull", 1);
 		// addThisCard("Sword of Feast and Famine", 1);
 		// addThisCard("Umezawa's Jitte", 1);
 		// addThisCard("Forest", 4);
 		// addThisCard("Plains", 4);
-		// addThisCard("Nykthos, Shrine to Nyx", 1);	
-		// addThisCard("Maze of Ith", 1);		
+		// addThisCard("Nykthos, Shrine to Nyx", 1);
+		// addThisCard("Maze of Ith", 1);
 		// addThisCard("Evolving Wilds", 4);
 		// addThisCard("Sunpetal Grove", 4);
 		// addThisCard("Canopy Vista", 4);
-		
-		
-		// Shardless BUG
-		addThisCard("Shardless Agent", 4);
-		addThisCard("Tarmogoyf", 4);
-		addThisCard("Deathrite Shaman", 4);
-		addThisCard("Baleful Strix", 3);
-		addThisCard("Leovold EoTt", 2);
-		
-		addThisCard("Ancestral Vision", 4);
-		addThisCard("Brainstorm", 4);
-		addThisCard("Abrupt Decay", 4);
-		addThisCard("Force of Will", 3);
-		addThisCard("Jace TMS", 2);
-		addThisCard("Hymn to Tourach", 2);
-		addThisCard("Toxic Deluge", 1);
-		addThisCard("Sylvan Library", 1);
-		addThisCard("Golgari Charm", 1);
 
-		addThisCard("Opulent Palace", 4);
-		addThisCard("Evolving Wilds", 4);
-		addThisCard("Island", 2);
-		addThisCard("Swamp", 2);
-		addThisCard("Forest", 2);
-		addThisCard("Underground River", 2);
-		addThisCard("Yavimaya Coast", 2);
-		addThisCard("Llanowar Wastes", 2);
-		addThisCard("Wasteland", 1);
+		// Shardless BUG
+//		addThisCard("Shardless Agent", 4);
+//		addThisCard("Tarmogoyf", 4);
+//		addThisCard("Deathrite Shaman", 4);
+//		addThisCard("Baleful Strix", 3);
+//		addThisCard("Leovold EoTt", 2);
+//		addThisCard("Ancestral Vision", 4);
+//		addThisCard("Brainstorm", 4);
+//		addThisCard("Abrupt Decay", 4);
+//		addThisCard("Force of Will", 3);
+//		addThisCard("Jace TMS", 2);
+//		addThisCard("Hymn to Tourach", 2);
+//		addThisCard("Toxic Deluge", 1);
+//		addThisCard("Sylvan Library", 1);
+//		addThisCard("Golgari Charm", 1);
+//		addThisCard("Misty Rainforest", 4);
+//		addThisCard("Verdant Catacombs", 4);
+//		addThisCard("Island", 1);
+//		addThisCard("Swamp", 1);
+//		addThisCard("Forest", 1);
+//		addThisCard("Bayou", 3);
+//		addThisCard("Tropical Island", 4);
+//		addThisCard("Underground Sea", 2);
+//		addThisCard("Wasteland", 1);
 
 		// Colossus Affinity
 		// addThisCard("Sunken Hollow", 3);

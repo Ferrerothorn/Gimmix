@@ -6,7 +6,7 @@ public class Aluren extends Deck {
 
 	public Aluren() {
 		super.setArchetype("Aluren");
-		super.setStats(35, 5, 30, 30);
+		super.setStats(0, 10, 70, 20);
 	}
 
 }

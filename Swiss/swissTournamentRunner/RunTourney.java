@@ -38,6 +38,7 @@ public class RunTourney {
 			tourney.pollForResults();
 			tourney.updateParticipantStats();
 			tourney.sortRankings();
+			tourney.updateParticipantStats();
 			tourney.displayInDepthRankings();
 			i++;
 		}

@@ -156,10 +156,8 @@ public class Tournament {
 	}
 
 	private void printCurrentBattles() {
-		int index = 0;
 		for (Battle b : currentBattles) {
-			index++;
-			System.out.println("Table " + index + ") " + b.getP1().getName() + " (" + b.getP1().getPositionInRankings()
+			System.out.println("Table " + b.getTableNumber() + ") " + b.getP1().getName() + " (" + b.getP1().getPositionInRankings()
 					+ ")" + " playing " + b.getP2().getName() + " (" + b.getP2().getPositionInRankings() + ")" + ".");
 		}
 	}
@@ -167,12 +165,15 @@ public class Tournament {
 	public void pollForResults() {
 		sc = new Scanner(System.in);
 		System.out.println("-=-=-=-BATTLES IN PROGRESS-=-=-=-");
-
+		assignTableNumbers(currentBattles);
+		
 		while (currentBattles.size() > 0) {
 			try {
 				printCurrentBattles();
 				int reportUpon = sc.nextInt();
-				Battle b = currentBattles.remove(reportUpon - 1);
+				Battle b = fetchBattle(reportUpon, currentBattles);
+				currentBattles.remove(b);
+				
 				System.out.println("And who won in " + b.getP1().getName() + " vs. " + b.getP2().getName() + "?");
 				System.out.println("1) " + b.getP1().getName());
 				System.out.println("2) " + b.getP2().getName());
@@ -193,8 +194,25 @@ public class Tournament {
 				players.add(b.getP2());
 				b = null;
 			} catch (Exception e) {
-				System.out.println("Illegal input. Please enter a NUMBER.");
+				System.out.println("No such table.");
 			}
+		}
+	}
+
+	private Battle fetchBattle(int reportUpon, ArrayList<Battle> cB) {
+		for (Battle b : cB) {
+			if (b.getTableNumber() == reportUpon) {
+				return b;
+			}
+		}
+		return null;
+	}
+
+	private void assignTableNumbers(ArrayList<Battle> bIP) {
+		int index = 1;
+		for (Battle b : bIP) {
+			b.setTableNumber(index);
+			index++;
 		}
 	}
 
