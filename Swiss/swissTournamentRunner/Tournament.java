@@ -78,9 +78,11 @@ public class Tournament {
 	public void displayInDepthRankings() {
 		String participantString = "";
 		for (int i = 1; i <= players.size(); i++) {
-			participantString += "" + i + ") " + players.get(i - 1).getName() + "  Score: "
-					+ players.get(i - 1).getScore() + "  TB: " + players.get(i - 1).getTB() + "  Opp WR: "
-					+ players.get(i - 1).getOpps() + "  Opp Opp WR: " + players.get(i - 1).getOppsOpps() + '\n';
+			participantString += rpad("" + i + ") " + players.get(i - 1).getName() + "                         ", 20)+ "   "
+					+ rpad("Score: " + players.get(i - 1).getScore() + "                         ", 15)+ "   "
+					+ rpad("TB: " + players.get(i - 1).getTB() + "                         ", 8)+ "   "
+					+ rpad("Opp WR: " + players.get(i - 1).getOpps() + "                         ", 12)+ "    "
+					+ rpad("Opp Opp WR: " + players.get(i - 1).getOppsOpps() + "                         ", 16) + '\n';
 		}
 		System.out.println(participantString);
 	}
@@ -157,8 +159,9 @@ public class Tournament {
 
 	private void printCurrentBattles() {
 		for (Battle b : currentBattles) {
-			System.out.println("Table " + b.getTableNumber() + ") " + b.getP1().getName() + " (" + b.getP1().getPositionInRankings()
-					+ ")" + " playing " + b.getP2().getName() + " (" + b.getP2().getPositionInRankings() + ")" + ".");
+			System.out.println("Table " + b.getTableNumber() + ") " + b.getP1().getName() + " ("
+					+ b.getP1().getPositionInRankings() + ")" + " playing " + b.getP2().getName() + " ("
+					+ b.getP2().getPositionInRankings() + ")" + ".");
 		}
 	}
 
@@ -166,14 +169,14 @@ public class Tournament {
 		sc = new Scanner(System.in);
 		System.out.println("-=-=-=-BATTLES IN PROGRESS-=-=-=-");
 		assignTableNumbers(currentBattles);
-		
+
 		while (currentBattles.size() > 0) {
 			try {
 				printCurrentBattles();
 				int reportUpon = sc.nextInt();
 				Battle b = fetchBattle(reportUpon, currentBattles);
 				currentBattles.remove(b);
-				
+
 				System.out.println("And who won in " + b.getP1().getName() + " vs. " + b.getP2().getName() + "?");
 				System.out.println("1) " + b.getP1().getName());
 				System.out.println("2) " + b.getP2().getName());
@@ -193,6 +196,8 @@ public class Tournament {
 				players.add(b.getP1());
 				players.add(b.getP2());
 				b = null;
+				updateParticipantStats();
+				displayInDepthRankings();
 			} catch (Exception e) {
 				System.out.println("No such table.");
 			}
@@ -236,4 +241,10 @@ public class Tournament {
 		sortRankings(players);
 	}
 
+	public static String rpad(String inStr, int finalLength) {
+		return (inStr
+				+ "                                                                                                                          ")
+						.substring(0, finalLength);
+
+	}
 }
