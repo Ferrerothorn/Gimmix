@@ -60,8 +60,7 @@ public class Player implements Comparable<Player> {
 	}
 
 	@Override
-	public int compareTo(Player p) { // How to compare one player to another to
-										// check who's score is better.
+	public int compareTo(Player p) {
 		if (this.score > p.getScore()) {
 			return -1;
 		} else if (this.score < p.getScore()) {
@@ -141,10 +140,6 @@ public class Player implements Comparable<Player> {
 	}
 
 	public int getPositionInRankings() {
-		return lastDocumentedPosition;
-	}
-
-	public int getLastDocumentedPosition() {
 		return lastDocumentedPosition;
 	}
 
