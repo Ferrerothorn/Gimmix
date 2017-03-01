@@ -6,7 +6,7 @@ import java.util.Collections;
 public class landMathsMain {
 
 	static int startWithThisManyLands = 1;
-	static int testUpToThisManyLands = 59;
+	static int testUpToThisManyLands = 8;
 
 	public static void main(String[] args) {
 
@@ -57,6 +57,6 @@ public class landMathsMain {
 				lands++;
 			}
 		}
-		return (lands == 2 || lands == 3);
+		return (lands == 1 || lands == 2);
 	}
 }

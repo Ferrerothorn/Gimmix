@@ -25,6 +25,7 @@ public class Player implements Comparable<Player> {
 	}
 
 	public void updatePositionInRankings(ArrayList<Player> players) {
+
 		for (int i = 0; i < players.size(); i++) {
 			if (this == players.get(i)) {
 				lastDocumentedPosition = i + 1;

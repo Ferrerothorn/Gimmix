@@ -32,20 +32,17 @@ public class RunTourney {
 			System.out.println("-=-=-=-Round " + i + "!-=-=-=-");
 			System.out.println();
 			tourney.shufflePlayers();
-			tourney.sortRankings();
-			tourney.updateParticipantStats();
-			tourney.generatePairings();
-			tourney.pollForResults();
-			tourney.updateParticipantStats();
-			tourney.sortRankings();
 			tourney.updateParticipantStats();
 			tourney.displayInDepthRankings();
+			tourney.generatePairings();
+			tourney.pollForResults();
 			i++;
 		}
 
 		System.out.println("And that's it over!");
 		System.out.println("FINAL STANDINGS");
 		System.out.println();
+		tourney.updateParticipantStats();
 		tourney.displayInDepthRankings();
 		tourney.closeScanner();
 		sc.close();

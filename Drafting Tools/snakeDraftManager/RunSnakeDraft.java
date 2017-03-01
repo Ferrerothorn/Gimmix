@@ -34,17 +34,16 @@ public class RunSnakeDraft {
 		draftManager(ouPool, "OU");
 		draftManager(blPool, "BL");
 		draftManager(uuPool, "UU");
-//		draftManager(ruPool, "RU");
+		// draftManager(ruPool, "RU");
 
 		tradingPost();
 		saveFile();
 		inputs.close();
 	}
 
-
 	private static void fillPools() {
 
-		ouPool.add("Alakazam");
+		ouPool.add("Alakazam (*)");
 		ouPool.add("Buzzwole");
 		ouPool.add("Celesteela");
 		ouPool.add("Chansey");
@@ -90,7 +89,7 @@ public class RunSnakeDraft {
 		ouPool.add("Xurkitree");
 		ouPool.add("Zapdos");
 		ouPool.add("Zygarde");
-		
+
 		blPool.add("Azumarill");
 		blPool.add("Breloom");
 		blPool.add("Diggersby");
@@ -135,7 +134,7 @@ public class RunSnakeDraft {
 		uuPool.add("Kingdra");
 		uuPool.add("Klefki");
 		uuPool.add("Kommo-o");
-		uuPool.add("Krookodile");	
+		uuPool.add("Krookodile");
 		uuPool.add("Latias");
 		uuPool.add("Magneton");
 		uuPool.add("Mandibuzz");
@@ -157,75 +156,43 @@ public class RunSnakeDraft {
 		uuPool.add("Volcanion");
 		uuPool.add("Zygarde 10%");
 
-	/*	bl2Pool.add("Abomasnow (*)");
-		bl2Pool.add("Dragalge");
-		bl2Pool.add("Durant");
-		bl2Pool.add("Froslass");
-		bl2Pool.add("Honchkrow");
-		bl2Pool.add("Houndoom (*)");
-		bl2Pool.add("Kingdra");
-		bl2Pool.add("Kyurem (Base only)");
-		bl2Pool.add("Moltres");
-		bl2Pool.add("Noivern");
-		bl2Pool.add("Pangoro");
-		bl2Pool.add("Shaymin");
-		bl2Pool.add("Shuckle");
-		bl2Pool.add("Slurpuff");
-		bl2Pool.add("Steelix (*)");
-		bl2Pool.add("Tyrantrum");
-		bl2Pool.add("Venomoth");
-		bl2Pool.add("Yanmega");
-		bl2Pool.add("Zoroark");
-
-		ruPool.add("Accelgor");
-		ruPool.add("Alomomola");
-		ruPool.add("Ambipom");
-		ruPool.add("Aromatisse");
-		ruPool.add("Banette (*)");
-		ruPool.add("Braviary");
-		ruPool.add("Bronzong");
-		ruPool.add("Camerupt (*)");
-		ruPool.add("Cinccino");
-		ruPool.add("Clawitzer");
-		ruPool.add("Cofagrigus");
-		ruPool.add("Delphox");
-		ruPool.add("Diancie");
-		ruPool.add("Drapion");
-		ruPool.add("Druddigon");
-		ruPool.add("Dugtrio");
-		ruPool.add("Eelektross");
-		ruPool.add("Emboar");
-		ruPool.add("Escavalier");
-		ruPool.add("Exploud");
-		ruPool.add("Fletchinder");
-		ruPool.add("Flygon");
-		ruPool.add("Glalie (*)");
-		ruPool.add("Golbat");
-		ruPool.add("Granbull");
-		ruPool.add("Hitmonlee");
-		ruPool.add("Hitmontop");
-		ruPool.add("Hoopa");
-		ruPool.add("Jellicent");
-		ruPool.add("Jolteon");
-		ruPool.add("Magneton");
-		ruPool.add("Medicham");
-		ruPool.add("Meloetta");
-		ruPool.add("Quagsire");
-		ruPool.add("Qwilfish");
-		ruPool.add("Registeel");
-		ruPool.add("Rhyperior");
-		ruPool.add("Sawk");
-		ruPool.add("Scrafty");
-		ruPool.add("Seismitoad");
-		ruPool.add("Sigilyph");
-		ruPool.add("Slowking");
-		ruPool.add("Sneasel");
-		ruPool.add("Spiritomb");
-		ruPool.add("Togetic");
-		ruPool.add("Typhlosion");
-		ruPool.add("Uxie");
-		ruPool.add("Venusaur");
-		ruPool.add("Virizion");  */
+		/*
+		 * bl2Pool.add("Abomasnow (*)"); bl2Pool.add("Dragalge");
+		 * bl2Pool.add("Durant"); bl2Pool.add("Froslass");
+		 * bl2Pool.add("Honchkrow"); bl2Pool.add("Houndoom (*)");
+		 * bl2Pool.add("Kingdra"); bl2Pool.add("Kyurem (Base only)");
+		 * bl2Pool.add("Moltres"); bl2Pool.add("Noivern");
+		 * bl2Pool.add("Pangoro"); bl2Pool.add("Shaymin");
+		 * bl2Pool.add("Shuckle"); bl2Pool.add("Slurpuff");
+		 * bl2Pool.add("Steelix (*)"); bl2Pool.add("Tyrantrum");
+		 * bl2Pool.add("Venomoth"); bl2Pool.add("Yanmega");
+		 * bl2Pool.add("Zoroark");
+		 * 
+		 * ruPool.add("Accelgor"); ruPool.add("Alomomola");
+		 * ruPool.add("Ambipom"); ruPool.add("Aromatisse");
+		 * ruPool.add("Banette (*)"); ruPool.add("Braviary");
+		 * ruPool.add("Bronzong"); ruPool.add("Camerupt (*)");
+		 * ruPool.add("Cinccino"); ruPool.add("Clawitzer");
+		 * ruPool.add("Cofagrigus"); ruPool.add("Delphox");
+		 * ruPool.add("Diancie"); ruPool.add("Drapion");
+		 * ruPool.add("Druddigon"); ruPool.add("Dugtrio");
+		 * ruPool.add("Eelektross"); ruPool.add("Emboar");
+		 * ruPool.add("Escavalier"); ruPool.add("Exploud");
+		 * ruPool.add("Fletchinder"); ruPool.add("Flygon");
+		 * ruPool.add("Glalie (*)"); ruPool.add("Golbat");
+		 * ruPool.add("Granbull"); ruPool.add("Hitmonlee");
+		 * ruPool.add("Hitmontop"); ruPool.add("Hoopa");
+		 * ruPool.add("Jellicent"); ruPool.add("Jolteon");
+		 * ruPool.add("Magneton"); ruPool.add("Medicham");
+		 * ruPool.add("Meloetta"); ruPool.add("Quagsire");
+		 * ruPool.add("Qwilfish"); ruPool.add("Registeel");
+		 * ruPool.add("Rhyperior"); ruPool.add("Sawk"); ruPool.add("Scrafty");
+		 * ruPool.add("Seismitoad"); ruPool.add("Sigilyph");
+		 * ruPool.add("Slowking"); ruPool.add("Sneasel");
+		 * ruPool.add("Spiritomb"); ruPool.add("Togetic");
+		 * ruPool.add("Typhlosion"); ruPool.add("Uxie"); ruPool.add("Venusaur");
+		 * ruPool.add("Virizion");
+		 */
 	}
 
 	private static void capturePlayers() throws Exception {
@@ -507,8 +474,10 @@ public class RunSnakeDraft {
 
 	private static void processUnclaimedPokemon(ArrayList<String> pool, String tierLabel) {
 		Collections.sort(pool);
-		String tierBin = tierLabel + ": " + pool.toString();
-		swappingPool += tierBin + '\n';
+		if (pool.size() > 0) {
+			String tierBin = tierLabel + ": " + pool.toString();
+			swappingPool += tierBin + '\n';
+		}
 	}
 
 	private static void printPicks(ArrayList<String> tier) {
