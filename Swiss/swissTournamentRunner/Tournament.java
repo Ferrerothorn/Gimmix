@@ -9,13 +9,17 @@ public class Tournament {
 	public ArrayList<Player> players = new ArrayList<>();
 	public ArrayList<Battle> currentBattles = new ArrayList<>();
 	public ArrayList<Battle> totallyKosherPairings = new ArrayList<>();
+	int longestPlayerNameLength = 0;
 	Scanner sc;
 
 	public int playerCap = 1;
 
 	public void addPlayer(Player p1) {
-		if (!p1.getName().equals("") || !p1.getName().equals("Glarren4Life")) {
+		if (!p1.getName().equals("")) {
 			players.add(p1);
+		}
+		if (p1.getName().length() > longestPlayerNameLength) {
+			longestPlayerNameLength = p1.getName().length();
 		}
 		playerCap++;
 	}
@@ -78,10 +82,10 @@ public class Tournament {
 	public void displayInDepthRankings() {
 		String participantString = "";
 		for (int i = 1; i <= players.size(); i++) {
-			participantString += rpad("" + i + ") " + players.get(i - 1).getName() + "                         ", 20)+ "   "
-					+ rpad("Score: " + players.get(i - 1).getScore() + "                         ", 15)+ "   "
-					+ rpad("TB: " + players.get(i - 1).getTB() + "                         ", 8)+ "   "
-					+ rpad("Opp WR: " + players.get(i - 1).getOpps() + "                         ", 12)+ "    "
+			participantString += rpad("" + i + ") " + players.get(i - 1).getName() + "                         ", 20)
+					+ "   " + rpad("Score: " + players.get(i - 1).getScore() + "                         ", 15) + "   "
+					+ rpad("TB: " + players.get(i - 1).getTB() + "                         ", 8) + "   "
+					+ rpad("Opp WR: " + players.get(i - 1).getOpps() + "                         ", 12) + "    "
 					+ rpad("Opp Opp WR: " + players.get(i - 1).getOppsOpps() + "                         ", 16) + '\n';
 		}
 		System.out.println(participantString);
@@ -103,7 +107,7 @@ public class Tournament {
 		}
 		currentBattles.addAll(totallyKosherPairings);
 		totallyKosherPairings.clear();
-		
+
 		for (Battle b : currentBattles) {
 			players.add(b.getP1());
 			players.add(b.getP2());
@@ -163,17 +167,19 @@ public class Tournament {
 	}
 
 	private void printCurrentBattles() {
-		//TODO clean up the format of active battles
 		for (Battle b : currentBattles) {
-			System.out.println("Table " + b.getTableNumber() + ") " + b.getP1().getName() + " ("
-					+ b.getP1().getPositionInRankings() + ")" + " playing " + b.getP2().getName() + " ("
-					+ b.getP2().getPositionInRankings() + ")" + ".");
+			String playerOneString = b.getP1().getName() + " (" + b.getP1().getPositionInRankings() + ")                          ";
+			String playerTwoString = b.getP2().getName() + " (" + b.getP2().getPositionInRankings() + ")                          ";
+
+			System.out.println(rpad("Table " + b.getTableNumber() + ") ", 11) 
+					+ rpad(playerOneString, longestPlayerNameLength+8) +	"vs.    " +
+					rpad(playerTwoString, longestPlayerNameLength+8));
 		}
 	}
 
 	public void pollForResults() {
-		
-		//TODO Sanitise illegal input a la drafter
+
+		// TODO Sanitise illegal input a la drafter
 		sc = new Scanner(System.in);
 		System.out.println("-=-=-=-BATTLES IN PROGRESS-=-=-=-");
 		assignTableNumbers(currentBattles);
@@ -195,13 +201,18 @@ public class Tournament {
 
 				if (winner == 1) {
 					b.getP1().beats(b.getP2());
+					b = null;
 				} else if (winner == 2) {
 					b.getP2().beats(b.getP1());
-				} else {
+					b = null;
+				} else if (winner == 3){
 					b.getP1().tied(b.getP2());
 					b.getP2().tied(b.getP1());
+					b = null;
 				}
-				b = null;
+				else {
+					currentBattles.add(b);
+				}
 				updateParticipantStats();
 				displayInDepthRankings();
 				System.out.println();

@@ -29,6 +29,13 @@ public class RunTourney {
 		
 		int i = 1;
 		while (i <= numberOfRounds) {
+			System.out.println();
+			System.out.println();
+			System.out.println();
+			System.out.println();
+			System.out.println();
+			System.out.println();
+			System.out.println();
 			System.out.println("-=-=-=-Round " + i + "!-=-=-=-");
 			System.out.println();
 			tourney.shufflePlayers();
