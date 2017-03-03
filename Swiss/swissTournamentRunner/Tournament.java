@@ -9,6 +9,7 @@ public class Tournament {
 	public ArrayList<Player> players = new ArrayList<>();
 	public ArrayList<Battle> currentBattles = new ArrayList<>();
 	public ArrayList<Battle> totallyKosherPairings = new ArrayList<>();
+	
 	int longestPlayerNameLength = 0;
 	Scanner sc;
 

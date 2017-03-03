@@ -53,7 +53,7 @@ public class Main {
 
 	private static void echoGameState() {
 		if (deck.size() + hand.size() != 60) {
-			System.out.println("This deck is incomplete. (" + deck.size() + hand.size() + ")");
+			System.out.println("This deck is incomplete. (" + (deck.size() + hand.size()) + ")");
 			on = false;
 		} else {
 			System.out.println(hand.toString());
@@ -106,152 +106,83 @@ public class Main {
 		// addThisCard("Attune with Aether", 2);
 
 		// Belcher
-		addThisCard("Taiga", 1);
-		addThisCard("Elvish Spirit Guide", 4);
-		addThisCard("Simian Spirit Guide", 4);
-		addThisCard("Street Wraith", 4);
-		addThisCard("Tinder Wall", 4);
-		addThisCard("Desperate Ritual (CMC2, G3)", 4);
-		addThisCard("Empty the Warrens", 4);
-		addThisCard("Gitaxian Probe", 4);
-		addThisCard("Land Grant", 4);
-		addThisCard("Manamorphose", 4);
-		addThisCard("Pyretic Ritual (CMC2, G3)", 4);
-		addThisCard("Rite of Flame (CMC1, G2+gy)", 4);
-		addThisCard("Chrome Mox", 3);
-		addThisCard("Goblin Charbelcher", 4);
-		addThisCard("Lion's Eye Diamond", 4);
-		addThisCard("Lotus Petal", 4);
+//		addThisCard("Taiga", 1);
+//		addThisCard("Elvish Spirit Guide", 4);
+//		addThisCard("Simian Spirit Guide", 4);
+//		addThisCard("Street Wraith", 4);
+//		addThisCard("Tinder Wall", 4);
+//		addThisCard("Desperate Ritual (CMC2, G3)", 4);
+//		addThisCard("Empty the Warrens", 4);
+//		addThisCard("Gitaxian Probe", 4);
+//		addThisCard("Land Grant", 4);
+//		addThisCard("Manamorphose", 4);
+//		addThisCard("Pyretic Ritual (CMC2, G3)", 4);
+//		addThisCard("Rite of Flame (CMC1, G2+gy)", 4);
+//		addThisCard("Chrome Mox", 3);
+//		addThisCard("Goblin Charbelcher", 4);
+//		addThisCard("Lion's Eye Diamond", 4);
+//		addThisCard("Lotus Petal", 4);
 
-		// SUPERFRIENDS
-		// addThisCard("Chandra, Flamecaller", 2);
-		// addThisCard("Xenagos, The Reveler", 1);
-		// addThisCard("Gideon Jura", 1);
-		// addThisCard("Gideon, Champion of Justice", 1);
-		// addThisCard("Jace, Unraveler of Secrets", 1);
-		// addThisCard("Kiora, Master of the Depths", 2);
-		// addThisCard("Ajani Vengeant", 2);
-		// addThisCard("Sarkhan Unbroken", 2);
-		// addThisCard("Nissa, Voice of Zendikar", 2);
-		// addThisCard("Ob Nixilis Reignited", 1);
-		// addThisCard("Sorin, Grim Nemesis", 2);
-		// addThisCard("Tamiyo, Field Researcher", 2);
-		// addThisCard("Nicol Bolas, Planeswalker", 1);
-		// addThisCard("Deploy the Gatewatch", 4);
-		// addThisCard("Languish", 2);
-		// addThisCard("Oath of Nissa", 4);
-		// addThisCard("Oath of Gideon", 2);
-		// addThisCard("Oath of Jace", 1);
-		// addThisCard("Oath of Liliana", 3);
-		// addThisCard("Shambling Vent", 2);
-		// addThisCard("Needle Spires", 1);
-		// addThisCard("Hissing Quagmire", 2);
-		// addThisCard("Lumbering Falls", 1);
-		// addThisCard("Wandering Fumarole", 1);
-		// addThisCard("Canopy Vista", 2);
-		// addThisCard("Cinder Glade", 2);
-		// addThisCard("Yavimaya Coast", 1);
-		// addThisCard("Prairie Stream", 1);
-		// addThisCard("Smoldering Marsh", 1);
-		// addThisCard("Sunken Hollow", 1);
-		// addThisCard("Forest", 3);
-		// addThisCard("Island", 1);
-		// addThisCard("Mountain", 1);
-		// addThisCard("Swamp", 1);
-		// addThisCard("Plains", 1);
-		// addThisCard("Evolving Wilds", 2);
+//		addThisCard("Mountain", 10); 
+//		addThisCard("Rishadan port", 4); 
+//		addThisCard("Wasteland", 4); 
+//		addThisCard("Cavern of Souls", 4); 
+//		addThisCard("Aether Vial", 4); 
+//		addThisCard("Tarfire", 3); 
+//		addThisCard("Goblin Lackey", 4); 
+//		addThisCard("Mogg War Marshal", 4); 
+//		addThisCard("Goblin Piledriver", 4); 
+//		addThisCard("Stingscourger", 1); 
+//		addThisCard("Krenko-Mob Boss", 1); 
+//		addThisCard("Siege-Gang Commander", 1); 
+//		addThisCard("Goblin Warchief", 4); 
+//		addThisCard("Gempalm Incinerator", 4); 
+//		addThisCard("Goblin Matron", 4); 
+//		addThisCard("Goblin Ringleader", 4); 
+//		
+		
+		addThisCard("Mother of Runes", 4); 
+		addThisCard("Phyrexian Revoker", 3); 
+		addThisCard("Serra Avenger", 1); 
+		addThisCard("Stoneforge Mystic", 4); 
+		addThisCard("Thalia, Guardian of Thraben", 4); 
+		addThisCard("Flickerwisp", 4); 
+		addThisCard("Mirran Crusader", 3); 
+		addThisCard("Recruiter of the Guard", 2); 
+		addThisCard("Sanctum Prelate", 1); 
+	//	addThisCard("Thalia", 2); 
+		addThisCard("Swords to Plowshares", 4); 
+		addThisCard("Aether Vial", 4); 
+		addThisCard("Umezawa's Jitte", 1); 
+		addThisCard("Sword of Fire and Ice", 1); 
+		addThisCard("Batterskull", 1); 
+		addThisCard("Cavern of Souls", 2); 
+		addThisCard("Karakas", 3); 
+		addThisCard("Plains", 10); 
+		addThisCard("Wasteland", 4); 
+		addThisCard("Rishadan Port", 4); 
+		
+//		addThisCard("Emrakul", 4); 
+//		addThisCard("Griselbrand", 4); 
+//		addThisCard("Brainstorm", 4); 
+//		addThisCard("Gitaxian Probe", 2); 
+//		addThisCard("Ponder", 4); 
+//		addThisCard("Preordain", 4); 
+//		addThisCard("Spell Pierce", 3); 
+//		addThisCard("Show and Tell", 4); 
+//		addThisCard("Force of Will", 4); 
+//		addThisCard("Lotus Petal", 4); 
+//		addThisCard("Sneak Attack", 4); 
+//		addThisCard("Ancient Tomb", 3); 
+//		addThisCard("City of Traitors", 2); 
+//		addThisCard("Island", 3); 
+//		addThisCard("Mountain", 1); 
+//		addThisCard("Fetchlands", 7); 
+//		addThisCard("Volcanic Island", 3); 
 
-		// MUD
-		// addThisCard("Lodestone Golem", 4);
-		// addThisCard("Smokestack", 4);
-		// addThisCard("Cloudpost", 4);
-		// addThisCard("Metalworker", 4);
-		// addThisCard("Tangle Wire", 4);
-		// addThisCard("Glimmerpost", 4);
-		// addThisCard("Steel Hellkite", 3);
-		// addThisCard("Trinisphere", 4);
-		// addThisCard("Thespian's Stage", 4);
-		// addThisCard("Wurmcoil Engine", 1);
-		// addThisCard("Thorn of Amethyst", 4);
-		// addThisCard("Crystal Vein", 4);
-		// addThisCard("Winter Orb", 2);
-		// addThisCard("Inventor's Fair", 4);
-		// addThisCard("Expedition Map", 3);
-		// addThisCard("Buried Ruin", 4);
-		// addThisCard("Ghirapur Orrery", 1);
-		// addThisCard("Staff of Nin", 1);
-		// addThisCard("Bottled Cloister", 1);
-
-		// Maverick
-		// addThisCard("Birds of Paradise", 4);
-		// addThisCard("Dryad Arbor", 1);
-		// addThisCard("Scavenging Ooze", 2);
-		// addThisCard("Scryb Ranger", 1);
-		// addThisCard("Tarmogoyf", 1);
-		// addThisCard("Qasali Pridemage", 3);
-		// addThisCard("Thalia, Guardian of Thraben", 3);
-		// addThisCard("Stoneforge Mystic", 4);
-		// addThisCard("Scute Mob", 1);
-		// addThisCard("Xantid Swarm", 1);
-		// addThisCard("Mother of Runes", 4);
-		// addThisCard("Swords to Plowshares", 4);
-		// addThisCard("Green Sun's Zenith", 4);
-		// addThisCard("Life from the Loam", 1);
-		// addThisCard("Sylvan Library", 1);
-		// addThisCard("Batterskull", 1);
-		// addThisCard("Sword of Feast and Famine", 1);
-		// addThisCard("Umezawa's Jitte", 1);
-		// addThisCard("Forest", 4);
-		// addThisCard("Plains", 4);
-		// addThisCard("Nykthos, Shrine to Nyx", 1);
-		// addThisCard("Maze of Ith", 1);
-		// addThisCard("Evolving Wilds", 4);
-		// addThisCard("Sunpetal Grove", 4);
-		// addThisCard("Canopy Vista", 4);
-
-		// Shardless BUG
-//		addThisCard("Shardless Agent", 4);
-//		addThisCard("Tarmogoyf", 4);
-//		addThisCard("Deathrite Shaman", 4);
-//		addThisCard("Baleful Strix", 3);
-//		addThisCard("Leovold EoTt", 2);
-//		addThisCard("Ancestral Vision", 4);
-//		addThisCard("Brainstorm", 4);
-//		addThisCard("Abrupt Decay", 4);
-//		addThisCard("Force of Will", 3);
-//		addThisCard("Jace TMS", 2);
-//		addThisCard("Hymn to Tourach", 2);
-//		addThisCard("Toxic Deluge", 1);
-//		addThisCard("Sylvan Library", 1);
-//		addThisCard("Golgari Charm", 1);
-//		addThisCard("Misty Rainforest", 4);
-//		addThisCard("Verdant Catacombs", 4);
-//		addThisCard("Island", 1);
-//		addThisCard("Swamp", 1);
-//		addThisCard("Forest", 1);
-//		addThisCard("Bayou", 3);
-//		addThisCard("Tropical Island", 4);
-//		addThisCard("Underground Sea", 2);
-//		addThisCard("Wasteland", 1);
-
-		// Colossus Affinity
-		// addThisCard("Sunken Hollow", 3);
-		// addThisCard("Island", 13);
-		// addThisCard("Sanctum of Ugin", 4);
-		// addThisCard("Sequestered Stash", 1);
-		// addThisCard("Inventor's Fair", 3);
-		// addThisCard("Metalwork Colossus", 4);
-		// addThisCard("Glint-Nest Crane", 4);
-		// addThisCard("Foundry Inspector", 4);
-		// addThisCard("Prophetic Prism", 4);
-		// addThisCard("Cultivator's Caravan", 1);
-		// addThisCard("Deadlock Trap", 4);
-		// addThisCard("Hedron Archive", 3);
-		// addThisCard("Skysovereign, Consul Flagship", 2);
-		// addThisCard("Engulf the Shore", 2);
-		// addThisCard("Glassblower's Puzzleknot", 4);
-		// addThisCard("Metalspinner's Puzzleknot", 4);
-
+		
+		
+		
 		Collections.shuffle(deck);
 	}
 

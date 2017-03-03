@@ -4,9 +4,17 @@ import java.util.Scanner;
 
 public class RunTourney {
 
+	GUI gui = new GUI();
+	
+	
 	static Tournament tourney = new Tournament();
-
 	public static void main(String[] args) {
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            @Override
+			public void run() {
+                GUI.createAndShowGUI();
+            }
+        });
 
 		boolean allParticipantsIn = false;
 		Scanner sc = new Scanner(System.in);
