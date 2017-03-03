@@ -15,7 +15,7 @@ public class Tournament {
 	public int playerCap = 1;
 
 	public void addPlayer(Player p1) {
-		if (!p1.getName().equals("")) {
+		if (p1.getName().length() > 0) {
 			players.add(p1);
 		}
 		if (p1.getName().length() > longestPlayerNameLength) {
@@ -168,18 +168,18 @@ public class Tournament {
 
 	private void printCurrentBattles() {
 		for (Battle b : currentBattles) {
-			String playerOneString = b.getP1().getName() + " (" + b.getP1().getPositionInRankings() + ")                          ";
-			String playerTwoString = b.getP2().getName() + " (" + b.getP2().getPositionInRankings() + ")                          ";
+			String playerOneString = b.getP1().getName() + " (" + b.getP1().getPositionInRankings()
+					+ ")                          ";
+			String playerTwoString = b.getP2().getName() + " (" + b.getP2().getPositionInRankings()
+					+ ")                          ";
 
-			System.out.println(rpad("Table " + b.getTableNumber() + ") ", 11) 
-					+ rpad(playerOneString, longestPlayerNameLength+8) +	"vs.    " +
-					rpad(playerTwoString, longestPlayerNameLength+8));
+			System.out.println(
+					rpad("Table " + b.getTableNumber() + ") ", 11) + rpad(playerOneString, longestPlayerNameLength + 8)
+							+ "vs.    " + rpad(playerTwoString, longestPlayerNameLength + 8));
 		}
 	}
 
 	public void pollForResults() {
-
-		// TODO Sanitise illegal input a la drafter
 		sc = new Scanner(System.in);
 		System.out.println("-=-=-=-BATTLES IN PROGRESS-=-=-=-");
 		assignTableNumbers(currentBattles);
@@ -196,21 +196,21 @@ public class Tournament {
 				System.out.println("2) " + b.getP2().getName());
 				System.out.println("3) Tied.");
 
-				int winner = 0;
-				winner = sc.nextInt();
+				String winner = "";
+				winner = sc.next();
 
-				if (winner == 1) {
+				if (winner.equals("1")) {
 					b.getP1().beats(b.getP2());
 					b = null;
-				} else if (winner == 2) {
+				} else if (winner.equals("2")) {
 					b.getP2().beats(b.getP1());
 					b = null;
-				} else if (winner == 3){
+				} else if (winner.equals("3")) {
 					b.getP1().tied(b.getP2());
 					b.getP2().tied(b.getP1());
 					b = null;
-				}
-				else {
+				} else {
+					System.out.println("Battle put back into 'Active' state");
 					currentBattles.add(b);
 				}
 				updateParticipantStats();
@@ -219,6 +219,7 @@ public class Tournament {
 				System.out.println();
 			} catch (Exception e) {
 				System.out.println("No such table.");
+				pollForResults();
 			}
 		}
 	}
