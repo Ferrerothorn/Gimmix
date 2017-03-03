@@ -22,7 +22,7 @@ public class RunTourney {
 			tourney.pollForResults();
 			i++;
 		}
-
+		GUI.wipePane();
 		GUI.postString("And that's it over!");
 		GUI.postString("FINAL STANDINGS");
 		GUI.postString();

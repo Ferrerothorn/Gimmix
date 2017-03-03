@@ -19,7 +19,7 @@ public class GUI extends JPanel implements ActionListener {
 		textArea = new JTextArea(25, 35);
 		textArea.setEditable(false);
 		textArea.setLineWrap(true);
-		textArea.setFont(textArea.getFont().deriveFont(15f));
+		textArea.setFont(new Font("monospaced", Font.PLAIN, 14));
 		
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		textField = new JTextField(50);

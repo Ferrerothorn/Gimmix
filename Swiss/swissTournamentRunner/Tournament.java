@@ -231,11 +231,11 @@ public class Tournament {
 					b.getP2().tied(b.getP1());
 					b = null;
 				} else {
-					GUI.postString("Battle put back into 'Active' state");
 					currentBattles.add(b);
 				}
 				userSelection = null;
 				GUI.wipePane();
+				GUI.postString("Battle put back into 'Active' state");
 				updateParticipantStats();
 				displayInDepthRankings();
 				GUI.postString();
@@ -251,6 +251,11 @@ public class Tournament {
 		while (userSelection == null) {
 			System.out.println(userSelection);
 		}
+		if (userSelection.length() <= 0) {
+			userSelection = null;
+			waitForUserInput();
+		}
+		
 	}
 
 	private Battle fetchBattle(int reportUpon, ArrayList<Battle> cB) {
