@@ -28,5 +28,5 @@ public class RunTourney {
 		GUI.postString();
 		tourney.updateParticipantStats();
 		tourney.displayInDepthRankings();
-	}	
+	}
 }

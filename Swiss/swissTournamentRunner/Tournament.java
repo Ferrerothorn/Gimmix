@@ -57,7 +57,7 @@ public class Tournament {
 	public String rankingsToOneBigString() {
 		int i = players.size();
 		i--;
-		String output = "-=-=-=-Rankings-=-=-=-"+'\n';
+		String output = "-=-=-=-Rankings-=-=-=-" + '\n';
 		while (i >= 0) {
 			output += players.get(i).getName();
 			i--;
@@ -98,7 +98,7 @@ public class Tournament {
 	}
 
 	public void displayInDepthRankings() {
-		String participantString = "-=-=-=-Rankings-=-=-=-"+'\n';
+		String participantString = "-=-=-=-Rankings-=-=-=-" + '\n';
 		for (int i = 1; i <= players.size(); i++) {
 			participantString += rpad("" + i + ") " + players.get(i - 1).getName() + "                         ", 20)
 					+ "   " + rpad("Score: " + players.get(i - 1).getScore() + "                         ", 15) + "   "
@@ -206,7 +206,7 @@ public class Tournament {
 				printCurrentBattles();
 				GUI.postString("Which game's result would you like to report?");
 				GUI.postString();
-				
+
 				waitForUserInput();
 				int reportUpon = Integer.parseInt(userSelection);
 				userSelection = null;
@@ -255,7 +255,7 @@ public class Tournament {
 			userSelection = null;
 			waitForUserInput();
 		}
-		
+
 	}
 
 	private Battle fetchBattle(int reportUpon, ArrayList<Battle> cB) {

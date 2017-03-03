@@ -26,7 +26,7 @@ public class Battle {
 	public void setTableNumber(int tN) {
 		tableNumber = tN;
 	}
-	
+
 	public int getTableNumber() {
 		return tableNumber;
 	}
