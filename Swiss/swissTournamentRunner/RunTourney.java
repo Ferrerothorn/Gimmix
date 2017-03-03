@@ -14,7 +14,7 @@ public class RunTourney {
 		while (!allParticipantsIn) {
 			System.out.println("Enter the name of the next participant, or enter 'no' if done.");
 			String name = sc.nextLine();
-			if (name.equals("no") && name.length() > 0) {
+			if (name.equals("no")) {
 				allParticipantsIn = true;
 			} else {
 				tourney.addPlayer(new Player(name));
