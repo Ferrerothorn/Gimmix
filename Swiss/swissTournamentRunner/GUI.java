@@ -7,15 +7,15 @@ import javax.swing.*;
 public class GUI extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
-	protected JTextField textField;
-	protected static JTextArea textArea;
 	private final static String newline = "\n";
 	public static Tournament tourney;
+	public JTextField textField;
+	public static JTextArea textArea;
 
 	public GUI(Tournament t) {
 		super(new GridBagLayout());
 		tourney = t;
-
+		
 		textArea = new JTextArea(25, 35);
 		textArea.setEditable(false);
 		textArea.setLineWrap(true);
@@ -47,8 +47,10 @@ public class GUI extends JPanel implements ActionListener {
 	}
 
 	public static void createAndShowGUI() {
-		JFrame frame = new JFrame("BTC");
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("nak.png"));
+		JFrame frame = new JFrame("BTBTC");
+		frame.setSize(500, 400);
+		
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("/nak.png"));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(new GUI(tourney));
 		frame.pack();

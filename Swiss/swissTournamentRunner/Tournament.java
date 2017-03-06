@@ -218,24 +218,35 @@ public class Tournament {
 				GUI.postString("2) " + b.getP2().getName());
 				GUI.postString("3) Tied.");
 
-				waitForUserInput();
+				if (!((b.getP1().getName().equals("BYE") || (b.getP2().getName().equals("BYE"))))) {
 
-				if (userSelection.equals("1")) {
-					b.getP1().beats(b.getP2());
-					b = null;
-				} else if (userSelection.equals("2")) {
-					b.getP2().beats(b.getP1());
-					b = null;
-				} else if (userSelection.equals("3")) {
-					b.getP1().tied(b.getP2());
-					b.getP2().tied(b.getP1());
-					b = null;
+					waitForUserInput();
+
+					if (userSelection.equals("1")) {
+						b.getP1().beats(b.getP2());
+						b = null;
+					} else if (userSelection.equals("2")) {
+						b.getP2().beats(b.getP1());
+						b = null;
+					} else if (userSelection.equals("3")) {
+						b.getP1().tied(b.getP2());
+						b.getP2().tied(b.getP1());
+						b = null;
+					} else {
+						currentBattles.add(b);
+					}
 				} else {
-					currentBattles.add(b);
+					if (b.getP1().getName().equals("BYE")) {
+						b.getP2().beats(b.getP1());
+						b = null;
+					} else if (b.getP2().getName().equals("BYE")) {
+						b.getP1().beats(b.getP2());
+						b = null;
+					}
 				}
+
 				userSelection = null;
 				GUI.wipePane();
-				GUI.postString("Battle put back into 'Active' state");
 				updateParticipantStats();
 				displayInDepthRankings();
 				GUI.postString();

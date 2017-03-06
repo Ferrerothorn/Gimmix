@@ -6,6 +6,6 @@ public class Lands extends Deck {
 
 	public Lands() {
 		super.setArchetype("Lands");
-		super.setStats(0, 10, 30, 60);
+		super.setStats(0, 40, 60, 0);
 	}
 }
