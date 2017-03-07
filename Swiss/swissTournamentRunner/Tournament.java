@@ -101,7 +101,7 @@ public class Tournament {
 		String participantString = "-=-=-=-Rankings-=-=-=-" + '\n';
 		for (int i = 1; i <= players.size(); i++) {
 			participantString += rpad("" + i + ") " + players.get(i - 1).getName() + "                         ",
-					longestPlayerNameLength + 5) + "   "
+					longestPlayerNameLength + 7) + "   "
 					+ rpad("Score: " + players.get(i - 1).getScore() + "                         ", 15) + "   "
 					+ rpad("TB: " + players.get(i - 1).getTB() + "                         ", 8) + "   "
 					+ rpad("Opp WR: " + players.get(i - 1).getOpps() + "                         ", 12) + "    "
