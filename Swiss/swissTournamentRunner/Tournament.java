@@ -100,8 +100,9 @@ public class Tournament {
 	public void displayInDepthRankings() {
 		String participantString = "-=-=-=-Rankings-=-=-=-" + '\n';
 		for (int i = 1; i <= players.size(); i++) {
-			participantString += rpad("" + i + ") " + players.get(i - 1).getName() + "                         ", 20)
-					+ "   " + rpad("Score: " + players.get(i - 1).getScore() + "                         ", 15) + "   "
+			participantString += rpad("" + i + ") " + players.get(i - 1).getName() + "                         ",
+					longestPlayerNameLength + 5) + "   "
+					+ rpad("Score: " + players.get(i - 1).getScore() + "                         ", 15) + "   "
 					+ rpad("TB: " + players.get(i - 1).getTB() + "                         ", 8) + "   "
 					+ rpad("Opp WR: " + players.get(i - 1).getOpps() + "                         ", 12) + "    "
 					+ rpad("Opp Opp WR: " + players.get(i - 1).getOppsOpps() + "                         ", 16) + '\n';
@@ -110,14 +111,6 @@ public class Tournament {
 	}
 
 	public void generatePairings() {
-
-		Player notionalBye = containsBye();
-
-		if (notionalBye != null) {
-			Collections.reverse(players);
-			pairThisGuyUp(notionalBye, totallyKosherPairings);
-			Collections.sort(players);
-		}
 
 		while (players.size() > 0) {
 			Player p1 = players.remove(0);
@@ -253,6 +246,7 @@ public class Tournament {
 				GUI.postString();
 			} catch (Exception e) {
 				GUI.postString("No such table.");
+				userSelection = null;
 				pollForResults();
 			}
 		}

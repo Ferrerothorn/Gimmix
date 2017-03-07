@@ -12,6 +12,7 @@ public class RunTourney {
 		tourney.signUpPlayers();
 		int numberOfRounds = tourney.logBase2(tourney.numberOfPlayers());
 		numberOfRounds++;
+
 		int i = 1;
 		while (i <= numberOfRounds) {
 			GUI.wipePane();

@@ -108,7 +108,7 @@ public class JUnit {
 		t.addPlayer(p3);
 		t.addPlayer(p4);
 		t.sortRankings();
-		assertEquals("P4P1P3P2", t.rankingsToOneBigString());
+		assertEquals("-=-=-=-Rankings-=-=-=-\nP4P1P3P2", t.rankingsToOneBigString());
 	}
 
 	@Test
@@ -184,7 +184,7 @@ public class JUnit {
 		assertEquals(1, p1.getListOfVictories().size());
 		assertEquals(1, p2.getListOfVictories().size());
 		assertEquals(0, p3.getListOfVictories().size());
-		assertEquals("P1P2P3", t.rankingsToOneBigString());
+		assertEquals("-=-=-=-Rankings-=-=-=-\nP1P2P3", t.rankingsToOneBigString());
 
 	}
 
@@ -213,7 +213,7 @@ public class JUnit {
 		p5.beats(p1);
 
 		t.sortRankings();
-		assertEquals("P1P2P3P4P5", t.rankingsToOneBigString());
+		assertEquals("-=-=-=-Rankings-=-=-=-\nP1P2P3P4P5", t.rankingsToOneBigString());
 
 	}
 
