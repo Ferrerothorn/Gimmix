@@ -15,7 +15,7 @@ public class GUI extends JPanel implements ActionListener {
 	public GUI(Tournament t) {
 		super(new GridBagLayout());
 		tourney = t;
-		
+
 		textArea = new JTextArea(25, 35);
 		textArea.setEditable(false);
 		textArea.setLineWrap(true);
@@ -49,7 +49,9 @@ public class GUI extends JPanel implements ActionListener {
 	public static void createAndShowGUI() {
 		JFrame frame = new JFrame("BTBTC");
 		frame.setSize(500, 400);
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("/nak.png"));
+		Image img = Toolkit.getDefaultToolkit().getImage("\\swissTournamentRunner\\nak.png");
+		frame.setIconImage(img);
+	
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(new GUI(tourney));
 		frame.pack();
