@@ -22,7 +22,7 @@ public class GUI extends JPanel implements ActionListener {
 		textArea.setFont(new Font("monospaced", Font.PLAIN, 14));
 
 		JScrollPane scrollPane = new JScrollPane(textArea);
-		textField = new JTextField(50);
+		textField = new JTextField(90);
 		textField.addActionListener(this);
 
 		GridBagConstraints c = new GridBagConstraints();
@@ -49,7 +49,6 @@ public class GUI extends JPanel implements ActionListener {
 	public static void createAndShowGUI() {
 		JFrame frame = new JFrame("BTBTC");
 		frame.setSize(500, 400);
-		
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("/nak.png"));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(new GUI(tourney));

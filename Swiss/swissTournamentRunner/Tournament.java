@@ -21,7 +21,7 @@ public class Tournament {
 		while (!allParticipantsIn) {
 			GUI.postString("Enter the name of the next participant, or enter 'no' if done.");
 			waitForUserInput();
-			if (userSelection.equals("no")) {
+			if (userSelection.toLowerCase().equals("no")) {
 				userSelection = null;
 				allParticipantsIn = true;
 			} else {
@@ -177,7 +177,8 @@ public class Tournament {
 		battles.clear();
 	}
 
-	private void printCurrentBattles() {
+	private void printCurrentBattles(String roundString) {
+		GUI.postString(roundString);
 		for (Battle b : currentBattles) {
 			String playerOneString = b.getP1().getName() + " (" + b.getP1().getPositionInRankings()
 					+ ")                          ";
@@ -190,13 +191,13 @@ public class Tournament {
 		}
 	}
 
-	public void pollForResults() {
-		GUI.postString("-=-=-=-BATTLES IN PROGRESS-=-=-=-");
+	public void pollForResults(int roundNumber) {
+		String roundString = ("-=-=-=-ROUND " + roundNumber + "-=-=-=-");
 		assignTableNumbers(currentBattles);
 
 		while (currentBattles.size() > 0) {
 			try {
-				printCurrentBattles();
+				printCurrentBattles(roundString);
 				GUI.postString("Which game's result would you like to report?");
 				GUI.postString();
 
@@ -247,7 +248,7 @@ public class Tournament {
 			} catch (Exception e) {
 				GUI.postString("No such table.");
 				userSelection = null;
-				pollForResults();
+				pollForResults(roundNumber);
 			}
 		}
 	}
@@ -313,5 +314,20 @@ public class Tournament {
 
 	public void setUserSelection(String userSelection) {
 		this.userSelection = userSelection;
+	}
+
+	public boolean extraRound() {
+		GUI.postString("Do you want to add one more round than necessary, for results certainty? (y/n)");
+		waitForUserInput();
+		if (userSelection.equals("Y") || userSelection.equals("y")) {
+			userSelection = null;
+			return true;
+		} else if (userSelection.equals("N") || userSelection.equals("n")) {
+			userSelection = null;
+			return false;
+		} else {
+			userSelection = null;
+			return extraRound();
+		}
 	}
 }
