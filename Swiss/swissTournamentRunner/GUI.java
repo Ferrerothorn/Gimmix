@@ -10,19 +10,19 @@ public class GUI extends JPanel implements ActionListener {
 	private final static String newline = "\n";
 	public static Tournament tourney;
 	public JTextField textField;
-	public static BackgroundImageTextArea textArea;
+	public static JTextArea textArea;
 
 	public GUI(Tournament t) {
 		super(new GridBagLayout());
 		tourney = t;
 
-		textArea = new BackgroundImageTextArea(25, 35);
+		textArea = new JTextArea(25, 35);
 		textArea.setEditable(false);
 		textArea.setLineWrap(true);
 		textArea.setFont(new Font("monospaced", Font.PLAIN, 14));
 
 		JScrollPane scrollPane = new JScrollPane(textArea);
-		JPanel inputArea = new JPanel();		
+		JPanel inputArea = new JPanel();
 		inputArea.setLayout(new BorderLayout());
 		JLabel inputLabel = new JLabel(" Enter options here: ");
 		textField = new JTextField(90);
