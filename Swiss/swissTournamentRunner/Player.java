@@ -147,4 +147,8 @@ public class Player implements Comparable<Player> {
 		return lastDocumentedPosition;
 	}
 
+	public void setName(String newName) {
+		this.name = newName;
+	}
+
 }
