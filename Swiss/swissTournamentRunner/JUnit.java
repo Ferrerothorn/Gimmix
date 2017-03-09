@@ -256,4 +256,12 @@ public class JUnit {
 		t.dropPlayer("P2");
 		assertEquals(4, t.players.size());
 	}
+
+	@Test
+	public void testBatchAdd() {
+		String batchAdd = "P1,P2,P3,P4,P5,P6,P7,P8";
+		t.addBatch(batchAdd);
+		assertEquals(8, t.players.size());
+		assertEquals("P1", t.players.get(0).getName());
+	}
 }
