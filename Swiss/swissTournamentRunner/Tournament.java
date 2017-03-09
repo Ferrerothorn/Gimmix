@@ -19,17 +19,31 @@ public class Tournament {
 		boolean allParticipantsIn = false;
 
 		while (!allParticipantsIn) {
-			GUI.postString("Enter the name of the next participant, or enter 'no' if done.");
+			GUI.postString("Enter the name of the next participant, or enter 'no' if done.\n"
+					+ "(You can enter 'help' at any time for some instructions.)");
 			waitForUserInput();
-			if (userSelection.toLowerCase().equals("no")) {
+			switch (userSelection.toLowerCase()) {
+			case "help":
 				userSelection = null;
+				showHelp();
+				break;
+			case "admintools":
+				userSelection = null;
+				adminTools();
+				break;
+			case "no":
 				allParticipantsIn = true;
-			} else {
+				userSelection = null;
+				break;
+			default:
+				if (userSelection.length() > longestPlayerNameLength) {
+					longestPlayerNameLength = userSelection.length();
+				}
 				addPlayer(new Player(userSelection));
 				userSelection = null;
 			}
+			addBye();
 		}
-		addBye();
 	}
 
 	public void addPlayer(Player p1) {
@@ -190,10 +204,18 @@ public class Tournament {
 				GUI.postString();
 
 				waitForUserInput();
-				if (userSelection.equals("adminTools")) {
-					adminTools();
-				} else {
 
+				switch (userSelection.toLowerCase()) {
+
+				case "help":
+					userSelection = null;
+					showHelp();
+					break;
+				case "admintools":
+					userSelection = null;
+					adminTools();
+					break;
+				default:
 					int reportUpon = Integer.parseInt(userSelection);
 					userSelection = null;
 					Battle b = fetchBattle(reportUpon, currentBattles);
@@ -208,18 +230,23 @@ public class Tournament {
 
 						waitForUserInput();
 
-						if (userSelection.equals("1")) {
+						switch (userSelection) {
+						case "1":
 							b.getP1().beats(b.getP2());
 							b = null;
-						} else if (userSelection.equals("2")) {
+							break;
+						case "2":
 							b.getP2().beats(b.getP1());
 							b = null;
-						} else if (userSelection.equals("3")) {
+							break;
+						case "3":
 							b.getP1().tied(b.getP2());
 							b.getP2().tied(b.getP1());
 							b = null;
-						} else {
+							break;
+						default:
 							currentBattles.add(b);
+							break;
 						}
 					} else {
 						if (b.getP1().getName().equals("BYE")) {
@@ -237,6 +264,7 @@ public class Tournament {
 					displayInDepthRankings();
 					GUI.postString();
 					GUI.postString();
+					break;
 				}
 			} catch (Exception e) {
 				GUI.postString("No such table.");
@@ -244,6 +272,14 @@ public class Tournament {
 				pollForResults(roundNumber);
 			}
 		}
+	}
+
+	private void showHelp() {
+		GUI.wipePane();
+		GUI.postString("Welcome to B-T-C.\n"
+				+ "First, use the text bar below to enter the tournament's participants, one at a time.\n"
+				+ "Then, pairings will be automatically generated for you, ordered by each participant's results so far.\n"
+				+ "Enter numbers to the text bar to report scores for each pairing.\n\n");
 	}
 
 	private void print(String string) {
@@ -297,7 +333,6 @@ public class Tournament {
 		return (inStr
 				+ "                                                                                                                          ")
 						.substring(0, finalLength);
-
 	}
 
 	public void setGUI(GUI gui) {
@@ -334,18 +369,69 @@ public class Tournament {
 
 		switch (userSelection) {
 		case "dropUser":
-			System.out.println("Enter player name to drop.");
 			print("Enter player name to drop.\n");
 			userSelection = null;
 			waitForUserInput();
 			dropPlayer(userSelection);
 			userSelection = null;
 			break;
+		case "editName":
+			print("Enter player whose name should be changed.\n");
+			userSelection = null;
+			waitForUserInput();
+			String renameMe = userSelection;
+			print("Enter player's new name.\n");
+			userSelection = null;
+			waitForUserInput();
+			String newName = userSelection;
+			renamePlayer(renameMe, newName);
+			userSelection = null;
+			break;
+		case "batchAdd":
+			print("Enter a list of players, separated by commas.\n");
+			userSelection = null;
+			waitForUserInput();
+			String playerList = userSelection;
+			userSelection = null;
+			addBatch(playerList);
+			break;
 		default:
 			print("Invalid admin command. Returning to tournament...\n");
 			break;
 		}
 		userSelection = null;
+	}
+
+	void addBatch(String playerList) {
+		String[] names = playerList.split(",");
+		for (String s : names) {
+			players.add(new Player(s));
+			if (s.length() > longestPlayerNameLength) {
+				longestPlayerNameLength = s.length();
+			}
+		}
+		addBye();
+	}
+
+	private void renamePlayer(String renameMe, String newName) {
+		if (newName.length() > longestPlayerNameLength) {
+			longestPlayerNameLength = newName.length();
+		}
+		for (Player p : players) {
+			if (p.getName().equals(renameMe)) {
+				p.setName(newName);
+				break;
+			}
+		}
+		for (Battle b : currentBattles) {
+			if (b.getP1().equals(renameMe)) {
+				b.getP1().setName(newName);
+				break;
+			} else if (b.getP2().equals(renameMe)) {
+				b.getP2().setName(newName);
+				break;
+			}
+		}
 	}
 
 	void dropPlayer(String nameToDrop) {
@@ -387,36 +473,6 @@ public class Tournament {
 			dropPlayer("BYE");
 		}
 		if ((players.size() + (currentBattles.size() * 2)) % 2 == 1) {
-			addPlayer(new Player("BYE"));
-		}
-	}
-
-	private void huntForAndDeleteBye() {
-		Boolean foundPlayerToDrop = false;
-		for (Battle b : currentBattles) {
-			if (b.getP1().getName().equals("BYE")) {
-				currentBattles.remove(b);
-				b.getP2().beats(b.getP1());
-				players.remove(b.getP1());
-				foundPlayerToDrop = true;
-				break;
-			} else if (b.getP2().getName().equals("BYE")) {
-				currentBattles.remove(b);
-				b.getP1().beats(b.getP2());
-				players.remove(b.getP2());
-				foundPlayerToDrop = true;
-				break;
-			}
-		}
-
-		if (!foundPlayerToDrop) {
-			for (Player p : players) {
-				if (p.getName().equals("BYE")) {
-					players.remove(p);
-				}
-			}
-		}
-		if ((players.size() + (currentBattles.size() * 2) % 2) == 1) {
 			addPlayer(new Player("BYE"));
 		}
 	}
