@@ -197,6 +197,7 @@ public class RunSnakeDraft {
 
 	private static void capturePlayers() throws Exception {
 		try {
+			@SuppressWarnings("resource")
 			Scanner scanner = new Scanner(System.in);
 			System.out.println("Enter the number of players in this draft!");
 			int numberOfPlayers = scanner.nextInt();
@@ -208,6 +209,7 @@ public class RunSnakeDraft {
 	}
 
 	private static void generatePlayers(int numberOfPlayers) {
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		for (int i = 0; i < numberOfPlayers; i++) {
 			System.out.println("Enter the name of the player in position " + (i + 1) + " of the snake.");
@@ -252,6 +254,7 @@ public class RunSnakeDraft {
 	}
 
 	private static void askPlayerToPickOne(Player p, ArrayList<String> tier, int amountFromTier) {
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		try {
 			System.out.println(p.getName() + ", your picks are as follows!" + '\n' + "(Already in your arsenal: "
@@ -291,6 +294,7 @@ public class RunSnakeDraft {
 			}
 			System.out.println("0) No thanks.");
 
+			@SuppressWarnings("resource")
 			Scanner inputs1 = new Scanner(System.in);
 			int buyerIndex = inputs1.nextInt();
 

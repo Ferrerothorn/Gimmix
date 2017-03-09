@@ -134,6 +134,7 @@ public class Table {
 	}
 
 	private static void createPlayers(int playerNo) {
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		for (int i = 1; i <= playerNo; i++) {
 			System.out.println("Gimme the name of player " + i + ".");

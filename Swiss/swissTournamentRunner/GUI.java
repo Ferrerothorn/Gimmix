@@ -22,8 +22,13 @@ public class GUI extends JPanel implements ActionListener {
 		textArea.setFont(new Font("monospaced", Font.PLAIN, 14));
 
 		JScrollPane scrollPane = new JScrollPane(textArea);
+		JPanel inputArea = new JPanel();		
+		inputArea.setLayout(new BorderLayout());
+		JLabel inputLabel = new JLabel(" Enter options here: ");
 		textField = new JTextField(90);
 		textField.addActionListener(this);
+		inputArea.add(inputLabel, "West");
+		inputArea.add(textField, "Center");
 
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridwidth = GridBagConstraints.REMAINDER;
@@ -32,7 +37,7 @@ public class GUI extends JPanel implements ActionListener {
 		c.weighty = 1.0;
 		add(scrollPane, c);
 		c.fill = GridBagConstraints.HORIZONTAL;
-		add(textField, c);
+		add(inputArea, c);
 	}
 
 	@Override
@@ -49,9 +54,6 @@ public class GUI extends JPanel implements ActionListener {
 	public static void createAndShowGUI() {
 		JFrame frame = new JFrame("BTBTC");
 		frame.setSize(500, 400);
-		Image img = Toolkit.getDefaultToolkit().getImage("\\swissTournamentRunner\\nak.png");
-		frame.setIconImage(img);
-	
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(new GUI(tourney));
 		frame.pack();
@@ -61,7 +63,6 @@ public class GUI extends JPanel implements ActionListener {
 	public static void postString(String s) {
 		textArea.append(s + newline);
 		textArea.setCaretPosition(textArea.getDocument().getLength());
-
 	}
 
 	public static void postString() {

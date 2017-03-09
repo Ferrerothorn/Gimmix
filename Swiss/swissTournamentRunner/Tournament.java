@@ -125,18 +125,6 @@ public class Tournament {
 		}
 	}
 
-	private Player containsBye() {
-		Player p = null;
-		for (Player player : players) {
-			if (player.getName().equals("BYE")) {
-				p = player;
-				players.remove(player);
-				break;
-			}
-		}
-		return p;
-	}
-
 	private void pairThisGuyUp(Player p1, ArrayList<Battle> targetBattleList) {
 		try {
 			boolean opponentFound = false;
@@ -202,55 +190,109 @@ public class Tournament {
 				GUI.postString();
 
 				waitForUserInput();
-				int reportUpon = Integer.parseInt(userSelection);
-				userSelection = null;
-				Battle b = fetchBattle(reportUpon, currentBattles);
-				currentBattles.remove(b);
-
-				GUI.postString("And who won in " + b.getP1().getName() + " vs. " + b.getP2().getName() + "?");
-				GUI.postString("1) " + b.getP1().getName());
-				GUI.postString("2) " + b.getP2().getName());
-				GUI.postString("3) Tied.");
-
-				if (!((b.getP1().getName().equals("BYE") || (b.getP2().getName().equals("BYE"))))) {
-
-					waitForUserInput();
-
-					if (userSelection.equals("1")) {
-						b.getP1().beats(b.getP2());
-						b = null;
-					} else if (userSelection.equals("2")) {
-						b.getP2().beats(b.getP1());
-						b = null;
-					} else if (userSelection.equals("3")) {
-						b.getP1().tied(b.getP2());
-						b.getP2().tied(b.getP1());
-						b = null;
-					} else {
-						currentBattles.add(b);
-					}
+				if (userSelection.equals("adminTools")) {
+					adminTools();
 				} else {
-					if (b.getP1().getName().equals("BYE")) {
-						b.getP2().beats(b.getP1());
-						b = null;
-					} else if (b.getP2().getName().equals("BYE")) {
-						b.getP1().beats(b.getP2());
-						b = null;
-					}
-				}
 
-				userSelection = null;
-				GUI.wipePane();
-				updateParticipantStats();
-				displayInDepthRankings();
-				GUI.postString();
-				GUI.postString();
+					int reportUpon = Integer.parseInt(userSelection);
+					userSelection = null;
+					Battle b = fetchBattle(reportUpon, currentBattles);
+					currentBattles.remove(b);
+
+					GUI.postString("And who won in " + b.getP1().getName() + " vs. " + b.getP2().getName() + "?");
+					GUI.postString("1) " + b.getP1().getName());
+					GUI.postString("2) " + b.getP2().getName());
+					GUI.postString("3) Tied.");
+
+					if (!((b.getP1().getName().equals("BYE") || (b.getP2().getName().equals("BYE"))))) {
+
+						waitForUserInput();
+
+						if (userSelection.equals("1")) {
+							b.getP1().beats(b.getP2());
+							b = null;
+						} else if (userSelection.equals("2")) {
+							b.getP2().beats(b.getP1());
+							b = null;
+						} else if (userSelection.equals("3")) {
+							b.getP1().tied(b.getP2());
+							b.getP2().tied(b.getP1());
+							b = null;
+						} else {
+							currentBattles.add(b);
+						}
+					} else {
+						if (b.getP1().getName().equals("BYE")) {
+							b.getP2().beats(b.getP1());
+							b = null;
+						} else if (b.getP2().getName().equals("BYE")) {
+							b.getP1().beats(b.getP2());
+							b = null;
+						}
+					}
+
+					userSelection = null;
+					GUI.wipePane();
+					updateParticipantStats();
+					displayInDepthRankings();
+					GUI.postString();
+					GUI.postString();
+				}
 			} catch (Exception e) {
 				GUI.postString("No such table.");
 				userSelection = null;
 				pollForResults(roundNumber);
 			}
 		}
+	}
+
+	private void adminTools() {
+		userSelection = null;
+		GUI.postString("Admin functions enabled.");
+		waitForUserInput();
+
+		switch (userSelection) {
+		case "dropUser":
+			print("Enter player name to drop.\n");
+			userSelection = null;
+			waitForUserInput();
+			Boolean foundPlayerToDrop = false;
+			for (Battle b : currentBattles) {
+				if (b.getP1().getName().equals(userSelection) && b.getP2().getName().equals("BYE")) {
+					currentBattles.remove(b);
+					players.remove(b.getP1());
+					players.remove(b.getP2());
+					foundPlayerToDrop = true;
+					break;
+				} else if (b.getP2().getName().equals(userSelection) && b.getP1().getName().equals("BYE")) {
+					currentBattles.remove(b);
+					players.remove(b.getP1());
+					players.remove(b.getP2());
+					foundPlayerToDrop = true;
+					break;
+				} else if (b.getP2().getName().equals(userSelection) || b.getP1().getName().equals(userSelection)) {
+					foundPlayerToDrop = true;
+					print("You can't drop a player while that player's in a non-Bye battle.");
+					break;
+				}
+			}
+			if (!foundPlayerToDrop) {
+				for (Player p : players) {
+					if (p.getName().equals(userSelection)) {
+						players.remove(p);
+					}
+				}
+			}
+			break;
+		default:
+			print("Invalid admin command. Returning to tournament...\n");
+			break;
+		}
+		userSelection = null;
+	}
+
+	private void print(String string) {
+		GUI.postString(string);
 	}
 
 	private void waitForUserInput() {
@@ -261,7 +303,6 @@ public class Tournament {
 			userSelection = null;
 			waitForUserInput();
 		}
-
 	}
 
 	private Battle fetchBattle(int reportUpon, ArrayList<Battle> cB) {
