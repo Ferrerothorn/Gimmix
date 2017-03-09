@@ -35,21 +35,21 @@ public class JUnit {
 	}
 
 	@Test
-	public void testCompareOneDudeBetter() {
-		p1 = new Player("P1", 0, 0, 0);
-		p2 = new Player("P2", 1, 0, 0);
-		t.addPlayer(p1);
-		t.addPlayer(p2);
-		assertEquals(1, p1.compareTo(p2));
-	}
-
-	@Test
-	public void testOtherDudeBetter() {
+	public void testP1Better() {
 		p1 = new Player("P1", 1, 0, 0);
 		p2 = new Player("P2", 0, 0, 0);
 		t.addPlayer(p1);
 		t.addPlayer(p2);
 		assertEquals(-1, p1.compareTo(p2));
+	}
+
+	@Test
+	public void testCompareP2Better() {
+		p1 = new Player("P1", 0, 0, 0);
+		p2 = new Player("P2", 1, 0, 0);
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		assertEquals(1, p1.compareTo(p2));
 	}
 
 	@Test
@@ -138,17 +138,6 @@ public class JUnit {
 	}
 
 	@Test
-	public void testFightWinnerP2GetsPoints() {
-		t.addPlayer(p1);
-		t.addPlayer(p2);
-		assertEquals(0, p1.getPoints());
-		assertEquals(0, p2.getPoints());
-		p2.beats(p1);
-		assertEquals(0, p1.getPoints());
-		assertEquals(3, p2.getPoints());
-	}
-
-	@Test
 	public void testFightLogsEachOtherInFightHistory() {
 		t.addPlayer(p1);
 		t.addPlayer(p2);
@@ -229,14 +218,6 @@ public class JUnit {
 		t.addPlayer(p4);
 		t.addPlayer(p5);
 		t.addPlayer(bye);
-		// R1
-		p4.beats(bye);
-		p1.beats(p3);
-		p2.beats(p2);
-		// R2
-		p3.beats(bye);
-		p4.beats(p5);
-		p1.beats(p2);
 
 		t.shufflePlayers();
 		t.sortRankings();
@@ -254,4 +235,25 @@ public class JUnit {
 		assertEquals(1, p1.getPositionInRankings());
 	}
 
+	@Test
+	public void testDroppingNonByeUserRemovesBye() {
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		t.addPlayer(new Player("P3"));
+		t.addBye();
+		p1.beats(p2);
+		t.dropPlayer("P2");
+		assertEquals(2, t.players.size());
+	}
+
+	@Test
+	public void testDroppingNonByeUserIn4PTourneyAddsBye() {
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		t.addPlayer(new Player("P3"));
+		t.addPlayer(new Player("P4"));
+		p1.beats(p2);
+		t.dropPlayer("P2");
+		assertEquals(4, t.players.size());
+	}
 }

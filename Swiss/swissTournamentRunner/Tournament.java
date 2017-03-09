@@ -246,51 +246,6 @@ public class Tournament {
 		}
 	}
 
-	private void adminTools() {
-		userSelection = null;
-		GUI.postString("Admin functions enabled.");
-		waitForUserInput();
-
-		switch (userSelection) {
-		case "dropUser":
-			print("Enter player name to drop.\n");
-			userSelection = null;
-			waitForUserInput();
-			Boolean foundPlayerToDrop = false;
-			for (Battle b : currentBattles) {
-				if (b.getP1().getName().equals(userSelection) && b.getP2().getName().equals("BYE")) {
-					currentBattles.remove(b);
-					players.remove(b.getP1());
-					players.remove(b.getP2());
-					foundPlayerToDrop = true;
-					break;
-				} else if (b.getP2().getName().equals(userSelection) && b.getP1().getName().equals("BYE")) {
-					currentBattles.remove(b);
-					players.remove(b.getP1());
-					players.remove(b.getP2());
-					foundPlayerToDrop = true;
-					break;
-				} else if (b.getP2().getName().equals(userSelection) || b.getP1().getName().equals(userSelection)) {
-					foundPlayerToDrop = true;
-					print("You can't drop a player while that player's in a non-Bye battle.");
-					break;
-				}
-			}
-			if (!foundPlayerToDrop) {
-				for (Player p : players) {
-					if (p.getName().equals(userSelection)) {
-						players.remove(p);
-					}
-				}
-			}
-			break;
-		default:
-			print("Invalid admin command. Returning to tournament...\n");
-			break;
-		}
-		userSelection = null;
-	}
-
 	private void print(String string) {
 		GUI.postString(string);
 	}
@@ -369,6 +324,100 @@ public class Tournament {
 		} else {
 			userSelection = null;
 			return extraRound();
+		}
+	}
+
+	void adminTools() {
+		userSelection = null;
+		GUI.postString("Admin functions enabled.");
+		waitForUserInput();
+
+		switch (userSelection) {
+		case "dropUser":
+			System.out.println("Enter player name to drop.");
+			print("Enter player name to drop.\n");
+			userSelection = null;
+			waitForUserInput();
+			dropPlayer(userSelection);
+			userSelection = null;
+			break;
+		default:
+			print("Invalid admin command. Returning to tournament...\n");
+			break;
+		}
+		userSelection = null;
+	}
+
+	void dropPlayer(String nameToDrop) {
+
+		Boolean foundPlayerToDrop = false;
+		for (Battle b : currentBattles) {
+			if (b.getP1().getName().equals(nameToDrop) && b.getP2().getName().equals("BYE")) {
+				currentBattles.remove(b);
+				players.remove(b.getP1());
+				players.remove(b.getP2());
+				foundPlayerToDrop = true;
+				break;
+			} else if (b.getP2().getName().equals(nameToDrop) && b.getP1().getName().equals("BYE")) {
+				currentBattles.remove(b);
+				players.remove(b.getP1());
+				players.remove(b.getP2());
+				foundPlayerToDrop = true;
+				break;
+			} else if (b.getP2().getName().equals(nameToDrop) || b.getP1().getName().equals(nameToDrop)) {
+				foundPlayerToDrop = true;
+				print("You can't drop a player while that player's in a non-Bye battle.");
+				break;
+			}
+		}
+		if (!foundPlayerToDrop) {
+			Player toDrop = null;
+			for (Player p : players) {
+				if (p.getName().equals(nameToDrop)) {
+					foundPlayerToDrop = true;
+					toDrop = p;
+					break;
+				}
+			}
+			if (toDrop != null) {
+				players.remove(toDrop);
+			}
+		}
+		if (!nameToDrop.equals("BYE")) {
+			dropPlayer("BYE");
+		}
+		if ((players.size() + (currentBattles.size() * 2)) % 2 == 1) {
+			addPlayer(new Player("BYE"));
+		}
+	}
+
+	private void huntForAndDeleteBye() {
+		Boolean foundPlayerToDrop = false;
+		for (Battle b : currentBattles) {
+			if (b.getP1().getName().equals("BYE")) {
+				currentBattles.remove(b);
+				b.getP2().beats(b.getP1());
+				players.remove(b.getP1());
+				foundPlayerToDrop = true;
+				break;
+			} else if (b.getP2().getName().equals("BYE")) {
+				currentBattles.remove(b);
+				b.getP1().beats(b.getP2());
+				players.remove(b.getP2());
+				foundPlayerToDrop = true;
+				break;
+			}
+		}
+
+		if (!foundPlayerToDrop) {
+			for (Player p : players) {
+				if (p.getName().equals("BYE")) {
+					players.remove(p);
+				}
+			}
+		}
+		if ((players.size() + (currentBattles.size() * 2) % 2) == 1) {
+			addPlayer(new Player("BYE"));
 		}
 	}
 }

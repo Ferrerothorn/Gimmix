@@ -10,13 +10,13 @@ public class GUI extends JPanel implements ActionListener {
 	private final static String newline = "\n";
 	public static Tournament tourney;
 	public JTextField textField;
-	public static JTextArea textArea;
+	public static BackgroundImageTextArea textArea;
 
 	public GUI(Tournament t) {
 		super(new GridBagLayout());
 		tourney = t;
 
-		textArea = new JTextArea(25, 35);
+		textArea = new BackgroundImageTextArea(25, 35);
 		textArea.setEditable(false);
 		textArea.setLineWrap(true);
 		textArea.setFont(new Font("monospaced", Font.PLAIN, 14));
@@ -72,5 +72,6 @@ public class GUI extends JPanel implements ActionListener {
 
 	public static void wipePane() {
 		textArea.setText("");
+		textArea.setCaretPosition(textArea.getDocument().getLength());
 	}
 }
