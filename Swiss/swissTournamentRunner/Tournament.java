@@ -315,6 +315,16 @@ public class Tournament {
 		GUI.postString("Trailing and leading whitespace in a batchAdd player's name is ignored.");
 		GUI.postString();
 
+		GUI.postString("batchAdd/addBatch:");
+		GUI.postString(
+				"Takes in a comma-separated list of usernames and adds them to the tournament in one transaction.");
+		GUI.postString(
+				"This can be used to insert latecomer players to the tournament - the pairing algorithm will pick up the new players at the beginning of each round.");
+		GUI.postString("New players start with a score of 0.");
+		GUI.postString("An example of this command in use might be 'Jimmy Page, Robert Plant, John Paul Jones'.");
+		GUI.postString("Trailing and leading whitespace in a batchAdd player's name is ignored.");
+		GUI.postString();
+
 		GUI.postString("reopenGame:");
 		GUI.postString(
 				"Takes in two parameters; the case-sensitive usernames of the two players whose game you'd like to reopen.");

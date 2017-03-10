@@ -111,7 +111,10 @@ public class Player implements Comparable<Player> {
 
 	public void tied(Player p2) {
 		this.logOpponent(p2);
+		p2.logOpponent(this);
 		this.recalculateScore();
+		p2.recalculateScore();
+		
 	}
 
 	private void logOpponent(Player foe) {
