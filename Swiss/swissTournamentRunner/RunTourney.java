@@ -12,12 +12,14 @@ public class RunTourney {
 		
 		showCredits();
 		tourney.signUpPlayers();
-		int numberOfRounds = tourney.logBase2(tourney.numberOfPlayers());
+		int numberOfRounds = tourney.logBase2(tourney.size());
 		if (tourney.extraRound()) {
 			numberOfRounds++;	
 		}
+		tourney.setNumberOfRounds(numberOfRounds);
+		
 		int i = 1;
-		while (i <= numberOfRounds) {
+		while (i <= tourney.getNumberOfRounds()) {
 			GUI.wipePane();
 			tourney.shufflePlayers();
 			tourney.updateParticipantStats();
@@ -36,7 +38,7 @@ public class RunTourney {
 
 	private static void showCredits() {
 		GUI.postString("Welcome to B-T-C, the Swiss Tournament Bracket Organiser!");
-		GUI.postString("(Version 1.3.1, Made by Steve Dolman)");
+		GUI.postString("(Version 2.3.4 - Made by Steve Dolman)");
 		GUI.postString();
 	}
 }

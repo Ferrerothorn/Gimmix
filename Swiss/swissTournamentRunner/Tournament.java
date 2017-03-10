@@ -9,6 +9,7 @@ public class Tournament {
 	public ArrayList<Battle> currentBattles = new ArrayList<>();
 	public ArrayList<Battle> totallyKosherPairings = new ArrayList<>();
 	public String userSelection = null;
+	public int numberOfRounds;
 	public GUI gui;
 
 	int longestPlayerNameLength = 0;
@@ -317,10 +318,6 @@ public class Tournament {
 		return (int) Math.ceil(Math.log(x) / Math.log(2));
 	}
 
-	public int numberOfPlayers() {
-		return players.size();
-	}
-
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
@@ -501,6 +498,14 @@ public class Tournament {
 
 	public void addPlayer(Player p) {
 		players.add(p);
+	}
+
+	public void setNumberOfRounds(int numberOfRounds) {
+		this.numberOfRounds = numberOfRounds;
+	}
+
+	public int getNumberOfRounds() {
+		return numberOfRounds;
 	}
 
 }

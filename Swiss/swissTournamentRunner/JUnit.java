@@ -346,20 +346,30 @@ public class JUnit {
 		assertEquals(true, t.containsPlayer("BYE"));
 		assertEquals(8, t.size());
 	}
-	
+
 	@Test
 	public void testAddingUserIncrementsRequiredRounds() {
-		//TODO
-	}	
-	
+		t.addBatch("P1,P2,P3,P4,P5,P6,P7,P8");
+		t.setNumberOfRounds(3);
+		t.addBatch("P9,P10");
+		assertEquals(4, t.getNumberOfRounds());
+	}
+
 	@Test
 	public void testAddingUserDoesntDecrementRequiredRounds() {
-		//TODO
+		t.addBatch("P1,P2,P3,P4,P5,P6");
+		t.setNumberOfRounds(4);
+		t.addBatch("P7");
+		assertEquals(4, t.getNumberOfRounds());
 	}
-	
+
 	@Test
 	public void testRemovingUserDecrementsRequiredRounds() {
-		//TODO
+		t.addBatch("P1,P2,P3,P4,P5,P6");
+		t.setNumberOfRounds(3);
+		t.dropPlayer("P5");
+		t.dropPlayer("P6");
+		assertEquals(2, t.getNumberOfRounds());
 	}
 
 }
