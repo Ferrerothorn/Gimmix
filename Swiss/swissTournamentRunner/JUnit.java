@@ -8,99 +8,95 @@ import org.junit.Test;
 public class JUnit {
 
 	public Tournament t = new Tournament();
-	public Player p1;
-	public Player p2;
 
 	@Before
 	public void setup() {
 		t.newTourney();
-		p1 = new Player("P1");
-		p2 = new Player("P2");
 	}
 
 	@Test
 	public void testAddPlayersToTournament() {
-		t.addPlayer(p1);
-		t.addPlayer(p2);
+		t.addPlayer("P1");
+		t.addPlayer("P2");
 		assertEquals(2, t.participants());
 	}
 
 	@Test
 	public void testCompareIdenticalPlayersIsTie() {
-		p1 = new Player("P1", 0, 0, 0);
-		p2 = new Player("P2", 0, 0, 0);
-		t.addPlayer(p1);
-		t.addPlayer(p2);
+		Player p1 = new Player("P1", 0, 0, 0);
+		Player p2 = new Player("P2", 0, 0, 0);
+		t.addPlayer("P1");
+		t.addPlayer("P2");
 		assertEquals(0, p1.compareTo(p2));
 	}
 
 	@Test
 	public void testP1Better() {
-		p1 = new Player("P1", 1, 0, 0);
-		p2 = new Player("P2", 0, 0, 0);
-		t.addPlayer(p1);
-		t.addPlayer(p2);
+		Player p1 = new Player("P1", 1, 0, 0);
+		Player p2 = new Player("P2", 0, 0, 0);
+		t.addPlayer("P1");
+		t.addPlayer("P2");
 		assertEquals(-1, p1.compareTo(p2));
 	}
 
 	@Test
 	public void testCompareP2Better() {
-		p1 = new Player("P1", 0, 0, 0);
-		p2 = new Player("P2", 1, 0, 0);
-		t.addPlayer(p1);
-		t.addPlayer(p2);
+		Player p1 = new Player("P1", 0, 0, 0);
+		Player p2 = new Player("P2", 1, 0, 0);
+		t.addPlayer("P1");
+		t.addPlayer("P2");
 		assertEquals(1, p1.compareTo(p2));
 	}
 
 	@Test
 	public void testTiedSoGoToTB() {
-		p1 = new Player("P1", 3, 1, 0);
-		p2 = new Player("P2", 3, 0, 0);
-		t.addPlayer(p1);
-		t.addPlayer(p2);
+		Player p1 = new Player("P1", 3, 1, 0);
+		Player p2 = new Player("P2", 3, 0, 0);
+		t.addPlayer("P1");
+		t.addPlayer("P2");
 		assertEquals(-1, p1.compareTo(p2));
 	}
 
 	@Test
 	public void testTiedSoGoToTB_p2() {
-		p1 = new Player("P1", 3, 0, 0);
-		p2 = new Player("P2", 3, 1, 0);
-		t.addPlayer(p1);
-		t.addPlayer(p2);
+		Player p1 = new Player("P1", 3, 0, 0);
+		Player p2 = new Player("P2", 3, 1, 0);
+		t.addPlayer("P1");
+		t.addPlayer("P2");
 		assertEquals(1, p1.compareTo(p2));
 	}
 
 	@Test
 	public void testTiedSoGoToBuch() {
-		p1 = new Player("P1", 3, 1, 3);
-		p2 = new Player("P2", 3, 1, 0);
-		t.addPlayer(p1);
-		t.addPlayer(p2);
+		Player p1 = new Player("P1", 3, 1, 3);
+		Player p2 = new Player("P2", 3, 1, 0);
+		t.addPlayer("P1");
+		t.addPlayer("P2");
 		assertEquals(-1, p1.compareTo(p2));
 	}
 
 	@Test
 	public void testTiedSoGoToBuchp2() {
-		p1 = new Player("P1", 3, 1, 0);
-		p2 = new Player("P2", 3, 1, 3);
-		t.addPlayer(p1);
-		t.addPlayer(p2);
+		Player p1 = new Player("P1", 3, 1, 0);
+		Player p2 = new Player("P2", 3, 1, 3);
+		t.addPlayer("P1");
+		t.addPlayer("P2");
 		assertEquals(1, p1.compareTo(p2));
 	}
 
 	@Test
 	public void testTiedEveryTieBreaker() {
-		p1 = new Player("P1", 3, 1, 3);
-		p2 = new Player("P2", 3, 1, 3);
-		t.addPlayer(p1);
-		t.addPlayer(p2);
+		Player p1 = new Player("P1", 3, 1, 3);
+		Player p2 = new Player("P2", 3, 1, 3);
+		t.addPlayer("P1");
+		t.addPlayer("P2");
 		assertEquals(0, p1.compareTo(p2));
 	}
 
 	@Test
 	public void testSortFourParticipants() {
-		p1 = new Player("P1", 3, 1, 2);
-		p2 = new Player("P2", 6, 1, 3);
+		Player p1 = new Player("P1", 3, 1, 2);
+		Player p2 = new Player("P2", 6, 1, 3);
 		Player p3 = new Player("P3", 3, 1, 3);
 		Player p4 = new Player("P4", 0, 0, 6);
 		t.addPlayer(p1);
@@ -108,28 +104,28 @@ public class JUnit {
 		t.addPlayer(p3);
 		t.addPlayer(p4);
 		t.sortRankings();
-		assertEquals("-=-=-=-Rankings-=-=-=-\nP4P1P3P2", t.rankingsToOneBigString());
+		assertEquals("-=-=-=-Rankings-=-=-=-\nP2P3P1P4", t.rankingsToOneBigString());
 	}
 
 	@Test
 	public void testAddBye_AddsNoBye() {
-		t.addPlayer(p1);
-		t.addPlayer(p2);
+		t.addPlayer("P1");
+		t.addPlayer("P2");
 		t.addBye();
 		assertEquals(false, t.containsPlayer("BYE"));
 	}
 
 	@Test
 	public void testAddBye_AddsBye() {
-		t.addPlayer(p1);
+		t.addPlayer("P1");
 		t.addBye();
 		assertEquals(true, t.containsPlayer("BYE"));
 	}
 
 	@Test
 	public void testFightWinnerP1GetsPoints() {
-		t.addPlayer(p1);
-		t.addPlayer(p2);
+		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");
 		assertEquals(0, p1.getPoints());
 		assertEquals(0, p2.getPoints());
 		p1.beats(p2);
@@ -139,8 +135,8 @@ public class JUnit {
 
 	@Test
 	public void testFightLogsEachOtherInFightHistory() {
-		t.addPlayer(p1);
-		t.addPlayer(p2);
+		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");
 		assertEquals(0, p1.getOpponentsList().size());
 		assertEquals(0, p2.getOpponentsList().size());
 		p2.beats(p1);
@@ -150,8 +146,8 @@ public class JUnit {
 
 	@Test
 	public void testFightWinnerGetsVictoryLogged() {
-		t.addPlayer(p1);
-		t.addPlayer(p2);
+		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");
 		assertEquals(0, p1.getListOfVictories().size());
 		assertEquals(0, p2.getListOfVictories().size());
 		p1.beats(p2);
@@ -162,10 +158,12 @@ public class JUnit {
 
 	@Test
 	public void test1beats2_2beats3_1gt2gt3() {
+		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");
 		Player p3 = new Player("P3");
-		t.addPlayer(p3);
-		t.addPlayer(p2);
 		t.addPlayer(p1);
+		t.addPlayer(p2);
+		t.addPlayer(p3);
 
 		p1.beats(p2);
 		p2.beats(p3);
@@ -179,13 +177,15 @@ public class JUnit {
 
 	@Test
 	public void testFiveManPeckingOrder() {
+		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");
 		Player p3 = new Player("P3");
 		Player p4 = new Player("P4");
 		Player p5 = new Player("P5");
 
-		t.addPlayer(p3);
-		t.addPlayer(p2);
 		t.addPlayer(p1);
+		t.addPlayer(p2);
+		t.addPlayer(p3);
 		t.addPlayer(p4);
 		t.addPlayer(p5);
 		t.shufflePlayers();
@@ -202,7 +202,7 @@ public class JUnit {
 		p5.beats(p1);
 
 		t.sortRankings();
-		assertEquals("-=-=-=-Rankings-=-=-=-\nP1P2P3P4P5", t.rankingsToOneBigString());
+		assertEquals("-=-=-=-Rankings-=-=-=-\nP5P4P3P2P1", t.rankingsToOneBigString());
 
 	}
 
@@ -212,12 +212,12 @@ public class JUnit {
 		Player p4 = new Player("P4");
 		Player p5 = new Player("P5");
 		Player bye = new Player("BYE");
-		t.addPlayer(p1);
-		t.addPlayer(p2);
-		t.addPlayer(p3);
-		t.addPlayer(p4);
-		t.addPlayer(p5);
-		t.addPlayer(bye);
+		t.addPlayer("P1");
+		t.addPlayer("P2");
+		t.addPlayer("P3");
+		t.addPlayer("P4");
+		t.addPlayer("P5");
+		t.addBye();
 
 		t.shufflePlayers();
 		t.sortRankings();
@@ -227,6 +227,8 @@ public class JUnit {
 
 	@Test
 	public void testUpdatePositionInRankings() {
+		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");
 		t.addPlayer(p1);
 		t.addPlayer(p2);
 		p1.beats(p2);
@@ -237,24 +239,23 @@ public class JUnit {
 
 	@Test
 	public void testDroppingNonByeUserRemovesBye() {
-		t.addPlayer(p1);
-		t.addPlayer(p2);
-		t.addPlayer(new Player("P3"));
+		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");
+		t.addPlayer("P3");
 		t.addBye();
 		p1.beats(p2);
 		t.dropPlayer("P2");
-		assertEquals(2, t.players.size());
+		assertEquals(2, t.size());
 	}
 
 	@Test
 	public void testDroppingNonByeUserIn4PTourneyAddsBye() {
-		t.addPlayer(p1);
-		t.addPlayer(p2);
-		t.addPlayer(new Player("P3"));
-		t.addPlayer(new Player("P4"));
-		p1.beats(p2);
+		t.addPlayer("P1");
+		t.addPlayer("P2");
+		t.addPlayer("P3");
+		t.addPlayer("P4");
 		t.dropPlayer("P2");
-		assertEquals(4, t.players.size());
+		assertEquals(4, t.size());
 	}
 
 	@Test
@@ -264,4 +265,101 @@ public class JUnit {
 		assertEquals(8, t.players.size());
 		assertEquals("P1", t.players.get(0).getName());
 	}
+
+	@Test
+	public void testAddLateParticipantsCorrectlyManipulatesByes() {
+		t.addPlayer("P1");
+		t.addPlayer("P2");
+		t.addPlayer("P3");
+		t.addBye();
+		t.generatePairings();
+		assertEquals(true, t.containsPlayer("BYE"));
+		t.addBatch("P4,P5,P6");
+		assertEquals(6, t.size());
+		assertEquals(false, t.containsPlayer("BYE"));
+	}
+
+	@Test
+	public void testAddBatchTrimsWhitespace() {
+		t.addPlayer("P1");
+		t.addPlayer("P2");
+		t.addPlayer("P3");
+		t.addBatch(" P4,P5 ,  P6   ,                      P7 ,	P8 	");
+		assertEquals(8, t.players.size());
+		for (Player p : t.players) {
+			assertEquals(2, p.getName().length());
+		}
+	}
+
+	@Test
+	public void testAddingUsersToTourneyWithBye_AssertByeStillRequired() {
+		t.addPlayer("P1");
+		t.addPlayer("P2");
+		t.addPlayer("P3");
+		t.addBye();
+		t.addBatch("P4,P5,P6,P7");
+		assertEquals(true, t.containsPlayer("BYE"));
+		assertEquals(8, t.size());
+	}
+
+	@Test
+	public void testAddingUsersToTourneyWithBye_AssertByeNoLongerRequired() {
+		t.addPlayer("P1");
+		t.addPlayer("P2");
+		t.addPlayer("P3");
+		t.addBye();
+		t.addBatch("P4,P5,P6,P7,P8");
+		assertEquals(false, t.containsPlayer("BYE"));
+		assertEquals(8, t.size());
+	}
+
+	@Test
+	public void testAddingUserWithDuplicateNameDoesntAdd() {
+		t.addPlayer("Tom");
+		t.addPlayer("Dick");
+		t.addPlayer("Harry");
+		t.addPlayer("Sally");
+		assertEquals(4, t.size());
+		t.addPlayer("Sally");
+		assertEquals(false, t.containsPlayer("BYE"));
+		assertEquals(4, t.size());
+	}
+
+	@Test
+	public void testAddingUsersToTourneyWithoutBye_AssertByeStillNotRequired() {
+		t.addPlayer("P1");
+		t.addPlayer("P2");
+		t.addPlayer("P3");
+		t.addPlayer("P4");
+		t.addBatch("P5,P6,P7,P8");
+		assertEquals(false, t.containsPlayer("BYE"));
+		assertEquals(8, t.size());
+	}
+
+	@Test
+	public void testAddingUsersToTourneyWithoutBye_AssertByeNowRequired() {
+		t.addPlayer("P1");
+		t.addPlayer("P2");
+		t.addPlayer("P3");
+		t.addPlayer("P4");
+		t.addBatch("P5,P6,P7");
+		assertEquals(true, t.containsPlayer("BYE"));
+		assertEquals(8, t.size());
+	}
+	
+	@Test
+	public void testAddingUserIncrementsRequiredRounds() {
+		//TODO
+	}	
+	
+	@Test
+	public void testAddingUserDoesntDecrementRequiredRounds() {
+		//TODO
+	}
+	
+	@Test
+	public void testRemovingUserDecrementsRequiredRounds() {
+		//TODO
+	}
+
 }
