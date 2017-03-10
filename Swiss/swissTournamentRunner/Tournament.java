@@ -39,21 +39,25 @@ public class Tournament {
 				if (userSelection.length() > longestPlayerNameLength) {
 					longestPlayerNameLength = userSelection.length();
 				}
-				addPlayer(new Player(userSelection));
+				addPlayer(userSelection);
 				userSelection = null;
 			}
 		}
 		addBye();
 	}
 
-	public void addPlayer(Player p1) {
-		if (p1.getName().length() > 0) {
-			players.add(p1);
+	public void addPlayer(String p1) {
+
+		if (!containsPlayer(p1)) {
+
+			if (p1.length() > 0) {
+				players.add(new Player(p1));
+			}
+			if (p1.length() > longestPlayerNameLength) {
+				longestPlayerNameLength = p1.length();
+			}
+			playerCap++;
 		}
-		if (p1.getName().length() > longestPlayerNameLength) {
-			longestPlayerNameLength = p1.getName().length();
-		}
-		playerCap++;
 	}
 
 	public int participants() {
@@ -69,14 +73,10 @@ public class Tournament {
 	}
 
 	public String rankingsToOneBigString() {
-		int i = players.size();
-		i--;
 		String output = "-=-=-=-Rankings-=-=-=-" + '\n';
-		while (i >= 0) {
-			output += players.get(i).getName();
-			i--;
+		for (Player p : players) {
+			output += p.getName();
 		}
-
 		return output;
 	}
 
@@ -366,7 +366,6 @@ public class Tournament {
 		userSelection = null;
 		GUI.postString("Admin functions enabled.");
 		waitForUserInput();
-
 		switch (userSelection) {
 		case "dropUser":
 			print("Enter player name to drop.\n");
@@ -404,13 +403,32 @@ public class Tournament {
 
 	void addBatch(String playerList) {
 		String[] names = playerList.split(",");
+		ArrayList<String> newPlayerNames = new ArrayList<>();
 		for (String s : names) {
-			players.add(new Player(s));
+			newPlayerNames.add(s);
+		}
+
+		if (containsPlayer("BYE")) {
+			renamePlayer("BYE", newPlayerNames.remove(0));
+		}
+
+		for (String s : newPlayerNames) {
+			players.add(new Player(trimWhitespace(s)));
 			if (s.length() > longestPlayerNameLength) {
 				longestPlayerNameLength = s.length();
 			}
 		}
 		addBye();
+	}
+
+	private String trimWhitespace(String s) {
+		if (s.charAt(0) == ' ' || s.charAt(0) == '\t') {
+			return trimWhitespace(s.substring(1));
+		}
+		if (s.charAt(s.length() - 1) == ' ' || s.charAt(s.length() - 1) == '\t') {
+			return trimWhitespace(s.substring(0, s.length() - 1));
+		}
+		return s;
 	}
 
 	private void renamePlayer(String renameMe, String newName) {
@@ -473,7 +491,16 @@ public class Tournament {
 			dropPlayer("BYE");
 		}
 		if ((players.size() + (currentBattles.size() * 2)) % 2 == 1) {
-			addPlayer(new Player("BYE"));
+			addPlayer("BYE");
 		}
 	}
+
+	public int size() {
+		return players.size();
+	}
+
+	public void addPlayer(Player p) {
+		players.add(p);
+	}
+
 }
