@@ -102,16 +102,19 @@ public class Player implements Comparable<Player> {
 	}
 
 	public void beats(Player p2) {
-		this.score = this.score + 3;
 		this.logOpponent(p2);
 		p2.logOpponent(this);
 		this.victories.add(p2);
+		this.recalculateScore();
+		p2.recalculateScore();
 	}
 
-	public void tied(Player opponent) {
-		this.score = this.score + 1;
-		this.logOpponent(opponent);
-		opponent.logOpponent(this);
+	public void tied(Player p2) {
+		this.logOpponent(p2);
+		p2.logOpponent(this);
+		this.recalculateScore();
+		p2.recalculateScore();
+		
 	}
 
 	private void logOpponent(Player foe) {
@@ -151,4 +154,12 @@ public class Player implements Comparable<Player> {
 		this.name = newName;
 	}
 
+	public void recalculateScore() {
+		score = (3*victories.size());
+		for (Player p : previousRounds) {
+			if (!victories.contains(p) && !p.victories.contains(this)){
+				score++;
+			}
+		}
+	}
 }

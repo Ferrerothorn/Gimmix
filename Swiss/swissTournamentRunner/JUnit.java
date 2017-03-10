@@ -422,9 +422,29 @@ public class JUnit {
 		assertEquals(1, t.currentBattles.size());
 		Battle b = t.currentBattles.remove(0);
 		t.handleBattleWinner(b, "1");
+		
+		assertEquals(3, b.getP1().getScore());
+		assertEquals(0, b.getP2().getScore());
+		
 		t.reopenBattle(b.getP1(), b.getP2());
 
 		assertEquals(0, b.getP1().getScore());
 		assertEquals(0, b.getP2().getScore());
 	}
+	
+	@Test
+	public void testPreviousRoundsAreLoggedCorrectly() {
+		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");	
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		
+		p1.beats(p2);
+
+		assertEquals(1, p1.getListOfVictories().size());
+		assertEquals(1, p1.getOpponentsList().size());
+		assertEquals(1, p2.getOpponentsList().size());
+		assertEquals(0, p2.getListOfVictories().size());
+	}
+	
 }

@@ -103,6 +103,7 @@ public class Tournament {
 
 	public void updateParticipantStats() {
 		for (Player p : players) {
+			p.recalculateScore();
 			p.recalculateTB();
 			p.recalculateOpps();
 			p.recalculateOppsOpps();
@@ -545,31 +546,38 @@ public class Tournament {
 	}
 
 	public void reopenBattle(Player p1, Player p2) {
+		Boolean reopen = false;
 		for (Player p : p1.getOpponentsList()) {
 			if (p.equals(p2)) {
 				p1.getOpponentsList().remove(p);
+				reopen = true;
 				break;
 			}
 		}
 		for (Player p : p2.getOpponentsList()) {
 			if (p.equals(p1)) {
 				p2.getOpponentsList().remove(p);
+				reopen = true;
 				break;
 			}
 		}
 		for (Player p : p1.getListOfVictories()) {
 			if (p.equals(p2)) {
 				p1.getListOfVictories().remove(p);
+				reopen = true;
 				break;
 			}
 		}
 		for (Player p : p2.getListOfVictories()) {
 			if (p.equals(p1)) {
 				p2.getListOfVictories().remove(p);
+				reopen = true;
 				break;
 			}
 		}
-		currentBattles.add(new Battle(p1, p2));
+		if (reopen) {
+			currentBattles.add(new Battle(p1, p2));
+		}
 		updateParticipantStats();
 	}
 
