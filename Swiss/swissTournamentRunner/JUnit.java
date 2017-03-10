@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class JUnit {
 
-	public Tournament t = new Tournament();
+	public Tournament t;
 
 	@Before
 	public void setup() {
@@ -356,14 +356,6 @@ public class JUnit {
 	}
 
 	@Test
-	public void testAddingUserDoesntDecrementRequiredRounds() {
-		t.addBatch("P1,P2,P3,P4,P5,P6");
-		t.setNumberOfRounds(4);
-		t.addBatch("P7");
-		assertEquals(4, t.getNumberOfRounds());
-	}
-
-	@Test
 	public void testRemovingUserDecrementsRequiredRounds() {
 		t.addBatch("P1,P2,P3,P4,P5,P6");
 		t.setNumberOfRounds(3);
@@ -371,5 +363,10 @@ public class JUnit {
 		t.dropPlayer("P6");
 		assertEquals(2, t.getNumberOfRounds());
 	}
-
+	
+	@Test
+	public void testReopenGame() {
+		//TODO
+	}	
+	
 }

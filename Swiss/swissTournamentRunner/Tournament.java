@@ -48,9 +48,7 @@ public class Tournament {
 	}
 
 	public void addPlayer(String p1) {
-
 		if (!containsPlayer(p1)) {
-
 			if (p1.length() > 0) {
 				players.add(new Player(p1));
 			}
@@ -58,6 +56,9 @@ public class Tournament {
 				longestPlayerNameLength = p1.length();
 			}
 			playerCap++;
+		}
+		while (numberOfRounds <  logBase2(players.size())) {
+			numberOfRounds++;
 		}
 	}
 
@@ -410,7 +411,7 @@ public class Tournament {
 		}
 
 		for (String s : newPlayerNames) {
-			players.add(new Player(trimWhitespace(s)));
+			addPlayer(trimWhitespace(s));
 			if (s.length() > longestPlayerNameLength) {
 				longestPlayerNameLength = s.length();
 			}
@@ -489,6 +490,9 @@ public class Tournament {
 		}
 		if ((players.size() + (currentBattles.size() * 2)) % 2 == 1) {
 			addPlayer("BYE");
+		}
+		while (numberOfRounds >  logBase2(players.size())) {
+			numberOfRounds--;
 		}
 	}
 
