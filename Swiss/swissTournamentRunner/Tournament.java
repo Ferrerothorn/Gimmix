@@ -42,8 +42,8 @@ public class Tournament {
 				addPlayer(new Player(userSelection));
 				userSelection = null;
 			}
-			addBye();
 		}
+		addBye();
 	}
 
 	public void addPlayer(Player p1) {
