@@ -37,11 +37,16 @@ public class RunTourney {
 		tourney.displayInDepthRankings();
 		GUI.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	
+	
+	//TODO - admin should be able to overwrite round numbers
+	//TODO - show all previous matches reported.
 
 	private static void showCredits() {
 		GUI.postString("Welcome to B-T-C, the Swiss Tournament Bracket Organiser!");
-		GUI.postString("(Version 3.0.1 - Made by Steve Dolman)");
+		GUI.postString("(Version 3.0.2 - Made by Steve Dolman)");
 		GUI.postString("(You can enter 'help' at any time for some instructions.)");
+		GUI.postString("Many thanks to debug & testing crew (@Darren Macey).");
 		GUI.postString();
 	}
 }

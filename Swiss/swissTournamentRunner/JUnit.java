@@ -15,6 +15,21 @@ public class JUnit {
 	}
 
 	@Test
+	public void testTiesAreOnlyWorthOnePoint() {
+		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		
+		p1.tied(p2);
+		p2.tied(p1);
+		
+		assertEquals(1, p1.getScore());
+		assertEquals(1, p2.getScore());		
+	}
+	
+	
+	@Test
 	public void testAddPlayersToTournament() {
 		t.addPlayer("P1");
 		t.addPlayer("P2");
