@@ -11,6 +11,7 @@ public class GUI extends JPanel implements ActionListener {
 	public static Tournament tourney;
 	public JTextField textField;
 	public static JTextArea textArea;
+	public static JFrame frame = new JFrame("BTC");
 
 	public GUI(Tournament t) {
 		super(new GridBagLayout());
@@ -52,9 +53,8 @@ public class GUI extends JPanel implements ActionListener {
 	}
 
 	public static void createAndShowGUI() {
-		JFrame frame = new JFrame("BTBTC");
 		frame.setSize(500, 400);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		frame.add(new GUI(tourney));
 		frame.pack();
 		frame.setVisible(true);

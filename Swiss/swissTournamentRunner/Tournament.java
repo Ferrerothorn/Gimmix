@@ -11,17 +11,13 @@ public class Tournament {
 	public String userSelection = null;
 	public int numberOfRounds;
 	public GUI gui;
-
 	int longestPlayerNameLength = 0;
-
-	public int playerCap = 1;
 
 	public void signUpPlayers() {
 		boolean allParticipantsIn = false;
 
 		while (!allParticipantsIn) {
-			GUI.postString("Enter the name of the next participant, or enter 'no' if done.\n"
-					+ "(You can enter 'help' at any time for some instructions.)");
+			GUI.postString("Enter the name of the next participant, or enter 'no' if done.\n");
 			waitForUserInput();
 			switch (userSelection.toLowerCase()) {
 			case "help":
@@ -55,7 +51,6 @@ public class Tournament {
 			if (p1.length() > longestPlayerNameLength) {
 				longestPlayerNameLength = p1.length();
 			}
-			playerCap++;
 		}
 		while (numberOfRounds < logBase2(players.size())) {
 			numberOfRounds++;
@@ -290,6 +285,52 @@ public class Tournament {
 				+ "First, use the text bar below to enter the tournament's participants, one at a time.\n"
 				+ "Then, pairings will be automatically generated for you, ordered by each participant's results so far.\n"
 				+ "Enter numbers to the text bar to report scores for each pairing.\n\n");
+		GUI.postString();
+		GUI.postString(
+				"At any point while polling for game results, you can enter 'adminTools' (case sensitive) to enter Administrator mode. ");
+		GUI.postString(
+				"You can then enter a further series of commands to alter properties of the current tournament.");
+		GUI.postString("Here's the manual for all current Administrator commands:");
+		GUI.postString();
+
+		GUI.postString("drop/dropUser/dropPlayer:");
+		GUI.postString("Removes the specified player (case sensitive) from the tournament.");
+		GUI.postString("This doesn't affect the scores of anyone who beat this player in a previous round.");
+		GUI.postString("This command can only be performed on players who have no active battle.");
+		GUI.postString();
+
+		GUI.postString("editName:");
+		GUI.postString(
+				"Takes in the current username (CS) of a player in the tournament, and a new name for that player.");
+		GUI.postString("Scores, etc, of the renamed player are preserved.");
+		GUI.postString();
+
+		GUI.postString("batchAdd/addBatch:");
+		GUI.postString(
+				"Takes in a comma-separated list of usernames and adds them to the tournament in one transaction.");
+		GUI.postString(
+				"This can be used to insert latecomer players to the tournament - the pairing algorithm will pick up the new players at the beginning of each round.");
+		GUI.postString("New players start with a score of 0.");
+		GUI.postString("An example of this command in use might be 'Jimmy Page, Robert Plant, John Paul Jones'.");
+		GUI.postString("Trailing and leading whitespace in a batchAdd player's name is ignored.");
+		GUI.postString();
+
+		GUI.postString("batchAdd/addBatch:");
+		GUI.postString(
+				"Takes in a comma-separated list of usernames and adds them to the tournament in one transaction.");
+		GUI.postString(
+				"This can be used to insert latecomer players to the tournament - the pairing algorithm will pick up the new players at the beginning of each round.");
+		GUI.postString("New players start with a score of 0.");
+		GUI.postString("An example of this command in use might be 'Jimmy Page, Robert Plant, John Paul Jones'.");
+		GUI.postString("Trailing and leading whitespace in a batchAdd player's name is ignored.");
+		GUI.postString();
+
+		GUI.postString("reopenGame:");
+		GUI.postString(
+				"Takes in two parameters; the case-sensitive usernames of the two players whose game you'd like to reopen.");
+		GUI.postString(
+				"Any scores from a reopened game are reset, and the game is re-added to the Open Games list to report anew.");
+		GUI.postString();
 	}
 
 	private void print(String string) {
@@ -373,6 +414,20 @@ public class Tournament {
 		GUI.postString("Admin functions enabled.");
 		waitForUserInput();
 		switch (userSelection) {
+		case "drop":
+			print("Enter player name to drop.\n");
+			userSelection = null;
+			waitForUserInput();
+			dropPlayer(userSelection);
+			userSelection = null;
+			break;
+		case "dropPlayer":
+			print("Enter player name to drop.\n");
+			userSelection = null;
+			waitForUserInput();
+			dropPlayer(userSelection);
+			userSelection = null;
+			break;
 		case "dropUser":
 			print("Enter player name to drop.\n");
 			userSelection = null;
@@ -400,7 +455,15 @@ public class Tournament {
 			userSelection = null;
 			addBatch(playerList);
 			break;
-		case "reopenBattle":
+		case "addBatch":
+			print("Enter a list of players, separated by commas.\n");
+			userSelection = null;
+			waitForUserInput();
+			String playersList = userSelection;
+			userSelection = null;
+			addBatch(playersList);
+			break;
+		case "reopenGame":
 			print("To reopen a game, first enter the name of one of the players in the game.\n");
 			print("(Case sensitive)\n");
 			userSelection = null;
@@ -416,6 +479,11 @@ public class Tournament {
 				reopenBattle(p1, p2);
 			}
 			break;
+		case "killall -9":
+			currentBattles.clear();
+			players.clear();
+			break;
+
 		default:
 			print("Invalid admin command. Returning to tournament...\n");
 			break;
