@@ -57,7 +57,7 @@ public class Tournament {
 			}
 			playerCap++;
 		}
-		while (numberOfRounds <  logBase2(players.size())) {
+		while (numberOfRounds < logBase2(players.size())) {
 			numberOfRounds++;
 		}
 	}
@@ -231,25 +231,7 @@ public class Tournament {
 					if (!((b.getP1().getName().equals("BYE") || (b.getP2().getName().equals("BYE"))))) {
 
 						waitForUserInput();
-
-						switch (userSelection) {
-						case "1":
-							b.getP1().beats(b.getP2());
-							b = null;
-							break;
-						case "2":
-							b.getP2().beats(b.getP1());
-							b = null;
-							break;
-						case "3":
-							b.getP1().tied(b.getP2());
-							b.getP2().tied(b.getP1());
-							b = null;
-							break;
-						default:
-							currentBattles.add(b);
-							break;
-						}
+						handleBattleWinner(b, userSelection);
 					} else {
 						if (b.getP1().getName().equals("BYE")) {
 							b.getP2().beats(b.getP1());
@@ -261,11 +243,7 @@ public class Tournament {
 					}
 
 					userSelection = null;
-					GUI.wipePane();
-					updateParticipantStats();
-					displayInDepthRankings();
-					GUI.postString();
-					GUI.postString();
+					refreshScreen();
 					break;
 				}
 			} catch (Exception e) {
@@ -273,6 +251,35 @@ public class Tournament {
 				userSelection = null;
 				pollForResults(roundNumber);
 			}
+		}
+	}
+
+	private void refreshScreen() {
+		GUI.wipePane();
+		updateParticipantStats();
+		displayInDepthRankings();
+		GUI.postString();
+		GUI.postString();
+	}
+
+	void handleBattleWinner(Battle b, String winner) {
+		switch (winner) {
+		case "1":
+			b.getP1().beats(b.getP2());
+			b = null;
+			break;
+		case "2":
+			b.getP2().beats(b.getP1());
+			b = null;
+			break;
+		case "3":
+			b.getP1().tied(b.getP2());
+			b.getP2().tied(b.getP1());
+			b = null;
+			break;
+		default:
+			currentBattles.add(b);
+			break;
 		}
 	}
 
@@ -392,11 +399,36 @@ public class Tournament {
 			userSelection = null;
 			addBatch(playerList);
 			break;
+		case "reopenBattle":
+			print("To reopen a game, first enter the name of one of the players in the game.\n");
+			print("(Case sensitive)\n");
+			userSelection = null;
+			waitForUserInput();
+			Player p1 = fetchPlayer(userSelection);
+			userSelection = null;
+			print("Enter the name of the other player in that game.\n");
+			print("(Case sensitive)\n");
+			waitForUserInput();
+			Player p2 = fetchPlayer(userSelection);
+			userSelection = null;
+			if (p1 != null && p2 != null) {
+				reopenBattle(p1, p2);
+			}
+			break;
 		default:
 			print("Invalid admin command. Returning to tournament...\n");
 			break;
 		}
 		userSelection = null;
+	}
+
+	private Player fetchPlayer(String playerName) {
+		for (Player p : players) {
+			if (p.getName().equals(playerName)) {
+				return p;
+			}
+		}
+		return null;
 	}
 
 	void addBatch(String playerList) {
@@ -491,7 +523,7 @@ public class Tournament {
 		if ((players.size() + (currentBattles.size() * 2)) % 2 == 1) {
 			addPlayer("BYE");
 		}
-		while (numberOfRounds >  logBase2(players.size())) {
+		while (numberOfRounds > logBase2(players.size())) {
 			numberOfRounds--;
 		}
 	}
@@ -510,6 +542,35 @@ public class Tournament {
 
 	public int getNumberOfRounds() {
 		return numberOfRounds;
+	}
+
+	public void reopenBattle(Player p1, Player p2) {
+		for (Player p : p1.getOpponentsList()) {
+			if (p.equals(p2)) {
+				p1.getOpponentsList().remove(p);
+				break;
+			}
+		}
+		for (Player p : p2.getOpponentsList()) {
+			if (p.equals(p1)) {
+				p2.getOpponentsList().remove(p);
+				break;
+			}
+		}
+		for (Player p : p1.getListOfVictories()) {
+			if (p.equals(p2)) {
+				p1.getListOfVictories().remove(p);
+				break;
+			}
+		}
+		for (Player p : p2.getListOfVictories()) {
+			if (p.equals(p1)) {
+				p2.getListOfVictories().remove(p);
+				break;
+			}
+		}
+		currentBattles.add(new Battle(p1, p2));
+		updateParticipantStats();
 	}
 
 }

@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class JUnit {
 
-	public Tournament t;
+	public Tournament t = new Tournament();
 
 	@Before
 	public void setup() {
@@ -208,10 +208,6 @@ public class JUnit {
 
 	@Test
 	public void testPairEveryoneCorrectlyThreeRoundsIn() {
-		Player p3 = new Player("P3");
-		Player p4 = new Player("P4");
-		Player p5 = new Player("P5");
-		Player bye = new Player("BYE");
 		t.addPlayer("P1");
 		t.addPlayer("P2");
 		t.addPlayer("P3");
@@ -363,10 +359,72 @@ public class JUnit {
 		t.dropPlayer("P6");
 		assertEquals(2, t.getNumberOfRounds());
 	}
-	
+
 	@Test
 	public void testReopenGame() {
-		//TODO
-	}	
-	
+		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");
+		Player p3 = new Player("P3");
+		Player p4 = new Player("P4");
+
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		t.addPlayer(p3);
+		t.addPlayer(p4);
+
+		t.generatePairings();
+		assertEquals(2, t.currentBattles.size());
+		Battle b = t.currentBattles.remove(0);
+		t.handleBattleWinner(b, "1");
+		assertEquals(1, b.getP1().getListOfVictories().size());
+		assertEquals(0, b.getP2().getListOfVictories().size());
+		assertEquals(1, b.getP1().getOpponentsList().size());
+		assertEquals(1, b.getP2().getOpponentsList().size());
+		assertEquals(1, t.currentBattles.size());
+
+		t.reopenBattle(b.getP1(), b.getP2());
+
+		assertEquals(0, b.getP1().getListOfVictories().size());
+		assertEquals(0, b.getP2().getListOfVictories().size());
+		assertEquals(0, b.getP1().getOpponentsList().size());
+		assertEquals(0, b.getP2().getOpponentsList().size());
+		assertEquals(2, t.currentBattles.size());
+	}
+
+	@Test
+	public void testCannotReopenNonexistantGame() {
+		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");
+		Player p3 = new Player("P3");
+		Player p4 = new Player("P4");
+
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		t.addPlayer(p3);
+		t.addPlayer(p4);
+
+		t.generatePairings();
+		Battle b = t.currentBattles.remove(0);
+		t.handleBattleWinner(b, "1");
+		t.reopenBattle(p1, p4);
+		assertEquals(1, t.currentBattles.size());
+	}
+
+	@Test
+	public void testReopeningGameDropsScore() {
+		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");
+
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+
+		t.generatePairings();
+		assertEquals(1, t.currentBattles.size());
+		Battle b = t.currentBattles.remove(0);
+		t.handleBattleWinner(b, "1");
+		t.reopenBattle(b.getP1(), b.getP2());
+
+		assertEquals(0, b.getP1().getScore());
+		assertEquals(0, b.getP2().getScore());
+	}
 }
