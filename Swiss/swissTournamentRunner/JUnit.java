@@ -422,23 +422,23 @@ public class JUnit {
 		assertEquals(1, t.currentBattles.size());
 		Battle b = t.currentBattles.remove(0);
 		t.handleBattleWinner(b, "1");
-		
+
 		assertEquals(3, b.getP1().getScore());
 		assertEquals(0, b.getP2().getScore());
-		
+
 		t.reopenBattle(b.getP1(), b.getP2());
 
 		assertEquals(0, b.getP1().getScore());
 		assertEquals(0, b.getP2().getScore());
 	}
-	
+
 	@Test
 	public void testPreviousRoundsAreLoggedCorrectly() {
 		Player p1 = new Player("P1");
-		Player p2 = new Player("P2");	
+		Player p2 = new Player("P2");
 		t.addPlayer(p1);
 		t.addPlayer(p2);
-		
+
 		p1.beats(p2);
 
 		assertEquals(1, p1.getListOfVictories().size());
@@ -446,5 +446,41 @@ public class JUnit {
 		assertEquals(1, p2.getOpponentsList().size());
 		assertEquals(0, p2.getListOfVictories().size());
 	}
-	
+
+	@Test
+	public void testGetResultsOfAllMatchesSoFar_NoTies() {
+		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");
+		Player p3 = new Player("P3");
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		t.addPlayer(p3);
+
+		p1.beats(p2);
+		p2.beats(p3);
+
+		assertEquals("P1 vs. P2 (P1 won)\nP2 vs. P3 (P2 won)\n", t.getResultsOfAllMatchesSoFar());
+	}
+
+	@Test
+	public void testGetResultsOfAllMatchesSoFar_WinsAndTies() {
+		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");
+		Player p3 = new Player("P3");
+		Player p4 = new Player("P4");
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		t.addPlayer(p3);
+		t.addPlayer(p4);
+
+		p1.beats(p2);
+		p2.beats(p3);
+		p3.tied(p4);
+		
+		t.sortRankings();
+
+		assertEquals("P1 vs. P2 (P1 won)\nP2 vs. P3 (P2 won)\nP3 vs. P4 (Tied)\nP4 vs. P3 (Tied)\n",
+				t.getResultsOfAllMatchesSoFar());
+	}
+
 }
