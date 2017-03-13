@@ -1,14 +1,16 @@
 package swissTournamentRunner;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Player implements Comparable<Player> {
 
 	String name;
 	int score = 0;
 	int tb = 0;
-	double opps = 0;
-	double oppsOpps = 0;
+	double oppWr = 0;
+	int buchholz = 0;
+	double oppOppWr = 0;
 	int lastDocumentedPosition = 0;
 	ArrayList<Player> previousRounds = new ArrayList<>();
 	ArrayList<Player> victories = new ArrayList<>();
@@ -17,11 +19,13 @@ public class Player implements Comparable<Player> {
 		name = string;
 	}
 
-	public Player(String myName, int myScore, int myTb, double myOpps) {
+	public Player(String myName, int myScore, int myTb, double myOppWr, int myBuchholz, int myOppOppWr) {
 		name = myName;
 		score = myScore;
 		tb = myTb;
-		opps = myOpps;
+		oppWr = myOppWr;
+		buchholz = myBuchholz;
+		oppOppWr = myOppOppWr;
 	}
 
 	public void updatePositionInRankings(ArrayList<Player> players) {
@@ -33,29 +37,29 @@ public class Player implements Comparable<Player> {
 		}
 	}
 
-	public void recalculateOpps() {
-		opps = 0;
+	public void recalculateOppWr() {
+		oppWr = 0;
 		for (Player p : previousRounds) {
-			opps += (double) p.victories.size() / p.previousRounds.size();
+			oppWr += (double) p.victories.size() / p.previousRounds.size();
 		}
-		opps = opps / previousRounds.size();
-		opps *= 100;
+		oppWr = oppWr / previousRounds.size();
+		oppWr *= 100;
 	}
 
-	public void recalculateOppsOpps() {
-		oppsOpps = 0;
+	public void recalculateOppOppWr() {
+		oppOppWr = 0;
 		int people = 0;
 		for (Player p : previousRounds) {
 			for (Player q : p.previousRounds) {
 				if (this != q) {
-					oppsOpps += (double) q.victories.size() / q.previousRounds.size();
+					oppOppWr += (double) q.victories.size() / q.previousRounds.size();
 					people++;
 				}
 			}
 		}
 		if (people != 0) {
-			oppsOpps = oppsOpps / people;
-			oppsOpps *= 100;
+			oppOppWr = oppOppWr / people;
+			oppOppWr *= 100;
 		}
 	}
 
@@ -73,16 +77,24 @@ public class Player implements Comparable<Player> {
 			return -1;
 		} else if (this.tb < p.getTB()) {
 			return 1;
-		} else if (this.opps > p.getOpps()) {
+		} else if (this.oppWr > p.getOppWr()) {
 			return -1;
-		} else if (this.opps < p.getOpps()) {
+		} else if (this.oppWr < p.getOppWr()) {
 			return 1;
-		} else if (this.oppsOpps > p.getOppsOpps()) {
+		} else if (this.oppOppWr > p.getOppOppWr()) {
 			return -1;
-		} else if (this.oppsOpps < p.getOppsOpps()) {
+		} else if (this.oppOppWr < p.getOppOppWr()) {
+			return 1;
+		} else if (this.buchholz > p.getBuchholz()) {
+			return -1;
+		} else if (this.buchholz < p.getBuchholz()) {
 			return 1;
 		}
 		return 0;
+	}
+
+	int getBuchholz() {
+		return buchholz;
 	}
 
 	public int getTB() {
@@ -114,7 +126,7 @@ public class Player implements Comparable<Player> {
 		p2.logOpponent(this);
 		this.recalculateScore();
 		p2.recalculateScore();
-		
+
 	}
 
 	private void logOpponent(Player foe) {
@@ -138,12 +150,12 @@ public class Player implements Comparable<Player> {
 		}
 	}
 
-	public double getOpps() {
-		return opps;
+	public double getOppWr() {
+		return oppWr;
 	}
 
-	public double getOppsOpps() {
-		return oppsOpps;
+	public double getOppOppWr() {
+		return oppOppWr;
 	}
 
 	public int getPositionInRankings() {
@@ -155,11 +167,28 @@ public class Player implements Comparable<Player> {
 	}
 
 	public void recalculateScore() {
-		score = (3*victories.size());
+		score = (3 * victories.size());
 		for (Player p : previousRounds) {
-			if (!victories.contains(p) && !p.victories.contains(this)){
+			if (!victories.contains(p) && !p.victories.contains(this)) {
 				score++;
 			}
 		}
 	}
+
+	public void recalculateBuchholz() {
+		this.buchholz = 0;
+		ArrayList<Integer> scoresOfMyFoes = new ArrayList<>();
+		for (Player p : this.getOpponentsList()) {
+			scoresOfMyFoes.add(p.getScore());
+		}
+		if (scoresOfMyFoes.size() >= 3) {
+			Collections.sort(scoresOfMyFoes);
+			scoresOfMyFoes.remove(0);
+			scoresOfMyFoes.remove(scoresOfMyFoes.size() - 1);
+			for (int i : scoresOfMyFoes) {
+				this.buchholz += i;
+			}
+		}
+	}
+
 }

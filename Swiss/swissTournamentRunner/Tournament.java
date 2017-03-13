@@ -57,10 +57,6 @@ public class Tournament {
 		}
 	}
 
-	public int participants() {
-		return players.size();
-	}
-
 	public void newTourney() {
 		players.clear();
 	}
@@ -99,9 +95,18 @@ public class Tournament {
 	public void updateParticipantStats() {
 		for (Player p : players) {
 			p.recalculateScore();
+		}
+		for (Player p : players) {
 			p.recalculateTB();
-			p.recalculateOpps();
-			p.recalculateOppsOpps();
+		}
+		for (Player p : players) {
+			p.recalculateOppWr();
+		}
+		for (Player p : players) {
+			p.recalculateBuchholz();
+		}
+		for (Player p : players) {
+			p.recalculateOppOppWr();
 		}
 		sortRankings();
 		for (Player p : players) {
@@ -116,8 +121,10 @@ public class Tournament {
 					longestPlayerNameLength + 7) + "   "
 					+ rpad("Score: " + players.get(i - 1).getScore() + "                         ", 15) + "   "
 					+ rpad("TB: " + players.get(i - 1).getTB() + "                         ", 8) + "   "
-					+ rpad("Opp WR: " + players.get(i - 1).getOpps() + "                         ", 12) + "    "
-					+ rpad("Opp Opp WR: " + players.get(i - 1).getOppsOpps() + "                         ", 16) + '\n';
+					+ rpad("Opp WR: " + players.get(i - 1).getOppWr() + "                         ", 12) + "    "
+					+ rpad("Opp Opp WR: " + players.get(i - 1).getOppOppWr() + "                         ", 16) + "   "
+					+ rpad("Buchholz: " + players.get(i - 1).getBuchholz() + "                         ", 13) + "    "
+					+ '\n';
 		}
 		GUI.postString(participantString);
 	}
