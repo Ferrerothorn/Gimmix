@@ -474,31 +474,40 @@ public class JUnit {
 		assertEquals(1, p2.getOpponentsList().size());
 		assertEquals(0, p2.getListOfVictories().size());
 	}
-
 	@Test
-	public void testRecalculateBuchholz() {
+	public void testGetResultsOfAllMatchesSoFar_NoTies() {
 		Player p1 = new Player("P1");
-		Player p2 = new Player("P2");
 		Player p3 = new Player("P3");
-		Player p4 = new Player("P4");
-
+		Player p2 = new Player("P2");
 		t.addPlayer(p1);
 		t.addPlayer(p2);
 		t.addPlayer(p3);
-		t.addPlayer(p4);
+
+		p2.beats(p3);
+		p1.beats(p2);
+
+		assertEquals("P1 vs. P2 (P1 won)\nP2 vs. P3 (P2 won)\n", t.getResultsOfAllMatchesSoFar());
+	}
+
+	@Test
+		Player p1 = new Player("P1");
+		Player p3 = new Player("P3");
+	public void testGetResultsOfAllMatchesSoFar_WinsAndTies() {
+		Player p2 = new Player("P2");
+		t.addPlayer(p1);
+		Player p4 = new Player("P4");
+		t.addPlayer(p2);
+		t.addPlayer(p3);
 
 		p1.beats(p2);
-		p1.beats(p3);
-		p1.beats(p4);
+		
 		p2.beats(p3);
-		p2.beats(p4);
-		p3.beats(p4);
+		t.addPlayer(p4);
+		p3.tied(p4);
+		t.sortRankings();
 
-		t.updateParticipantStats();
-
-		assertEquals(3, p1.getBuchholz());
-		assertEquals(3, p2.getBuchholz());
-		assertEquals(6, p3.getBuchholz());
-		assertEquals(6, p4.getBuchholz());
+		assertEquals("P1 vs. P2 (P1 won)\nP2 vs. P3 (P2 won)\nP3 vs. P4 (Tied)\nP4 vs. P3 (Tied)\n",
+				t.getResultsOfAllMatchesSoFar());
 	}
+
 }

@@ -420,7 +420,25 @@ public class Tournament {
 		userSelection = null;
 		GUI.postString("Admin functions enabled.");
 		waitForUserInput();
-		switch (userSelection) {
+		switch (userSelection.toLowerCase()) {
+
+		case "matches":
+			print(getResultsOfAllMatchesSoFar());
+			break;
+		case "setrounds":
+			print("Enter the new number of desired rounds for the tournament.\n");
+			userSelection = null;
+			waitForUserInput();
+			int newNoOfRounds = Integer.parseInt(userSelection);
+			if (newNoOfRounds <= players.size() - 1 && newNoOfRounds >= logBase2(players.size())) {
+				setNumberOfRounds(Integer.parseInt(userSelection));
+				print("Number of rounds updated to " + getNumberOfRounds() + ".");
+			} else {
+				print("Invalid number of rounds for a Swiss tournament.");
+				print("We need to have less rounds than the number of players, and at least logBase2(number of players).");
+			}
+			userSelection = null;
+			break;
 		case "drop":
 			print("Enter player name to drop.\n");
 			userSelection = null;
@@ -428,21 +446,21 @@ public class Tournament {
 			dropPlayer(userSelection);
 			userSelection = null;
 			break;
-		case "dropPlayer":
+		case "dropplayer":
 			print("Enter player name to drop.\n");
 			userSelection = null;
 			waitForUserInput();
 			dropPlayer(userSelection);
 			userSelection = null;
 			break;
-		case "dropUser":
+		case "dropuser":
 			print("Enter player name to drop.\n");
 			userSelection = null;
 			waitForUserInput();
 			dropPlayer(userSelection);
 			userSelection = null;
 			break;
-		case "editName":
+		case "editname":
 			print("Enter player whose name should be changed.\n");
 			userSelection = null;
 			waitForUserInput();
@@ -454,7 +472,7 @@ public class Tournament {
 			renamePlayer(renameMe, newName);
 			userSelection = null;
 			break;
-		case "batchAdd":
+		case "batchadd":
 			print("Enter a list of players, separated by commas.\n");
 			userSelection = null;
 			waitForUserInput();
@@ -462,7 +480,7 @@ public class Tournament {
 			userSelection = null;
 			addBatch(playerList);
 			break;
-		case "addBatch":
+		case "addbatch":
 			print("Enter a list of players, separated by commas.\n");
 			userSelection = null;
 			waitForUserInput();
@@ -470,7 +488,7 @@ public class Tournament {
 			userSelection = null;
 			addBatch(playersList);
 			break;
-		case "reopenGame":
+		case "reopengame":
 			print("To reopen a game, first enter the name of one of the players in the game.\n");
 			print("(Case sensitive)\n");
 			userSelection = null;
@@ -490,7 +508,6 @@ public class Tournament {
 			currentBattles.clear();
 			players.clear();
 			break;
-
 		default:
 			print("Invalid admin command. Returning to tournament...\n");
 			break;
@@ -654,6 +671,24 @@ public class Tournament {
 			currentBattles.add(new Battle(p1, p2));
 		}
 		updateParticipantStats();
+	}
+
+	public String getResultsOfAllMatchesSoFar() {
+		String results = "";
+		for (Player p : players) {
+			for (Player iBeat : p.getListOfVictories()) {
+				results += p.getName() + " vs. " + iBeat.getName() + " (" + p.getName() + " won)\n";
+			}
+		}
+		for (Player p : players) {
+			for (Player didWeTie : p.getOpponentsList()) {
+				if (!(didWeTie.getListOfVictories().contains(p) || p.getListOfVictories().contains(didWeTie))
+						&& p.getOpponentsList().contains(didWeTie) && didWeTie.getOpponentsList().contains(p)) {
+					results += p.getName() + " vs. " + didWeTie.getName() + " (Tied)\n";
+				}
+			}
+		}
+		return results;
 	}
 
 }
