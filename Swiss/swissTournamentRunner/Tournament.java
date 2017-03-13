@@ -9,9 +9,18 @@ public class Tournament {
 	public ArrayList<Battle> currentBattles = new ArrayList<>();
 	public ArrayList<Battle> totallyKosherPairings = new ArrayList<>();
 	public String userSelection = null;
-	public int numberOfRounds;
+	int numberOfRounds;
 	public GUI gui;
 	int longestPlayerNameLength = 0;
+	int x_elimination;
+
+	public int getX_elimination() {
+		return x_elimination;
+	}
+
+	public void setX_elimination(int x_elimination) {
+		this.x_elimination = x_elimination;
+	}
 
 	public void signUpPlayers() {
 		boolean allParticipantsIn = false;
@@ -25,7 +34,6 @@ public class Tournament {
 				showHelp();
 				break;
 			case "admintools":
-				userSelection = null;
 				adminTools();
 				break;
 			case "no":
@@ -33,10 +41,14 @@ public class Tournament {
 				userSelection = null;
 				break;
 			default:
-				if (userSelection.length() > longestPlayerNameLength) {
+				if (userSelection.contains(",")) {
+					addBatch(userSelection);
+				} else if (userSelection.length() > longestPlayerNameLength) {
 					longestPlayerNameLength = userSelection.length();
+					addPlayer(userSelection);
+				} else {
+					addPlayer(userSelection);
 				}
-				addPlayer(userSelection);
 				userSelection = null;
 			}
 		}
@@ -199,10 +211,10 @@ public class Tournament {
 	}
 
 	public void pollForResults(int roundNumber) {
-		String roundString = ("-=-=-=-ROUND " + roundNumber + "-=-=-=-");
+		String roundString = ("-=-=-=-ROUND " + roundNumber + "/" + numberOfRounds + "-=-=-=-");
 		assignTableNumbers(currentBattles);
 
-		while (currentBattles.size() > 0) {
+		while (currentBattles.size() > 0 && players.size() > 1) {
 			try {
 				printCurrentBattles(roundString);
 				GUI.postString("Which game's result would you like to report?");
@@ -250,7 +262,7 @@ public class Tournament {
 					break;
 				}
 			} catch (Exception e) {
-				GUI.postString("No such table.");
+				GUI.postString("Illegal input.");
 				userSelection = null;
 				pollForResults(roundNumber);
 			}
@@ -375,10 +387,6 @@ public class Tournament {
 		return (int) Math.ceil(Math.log(x) / Math.log(2));
 	}
 
-	public ArrayList<Player> getPlayers() {
-		return players;
-	}
-
 	public void sortRankings() {
 		sortRankings(players);
 	}
@@ -431,6 +439,20 @@ public class Tournament {
 			waitForUserInput();
 			int newNoOfRounds = Integer.parseInt(userSelection);
 			if (newNoOfRounds <= players.size() - 1 && newNoOfRounds >= logBase2(players.size())) {
+				setNumberOfRounds(Integer.parseInt(userSelection));
+				print("Number of rounds updated to " + getNumberOfRounds() + ".");
+			} else {
+				print("Invalid number of rounds for a Swiss tournament.");
+				print("We need to have less rounds than the number of players, and at least logBase2(number of players).");
+			}
+			userSelection = null;
+			break;
+		case "addround":
+			print("Enter the new number of desired rounds for the tournament.\n");
+			userSelection = null;
+			waitForUserInput();
+			int newNumOfRounds = Integer.parseInt(userSelection);
+			if (newNumOfRounds <= players.size() - 1 && newNumOfRounds >= logBase2(players.size())) {
 				setNumberOfRounds(Integer.parseInt(userSelection));
 				print("Number of rounds updated to " + getNumberOfRounds() + ".");
 			} else {
@@ -508,11 +530,35 @@ public class Tournament {
 			currentBattles.clear();
 			players.clear();
 			break;
+		case "elimination":
+			print("To convert to X-Elimination, please first eter the number of losses after which a player is eliminated.\n");
+			userSelection = null;
+			waitForUserInput();
+			setX_elimination(Integer.parseInt(userSelection));
+			print("Players will be eliminated after " + getX_elimination() + " losses.");
+			userSelection = null;
+			currentBattles.clear();
+			eliminationTournament();
+			break;
+
 		default:
 			print("Invalid admin command. Returning to tournament...\n");
 			break;
 		}
 		userSelection = null;
+	}
+
+	private void eliminationTournament() {
+		while (players.size() > 1) {
+			GUI.wipePane();
+			shufflePlayers();
+			sortRankings();
+			updateParticipantStats();
+			displayInDepthRankings();
+			generatePairings();
+			pollForResults(99);
+			elimination();
+		}
 	}
 
 	private Player fetchPlayer(String playerName) {
@@ -691,4 +737,18 @@ public class Tournament {
 		return results;
 	}
 
+	public void elimination() {
+		sortRankings();
+		ArrayList<Player> cull = new ArrayList<>();
+		for (Player p : players) {
+			if (p.getOpponentsList().size() - p.getListOfVictories().size() >= x_elimination) {
+				cull.add(p);
+			}
+		}
+		for (Player p : cull) {
+			players.remove(p);
+		}
+		dropPlayer("BYE");
+		addBye();
+	}
 }

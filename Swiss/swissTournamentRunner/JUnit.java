@@ -18,7 +18,7 @@ public class JUnit {
 	public void testAddPlayersToTournament() {
 		t.addPlayer("P1");
 		t.addPlayer("P2");
-		assertEquals(2, t.getPlayers().size());
+		assertEquals(2, t.players.size());
 	}
 
 	@Test
@@ -474,6 +474,7 @@ public class JUnit {
 		assertEquals(1, p2.getOpponentsList().size());
 		assertEquals(0, p2.getListOfVictories().size());
 	}
+
 	@Test
 	public void testGetResultsOfAllMatchesSoFar_NoTies() {
 		Player p1 = new Player("P1");
@@ -490,19 +491,19 @@ public class JUnit {
 	}
 
 	@Test
+	public void testGetResultsOfAllMatchesSoFar_WinsAndTies() {
+
 		Player p1 = new Player("P1");
 		Player p3 = new Player("P3");
-	public void testGetResultsOfAllMatchesSoFar_WinsAndTies() {
 		Player p2 = new Player("P2");
-		t.addPlayer(p1);
 		Player p4 = new Player("P4");
+		t.addPlayer(p1);
 		t.addPlayer(p2);
 		t.addPlayer(p3);
+		t.addPlayer(p4);
 
 		p1.beats(p2);
-		
 		p2.beats(p3);
-		t.addPlayer(p4);
 		p3.tied(p4);
 		t.sortRankings();
 
@@ -510,4 +511,68 @@ public class JUnit {
 				t.getResultsOfAllMatchesSoFar());
 	}
 
+	@Test
+	public void testSingleElimination_EliminatesCorrectly() {
+		Player p1 = new Player("P1");
+		Player p3 = new Player("P3");
+		Player p2 = new Player("P2");
+		Player p4 = new Player("P4");
+		Player p5 = new Player("P5");
+		Player p6 = new Player("P6");
+		Player p7 = new Player("P7");
+		Player p8 = new Player("P8");
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		t.addPlayer(p3);
+		t.addPlayer(p4);
+		t.addPlayer(p5);
+		t.addPlayer(p6);
+		t.addPlayer(p7);
+		t.addPlayer(p8);
+
+		p1.beats(p2);
+		p3.beats(p4);
+		p5.beats(p6);
+		p7.beats(p8);
+
+		t.setX_elimination(1);
+		t.elimination();
+
+		assertEquals(4, t.players.size());
+	}
+	
+	@Test
+	public void testDoubleElimination_EliminatesCorrectly() {
+		Player p1 = new Player("P1");
+		Player p3 = new Player("P3");
+		Player p2 = new Player("P2");
+		Player p4 = new Player("P4");
+		Player p5 = new Player("P5");
+		Player p6 = new Player("P6");
+		Player p7 = new Player("P7");
+		Player p8 = new Player("P8");
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		t.addPlayer(p3);
+		t.addPlayer(p4);
+		t.addPlayer(p5);
+		t.addPlayer(p6);
+		t.addPlayer(p7);
+		t.addPlayer(p8);
+
+		p1.beats(p2);
+		p3.beats(p4);
+		p5.beats(p6);
+		p7.beats(p8);
+
+		p1.beats(p3);
+		p5.beats(p7);
+		p2.beats(p4);
+		p6.beats(p8);
+		
+		t.setX_elimination(2);
+		t.elimination();
+
+		assertEquals(6, t.players.size());
+	}
 }
