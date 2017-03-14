@@ -12,7 +12,7 @@ public class Tournament {
 	int numberOfRounds;
 	public GUI gui;
 	int longestPlayerNameLength = 0;
-	int x_elimination;
+	int x_elimination = 99;
 
 	public int getX_elimination() {
 		return x_elimination;
@@ -214,7 +214,7 @@ public class Tournament {
 		String roundString = ("-=-=-=-ROUND " + roundNumber + "/" + numberOfRounds + "-=-=-=-");
 		assignTableNumbers(currentBattles);
 
-		while (currentBattles.size() > 0 && players.size() > 1) {
+		while (currentBattles.size() > 0) {
 			try {
 				printCurrentBattles(roundString);
 				GUI.postString("Which game's result would you like to report?");
@@ -548,7 +548,7 @@ public class Tournament {
 		userSelection = null;
 	}
 
-	private void eliminationTournament() {
+	void eliminationTournament() {
 		while (players.size() > 1) {
 			GUI.wipePane();
 			shufflePlayers();
@@ -662,8 +662,10 @@ public class Tournament {
 		if ((players.size() + (currentBattles.size() * 2)) % 2 == 1) {
 			addPlayer("BYE");
 		}
-		while (numberOfRounds > logBase2(players.size())) {
-			numberOfRounds--;
+		if (x_elimination <= players.size()) {
+			while (numberOfRounds > logBase2(players.size())) {
+				numberOfRounds--;
+			}
 		}
 	}
 

@@ -575,4 +575,14 @@ public class JUnit {
 
 		assertEquals(6, t.players.size());
 	}
+	
+	@Test
+	public void testEliminationTourneyWillEnd() {
+		Player p1 = new Player("P1");
+		t.addPlayer(p1);
+		t.setX_elimination(1);
+		t.eliminationTournament();
+		assertEquals(1, t.players.size());
+	}
+	
 }
