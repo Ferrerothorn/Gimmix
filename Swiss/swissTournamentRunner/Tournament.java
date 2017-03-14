@@ -1,5 +1,12 @@
 package swissTournamentRunner;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -10,9 +17,11 @@ public class Tournament {
 	public ArrayList<Battle> totallyKosherPairings = new ArrayList<>();
 	public String userSelection = null;
 	int numberOfRounds;
+	int roundNumber;
 	public GUI gui;
 	int longestPlayerNameLength = 0;
 	int x_elimination = 99;
+	Boolean isElimination = false;
 
 	public int getX_elimination() {
 		return x_elimination;
@@ -20,6 +29,7 @@ public class Tournament {
 
 	public void setX_elimination(int x_elimination) {
 		this.x_elimination = x_elimination;
+		isElimination = true;
 	}
 
 	public void signUpPlayers() {
@@ -172,7 +182,6 @@ public class Tournament {
 				playerIndex++;
 			}
 		} catch (Exception e) {
-			GUI.postString("We had a spot of bother finding " + p1.getName() + " a partner.");
 			disseminateBattles(currentBattles);
 			players.add(p1);
 			sortRankings(players);
@@ -210,7 +219,8 @@ public class Tournament {
 		}
 	}
 
-	public void pollForResults(int roundNumber) {
+	public void pollForResults(int whatRoundOn) {
+		this.roundNumber = whatRoundOn;
 		String roundString = ("-=-=-=-ROUND " + roundNumber + "/" + numberOfRounds + "-=-=-=-");
 		assignTableNumbers(currentBattles);
 
@@ -264,7 +274,7 @@ public class Tournament {
 			} catch (Exception e) {
 				GUI.postString("Illegal input.");
 				userSelection = null;
-				pollForResults(roundNumber);
+				pollForResults(whatRoundOn);
 			}
 		}
 	}
@@ -424,12 +434,23 @@ public class Tournament {
 		}
 	}
 
+	@SuppressWarnings("static-access")
 	void adminTools() {
 		userSelection = null;
 		GUI.postString("Admin functions enabled.");
 		waitForUserInput();
 		switch (userSelection.toLowerCase()) {
 
+		case "save":
+			saveTournament();
+			break;
+		case "load":
+			try {
+				loadTournament();
+			} catch (IOException e) {
+				print("Error loading file.");
+			}
+			break;
 		case "matches":
 			print(getResultsOfAllMatchesSoFar());
 			break;
@@ -540,12 +561,140 @@ public class Tournament {
 			currentBattles.clear();
 			eliminationTournament();
 			break;
-
 		default:
 			print("Invalid admin command. Returning to tournament...\n");
 			break;
 		}
 		userSelection = null;
+	}
+
+	private void loadTournament() throws IOException {
+		players.clear();
+		currentBattles.clear();
+
+		BufferedReader br = new BufferedReader(new FileReader("TournamentInProgress.txt"));
+		try {
+			String line = br.readLine();
+
+			if (line.contains("PLAYERS")) {
+				line = br.readLine();
+				while (!line.contains("VICTORIES")) {
+					addBatch(line);
+					line = br.readLine();
+				}
+				line = br.readLine();
+				while (!line.contains("GAMES")) {
+					addGamesToPlayerHistory(line);
+					line = br.readLine();
+				}
+				line = br.readLine();
+				while (!line.contains("PROPERTIES")) {
+					currentBattles.add(parseLineToBattle(line));
+					line = br.readLine();
+				}
+				line = br.readLine();
+				while (line != null) {
+					parseProperties(line);
+					line = br.readLine();
+				}
+				
+			}
+		} finally {
+			br.close();
+		}
+		updateParticipantStats();
+		refreshScreen();
+		pollForResults(roundNumber);
+	}
+
+	private void parseProperties(String line) {
+		String[] propertyPair = line.split(":");
+		switch (propertyPair[0]) {
+		
+		case "On Round":
+			roundNumber = Integer.parseInt(propertyPair[1]);
+			break;
+		case "numberOfRounds":
+			numberOfRounds = Integer.parseInt(propertyPair[1]);
+			break;
+		default:
+			break;
+		}
+	}
+
+	private Battle parseLineToBattle(String line) {
+		String[] currentCombatants = line.split(",");
+		Player p1 = findPlayerByName(currentCombatants[0]);
+		Player p2 = findPlayerByName(currentCombatants[1]);
+		Battle b = new Battle(p1, p2);
+		return b;
+	}
+
+	void addGamesToPlayerHistory(String line) {
+		String[] information = line.split(",");
+		Player p = findPlayerByName(information[0]);
+
+		String hasBeaten = information[1];
+		hasBeaten = hasBeaten.replaceAll("\\[", "");
+		hasBeaten = hasBeaten.replaceAll("\\]", "");
+		String[] playersBeaten = hasBeaten.split(",");
+		for (String s : playersBeaten) {
+			if (s.length() > 0) {
+				p.addToListOfVictories(findPlayerByName(s));
+			}
+		}
+
+		String hasPlayed = information[2];
+		hasPlayed = hasPlayed.replaceAll("\\[", "");
+		hasPlayed = hasPlayed.replaceAll("\\]", "");
+		String[] playersPlayed = hasPlayed.split(",");
+		for (String s : playersPlayed) {
+			if (s.length() > 0) {
+				p.addToListOfPlayed(findPlayerByName(s));
+			}
+		}
+	}
+
+	private Player findPlayerByName(String s) {
+		for (Player p : players) {
+			if (p.getName().equals(s)) {
+				return p;
+			}
+		}
+		return null;
+	}
+
+	void saveTournament() {
+		String output = "";
+		File file = new File("TournamentInProgress.txt");
+
+		output += "PLAYERS:\n";
+		for (Player p : players) {
+			output += p.getName() + ",";
+		}
+		output = output.substring(0, output.length() - 1);
+		output += "\nVICTORIES:\n";
+		for (Player p : players) {
+			output += p.getName() + "," + p.getListOfNamesBeaten().toString() + ","
+					+ p.getListOfNamesPlayed().toString() + "\n";
+		}
+		output += "GAMES:\n";
+		for (Battle b : currentBattles) {
+			output += b.getP1().getName() + "," + b.getP2().getName() + "\n";
+		}
+		output += "PROPERTIES:\n";
+		output += "On Round:" + roundNumber + "\n";
+		output += "numberOfRounds:" + numberOfRounds + "\n";
+
+		try {
+			PrintWriter writer = new PrintWriter(file, "UTF-8");
+			writer.print(output);
+			writer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 	}
 
 	void eliminationTournament() {
@@ -659,10 +808,10 @@ public class Tournament {
 		if (!nameToDrop.equals("BYE")) {
 			dropPlayer("BYE");
 		}
-		if ((players.size() + (currentBattles.size() * 2)) % 2 == 1) {
+		if (!nameToDrop.equals("BYE") && (players.size() + (currentBattles.size() * 2)) % 2 == 1) {
 			addPlayer("BYE");
 		}
-		if (x_elimination <= players.size()) {
+		if (!isElimination) {
 			while (numberOfRounds > logBase2(players.size())) {
 				numberOfRounds--;
 			}

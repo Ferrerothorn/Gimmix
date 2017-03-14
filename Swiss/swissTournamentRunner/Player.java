@@ -191,4 +191,28 @@ public class Player implements Comparable<Player> {
 		}
 	}
 
+	public ArrayList<String> getListOfNamesPlayed() {
+		ArrayList<String> namesPlayed = new ArrayList<>();
+		for (Player p : getOpponentsList()) {
+			namesPlayed.add(p.getName());
+		}
+		return namesPlayed;
+	}
+
+	public ArrayList<String> getListOfNamesBeaten() {
+		ArrayList<String> namesBeaten = new ArrayList<>();
+		for (Player p : getListOfVictories()) {
+			namesBeaten.add(p.getName());
+		}
+		return namesBeaten;
+	}
+
+	public void addToListOfVictories(Player beaten) {
+		victories.add(beaten);
+	}
+
+	public void addToListOfPlayed(Player played) {
+		previousRounds.add(played);
+	}
+
 }

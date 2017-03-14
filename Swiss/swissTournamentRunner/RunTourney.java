@@ -20,16 +20,16 @@ public class RunTourney {
 		}
 		tourney.setNumberOfRounds(numberOfRounds);
 
-		int i = 1;
-		while (i <= tourney.getNumberOfRounds() && tourney.players.size() > 1) {
+		tourney.roundNumber = 1;
+		while (tourney.roundNumber <= tourney.getNumberOfRounds() && tourney.players.size() > 1) {
 			GUI.wipePane();
 			tourney.shufflePlayers();
 			tourney.updateParticipantStats();
 			tourney.displayInDepthRankings();
 			tourney.generatePairings();
-			tourney.pollForResults(i);
+			tourney.pollForResults(tourney.roundNumber);
 			tourney.elimination();
-			i++;
+			tourney.roundNumber++;
 		}
 		GUI.wipePane();
 		GUI.postString("FINAL STANDINGS");

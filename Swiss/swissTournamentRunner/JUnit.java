@@ -25,8 +25,8 @@ public class JUnit {
 	public void testCompareIdenticalPlayersIsTie() {
 		Player p1 = new Player("P1", 0, 0, 0, 0, 0);
 		Player p2 = new Player("P2", 0, 0, 0, 0, 0);
-		t.addPlayer("P1");
-		t.addPlayer("P2");
+		t.addPlayer(p1);
+		t.addPlayer(p2);
 		assertEquals(0, p1.compareTo(p2));
 	}
 
@@ -540,7 +540,7 @@ public class JUnit {
 
 		assertEquals(4, t.players.size());
 	}
-	
+
 	@Test
 	public void testDoubleElimination_EliminatesCorrectly() {
 		Player p1 = new Player("P1");
@@ -569,20 +569,181 @@ public class JUnit {
 		p5.beats(p7);
 		p2.beats(p4);
 		p6.beats(p8);
-		
+
 		t.setX_elimination(2);
 		t.elimination();
 
 		assertEquals(6, t.players.size());
 	}
-	
+
 	@Test
-	public void testEliminationTourneyWillEnd() {
+	public void testTwoManEliminationTourneyEnds() {
 		Player p1 = new Player("P1");
 		t.addPlayer(p1);
 		t.setX_elimination(1);
 		t.eliminationTournament();
 		assertEquals(1, t.players.size());
 	}
-	
+
+	@Test
+	public void testFourManEliminationTourneyEnds() {
+
+		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");
+		Player p3 = new Player("P3");
+		Player p4 = new Player("P4");
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		t.addPlayer(p3);
+		t.addPlayer(p4);
+		t.setX_elimination(1);
+		t.generatePairings();
+		t.handleBattleWinner(t.currentBattles.remove(0), "1");
+		t.handleBattleWinner(t.currentBattles.remove(0), "1");
+		t.elimination();
+		assertEquals(2, t.players.size());
+		t.generatePairings();
+		t.handleBattleWinner(t.currentBattles.remove(0), "1");
+		t.elimination();
+		assertEquals(2, t.players.size());
+		assertEquals("P1", t.players.get(0).getName());
+	}
+
+	@Test
+	public void testTwelveManEliminationTourneyEnds() {
+
+		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");
+		Player p3 = new Player("P3");
+		Player p4 = new Player("P4");
+		Player p5 = new Player("P5");
+		Player p6 = new Player("P6");
+		Player p7 = new Player("P7");
+		Player p8 = new Player("P8");
+		Player p9 = new Player("P9");
+		Player p10 = new Player("P10");
+		Player p11 = new Player("P11");
+		Player p12 = new Player("P12");
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		t.addPlayer(p3);
+		t.addPlayer(p4);
+		t.addPlayer(p5);
+		t.addPlayer(p6);
+		t.addPlayer(p7);
+		t.addPlayer(p8);
+		t.addPlayer(p9);
+		t.addPlayer(p10);
+		t.addPlayer(p11);
+		t.addPlayer(p12);
+		t.setX_elimination(2);
+
+		t.generatePairings();
+		while (t.currentBattles.size() > 0) {
+			t.handleBattleWinner(t.currentBattles.remove(0), "1");
+		}
+		t.elimination();
+		assertEquals(12, t.players.size());
+
+		t.generatePairings();
+		while (t.currentBattles.size() > 0) {
+			t.handleBattleWinner(t.currentBattles.remove(0), "1");
+		}
+		t.elimination();
+		assertEquals(10, t.players.size());
+
+		t.generatePairings();
+		while (t.currentBattles.size() > 0) {
+			t.handleBattleWinner(t.currentBattles.remove(0), "1");
+		}
+		t.elimination();
+		assertEquals(6, t.players.size());
+
+		t.generatePairings();
+		while (t.currentBattles.size() > 0) {
+			t.handleBattleWinner(t.currentBattles.remove(0), "1");
+		}
+		t.elimination();
+		assertEquals(4, t.players.size());
+
+		t.generatePairings();
+		while (t.currentBattles.size() > 0) {
+			t.handleBattleWinner(t.currentBattles.remove(0), "1");
+		}
+		t.elimination();
+		assertEquals(2, t.players.size());
+
+		// t.generatePairings();
+		// while (t.currentBattles.size() > 0) {
+		// t.handleBattleWinner(t.currentBattles.remove(0), "1");
+		// }
+		// t.elimination();
+		// assertEquals(1, t.players.size());
+	}
+
+	@Test
+	public void testSaveTournament() {
+
+	}
+
+	@Test
+	public void testAddsGameToPlayerHistory() {
+		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+
+		t.addGamesToPlayerHistory("P1,[P2],[P2]");
+		t.addGamesToPlayerHistory("P2,[],[P1]");
+
+		assertEquals(1, p1.getOpponentsList().size());
+		assertEquals(1, p1.getListOfVictories().size());
+		assertEquals(1, p2.getOpponentsList().size());
+		assertEquals(0, p2.getListOfVictories().size());
+	}
+
+	@Test
+	public void testAddingExtraRoundsThenReportingResultsDoesntResetRoundNumber() {
+		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");
+		Player p3 = new Player("P3");
+		Player p4 = new Player("P4");
+		Player p5 = new Player("P5");
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		t.addPlayer(p3);
+		t.addPlayer(p4);
+		t.addPlayer(p5);
+		t.addBye();
+		t.setNumberOfRounds(5);
+
+		t.generatePairings();
+		while (t.currentBattles.size() > 0) {
+			t.handleBattleWinner(t.currentBattles.remove(0), "1");
+			t.saveTournament();
+		}
+		t.generatePairings();
+		while (t.currentBattles.size() > 0) {
+			t.handleBattleWinner(t.currentBattles.remove(0), "1");
+			t.saveTournament();
+		}
+		t.generatePairings();
+		while (t.currentBattles.size() > 0) {
+			t.handleBattleWinner(t.currentBattles.remove(0), "1");
+			t.saveTournament();
+		}
+		t.generatePairings();
+		while (t.currentBattles.size() > 0) {
+			t.handleBattleWinner(t.currentBattles.remove(0), "1");
+			t.saveTournament();
+		}
+		t.generatePairings();
+		while (t.currentBattles.size() > 0) {
+			t.handleBattleWinner(t.currentBattles.remove(0), "1");
+			t.saveTournament();
+		}
+		assertEquals(4, t.numberOfRounds);
+
+	}
+
 }
