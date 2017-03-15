@@ -54,9 +54,9 @@ public class GUI extends JPanel implements ActionListener {
 
 	public static void createAndShowGUI() {
 		frame.setSize(500, 400);
-		frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		frame.add(new GUI(tourney));
 		frame.pack();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
 
