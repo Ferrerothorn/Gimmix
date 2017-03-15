@@ -34,36 +34,54 @@ public class Tournament {
 	}
 
 	public void signUpPlayers() {
-		boolean allParticipantsIn = false;
 
-		while (!allParticipantsIn) {
-			GUI.postString("Enter the name of the next participant, or enter 'no' if done.\n");
+		if (activeMetadataFile.equals("TournamentInProgress.tnt")) {
+			print("Enter the name of this tournament.");
 			waitForUserInput();
-			switch (userSelection.toLowerCase()) {
-			case "help":
-				userSelection = null;
-				showHelp();
-				break;
-			case "admintools":
-				adminTools();
-				break;
-			case "no":
-				allParticipantsIn = true;
-				userSelection = null;
-				break;
-			default:
-				if (userSelection.contains(",")) {
-					addBatch(userSelection);
-				} else if (userSelection.length() > longestPlayerNameLength) {
-					longestPlayerNameLength = userSelection.length();
-					addPlayer(userSelection);
-				} else {
-					addPlayer(userSelection);
-				}
-				userSelection = null;
+			activeMetadataFile = userSelection;
+			if (!activeMetadataFile.contains(".tnt")) {
+				activeMetadataFile += ".tnt";
 			}
+			userSelection = null;
 		}
-		addBye();
+
+		File file = new File(activeMetadataFile);
+		if (file.exists()) {
+			try {
+				loadTournament(activeMetadataFile);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+
+			boolean allParticipantsIn = false;
+
+			while (!allParticipantsIn) {
+				print("Enter the name of the next participant, or enter 'no' if done.\n");
+				waitForUserInput();
+				switch (userSelection.toLowerCase()) {
+				case "help":
+					userSelection = null;
+					showHelp();
+					break;
+				case "no":
+					allParticipantsIn = true;
+					userSelection = null;
+					break;
+				default:
+					if (userSelection.contains(",")) {
+						addBatch(userSelection);
+					} else if (userSelection.length() > longestPlayerNameLength) {
+						longestPlayerNameLength = userSelection.length();
+						addPlayer(userSelection);
+					} else {
+						addPlayer(userSelection);
+					}
+					userSelection = null;
+				}
+			}
+			addBye();
+		}
 	}
 
 	public void addPlayer(String p1) {
