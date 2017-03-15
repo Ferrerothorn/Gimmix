@@ -613,7 +613,6 @@ public class Tournament {
 		}
 		updateParticipantStats();
 		refreshScreen();
-		pollForResults(roundNumber);
 	}
 
 	private void parseProperties(String line) {
@@ -640,7 +639,7 @@ public class Tournament {
 	}
 
 	void addGamesToPlayerHistory(String line) {
-		String[] information = line.split(",");
+		String[] information = line.split("_");
 		Player p = findPlayerByName(information[0]);
 
 		String hasBeaten = information[1];
@@ -714,7 +713,7 @@ public class Tournament {
 			updateParticipantStats();
 			displayInDepthRankings();
 			generatePairings();
-			pollForResults(99);
+			pollForResults();
 			elimination();
 		}
 	}
