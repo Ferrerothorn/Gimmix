@@ -17,11 +17,12 @@ public class Tournament {
 	public ArrayList<Battle> totallyKosherPairings = new ArrayList<>();
 	public String userSelection = null;
 	int numberOfRounds;
-	int roundNumber;
+	int roundNumber = 1;
 	public GUI gui;
 	int longestPlayerNameLength = 0;
 	int x_elimination = 99;
 	Boolean isElimination = false;
+	String activeMetadataFile = "TournamentInProgress.tnt";
 
 	public int getX_elimination() {
 		return x_elimination;
