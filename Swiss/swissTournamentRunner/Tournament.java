@@ -302,61 +302,80 @@ public class Tournament {
 			currentBattles.add(b);
 			break;
 		}
-		saveTournament();
 	}
 
 	private void showHelp() {
 		GUI.wipePane();
-		GUI.postString("Welcome to B-T-C.\n"
+		print("Welcome to B-T-C.\n"
 				+ "First, use the text bar below to enter the tournament's participants, one at a time.\n"
 				+ "Then, pairings will be automatically generated for you, ordered by each participant's results so far.\n"
 				+ "Enter numbers to the text bar to report scores for each pairing.\n\n");
-		GUI.postString();
-		GUI.postString(
-				"At any point while polling for game results, you can enter 'adminTools' (case sensitive) to enter Administrator mode. ");
-		GUI.postString(
-				"You can then enter a further series of commands to alter properties of the current tournament.");
-		GUI.postString("Here's the manual for all current Administrator commands:");
-		GUI.postString();
+		print("");
+		print("At any point while polling for game results, you can enter 'admintools' to enter Administrator mode. ");
+		print("You can then enter a further series of commands to alter properties of the current tournament.");
+		print("Here's the manual for all current Administrator commands:");
+		print();
 
-		GUI.postString("drop/dropUser/dropPlayer:");
-		GUI.postString("Removes the specified player (case sensitive) from the tournament.");
-		GUI.postString("This doesn't affect the scores of anyone who beat this player in a previous round.");
-		GUI.postString("This command can only be performed on players who have no active battle.");
-		GUI.postString();
+		print("drop/dropUser/dropPlayer:");
+		print("Prompts for a player name, then removes the specified player from the tournament.");
+		print("This doesn't affect the scores of anyone who beat this player in a previous round.");
+		print("This command can only be performed on players who have no active battle.");
+		print();
 
-		GUI.postString("editName:");
-		GUI.postString(
-				"Takes in the current username (CS) of a player in the tournament, and a new name for that player.");
-		GUI.postString("Scores, etc, of the renamed player are preserved.");
-		GUI.postString();
+		print("editName:");
+		print("Takes in the current username (case sensitive) of a player in the tournament, and a new name for that player.");
+		print("Scores, etc, of the renamed player are preserved.");
+		print();
 
-		GUI.postString("batchAdd/addBatch:");
-		GUI.postString(
-				"Takes in a comma-separated list of usernames and adds them to the tournament in one transaction.");
-		GUI.postString(
-				"This can be used to insert latecomer players to the tournament - the pairing algorithm will pick up the new players at the beginning of each round.");
-		GUI.postString("New players start with a score of 0.");
-		GUI.postString("An example of this command in use might be 'Jimmy Page, Robert Plant, John Paul Jones'.");
-		GUI.postString("Trailing and leading whitespace in a batchAdd player's name is ignored.");
-		GUI.postString();
+		print("batchAdd/addBatch:");
+		print("Takes in a comma-separated list of usernames and adds them to the tournament in one transaction.");
+		print("This can be used to insert latecomer players to the tournament - the pairing algorithm will pick up the new players at the beginning of each round.");
+		print("New players start with a score of 0.");
+		print("An example of this command in use might be 'Jimmy Page, Robert Plant, John Paul Jones'.");
+		print("Trailing and leading whitespace in a batchAdd player's name is ignored.");
+		print();
 
-		GUI.postString("batchAdd/addBatch:");
-		GUI.postString(
-				"Takes in a comma-separated list of usernames and adds them to the tournament in one transaction.");
-		GUI.postString(
-				"This can be used to insert latecomer players to the tournament - the pairing algorithm will pick up the new players at the beginning of each round.");
-		GUI.postString("New players start with a score of 0.");
-		GUI.postString("An example of this command in use might be 'Jimmy Page, Robert Plant, John Paul Jones'.");
-		GUI.postString("Trailing and leading whitespace in a batchAdd player's name is ignored.");
-		GUI.postString();
+		print("reopenGame:");
+		print("Prompts the user for two parameters; the case-sensitive usernames of the two players whose game you'd like to reopen.");
+		print("Any scores from a reopened game are reset, and the game is re-added to the Open Games list to report anew.");
+		print();
 
-		GUI.postString("reopenGame:");
-		GUI.postString(
-				"Takes in two parameters; the case-sensitive usernames of the two players whose game you'd like to reopen.");
-		GUI.postString(
-				"Any scores from a reopened game are reset, and the game is re-added to the Open Games list to report anew.");
-		GUI.postString();
+		print("save:");
+		print("Saves a .tnt metadata file of the tournament's current state.");
+		print("The file will be saved to the same directory as the BTC executable.");
+		print("Files can be reloaded by the admin 'load' command, or simply kept for posterity.");
+		print("Currently BTC saves a .tnt backup every time a result is reported - this may change later.");
+		print();
+
+		print("load:");
+		print("Asks for a .tnt metadata file to reload that tournament into memory.");
+		print("File names can be supplied either with or without the .tnt suffix.");
+		print();
+
+		print("matches:");
+		print("Produces a list of each result reported thus far - the combatants, and the reported victor.");
+		print();
+
+		print("setrounds/addround:");
+		print("Takes an integer as input to use as the new 'max number of rounds'.");
+		print("You can't set the number of rounds to be less than logBase2(number of players), or >= the number of players.");
+		print();
+
+		print("killall:");
+		print("Wipes all battles and players from memory and kills the current session.");
+		print("WARNING: This is irreversible, and designed for debug use only!");
+		print();
+
+		print("elimination:");
+		print("Experimental: Turns a tournament into X-elimination, instead of Swiss.");
+		print("The command will request a value for X. In between rounds, users with X or more losses will be dropped.");
+		print("WARNING: For the time being, use is discouraged, as testing is minimal and there are known fatal bugs.");
+		print();
+
+	}
+
+	private void print() {
+		GUI.postString("");
 	}
 
 	private void print(String string) {
@@ -417,7 +436,7 @@ public class Tournament {
 	}
 
 	public boolean extraRound() {
-		GUI.postString("Do you want to add one more round than necessary, for results certainty? (y/n)");
+		print("Do you want to add one more round than necessary, for results certainty? (y/n)");
 		waitForUserInput();
 		if (userSelection.equals("Y") || userSelection.equals("y")) {
 			userSelection = null;
@@ -433,7 +452,7 @@ public class Tournament {
 
 	void adminTools() {
 		userSelection = null;
-		GUI.postString("Admin functions enabled.");
+		print("Admin functions enabled.");
 		waitForUserInput();
 		switch (userSelection.toLowerCase()) {
 
@@ -468,8 +487,8 @@ public class Tournament {
 			userSelection = null;
 			waitForUserInput();
 			int newNoOfRounds = Integer.parseInt(userSelection);
-			if (newNoOfRounds <= players.size() - 1 && newNoOfRounds >= logBase2(players.size())) {
-				setNumberOfRounds(Integer.parseInt(userSelection));
+			if (newNoOfRounds < players.size() && newNoOfRounds >= logBase2(players.size())) {
+				setNumberOfRounds(newNoOfRounds);
 				print("Number of rounds updated to " + getNumberOfRounds() + ".");
 			} else {
 				print("Invalid number of rounds for a Swiss tournament.");
@@ -482,8 +501,8 @@ public class Tournament {
 			userSelection = null;
 			waitForUserInput();
 			int newNumOfRounds = Integer.parseInt(userSelection);
-			if (newNumOfRounds <= players.size() - 1 && newNumOfRounds >= logBase2(players.size())) {
-				setNumberOfRounds(Integer.parseInt(userSelection));
+			if (newNumOfRounds < players.size() && newNumOfRounds >= logBase2(players.size())) {
+				setNumberOfRounds(newNumOfRounds);
 				print("Number of rounds updated to " + getNumberOfRounds() + ".");
 			} else {
 				print("Invalid number of rounds for a Swiss tournament.");
@@ -581,7 +600,8 @@ public class Tournament {
 		players.clear();
 		currentBattles.clear();
 
-		BufferedReader br = new BufferedReader(new FileReader(fileName));
+		activeMetadataFile = fileName;
+		BufferedReader br = new BufferedReader(new FileReader(activeMetadataFile));
 		try {
 			String line = br.readLine();
 
@@ -601,6 +621,7 @@ public class Tournament {
 					currentBattles.add(parseLineToBattle(line));
 					line = br.readLine();
 				}
+				assignTableNumbers(currentBattles);
 				line = br.readLine();
 				while (line != null) {
 					parseProperties(line);
