@@ -648,7 +648,7 @@ public class Tournament {
 		String[] playersBeaten = hasBeaten.split(",");
 		for (String s : playersBeaten) {
 			if (s.length() > 0) {
-				p.addToListOfVictories(findPlayerByName(s));
+				p.addToListOfVictories(findPlayerByName(trimWhitespace(s)));
 			}
 		}
 
@@ -658,7 +658,7 @@ public class Tournament {
 		String[] playersPlayed = hasPlayed.split(",");
 		for (String s : playersPlayed) {
 			if (s.length() > 0) {
-				p.addToListOfPlayed(findPlayerByName(s));
+				p.addToListOfPlayed(findPlayerByName(trimWhitespace(s)));
 			}
 		}
 	}
