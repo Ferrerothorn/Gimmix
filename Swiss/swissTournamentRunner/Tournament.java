@@ -163,21 +163,24 @@ public class Tournament {
 					+ rpad("Opp Opp WR: " + players.get(i - 1).getOppOppWr() + "                         ", 16) + "   "
 					+ '\n';
 		}
-		GUI.postString(participantString);
+		print(participantString);
 	}
 
 	public void generatePairings() {
 
-		while (players.size() > 0) {
-			Player p1 = players.remove(0);
-			pairThisGuyUp(p1, currentBattles);
-		}
-		currentBattles.addAll(totallyKosherPairings);
-		totallyKosherPairings.clear();
+		if (currentBattles.size() == 0) {
 
-		for (Battle b : currentBattles) {
-			players.add(b.getP1());
-			players.add(b.getP2());
+			while (players.size() > 0) {
+				Player p1 = players.remove(0);
+				pairThisGuyUp(p1, currentBattles);
+			}
+			currentBattles.addAll(totallyKosherPairings);
+			totallyKosherPairings.clear();
+
+			for (Battle b : currentBattles) {
+				players.add(b.getP1());
+				players.add(b.getP2());
+			}
 		}
 	}
 
