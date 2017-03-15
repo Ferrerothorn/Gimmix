@@ -694,35 +694,38 @@ public class Tournament {
 	}
 
 	void saveTournament() {
-		String output = "";
-		File file = new File("TournamentInProgress.tnt");
 
-		output += "PLAYERS:\n";
-		for (Player p : players) {
-			output += p.getName() + ",";
-		}
-		output = output.substring(0, output.length() - 1);
-		output += "\nVICTORIES:\n";
-		for (Player p : players) {
-			output += p.getName() + "," + p.getListOfNamesBeaten().toString() + ","
-					+ p.getListOfNamesPlayed().toString() + "\n";
-		}
-		output += "GAMES:\n";
-		for (Battle b : currentBattles) {
-			output += b.getP1().getName() + "," + b.getP2().getName() + "\n";
-		}
-		output += "PROPERTIES:\n";
-		output += "On Round:" + roundNumber + "\n";
-		output += "numberOfRounds:" + numberOfRounds + "\n";
+		if (!activeMetadataFile.equals("TournamentInProgress.tnt")) {
+			String output = "";
+			File file = new File(activeMetadataFile);
 
-		try {
-			PrintWriter writer = new PrintWriter(file, "UTF-8");
-			writer.print(output);
-			writer.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+			output += "PLAYERS:\n";
+			for (Player p : players) {
+				output += p.getName() + ",";
+			}
+			output = output.substring(0, output.length() - 1);
+			output += "\nVICTORIES:\n";
+			for (Player p : players) {
+				output += p.getName() + "_" + p.getListOfNamesBeaten().toString() + "_"
+						+ p.getListOfNamesPlayed().toString() + "\n";
+			}
+			output += "GAMES:\n";
+			for (Battle b : currentBattles) {
+				output += b.getP1().getName() + "," + b.getP2().getName() + "\n";
+			}
+			output += "PROPERTIES:\n";
+			output += "On Round:" + roundNumber + "\n";
+			output += "numberOfRounds:" + numberOfRounds + "\n";
+
+			try {
+				PrintWriter writer = new PrintWriter(file, "UTF-8");
+				writer.print(output);
+				writer.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
