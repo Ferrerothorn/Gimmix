@@ -221,29 +221,29 @@ public class Tournament {
 	}
 
 	private void printCurrentBattles(String roundString) {
-		GUI.postString(roundString);
+		print(roundString);
 		for (Battle b : currentBattles) {
 			String playerOneString = b.getP1().getName() + " (" + b.getP1().getPositionInRankings()
 					+ ")                          ";
 			String playerTwoString = b.getP2().getName() + " (" + b.getP2().getPositionInRankings()
 					+ ")                          ";
 
-			GUI.postString(
-					rpad("Table " + b.getTableNumber() + ") ", 11) + rpad(playerOneString, longestPlayerNameLength + 8)
-							+ "vs.    " + rpad(playerTwoString, longestPlayerNameLength + 8));
+			print(rpad("Table " + b.getTableNumber() + ") ", 11) + rpad(playerOneString, longestPlayerNameLength + 8)
+					+ "vs.    " + rpad(playerTwoString, longestPlayerNameLength + 8));
 		}
+		saveTournament();
 	}
 
-	public void pollForResults(int whatRoundOn) {
-		this.roundNumber = whatRoundOn;
-		String roundString = ("-=-=-=-ROUND " + roundNumber + "/" + numberOfRounds + "-=-=-=-");
+	public void pollForResults() {
 		assignTableNumbers(currentBattles);
 
 		while (currentBattles.size() > 0) {
+			String roundString = ("-=-=-=-ROUND " + roundNumber + "/" + numberOfRounds + "-=-=-=-");
+
 			try {
 				printCurrentBattles(roundString);
-				GUI.postString("Which game's result would you like to report?");
-				GUI.postString();
+				print("Which game's result would you like to report?");
+				print();
 
 				waitForUserInput();
 
