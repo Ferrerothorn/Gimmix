@@ -125,9 +125,6 @@ public class Tournament {
 			p.recalculateOppWr();
 		}
 		for (Player p : players) {
-			p.recalculateBuchholz();
-		}
-		for (Player p : players) {
 			p.recalculateOppOppWr();
 		}
 		sortRankings();
@@ -145,7 +142,6 @@ public class Tournament {
 					+ rpad("TB: " + players.get(i - 1).getTB() + "                         ", 8) + "   "
 					+ rpad("Opp WR: " + players.get(i - 1).getOppWr() + "                         ", 12) + "    "
 					+ rpad("Opp Opp WR: " + players.get(i - 1).getOppOppWr() + "                         ", 16) + "   "
-					+ rpad("Buchholz: " + players.get(i - 1).getBuchholz() + "                         ", 13) + "    "
 					+ '\n';
 		}
 		GUI.postString(participantString);
@@ -299,13 +295,13 @@ public class Tournament {
 			break;
 		case "3":
 			b.getP1().tied(b.getP2());
-			b.getP2().tied(b.getP1());
 			b = null;
 			break;
 		default:
 			currentBattles.add(b);
 			break;
 		}
+		saveTournament();
 	}
 
 	private void showHelp() {
@@ -434,7 +430,6 @@ public class Tournament {
 		}
 	}
 
-	@SuppressWarnings("static-access")
 	void adminTools() {
 		userSelection = null;
 		GUI.postString("Admin functions enabled.");
@@ -445,10 +440,23 @@ public class Tournament {
 			saveTournament();
 			break;
 		case "load":
-			try {
-				loadTournament();
-			} catch (IOException e) {
-				print("Error loading file.");
+			print("Enter the file name to load.\n");
+			userSelection = null;
+			waitForUserInput();
+			String fileName = userSelection;
+			userSelection = null;
+			if (!fileName.contains(".tnt")) {
+				fileName += ".tnt";
+			}
+			File loadFrom = new File(fileName);
+			if (loadFrom.exists()) {
+				try {
+					loadTournament(fileName);
+				} catch (IOException e) {
+					print("Error loading file.");
+				}
+			} else {
+				print("That file doesn't exist - check again.");
 			}
 			break;
 		case "matches":
@@ -552,7 +560,7 @@ public class Tournament {
 			players.clear();
 			break;
 		case "elimination":
-			print("To convert to X-Elimination, please first eter the number of losses after which a player is eliminated.\n");
+			print("To convert to X-Elimination, please first enter the number of losses after which a player is eliminated.\n");
 			userSelection = null;
 			waitForUserInput();
 			setX_elimination(Integer.parseInt(userSelection));
@@ -568,11 +576,11 @@ public class Tournament {
 		userSelection = null;
 	}
 
-	private void loadTournament() throws IOException {
+	private void loadTournament(String fileName) throws IOException {
 		players.clear();
 		currentBattles.clear();
 
-		BufferedReader br = new BufferedReader(new FileReader("TournamentInProgress.txt"));
+		BufferedReader br = new BufferedReader(new FileReader(fileName));
 		try {
 			String line = br.readLine();
 
@@ -597,7 +605,7 @@ public class Tournament {
 					parseProperties(line);
 					line = br.readLine();
 				}
-				
+
 			}
 		} finally {
 			br.close();
@@ -610,7 +618,7 @@ public class Tournament {
 	private void parseProperties(String line) {
 		String[] propertyPair = line.split(":");
 		switch (propertyPair[0]) {
-		
+
 		case "On Round":
 			roundNumber = Integer.parseInt(propertyPair[1]);
 			break;
@@ -666,7 +674,7 @@ public class Tournament {
 
 	void saveTournament() {
 		String output = "";
-		File file = new File("TournamentInProgress.txt");
+		File file = new File("TournamentInProgress.tnt");
 
 		output += "PLAYERS:\n";
 		for (Player p : players) {

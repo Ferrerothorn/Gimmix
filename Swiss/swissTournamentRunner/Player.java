@@ -9,7 +9,6 @@ public class Player implements Comparable<Player> {
 	int score = 0;
 	int tb = 0;
 	double oppWr = 0;
-	int buchholz = 0;
 	double oppOppWr = 0;
 	int lastDocumentedPosition = 0;
 	ArrayList<Player> previousRounds = new ArrayList<>();
@@ -19,12 +18,11 @@ public class Player implements Comparable<Player> {
 		name = string;
 	}
 
-	public Player(String myName, int myScore, int myTb, double myOppWr, int myBuchholz, int myOppOppWr) {
+	public Player(String myName, int myScore, int myTb, double myOppWr, int myOppOppWr) {
 		name = myName;
 		score = myScore;
 		tb = myTb;
 		oppWr = myOppWr;
-		buchholz = myBuchholz;
 		oppOppWr = myOppOppWr;
 	}
 
@@ -85,16 +83,8 @@ public class Player implements Comparable<Player> {
 			return -1;
 		} else if (this.oppOppWr < p.getOppOppWr()) {
 			return 1;
-		} else if (this.buchholz > p.getBuchholz()) {
-			return -1;
-		} else if (this.buchholz < p.getBuchholz()) {
-			return 1;
 		}
 		return 0;
-	}
-
-	int getBuchholz() {
-		return buchholz;
 	}
 
 	public int getTB() {
@@ -171,22 +161,6 @@ public class Player implements Comparable<Player> {
 		for (Player p : previousRounds) {
 			if (!victories.contains(p) && !p.victories.contains(this)) {
 				score++;
-			}
-		}
-	}
-
-	public void recalculateBuchholz() {
-		this.buchholz = 0;
-		ArrayList<Integer> scoresOfMyFoes = new ArrayList<>();
-		for (Player p : this.getOpponentsList()) {
-			scoresOfMyFoes.add(p.getScore());
-		}
-		if (scoresOfMyFoes.size() >= 3) {
-			Collections.sort(scoresOfMyFoes);
-			scoresOfMyFoes.remove(0);
-			scoresOfMyFoes.remove(scoresOfMyFoes.size() - 1);
-			for (int i : scoresOfMyFoes) {
-				this.buchholz += i;
 			}
 		}
 	}

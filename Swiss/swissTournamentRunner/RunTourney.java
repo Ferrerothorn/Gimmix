@@ -28,7 +28,9 @@ public class RunTourney {
 			tourney.displayInDepthRankings();
 			tourney.generatePairings();
 			tourney.pollForResults(tourney.roundNumber);
-			tourney.elimination();
+			if (tourney.isElimination) {
+				tourney.elimination();
+			}
 			tourney.roundNumber++;
 		}
 		GUI.wipePane();

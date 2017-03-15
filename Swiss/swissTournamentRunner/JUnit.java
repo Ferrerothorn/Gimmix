@@ -23,8 +23,8 @@ public class JUnit {
 
 	@Test
 	public void testCompareIdenticalPlayersIsTie() {
-		Player p1 = new Player("P1", 0, 0, 0, 0, 0);
-		Player p2 = new Player("P2", 0, 0, 0, 0, 0);
+		Player p1 = new Player("P1", 0, 0, 0, 0);
+		Player p2 = new Player("P2", 0, 0, 0, 0);
 		t.addPlayer(p1);
 		t.addPlayer(p2);
 		assertEquals(0, p1.compareTo(p2));
@@ -32,8 +32,8 @@ public class JUnit {
 
 	@Test
 	public void testP1Better() {
-		Player p1 = new Player("P1", 1, 0, 0, 0, 0);
-		Player p2 = new Player("P2", 0, 0, 0, 0, 0);
+		Player p1 = new Player("P1", 1, 0, 0, 0);
+		Player p2 = new Player("P2", 0, 0, 0, 0);
 		t.addPlayer("P1");
 		t.addPlayer("P2");
 		assertEquals(-1, p1.compareTo(p2));
@@ -41,8 +41,8 @@ public class JUnit {
 
 	@Test
 	public void testCompareP2Better() {
-		Player p1 = new Player("P1", 0, 0, 0, 0, 0);
-		Player p2 = new Player("P2", 1, 0, 0, 0, 0);
+		Player p1 = new Player("P1", 0, 0, 0, 0);
+		Player p2 = new Player("P2", 1, 0, 0, 0);
 		t.addPlayer("P1");
 		t.addPlayer("P2");
 		assertEquals(1, p1.compareTo(p2));
@@ -50,8 +50,8 @@ public class JUnit {
 
 	@Test
 	public void testTiedSoGoToTB() {
-		Player p1 = new Player("P1", 3, 1, 0, 0, 0);
-		Player p2 = new Player("P2", 3, 0, 0, 0, 0);
+		Player p1 = new Player("P1", 3, 1, 0, 0);
+		Player p2 = new Player("P2", 3, 0, 0, 0);
 		t.addPlayer("P1");
 		t.addPlayer("P2");
 		assertEquals(-1, p1.compareTo(p2));
@@ -59,8 +59,8 @@ public class JUnit {
 
 	@Test
 	public void testTiedSoGoToTB_p2() {
-		Player p1 = new Player("P1", 3, 0, 0, 0, 0);
-		Player p2 = new Player("P2", 3, 1, 0, 0, 0);
+		Player p1 = new Player("P1", 3, 0, 0, 0);
+		Player p2 = new Player("P2", 3, 1, 0, 0);
 		t.addPlayer("P1");
 		t.addPlayer("P2");
 		assertEquals(1, p1.compareTo(p2));
@@ -68,8 +68,8 @@ public class JUnit {
 
 	@Test
 	public void testTiedSoGoToOppWr() {
-		Player p1 = new Player("P1", 3, 1, 3, 0, 0);
-		Player p2 = new Player("P2", 3, 1, 0, 0, 0);
+		Player p1 = new Player("P1", 3, 1, 3, 0);
+		Player p2 = new Player("P2", 3, 1, 0, 0);
 		t.addPlayer("P1");
 		t.addPlayer("P2");
 		assertEquals(-1, p1.compareTo(p2));
@@ -77,45 +77,31 @@ public class JUnit {
 
 	@Test
 	public void testTiedSoGoToOppWrp2() {
-		Player p1 = new Player("P1", 3, 1, 0, 0, 0);
-		Player p2 = new Player("P2", 3, 1, 3, 0, 0);
+		Player p1 = new Player("P1", 3, 1, 0, 0);
+		Player p2 = new Player("P2", 3, 1, 3, 0);
 		t.addPlayer("P1");
 		t.addPlayer("P2");
 		assertEquals(1, p1.compareTo(p2));
 	}
 
 	@Test
-	public void testTiedSoGoToBuchholz_P1Wins() {
-		Player p1 = new Player("P1", 3, 1, 0, 3, 0);
-		Player p2 = new Player("P2", 3, 1, 0, 0, 0);
-		assertEquals(-1, p1.compareTo(p2));
-	}
-
-	@Test
-	public void testTiedSoGoToBuchholz_P2Wins() {
-		Player p1 = new Player("P1", 3, 1, 0, 0, 0);
-		Player p2 = new Player("P2", 3, 1, 0, 3, 0);
-		assertEquals(1, p1.compareTo(p2));
-	}
-
-	@Test
 	public void testTiedSoGoToOppOppWr_P1Wins() {
-		Player p1 = new Player("P1", 3, 1, 0, 3, 1);
-		Player p2 = new Player("P2", 3, 1, 0, 3, 0);
+		Player p1 = new Player("P1", 3, 1, 0, 1);
+		Player p2 = new Player("P2", 3, 1, 0, 0);
 		assertEquals(-1, p1.compareTo(p2));
 	}
 
 	@Test
 	public void testTiedSoGoToOppOppWr_P2Wins() {
-		Player p1 = new Player("P1", 3, 1, 0, 3, 0);
-		Player p2 = new Player("P2", 3, 1, 0, 3, 1);
+		Player p1 = new Player("P1", 3, 1, 0, 0);
+		Player p2 = new Player("P2", 3, 1, 0, 1);
 		assertEquals(1, p1.compareTo(p2));
 	}
 
 	@Test
 	public void testTiedEveryTieBreaker() {
-		Player p1 = new Player("P1", 3, 1, 3, 0, 0);
-		Player p2 = new Player("P2", 3, 1, 3, 0, 0);
+		Player p1 = new Player("P1", 3, 1, 3, 0);
+		Player p2 = new Player("P2", 3, 1, 3, 0);
 		t.addPlayer("P1");
 		t.addPlayer("P2");
 		assertEquals(0, p1.compareTo(p2));
@@ -123,10 +109,10 @@ public class JUnit {
 
 	@Test
 	public void testSortFourParticipants() {
-		Player p1 = new Player("P1", 3, 1, 2, 0, 0);
-		Player p2 = new Player("P2", 6, 1, 3, 0, 0);
-		Player p3 = new Player("P3", 3, 1, 3, 0, 0);
-		Player p4 = new Player("P4", 0, 0, 6, 0, 0);
+		Player p1 = new Player("P1", 3, 1, 2, 0);
+		Player p2 = new Player("P2", 6, 1, 3, 0);
+		Player p3 = new Player("P3", 3, 1, 3, 0);
+		Player p4 = new Player("P4", 0, 0, 6, 0);
 		t.addPlayer(p1);
 		t.addPlayer(p2);
 		t.addPlayer(p3);
@@ -702,6 +688,35 @@ public class JUnit {
 		assertEquals(0, p2.getListOfVictories().size());
 	}
 
+	@Test
+	public void testTyingGameAddsOnePoint() {
+
+		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");
+		Player p3 = new Player("P3");
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		t.addPlayer(p3);
+		
+		p1.beats(p2);
+		p2.tied(p3);
+		
+		assertEquals(1 , p1.getListOfVictories().size());
+		assertEquals(1 , p1.getOpponentsList().size());
+		assertEquals(3 , p1.getScore());
+		
+		assertEquals(0 , p2.getListOfVictories().size());
+		assertEquals(2 , p2.getOpponentsList().size());
+		assertEquals(1 , p2.getScore());
+		
+		assertEquals(0 , p3.getListOfVictories().size());
+		assertEquals(1 , p3.getOpponentsList().size());
+		assertEquals(1 , p3.getScore());
+		
+		
+		
+	}
+	
 	@Test
 	public void testAddingExtraRoundsThenReportingResultsDoesntResetRoundNumber() {
 		Player p1 = new Player("P1");
