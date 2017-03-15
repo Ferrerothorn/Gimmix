@@ -287,19 +287,20 @@ public class Tournament {
 					break;
 				}
 			} catch (Exception e) {
-				GUI.postString("Illegal input.");
+				print("Illegal input.");
 				userSelection = null;
-				pollForResults(whatRoundOn);
+				pollForResults();
 			}
 		}
+		// roundNumber++;
 	}
 
 	private void refreshScreen() {
 		GUI.wipePane();
 		updateParticipantStats();
 		displayInDepthRankings();
-		GUI.postString();
-		GUI.postString();
+		print();
+		print();
 	}
 
 	void handleBattleWinner(Battle b, String winner) {
