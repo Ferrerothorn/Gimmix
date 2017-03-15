@@ -1,7 +1,5 @@
 package swissTournamentRunner;
 
-import javax.swing.JFrame;
-
 public class RunTourney {
 
 	static Tournament tourney = new Tournament();
