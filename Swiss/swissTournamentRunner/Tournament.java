@@ -858,8 +858,8 @@ public class Tournament {
 		players.add(p);
 	}
 
-	public void setNumberOfRounds(int numberOfRounds) {
-		this.numberOfRounds = numberOfRounds;
+	public void setNumberOfRounds(int newNumberOfRounds) {
+		numberOfRounds = newNumberOfRounds;
 	}
 
 	public int getNumberOfRounds() {
