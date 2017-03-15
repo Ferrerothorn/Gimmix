@@ -263,10 +263,10 @@ public class Tournament {
 					Battle b = fetchBattle(reportUpon, currentBattles);
 					currentBattles.remove(b);
 
-					GUI.postString("And who won in " + b.getP1().getName() + " vs. " + b.getP2().getName() + "?");
-					GUI.postString("1) " + b.getP1().getName());
-					GUI.postString("2) " + b.getP2().getName());
-					GUI.postString("3) Tied.");
+					print("And who won in " + b.getP1().getName() + " vs. " + b.getP2().getName() + "?");
+					print("1) " + b.getP1().getName());
+					print("2) " + b.getP2().getName());
+					print("3) Tied.");
 
 					if (!((b.getP1().getName().equals("BYE") || (b.getP2().getName().equals("BYE"))))) {
 
