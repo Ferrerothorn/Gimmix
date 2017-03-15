@@ -6,6 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.SwingUtilities;
 
+@SuppressWarnings("serial")
 public class SaveLoad extends JPanel implements ActionListener {
 	static private final String newline = "\n";
 	JButton openButton, saveButton;
