@@ -1,7 +1,6 @@
 package swissTournamentRunner;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Player implements Comparable<Player> {
 
