@@ -679,8 +679,8 @@ public class JUnit {
 		t.addPlayer(p1);
 		t.addPlayer(p2);
 
-		t.addGamesToPlayerHistory("P1,[P2],[P2]");
-		t.addGamesToPlayerHistory("P2,[],[P1]");
+		t.addGamesToPlayerHistory("P1_[P2]_[P2]");
+		t.addGamesToPlayerHistory("P2_[]_[P1]");
 
 		assertEquals(1, p1.getOpponentsList().size());
 		assertEquals(1, p1.getListOfVictories().size());
@@ -735,29 +735,9 @@ public class JUnit {
 		t.generatePairings();
 		while (t.currentBattles.size() > 0) {
 			t.handleBattleWinner(t.currentBattles.remove(0), "1");
-			t.saveTournament();
 		}
-		t.generatePairings();
-		while (t.currentBattles.size() > 0) {
-			t.handleBattleWinner(t.currentBattles.remove(0), "1");
-			t.saveTournament();
-		}
-		t.generatePairings();
-		while (t.currentBattles.size() > 0) {
-			t.handleBattleWinner(t.currentBattles.remove(0), "1");
-			t.saveTournament();
-		}
-		t.generatePairings();
-		while (t.currentBattles.size() > 0) {
-			t.handleBattleWinner(t.currentBattles.remove(0), "1");
-			t.saveTournament();
-		}
-		t.generatePairings();
-		while (t.currentBattles.size() > 0) {
-			t.handleBattleWinner(t.currentBattles.remove(0), "1");
-			t.saveTournament();
-		}
-		assertEquals(4, t.numberOfRounds);
+		
+		assertEquals(5, t.numberOfRounds);
 
 	}
 
