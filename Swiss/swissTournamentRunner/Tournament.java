@@ -49,6 +49,7 @@ public class Tournament {
 		if (file.exists()) {
 			try {
 				loadTournament(activeMetadataFile);
+				refreshScreen();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -58,6 +59,7 @@ public class Tournament {
 
 			while (!allParticipantsIn) {
 				print("Enter the name of the next participant, or enter 'no' if done.\n");
+				GUI.postString("(You can enter 'help' at any time for some instructions.)");
 				waitForUserInput();
 				switch (userSelection.toLowerCase()) {
 				case "help":
@@ -494,6 +496,7 @@ public class Tournament {
 			if (loadFrom.exists()) {
 				try {
 					loadTournament(fileName);
+					refreshScreen();
 				} catch (IOException e) {
 					print("Error loading file.");
 				}
@@ -618,7 +621,7 @@ public class Tournament {
 		userSelection = null;
 	}
 
-	private void loadTournament(String fileName) throws IOException {
+	void loadTournament(String fileName) throws IOException {
 		players.clear();
 		currentBattles.clear();
 
@@ -655,7 +658,6 @@ public class Tournament {
 			br.close();
 		}
 		updateParticipantStats();
-		refreshScreen();
 	}
 
 	private void parseProperties(String line) {

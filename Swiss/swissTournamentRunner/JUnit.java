@@ -2,6 +2,9 @@ package swissTournamentRunner;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -668,8 +671,38 @@ public class JUnit {
 	}
 
 	@Test
-	public void testSaveTournament() {
-
+	public void testSaveLoadTournament() {
+		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");
+		Player p3 = new Player("P3");
+		Player p4 = new Player("P4");
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		t.addPlayer(p3);
+		t.addPlayer(p4);
+		t.setNumberOfRounds(3);
+		t.generatePairings();
+		t.activeMetadataFile = "test.tnt";
+		t.handleBattleWinner(t.currentBattles.remove(0), "1");
+		t.saveTournament();
+		t.currentBattles.clear();
+		t.players.clear();
+		try {
+			t.loadTournament(t.activeMetadataFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		assertEquals(3, t.getNumberOfRounds());
+		assertEquals(4, t.players.size());
+		assertEquals(1, t.currentBattles.size());
+		assertEquals(3, t.players.get(0).getScore());
+		assertEquals(1, t.players.get(0).getOpponentsList().size());
+		assertEquals(1, t.players.get(0).getListOfVictories().size());
+		File file = new File("test.tnt");
+		if (file.exists()) {
+			file.delete();
+		}
+	
 	}
 
 	@Test
@@ -697,26 +730,24 @@ public class JUnit {
 		t.addPlayer(p1);
 		t.addPlayer(p2);
 		t.addPlayer(p3);
-		
+
 		p1.beats(p2);
 		p2.tied(p3);
-		
-		assertEquals(1 , p1.getListOfVictories().size());
-		assertEquals(1 , p1.getOpponentsList().size());
-		assertEquals(3 , p1.getScore());
-		
-		assertEquals(0 , p2.getListOfVictories().size());
-		assertEquals(2 , p2.getOpponentsList().size());
-		assertEquals(1 , p2.getScore());
-		
-		assertEquals(0 , p3.getListOfVictories().size());
-		assertEquals(1 , p3.getOpponentsList().size());
-		assertEquals(1 , p3.getScore());
-		
-		
-		
+
+		assertEquals(1, p1.getListOfVictories().size());
+		assertEquals(1, p1.getOpponentsList().size());
+		assertEquals(3, p1.getScore());
+
+		assertEquals(0, p2.getListOfVictories().size());
+		assertEquals(2, p2.getOpponentsList().size());
+		assertEquals(1, p2.getScore());
+
+		assertEquals(0, p3.getListOfVictories().size());
+		assertEquals(1, p3.getOpponentsList().size());
+		assertEquals(1, p3.getScore());
+
 	}
-	
+
 	@Test
 	public void testAddingExtraRoundsThenReportingResultsDoesntResetRoundNumber() {
 		Player p1 = new Player("P1");
@@ -736,7 +767,7 @@ public class JUnit {
 		while (t.currentBattles.size() > 0) {
 			t.handleBattleWinner(t.currentBattles.remove(0), "1");
 		}
-		
+
 		assertEquals(5, t.numberOfRounds);
 
 	}
