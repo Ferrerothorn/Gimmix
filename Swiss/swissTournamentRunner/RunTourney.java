@@ -8,7 +8,7 @@ public class RunTourney {
 
 		GUI gui = new GUI(tourney);
 		tourney.setGUI(gui);
-		GUI.createAndShowGUI();
+		GUI.createAndShowGUI(true);
 
 		showCredits();
 		tourney.signUpPlayers();
