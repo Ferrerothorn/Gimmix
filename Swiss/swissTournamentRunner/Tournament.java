@@ -303,7 +303,7 @@ public class Tournament {
 	private void refreshScreen() {
 		GUI.wipePane();
 		updateParticipantStats();
-		displayInDepthRankings();
+		print(displayInDepthRankings());
 		print();
 		print();
 	}
@@ -744,7 +744,7 @@ public class Tournament {
 			shufflePlayers();
 			sortRankings();
 			updateParticipantStats();
-			displayInDepthRankings();
+			print(displayInDepthRankings());
 			generatePairings();
 			pollForResults();
 			elimination();
