@@ -402,11 +402,11 @@ public class Tournament {
 		GUI.postString("");
 	}
 
-	private void print(String string) {
+	void print(String string) {
 		GUI.postString(string);
 	}
 
-	private void waitForUserInput() {
+	void waitForUserInput() {
 		while (userSelection == null) {
 			System.out.println(userSelection);
 		}
@@ -425,7 +425,7 @@ public class Tournament {
 		return null;
 	}
 
-	private void assignTableNumbers(ArrayList<Battle> bIP) {
+	void assignTableNumbers(ArrayList<Battle> bIP) {
 		int index = 1;
 		for (Battle b : bIP) {
 			b.setTableNumber(index);
