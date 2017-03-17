@@ -14,6 +14,7 @@ public class JUnit {
 	@Before
 	public void setup() {
 		t.newTourney();
+		t.allParticipantsIn = true;
 	}
 
 	@Test
@@ -21,6 +22,22 @@ public class JUnit {
 		t.addPlayer("P1");
 		t.addPlayer("P2");
 		assertEquals(2, t.players.size());
+	}
+
+	@Test
+	public void testAddingListThenAddingSinglesDoesntGiveTwoByes() {
+		t.addBatch("P1,P2,P3");
+		t.addPlayer("P4");
+		assertEquals(4, t.players.size());
+	}
+
+	@Test
+	public void testGeneratingPairingsTwiceDoesntWork() {
+		t.addBatch("P1,P2,P3,P4");
+		t.generatePairings();
+		assertEquals(2, t.currentBattles.size());
+		t.generatePairings();
+		assertEquals(2, t.currentBattles.size());
 	}
 
 	@Test
@@ -153,7 +170,7 @@ public class JUnit {
 		assertEquals(0, p1.previousRounds.size());
 		assertEquals(0, p2.previousRounds.size());
 	}
-	
+
 	@Test
 	public void testDropPlayers() {
 		GUI gui = new GUI(t);
@@ -495,13 +512,14 @@ public class JUnit {
 
 	@Test
 	public void testAddingUsersToTourneyWithoutBye_AssertByeNowRequired() {
+		t.allParticipantsIn = true;
 		t.addPlayer("P1");
 		t.addPlayer("P2");
 		t.addPlayer("P3");
 		t.addPlayer("P4");
 		t.addBatch("P5,P6,P7");
-		assertEquals(true, t.containsPlayer("BYE"));
 		assertEquals(8, t.size());
+		assertEquals(true, t.containsPlayer("BYE"));
 	}
 
 	@Test
