@@ -459,21 +459,6 @@ public class Tournament {
 		this.userSelection = userSelection;
 	}
 
-	public boolean extraRound() {
-		print("Do you want to add one more round than necessary, for results certainty? (y/n)");
-		waitForUserInput();
-		if (userSelection.equals("Y") || userSelection.equals("y")) {
-			userSelection = null;
-			return true;
-		} else if (userSelection.equals("N") || userSelection.equals("n")) {
-			userSelection = null;
-			return false;
-		} else {
-			userSelection = null;
-			return extraRound();
-		}
-	}
-
 	void adminTools() {
 		userSelection = null;
 		print("Admin functions enabled.");
