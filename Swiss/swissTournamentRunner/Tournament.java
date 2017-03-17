@@ -154,7 +154,7 @@ public class Tournament {
 		}
 	}
 
-	public void displayInDepthRankings() {
+	public String displayInDepthRankings() {
 		String participantString = "-=-=-=-Rankings-=-=-=-" + '\n';
 		for (int i = 1; i <= players.size(); i++) {
 			participantString += rpad("" + i + ") " + players.get(i - 1).getName() + "                         ",
@@ -165,7 +165,7 @@ public class Tournament {
 					+ rpad("Opp Opp WR: " + players.get(i - 1).getOppOppWr() + "                         ", 16) + "   "
 					+ '\n';
 		}
-		print(participantString);
+		return participantString;
 	}
 
 	public void generatePairings() {
