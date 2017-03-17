@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,12 +24,82 @@ public class JUnit {
 	}
 
 	@Test
+	public void testCheckBattleTableNumber() {
+		Player p1 = new Player("P1", 0, 0, 0, 0);
+		Player p2 = new Player("P2", 0, 0, 0, 0);
+		Player p3 = new Player("P3", 0, 0, 0, 0);
+		Player p4 = new Player("P4", 0, 0, 0, 0);
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		t.addPlayer(p3);
+		t.addPlayer(p4);
+		t.generatePairings();
+		t.assignTableNumbers(t.currentBattles);
+		assertEquals(1, t.currentBattles.get(0).getTableNumber());
+		assertEquals(2, t.currentBattles.get(1).getTableNumber());
+	}
+
+	@Test
+	public void testGUIisInteractive() {
+		GUI gui = new GUI(t);
+		GUI.createAndShowGUI(false);
+		t.print("");
+		assertEquals(1, GUI.getTextFromArea().length());
+		t.print("Hi");
+		assertEquals(4, GUI.getTextFromArea().length());
+		GUI.postString();
+		assertEquals(5, GUI.getTextFromArea().length());
+		GUI.wipePane();
+		assertEquals(0, GUI.getTextFromArea().length());
+	}
+
+	@Test
+	public void testRecalculateTBs() {
+		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");
+		Player p3 = new Player("P3");
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		t.addPlayer(p3);
+		p1.beats(p2);
+		p2.beats(p3);
+		p3.beats(p1);
+		t.updateParticipantStats();
+		assertEquals(1, p1.getTB());
+		assertEquals(1, p2.getTB());
+		assertEquals(1, p3.getTB());
+	}
+
+	@Test
+	public void testHandleBattleWinner_On3_AddsTie() {
+		t.addBatch("P1,P2,P3,P4");
+		t.generatePairings();
+		Battle b = t.currentBattles.remove(0);
+		t.handleBattleWinner(b, "2");
+		b = t.currentBattles.remove(0);
+		t.handleBattleWinner(b, "3");
+		t.updateParticipantStats();
+		assertEquals(0, t.findPlayerByName("P1").getScore());
+		assertEquals(3, t.findPlayerByName("P2").getScore());
+		assertEquals(1, t.findPlayerByName("P3").getScore());
+		assertEquals(1, t.findPlayerByName("P4").getScore());
+	}
+
+	@Test
 	public void testCompareIdenticalPlayersIsTie() {
 		Player p1 = new Player("P1", 0, 0, 0, 0);
 		Player p2 = new Player("P2", 0, 0, 0, 0);
 		t.addPlayer(p1);
 		t.addPlayer(p2);
 		assertEquals(0, p1.compareTo(p2));
+	}
+
+	@Test
+	public void testComparePlayerToByeReturnsPlayer() {
+		Player p1 = new Player("P1");
+		t.addPlayer(p1);
+		t.addBye();
+		assertEquals(-1, p1.compareTo(t.players.get(1)));
 	}
 
 	@Test
@@ -58,6 +127,78 @@ public class JUnit {
 		t.addPlayer("P1");
 		t.addPlayer("P2");
 		assertEquals(-1, p1.compareTo(p2));
+	}
+
+	@Test
+	public void testFindPLayerByNameFails() {
+		t.addBatch("P1,P2,P3,P4");
+		assertEquals(null, t.findPlayerByName("P5"));
+	}
+
+	@Test
+	public void testAddingNoNamePlayerFails() {
+		t.addPlayer("");
+		assertEquals(0, t.players.size());
+		assertEquals(99, t.getX_elimination());
+	}
+
+	@Test
+	public void reopenBattle_P2sBattle() {
+		Player p1 = new Player("P1", 0, 0, 0, 0);
+		Player p2 = new Player("P2", 3, 0, 0, 0);
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		p1.beats(p2);
+		t.reopenBattle(p2, p1);
+		assertEquals(0, p1.previousRounds.size());
+		assertEquals(0, p2.previousRounds.size());
+	}
+	
+	@Test
+	public void testDropPlayers() {
+		GUI gui = new GUI(t);
+		Player p1 = new Player("P1", 0, 0, 0, 0);
+		Player p2 = new Player("P2", 0, 0, 0, 0);
+		Player p3 = new Player("P3", 0, 0, 0, 0);
+		Player p4 = new Player("P4", 0, 0, 0, 0);
+		t.setNumberOfRounds(3);
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		t.addPlayer(p3);
+		t.addPlayer(p4);
+		t.generatePairings();
+		t.dropPlayer("P4");
+		assertEquals(4, t.players.size());
+		assertEquals(3, t.getNumberOfRounds());
+		t.handleBattleWinner(t.currentBattles.remove(0), "1");
+		t.dropPlayer("P2");
+		assertEquals(4, t.players.size());
+		assertEquals(3, t.getNumberOfRounds());
+		t.handleBattleWinner(t.currentBattles.remove(0), "1");
+		t.dropPlayer("P4");
+		assertEquals(2, t.players.size());
+		assertEquals(2, t.getNumberOfRounds());
+	}
+
+	@Test
+	public void testGetRankings_GivenTournamentStructure() {
+		Player p4 = new Player("P4", 0, 0, 0, 0);
+		Player p3 = new Player("P3", 6, 0, 0, 0);
+		Player p2 = new Player("P2", 3, 0, 0, 0);
+		Player p1 = new Player("P1", 9, 0, 0, 0);
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		t.addPlayer(p3);
+		t.addPlayer(p4);
+		t.sortRankings();
+		assertEquals(
+				"-=-=-=-Rankings-=-=-=-\n"
+						+ "1) P1     Score: 9          TB: 0      Opp WR: 0.0     Opp Opp WR: 0.0    \n"
+						+ "2) P3     Score: 6          TB: 0      Opp WR: 0.0     Opp Opp WR: 0.0    \n"
+						+ "3) P2     Score: 3          TB: 0      Opp WR: 0.0     Opp Opp WR: 0.0    \n"
+						+ "4) P4     Score: 0          TB: 0      Opp WR: 0.0     Opp Opp WR: 0.0    \n",
+				t.displayInDepthRankings());
+
 	}
 
 	@Test
@@ -143,11 +284,11 @@ public class JUnit {
 	public void testFightWinnerP1GetsPoints() {
 		Player p1 = new Player("P1");
 		Player p2 = new Player("P2");
-		assertEquals(0, p1.getPoints());
-		assertEquals(0, p2.getPoints());
+		assertEquals(0, p1.getScore());
+		assertEquals(0, p2.getScore());
 		p1.beats(p2);
-		assertEquals(3, p1.getPoints());
-		assertEquals(0, p2.getPoints());
+		assertEquals(3, p1.getScore());
+		assertEquals(0, p2.getScore());
 	}
 
 	@Test
@@ -254,7 +395,10 @@ public class JUnit {
 	public void testDroppingNonByeUserRemovesBye() {
 		Player p1 = new Player("P1");
 		Player p2 = new Player("P2");
-		t.addPlayer("P3");
+		Player p3 = new Player("P3");
+		t.addPlayer(p1);
+		t.addPlayer(p2);
+		t.addPlayer(p3);
 		t.addBye();
 		p1.beats(p2);
 		t.dropPlayer("P2");
@@ -374,7 +518,7 @@ public class JUnit {
 		t.setNumberOfRounds(3);
 		t.dropPlayer("P5");
 		t.dropPlayer("P6");
-		assertEquals(2, t.getNumberOfRounds());
+		assertEquals(3, t.getNumberOfRounds());
 	}
 
 	@Test
@@ -661,13 +805,6 @@ public class JUnit {
 		}
 		t.elimination();
 		assertEquals(2, t.players.size());
-
-		// t.generatePairings();
-		// while (t.currentBattles.size() > 0) {
-		// t.handleBattleWinner(t.currentBattles.remove(0), "1");
-		// }
-		// t.elimination();
-		// assertEquals(1, t.players.size());
 	}
 
 	@Test
@@ -690,7 +827,6 @@ public class JUnit {
 		try {
 			t.loadTournament(t.activeMetadataFile);
 		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		assertEquals(3, t.getNumberOfRounds());
 		assertEquals(4, t.players.size());
@@ -702,7 +838,7 @@ public class JUnit {
 		if (file.exists()) {
 			file.delete();
 		}
-	
+
 	}
 
 	@Test
@@ -745,7 +881,6 @@ public class JUnit {
 		assertEquals(0, p3.getListOfVictories().size());
 		assertEquals(1, p3.getOpponentsList().size());
 		assertEquals(1, p3.getScore());
-
 	}
 
 	@Test
@@ -769,7 +904,5 @@ public class JUnit {
 		}
 
 		assertEquals(5, t.numberOfRounds);
-
 	}
-
 }
