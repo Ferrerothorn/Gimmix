@@ -98,10 +98,6 @@ public class Player implements Comparable<Player> {
 		return name;
 	}
 
-	public int getPoints() {
-		return score;
-	}
-
 	public void beats(Player p2) {
 		this.logOpponent(p2);
 		p2.logOpponent(this);
