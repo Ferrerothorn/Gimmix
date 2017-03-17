@@ -19,10 +19,6 @@ public class Battle {
 		return p2;
 	}
 
-	public int getPrestige() {
-		return p1.getScore() + p2.getScore();
-	}
-
 	public void setTableNumber(int tN) {
 		tableNumber = tN;
 	}
