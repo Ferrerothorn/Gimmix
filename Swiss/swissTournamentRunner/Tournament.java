@@ -16,6 +16,7 @@ public class Tournament {
 	public ArrayList<Battle> currentBattles = new ArrayList<>();
 	public ArrayList<Battle> totallyKosherPairings = new ArrayList<>();
 	public String userSelection = null;
+	boolean allParticipantsIn = false;
 	int numberOfRounds;
 	int roundNumber = 1;
 	public GUI gui;
@@ -55,8 +56,6 @@ public class Tournament {
 			}
 		} else {
 
-			boolean allParticipantsIn = false;
-
 			while (!allParticipantsIn) {
 				print("Enter the name of the next participant, or enter 'no' if done.\n");
 				GUI.postString("(You can enter 'help' at any time for some instructions.)");
@@ -87,6 +86,10 @@ public class Tournament {
 	}
 
 	public void addPlayer(String p1) {
+		if (containsPlayer("BYE")) {
+			renamePlayer("BYE", p1);
+		}
+
 		if (!containsPlayer(p1)) {
 			if (p1.length() > 0) {
 				players.add(new Player(p1));
@@ -186,7 +189,7 @@ public class Tournament {
 		}
 	}
 
-	private void pairThisGuyUp(Player p1, ArrayList<Battle> targetBattleList) {
+	void pairThisGuyUp(Player p1, ArrayList<Battle> targetBattleList) {
 		try {
 			boolean opponentFound = false;
 			int playerIndex = 0;
@@ -297,7 +300,6 @@ public class Tournament {
 				pollForResults();
 			}
 		}
-		// roundNumber++;
 	}
 
 	private void refreshScreen() {
@@ -768,7 +770,9 @@ public class Tournament {
 				longestPlayerNameLength = s.length();
 			}
 		}
-		addBye();
+		if (allParticipantsIn) {
+			addBye();
+		}
 	}
 
 	private String trimWhitespace(String s) {
@@ -839,11 +843,10 @@ public class Tournament {
 		}
 		if (!nameToDrop.equals("BYE") && (players.size() % 2 == 1) && !containsPlayer("BYE")) {
 			addPlayer("BYE");
-		}
-		else if (!nameToDrop.equals("BYE")) {
+		} else if (!nameToDrop.equals("BYE")) {
 			dropPlayer("BYE");
 		}
-		
+
 		if (!isElimination) {
 			while (numberOfRounds > players.size()) {
 				numberOfRounds--;
