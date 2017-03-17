@@ -837,14 +837,15 @@ public class Tournament {
 				players.remove(toDrop);
 			}
 		}
-		if (!nameToDrop.equals("BYE")) {
-			dropPlayer("BYE");
-		}
-		if (!nameToDrop.equals("BYE") && (players.size() + (currentBattles.size() * 2)) % 2 == 1) {
+		if (!nameToDrop.equals("BYE") && (players.size() % 2 == 1) && !containsPlayer("BYE")) {
 			addPlayer("BYE");
 		}
+		else if (!nameToDrop.equals("BYE")) {
+			dropPlayer("BYE");
+		}
+		
 		if (!isElimination) {
-			while (numberOfRounds > logBase2(players.size())) {
+			while (numberOfRounds > players.size()) {
 				numberOfRounds--;
 			}
 		}
