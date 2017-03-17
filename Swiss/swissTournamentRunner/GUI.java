@@ -9,7 +9,7 @@ public class GUI extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private final static String newline = "\n";
 	public static Tournament tourney;
-	public JTextField textField;
+	public static JTextField textField;
 	public static JTextArea textArea;
 	public static JFrame frame = new JFrame("BTC");
 
@@ -52,12 +52,16 @@ public class GUI extends JPanel implements ActionListener {
 		}
 	}
 
-	public static void createAndShowGUI() {
+	public static String getTextFromArea() {
+		return textArea.getText();
+	}
+
+	public static void createAndShowGUI(Boolean show) {
 		frame.setSize(500, 400);
 		frame.add(new GUI(tourney));
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
+		frame.setVisible(show);
 	}
 
 	public static void postString(String s) {
