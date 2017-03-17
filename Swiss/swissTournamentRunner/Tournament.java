@@ -731,9 +731,9 @@ public class Tournament {
 				writer.print(output);
 				writer.close();
 			} catch (FileNotFoundException e) {
-				e.printStackTrace();
+				print("Couldn't write file.");
 			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
+				print("Unsupported encoding.");
 			}
 		}
 	}
