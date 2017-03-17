@@ -574,12 +574,12 @@ public class Tournament {
 			print("(Case sensitive)\n");
 			userSelection = null;
 			waitForUserInput();
-			Player p1 = fetchPlayer(userSelection);
+			Player p1 = findPlayerByName(userSelection);
 			userSelection = null;
 			print("Enter the name of the other player in that game.\n");
 			print("(Case sensitive)\n");
 			waitForUserInput();
-			Player p2 = fetchPlayer(userSelection);
+			Player p2 = findPlayerByName(userSelection);
 			userSelection = null;
 			if (p1 != null && p2 != null) {
 				reopenBattle(p1, p2);
@@ -693,7 +693,7 @@ public class Tournament {
 		}
 	}
 
-	private Player findPlayerByName(String s) {
+	Player findPlayerByName(String s) {
 		for (Player p : players) {
 			if (p.getName().equals(s)) {
 				return p;
@@ -749,15 +749,6 @@ public class Tournament {
 			pollForResults();
 			elimination();
 		}
-	}
-
-	private Player fetchPlayer(String playerName) {
-		for (Player p : players) {
-			if (p.getName().equals(playerName)) {
-				return p;
-			}
-		}
-		return null;
 	}
 
 	void addBatch(String playerList) {
