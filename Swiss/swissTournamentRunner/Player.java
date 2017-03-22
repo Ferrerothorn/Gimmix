@@ -10,7 +10,7 @@ public class Player implements Comparable<Player> {
 	double oppWr = 0;
 	double oppOppWr = 0;
 	int lastDocumentedPosition = 0;
-	ArrayList<Player> previousRounds = new ArrayList<>();
+	public ArrayList<Player> previousRounds = new ArrayList<>();
 	ArrayList<Player> victories = new ArrayList<>();
 
 	public Player(String string) {

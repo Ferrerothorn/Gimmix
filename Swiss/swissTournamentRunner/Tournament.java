@@ -14,16 +14,15 @@ public class Tournament {
 
 	public ArrayList<Player> players = new ArrayList<>();
 	public ArrayList<Battle> currentBattles = new ArrayList<>();
-	public ArrayList<Battle> totallyKosherPairings = new ArrayList<>();
 	public String userSelection = null;
 	boolean allParticipantsIn = false;
-	int numberOfRounds;
+	public int numberOfRounds;
 	int roundNumber = 1;
 	public GUI gui;
 	int longestPlayerNameLength = 0;
 	int x_elimination = 99;
 	Boolean isElimination = false;
-	String activeMetadataFile = "TournamentInProgress.tnt";
+	public String activeMetadataFile = "TournamentInProgress.tnt";
 
 	public int getX_elimination() {
 		return x_elimination;
@@ -171,25 +170,31 @@ public class Tournament {
 		return participantString;
 	}
 
-	public void generatePairings() {
+	public void generatePairings(int attempts) {
 
 		if (currentBattles.size() == 0) {
 
-			while (players.size() > 0) {
+			while (players.size() > 0 && attempts <= 10 && allParticipantsIn) {
 				Player p1 = players.remove(0);
-				pairThisGuyUp(p1, currentBattles);
+				pairThisGuyUp(p1, currentBattles, attempts);
 			}
-			currentBattles.addAll(totallyKosherPairings);
-			totallyKosherPairings.clear();
 
-			for (Battle b : currentBattles) {
-				players.add(b.getP1());
-				players.add(b.getP2());
+			if (attempts > 10) {
+				abort();
+				print(displayInDepthRankings());				
+			}
+
+			else {
+
+				for (Battle b : currentBattles) {
+					players.add(b.getP1());
+					players.add(b.getP2());
+				}
 			}
 		}
 	}
 
-	void pairThisGuyUp(Player p1, ArrayList<Battle> targetBattleList) {
+	public void pairThisGuyUp(Player p1, ArrayList<Battle> targetBattleList, int attempts) {
 		try {
 			boolean opponentFound = false;
 			int playerIndex = 0;
@@ -206,18 +211,21 @@ public class Tournament {
 			}
 		} catch (Exception e) {
 			disseminateBattles(currentBattles);
-			players.add(p1);
+			addPlayer(p1);
 			sortRankings(players);
-			players.remove(p1);
-			if (p1.getPositionInRankings() > players.size() / 2) {
-				Collections.reverse(players);
-			}
-			pairThisGuyUp(p1, totallyKosherPairings);
+			Collections.reverse(players);
+			generatePairings(attempts + 1);
 			sortRankings(players);
 		}
 	}
 
-	private void disseminateBattles(ArrayList<Battle> battles) {
+	private void abort() {
+		disseminateBattles(currentBattles);
+		sortRankings();
+		allParticipantsIn = false;
+	}
+
+	public void disseminateBattles(ArrayList<Battle> battles) {
 		for (Battle b : battles) {
 			Player p1 = b.getP1();
 			Player p2 = b.getP2();
@@ -228,7 +236,7 @@ public class Tournament {
 		battles.clear();
 	}
 
-	private void printCurrentBattles(String roundString) {
+	public void printCurrentBattles(String roundString) {
 		print(roundString);
 		for (Battle b : currentBattles) {
 			String playerOneString = b.getP1().getName() + " (" + b.getP1().getPositionInRankings()
@@ -245,7 +253,7 @@ public class Tournament {
 	public void pollForResults() {
 		assignTableNumbers(currentBattles);
 
-		while (currentBattles.size() > 0) {
+		while (currentBattles.size() > 0 && allParticipantsIn) {
 			String roundString = ("-=-=-=-ROUND " + roundNumber + "/" + numberOfRounds + "-=-=-=-");
 
 			try {
@@ -302,7 +310,7 @@ public class Tournament {
 		}
 	}
 
-	private void refreshScreen() {
+	public void refreshScreen() {
 		GUI.wipePane();
 		updateParticipantStats();
 		print(displayInDepthRankings());
@@ -310,7 +318,7 @@ public class Tournament {
 		print();
 	}
 
-	void handleBattleWinner(Battle b, String winner) {
+	public void handleBattleWinner(Battle b, String winner) {
 		switch (winner) {
 		case "1":
 			b.getP1().beats(b.getP2());
@@ -330,7 +338,7 @@ public class Tournament {
 		}
 	}
 
-	private void showHelp() {
+	public void showHelp() {
 		GUI.wipePane();
 		print("Welcome to B-T-C.\n"
 				+ "First, use the text bar below to enter the tournament's participants, one at a time.\n"
@@ -400,15 +408,15 @@ public class Tournament {
 
 	}
 
-	private void print() {
+	public void print() {
 		GUI.postString("");
 	}
 
-	void print(String string) {
+	public void print(String string) {
 		GUI.postString(string);
 	}
 
-	void waitForUserInput() {
+	public void waitForUserInput() {
 		while (userSelection == null) {
 			System.out.println(userSelection);
 		}
@@ -427,7 +435,7 @@ public class Tournament {
 		return null;
 	}
 
-	void assignTableNumbers(ArrayList<Battle> bIP) {
+	public void assignTableNumbers(ArrayList<Battle> bIP) {
 		int index = 1;
 		for (Battle b : bIP) {
 			b.setTableNumber(index);
@@ -461,7 +469,7 @@ public class Tournament {
 		this.userSelection = userSelection;
 	}
 
-	void adminTools() {
+	public void adminTools() {
 		userSelection = null;
 		print("Admin functions enabled.");
 		waitForUserInput();
@@ -608,7 +616,7 @@ public class Tournament {
 		userSelection = null;
 	}
 
-	void loadTournament(String fileName) throws IOException {
+	public void loadTournament(String fileName) throws IOException {
 		players.clear();
 		currentBattles.clear();
 
@@ -647,7 +655,7 @@ public class Tournament {
 		updateParticipantStats();
 	}
 
-	private void parseProperties(String line) {
+	public void parseProperties(String line) {
 		String[] propertyPair = line.split(":");
 		switch (propertyPair[0]) {
 
@@ -670,7 +678,7 @@ public class Tournament {
 		return b;
 	}
 
-	void addGamesToPlayerHistory(String line) {
+	public void addGamesToPlayerHistory(String line) {
 		String[] information = line.split("_");
 		Player p = findPlayerByName(information[0]);
 
@@ -695,7 +703,7 @@ public class Tournament {
 		}
 	}
 
-	Player findPlayerByName(String s) {
+	public Player findPlayerByName(String s) {
 		for (Player p : players) {
 			if (p.getName().equals(s)) {
 				return p;
@@ -704,7 +712,7 @@ public class Tournament {
 		return null;
 	}
 
-	void saveTournament() {
+	public void saveTournament() {
 
 		if (!activeMetadataFile.equals("TournamentInProgress.tnt")) {
 			String output = "";
@@ -740,20 +748,20 @@ public class Tournament {
 		}
 	}
 
-	void eliminationTournament() {
+	public void eliminationTournament() {
 		while (players.size() > 1) {
 			GUI.wipePane();
 			shufflePlayers();
 			sortRankings();
 			updateParticipantStats();
 			print(displayInDepthRankings());
-			generatePairings();
+			generatePairings(0);
 			pollForResults();
 			elimination();
 		}
 	}
 
-	void addBatch(String playerList) {
+	public void addBatch(String playerList) {
 		String[] names = playerList.split(",");
 		ArrayList<String> newPlayerNames = new ArrayList<>();
 		for (String s : names) {
@@ -785,7 +793,7 @@ public class Tournament {
 		return s;
 	}
 
-	private void renamePlayer(String renameMe, String newName) {
+	public void renamePlayer(String renameMe, String newName) {
 		if (newName.length() > longestPlayerNameLength) {
 			longestPlayerNameLength = newName.length();
 		}
@@ -806,7 +814,7 @@ public class Tournament {
 		}
 	}
 
-	void dropPlayer(String nameToDrop) {
+	public void dropPlayer(String nameToDrop) {
 
 		Boolean foundPlayerToDrop = false;
 		for (Battle b : currentBattles) {
@@ -937,5 +945,9 @@ public class Tournament {
 		}
 		dropPlayer("BYE");
 		addBye();
+	}
+
+	public void setAllParticipantsIn(boolean b) {
+		allParticipantsIn = b;
 	}
 }

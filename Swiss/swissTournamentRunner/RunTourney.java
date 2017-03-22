@@ -12,13 +12,14 @@ public class RunTourney {
 
 		showCredits();
 		tourney.signUpPlayers();
+		tourney.allParticipantsIn = true;
 
 		while (tourney.roundNumber <= tourney.getNumberOfRounds() && tourney.players.size() > 1) {
 			GUI.wipePane();
 			tourney.shufflePlayers();
 			tourney.updateParticipantStats();
 			tourney.displayInDepthRankings();
-			tourney.generatePairings();
+			tourney.generatePairings(0);
 			tourney.pollForResults();
 			if (tourney.isElimination) {
 				tourney.elimination();
@@ -30,7 +31,7 @@ public class RunTourney {
 		GUI.postString("FINAL STANDINGS");
 		GUI.postString();
 		tourney.updateParticipantStats();
-		tourney.displayInDepthRankings();
+		tourney.print(tourney.displayInDepthRankings());
 	}
 
 	private static void showCredits() {
