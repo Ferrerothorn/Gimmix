@@ -754,9 +754,12 @@ public class JUnit {
 	@Test
 	public void testTwoManEliminationTourneyEnds() {
 		Player p1 = new Player("P1");
+		Player p2 = new Player("P2");
 		t.addPlayer(p1);
+		t.addPlayer(p2);
 		t.setX_elimination(1);
-		t.eliminationTournament();
+		p1.beats(p2);
+		t.elimination();
 		assertEquals(1, t.players.size());
 	}
 
@@ -780,7 +783,7 @@ public class JUnit {
 		t.generatePairings(0);
 		t.handleBattleWinner(t.currentBattles.remove(0), "1");
 		t.elimination();
-		assertEquals(2, t.players.size());
+		assertEquals(1, t.players.size());
 		assertEquals("P1", t.players.get(0).getName());
 	}
 

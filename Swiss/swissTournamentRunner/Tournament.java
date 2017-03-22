@@ -159,13 +159,15 @@ public class Tournament {
 	public String displayInDepthRankings() {
 		String participantString = "-=-=-=-Rankings-=-=-=-" + '\n';
 		for (int i = 1; i <= players.size(); i++) {
-			participantString += rpad("" + i + ") " + players.get(i - 1).getName() + "                         ",
-					longestPlayerNameLength + 7) + "   "
-					+ rpad("Score: " + players.get(i - 1).getScore() + "                         ", 15) + "   "
-					+ rpad("TB: " + players.get(i - 1).getTB() + "                         ", 8) + "   "
-					+ rpad("Opp WR: " + players.get(i - 1).getOppWr() + "                         ", 12) + "    "
-					+ rpad("Opp Opp WR: " + players.get(i - 1).getOppOppWr() + "                         ", 16) + "   "
-					+ '\n';
+			if (!players.get(i - 1).getName().equals("BYE")) {
+				participantString += rpad("" + i + ") " + players.get(i - 1).getName() + "                         ",
+						longestPlayerNameLength + 7) + "   "
+						+ rpad("Score: " + players.get(i - 1).getScore() + "                         ", 15) + "   "
+						+ rpad("TB: " + players.get(i - 1).getTB() + "                         ", 8) + "   "
+						+ rpad("Opp WR: " + players.get(i - 1).getOppWr() + "                         ", 12) + "    "
+						+ rpad("Opp Opp WR: " + players.get(i - 1).getOppOppWr() + "                         ", 16)
+						+ "   " + '\n';
+			}
 		}
 		return participantString;
 	}
@@ -181,7 +183,7 @@ public class Tournament {
 
 			if (attempts > 10) {
 				abort();
-				print(displayInDepthRankings());				
+				print(displayInDepthRankings());
 			}
 
 			else {
@@ -201,7 +203,7 @@ public class Tournament {
 
 			while (!opponentFound) {
 				Player temp = players.get(playerIndex);
-				if (!p1.getOpponentsList().contains(temp) && !temp.getOpponentsList().contains(p1)) {
+				if (isElimination || (!p1.getOpponentsList().contains(temp) && !temp.getOpponentsList().contains(p1))) {
 					temp = players.remove(playerIndex);
 					Battle b = new Battle(p1, temp);
 					targetBattleList.add(b);
@@ -607,7 +609,6 @@ public class Tournament {
 			print("Players will be eliminated after " + getX_elimination() + " losses.");
 			userSelection = null;
 			currentBattles.clear();
-			eliminationTournament();
 			break;
 		default:
 			print("Invalid admin command. Returning to tournament...\n");
@@ -664,6 +665,10 @@ public class Tournament {
 			break;
 		case "numberOfRounds":
 			numberOfRounds = Integer.parseInt(propertyPair[1]);
+			break;
+		case "elimination":
+			setX_elimination(Integer.parseInt(propertyPair[1]));
+			elimination();
 			break;
 		default:
 			break;
@@ -745,19 +750,6 @@ public class Tournament {
 			} catch (UnsupportedEncodingException e) {
 				print("Unsupported encoding.");
 			}
-		}
-	}
-
-	public void eliminationTournament() {
-		while (players.size() > 1) {
-			GUI.wipePane();
-			shufflePlayers();
-			sortRankings();
-			updateParticipantStats();
-			print(displayInDepthRankings());
-			generatePairings(0);
-			pollForResults();
-			elimination();
 		}
 	}
 
@@ -943,8 +935,12 @@ public class Tournament {
 		for (Player p : cull) {
 			players.remove(p);
 		}
-		dropPlayer("BYE");
-		addBye();
+		if (players.size() == 1) {
+			abort();
+		} else {
+			dropPlayer("BYE");
+			addBye();
+		}
 	}
 
 	public void setAllParticipantsIn(boolean b) {

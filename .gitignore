@@ -4,11 +4,7 @@ perm/
 *.prefs
 *.project
 ~$
-*.xlsx#
-Gimmix/~$FE.xlsx
-Gimmix/FinalDraftPools.txt
 Gimmix/src/geneticEmblem/units/factory/~$FE.xlsx
 /bin/
 
 FinalDraftPools\.txt
-*.tnt

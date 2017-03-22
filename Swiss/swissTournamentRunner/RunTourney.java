@@ -23,8 +23,9 @@ public class RunTourney {
 			tourney.pollForResults();
 			if (tourney.isElimination) {
 				tourney.elimination();
+			} else {
+				tourney.roundNumber++;
 			}
-			tourney.roundNumber++;
 		}
 		tourney.saveTournament();
 		GUI.wipePane();
