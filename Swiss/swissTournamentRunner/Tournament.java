@@ -740,6 +740,9 @@ public class Tournament {
 			output += "PROPERTIES:\n";
 			output += "On Round:" + roundNumber + "\n";
 			output += "numberOfRounds:" + numberOfRounds + "\n";
+			if (isElimination) {
+				output += "elimination:" + x_elimination;
+			}
 
 			try {
 				PrintWriter writer = new PrintWriter(file, "UTF-8");
