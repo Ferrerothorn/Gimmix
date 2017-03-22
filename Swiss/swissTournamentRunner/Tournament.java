@@ -176,12 +176,12 @@ public class Tournament {
 
 		if (currentBattles.size() == 0) {
 
-			while (players.size() > 0 && attempts <= 10 && allParticipantsIn) {
+			while (players.size() > 0 && attempts <= 100 && allParticipantsIn) {
 				Player p1 = players.remove(0);
 				pairThisGuyUp(p1, currentBattles, attempts);
 			}
 
-			if (attempts > 10) {
+			if (attempts > 100) {
 				abort();
 				print(displayInDepthRankings());
 			}
