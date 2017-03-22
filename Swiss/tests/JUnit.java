@@ -171,12 +171,6 @@ public class JUnit {
 	}
 
 	@Test
-	public void testFindPLayerByNameFails() {
-		t.addBatch("P1,P2,P3,P4");
-		assertEquals(null, t.findPlayerByName("P5"));
-	}
-
-	@Test
 	public void testAddingNoNamePlayerFails() {
 		t.addPlayer("");
 		assertEquals(0, t.players.size());
