@@ -714,7 +714,7 @@ public class Tournament {
 				return p;
 			}
 		}
-		return null;
+		return new Player(s);
 	}
 
 	public void saveTournament() {
