@@ -477,6 +477,9 @@ public class Tournament {
 		waitForUserInput();
 		switch (userSelection.toLowerCase()) {
 
+		case "roundrobin":
+			generateRRpairings();
+			break;
 		case "save":
 			saveTournament();
 			break;
@@ -615,6 +618,35 @@ public class Tournament {
 			break;
 		}
 		userSelection = null;
+	}
+
+	private void generateRRpairings() {
+		currentBattles.clear();
+		for (Player p : players) {
+			p.getOpponentsList().clear();
+			p.getListOfVictories().clear();
+		}
+		this.setNumberOfRounds(1);
+		this.roundNumber = 1;
+
+		for (Player p : players) {
+			for (Player q : players) {
+				if (p != q && noSuchPairing(currentBattles, p, q)) {
+					currentBattles.add(new Battle(p, q));
+				}
+			}
+		}
+		assignTableNumbers(currentBattles);
+	}
+
+	private boolean noSuchPairing(ArrayList<Battle> battles, Player p, Player q) {
+		boolean doesntExist = true;
+		for (Battle b : battles) {
+			if ((b.getP1().equals(p) || b.getP2().equals(p)) && (b.getP1().equals(q) || b.getP2().equals(q))) {
+				doesntExist = false;
+			}
+		}
+		return doesntExist;
 	}
 
 	public void loadTournament(String fileName) throws IOException {
