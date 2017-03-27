@@ -1,19 +1,3 @@
-gen6nu]GPLTournamentTeams/NU_o1
-|Thundercat|manectric|choicescarf|1|flamethrower,hiddenpowergrass,thunderbolt,voltswitch|Timid|,,,252,4,252||,0,,30,,|||]
-Viola|vileplume|blacksludge|H|sludgebomb,hiddenpowerfire,gigadrain,synthesis|Modest|252,,156,100,,||,0,,30,,30|||]
-LordHelix|omastar|focussash|1|shellsmash,scald
-FuriousMonkey|primeape|choicescarf|H|closecombat,nightslash,icepunch,uturn|Jolly|,252,,,4,252|||||]
-Levi|claydol|leftovers||rapidspin,psychic,stealthrock,toxic|Calm|252,,,4,252,||,0,,,,|||]
-Spike|ferroseed|eviolite||leechseed,seedbomb,spikes,protect|Impish|248,8,252,,,|||||
-
-showdown_teamsgen7ou]FairlyNormal
-|bewear|choiceband||return,hammerarm,icepunch,earthquake|Adamant|,252,4,,,252|||||]
-|vigoroth|eviolite||bulkup,slackoff,nightslash,return|Jolly|252,,,,240,16|||||]
-|ninetales|lifeorb|H|nastyplot,fireblast,psyshock,energyball|Timid|,,,252,4,252||,0,,,,|||]
-|xurkitree|psychiumz||hypnosis,thunderbolt,energyball,tailglow|Timid|,,,252,4,252|||||]
-|dhelmise|leftovers||powerwhip,anchorshot,toxic,rapidspin|Impish|252,4,252,,,|||||]
-|rotomwash|sitrusberry||hydropump,voltswitch,willowisp,thunderbolt|Calm|252,,,4,252,|||||
-
 gen7kantoxalolaregionalrumble]
 Untitled33||mimikyu|lifeorb||shadowclaw,swordsdance,playrough,shadowsneak|Jolly|,252,,,4,252|||||]
 |mukalola|assaultvest||knockoff,pursuit,poisonjab,fireblast|Brave|252,240,,,16,|||||]
@@ -22,14 +6,6 @@ jolteon|choicespecs||voltswitch,thunderbolt,hiddenpowerice,shadowball|Timid|,,,2
 |lilligant|focussash|1|petaldance,gigadrain,quiverdance,toxic|Timid|,,,252,4,252||,0,,,,|||]
 |gyarados|leftovers|H|earthquake,waterfall,substitute,dragondance|Jolly|,252,,,4,252|||||
 
-gen6monotype]
-|diancie|diancite||moonblast,diamondstorm,hiddenpowerfire,protect|Hasty|,20,,236,,252|||||]
-|clefable|leftovers|1|moonblast,softboiled,stealthrock,thunderwave|Calm|252,,172,,84,||,0,,,,|||]
-|togekiss|leftovers|1|nastyplot,airslash,healbell,roost|Timid|252,,80,,,176|||||]
-|gardevoir|leftovers|1|calmmind,moonblast,psyshock,substitute|Timid|,,,252,4,252||,0,,,,|||]
-|azumarill|choiceband|1|playrough,aquajet,waterfall,superpower|Adamant|92,252,,,,164|||||]
-|whimsicott|leftovers||uturn,encore,moonblast,stunspore|Bold|252,,252,,4,|||||
-
 gen6ou]VGCDraft_2/Vs.Jessicat|
 Squishy|quagsire|leftovers|H|recover,earthquake,scald,toxic|Relaxed|252,4,252,,,|||||]
 GoGoGadget|golbat|eviolite|H|defog,roost,bravebird,superfang|Calm|252,,4,,252,|M||||]
@@ -37,22 +13,6 @@ Hi,I'mSeaweed|dragalge|assaultvest|H|focusblast,dracometeor,sludgewave,shadowbal
 BloodMoon|absol|absolite|H|suckerpunch,nightslash,psychocut,playrough|Jolly|,252,,,4,252|M||S||]
 Stevu|gardevoir|choicescarf|1|moonblast,psyshock,energyball,shadowball|Timid|,,,252,4,252|M|,0,,,,|||]
 Dara|celebi|leftovers||stealthrock,gigadrain,earthpower,psychic|Modest|220,,,252,,36||,0,,,,|||
-
-gen6ou]VGCDraft_2/Vs.Andy
-Sarah|celebi|leftovers||psychic,recover,thunderwave,healingwish|Bold|252,,156,,84,16||,0,,,,|||]
-Porthos|terrakion|lifeorb||ironhead,closecombat,stoneedge,earthquake|Jolly|,252,,,4,252|||||]
-Ferrum|registeel|shedshell||stealthrock,ironhead,earthquake,thunderwave|Careful|252,,4,,252,|||||]
-Desmarestia|dragalge|assaultvest|H|dracometeor,sludgewave,scald,focusblast|Modest|252,,,252,4,||,0,,,,|||]
-Leeteuk|arcanine|lifeorb||fireblast,hiddenpowerice,dragonpulse,extremespeed|Naive|,4,,252,,252||,30,30,,,|||]
-Cyrene|flygon|choicescarf||earthquake,uturn,dragonclaw,firepunch|Adamant|,252,,,4,252|||||
-
-gen6ou]VGCDraft_2/Vs.Dave
-Sarah|celebi|lifeorb||energyball,recover,psychic,dazzlinggleam|Timid|,,,252,4,252||,0,,,,|||]
-Desmarestia|dragalge|assaultvest|H|dracometeor,sludgewave,thunderbolt,scald|Modest|252,,,252,4,||,0,,,,|||]
-Medaka|quagsire|leftovers|H|scald,toxic,recover,earthquake|Relaxed|252,4,252,,,|||S||]
-Leeteuk|arcanine|lifeorb||closecombat,flareblitz,crunch,extremespeed|Jolly|,252,,,4,252|M||||]
-Ferrum|registeel|leftovers||stealthrock,ironhead,thunderwave,earthquake|Careful|252,,4,,252,|||||]
-Porthos|terrakion|choicescarf||closecombat,stoneedge,poisonjab,aerialace|Jolly|,252,,,4,252|||||
 
 gen6ou]VGCDraft_2/Vs.Glen
 Medaka|quagsire|leftovers|H|scald,recover,earthquake,toxic|Relaxed|252,,252,,4,|||||]
@@ -64,7 +24,7 @@ Tristan|gardevoir|leftovers|1|calmmind,moonblast,psyshock,substitute|Timid|,,,25
 
 gen6ou]VGCDraft_2/Vs.Steve
 Steve|gardevoir|choicescarf|1|moonblast,psyshock,destinybond,thunderbolt|Timid|,,,252,4,252|F|,0,,,,|S||]
-Leetuek|arcanine|leftovers||morningsun,willowisp,extremespeed,flareblitz|Impish|248,8,252,,,|M||||]
+Leetuek|arcanine|leftovers||morningsun,willowisp,extremespeed,flareblitz|Impish|248,8,252,,,|M||||]
 Chiroptera|golbat|eviolite|H|bravebird,defog,roost,haze|Careful|248,8,,,252,|F||||]
 Rouge|crawdaunt|lifeorb|H|aquajet,crabhammer,knockoff,swordsdance|Adamant|252,252,,,4,|||||]
 Desmarestia|dragalge|assaultvest|H|dracometeor,sludgewave,thunderbolt,dragonpulse|Calm|252,,,132,124,||,0,,,,|||]
@@ -247,7 +207,6 @@ Sokka|vaporeon|leftovers||healbell,protect,scald,icywind|Bold|252,,60,,196,|M|||
 
 gen6vgc2016]VCGRegionals:
 Aria|salamencemega|salamencite|intimidate|hydropump,hypervoice,f
-,icebeam,earthpower|Modest|,,,252,4,252||,0,,,,|||]
 
 gen6monotype:GPLTournamentTeams/Mono_Fighting
 ||heracross|heracronite|1|closecombat,pinmissile,rockblast,swordsdance|Jolly|,252,4,,,252|||||]
