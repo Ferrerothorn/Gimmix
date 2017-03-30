@@ -1,11 +1,3 @@
-gen7kantoxalolaregionalrumble]
-Untitled33||mimikyu|lifeorb||shadowclaw,swordsdance,playrough,shadowsneak|Jolly|,252,,,4,252|||||]
-|mukalola|assaultvest||knockoff,pursuit,poisonjab,fireblast|Brave|252,240,,,16,|||||]
-|blastoise|sitrusberry||scald,rapidspin,roar,toxic|Bold|252,,252,4,,||,0,,,,|||]
-jolteon|choicespecs||voltswitch,thunderbolt,hiddenpowerice,shadowball|Timid|,,,252,4,252|||||]
-|lilligant|focussash|1|petaldance,gigadrain,quiverdance,toxic|Timid|,,,252,4,252||,0,,,,|||]
-|gyarados|leftovers|H|earthquake,waterfall,substitute,dragondance|Jolly|,252,,,4,252|||||
-
 gen6ou]VGCDraft_2/Vs.Jessicat|
 Squishy|quagsire|leftovers|H|recover,earthquake,scald,toxic|Relaxed|252,4,252,,,|||||]
 GoGoGadget|golbat|eviolite|H|defog,roost,bravebird,superfang|Calm|252,,4,,252,|M||||]
@@ -13,22 +5,6 @@ Hi,I'mSeaweed|dragalge|assaultvest|H|focusblast,dracometeor,sludgewave,shadowbal
 BloodMoon|absol|absolite|H|suckerpunch,nightslash,psychocut,playrough|Jolly|,252,,,4,252|M||S||]
 Stevu|gardevoir|choicescarf|1|moonblast,psyshock,energyball,shadowball|Timid|,,,252,4,252|M|,0,,,,|||]
 Dara|celebi|leftovers||stealthrock,gigadrain,earthpower,psychic|Modest|220,,,252,,36||,0,,,,|||
-
-gen6ou]VGCDraft_2/Vs.Glen
-Medaka|quagsire|leftovers|H|scald,recover,earthquake,toxic|Relaxed|252,,252,,4,|||||]
-Chiroptera|golbat|eviolite|H|defog,roost,bravebird,toxic|Careful|252,,,,176,80|F||||]
-Leeteuk|arcanine|lifeorb||flareblitz,extremespeed,wildcharge,closecombat|Jolly|,252,4,,,252|M||||]
-Sarah|celebi|leftovers||nastyplot,gigadrain,psychic,dazzlinggleam|Timid|,,,252,4,252||,0,,,,|||]
-Cyrene|flygon|choicescarf||outrage,earthquake,uturn,defog|Jolly|,252,,,4,252|||||]
-Tristan|gardevoir|leftovers|1|calmmind,moonblast,psyshock,substitute|Timid|,,,252,4,252|M||S||
-
-gen6ou]VGCDraft_2/Vs.Steve
-Steve|gardevoir|choicescarf|1|moonblast,psyshock,destinybond,thunderbolt|Timid|,,,252,4,252|F|,0,,,,|S||]
-Leetuek|arcanine|leftovers||morningsun,willowisp,extremespeed,flareblitz|Impish|248,8,252,,,|M||||]
-Chiroptera|golbat|eviolite|H|bravebird,defog,roost,haze|Careful|248,8,,,252,|F||||]
-Rouge|crawdaunt|lifeorb|H|aquajet,crabhammer,knockoff,swordsdance|Adamant|252,252,,,4,|||||]
-Desmarestia|dragalge|assaultvest|H|dracometeor,sludgewave,thunderbolt,dragonpulse|Calm|252,,,132,124,||,0,,,,|||]
-Porthos|terrakion|lifeorb||stoneedge,closecombat,rockpolish,stealthrock|Adamant|,252,,,4,252|||||
 
 gen6ou]VGCDraft_2/Vs.Mik
 Porthos|terrakion|lifeorb||swordsdance,closecombat,stoneedge,substitute|Jolly|,252,4,,,252|||||]
@@ -53,14 +29,6 @@ gen6ou]GPLTournamentTeams/Generations_o2
 |garchomp|choicescarf|H|dragonclaw,earthquake,ironhead,stoneedge|Jolly|,252,,,4,252|||||]
 |bisharp|lifeorb||swordsdance,suckerpunch,knockoff,ironhead|Jolly|,252,,,4,252|||||]]
 |volcanion|choicespecs||fireblast,steameruption,earthpower,sludgewave|Modest|152,,,252,,104||,0,,,,|||
-
-gen6ou]VGCDraft_2/Vs.Jelliot
-|Leeteuk|arcanine|lifeorb||extremespeed,closecombat,crunch,flareblitz|Jolly|,252,,,4,252|M||||]
-Cyrene|flygon|choicescarf||dragonrush,earthquake,uturn,tailwind|Jolly|,252,,,4,252|F||||]
-Hotaru|umbreon|leftovers||wish,protect,healbell,foulplay|Calm|252,,4,,252,|F|,0,,,,|||]
-Amiee|gardevoir|choicespecs|1|moonblast,psyshock,focusblast,hiddenpowerpoison|Timid|,,,252,4,252|F|,1,30,30,30,|||]
-Sarah|celebi|leftovers||gigadrain,earthpower,stealthrock,psychic|Modest|220,,,252,,36||,0,,,,|||]
-Chiroptera|golbat|eviolite|H|defog,roost,bravebird,superfang|Impish|252,,252,,4,|F||||
 
 gen6ru]Untitled21
 |houndoom|lifeorb|1|nastyplot,flamethrower,darkpulse,sludgebomb|Timid|,,,252,4,252|||||]
@@ -163,7 +131,7 @@ breloom|choiceband|H|forcepalm,bulletseed,machpunch,rocktomb|Adamant|,252,,,4,25
 terrakion|choicescarf||rockslide,earthquake,xscissor,closecombat|Jolly|,252,,,4,252|||||]
 sharpedo|focussash|H|protect,waterfall,crunch,poisonjab|Adamant|,252,,,4,252|||||]
 dianciemega|diancite||moonblast,diamondstorm,earthpower,protect|Hasty|,4,,252,,252|||||]
-keldeo|choicespecs||scald,secr(etsword,icywind,hydropump|Timid|,,,252,4,252||,0,,,,|||]
+keldeo|choicespecs||scald,secretsword,icywind,hydropump|Timid|,,,252,4,252||,0,,,,|||]
 espeon|choicescarf|H|psyshock,shadowball,signalbeam,dazzlinggleam|Timid|,,,252,4,252||,0,,,,|||
 
 gen6ou]VGCDraft_1/Vs.Glen
@@ -173,138 +141,3 @@ Dia|dianciemega|diancite||diamondstorm,moonblast,hiddenpowergrass,protect|Hasty|
 Leeteuk|arcanine|lifeorb||closecombat),flareblitz,crunch,extremespeed|Jolly|,252,,,4,252|M||S||]
 Calrissian|landorustherian|leftovers||stealthrock,uturn,knockoff,earthquake|Impish|252,,252,,4,|||||]
 Draco|hydreigon|choicescarf||darkpulse,dracometeor,earthpower,flamethrower|Timid|,,,252,4,252|M|,0,,,,|||
-
-gen6nu]
-Mawile_NU||mawile|lifeorb|H|playrough,ironhead,fireblast,suckerpunch|Naughty|,252,,4,,252|||||]
-|floatzel|lifeorb||hydropump,icebeam,focusblast,batonpass|Timid|,,4,252,,252||,0,,,,|||]|
-hariyama|choiceband|1|closecombat,knockoff,stoneedge,b*ulletpunch|Adamant|,252,108,,112,36|||||]
-|mesprit|leftovers||stealthrock,psychic,uturn,thunderwave|Bold|252,,240,,,16|||||]|
-garbodor|rockyhelmet|H|spikes,toxicspikes,gunkshot,seedbomb|Impish|252,,200,,,56|||||]|
-mismagius|colburberry||willowisp,taunt,hex,painsplit|Timid|252,,4,,,252|||||
-
-gen6ou]VGCDraft_1/Vs.Darren
-d'Artagnan|keldeo|choicespecs||scald,secretsword,hydropump,hiddenpowerelectric|Timid|,,,252,4,252||,1,,30,,|||]
-Mina|breloom|lifeorb|H|spore,swordsdance,bulletseed,machpunch|Jolly|,252,,,4,252|F||||]
-Dia|dianciemega|diancite||diamondstorm,moonblast,rockpolish,protect|Hasty|88,32,,252,,136|||||]
-Leeteuk|arcanine|leftovers||morningsun,willowisp,flareblitz,extremespeed|Impish|248,8,252,,,|M||S||]
-Porthos|terrakion|lifeorb||swordsdance,closecombat,stoneedge,substitute|Jolly|,252,4,,,252|||||]
-Draco|hydreigon|choicescarf||dracometeor,darkpulse,earthpower,fireblast|Timid|4,,,252,,252|M|,0,,,,|||
-
---------------------------
-FRAGMENTS
---------------------------
-
-gen6ou]VGCDraft_1 Vs.Crisdean
-Mamoru|espeon|choicespecs|H|dazzlinggleam,psychic,hiddenpowerrock,trick|Timid|
-
-ireblast,protect|Timid|4,,,252,,252|F|||50|]
-
-Kyuhyun|aegislash|weaknesspolicy||kingsshield,shadowsneak,shadowball,flashcannon|Quiet|252,,8,92,,156|M|||50|]
-Leeteuk|arcanine|lifeorb||flareblitz,closecombat,extremespeed,protect|Jolly|,252,,,4,252|M|||50|]
-Mina|breloom|focussash|H|machpunch,seedbomb,protect,spore|Jolly|,252,,,4,252|F|||50|]
-CroBatman|crobat|lumberry||taunt,tailwind,quickguard,superfang|Timid|84,,172,,,252|M|||50|]
-Sokka|vaporeon|leftovers||healbell,protect,scald,icywind|Bold|252,,60,,196,|M|||50|
-
-gen6vgc2016]VCGRegionals:
-Aria|salamencemega|salamencite|intimidate|hydropump,hypervoice,f
-
-gen6monotype:GPLTournamentTeams/Mono_Fighting
-||heracross|heracronite|1|closecombat,pinmissile,rockblast,swordsdance|Jolly|,252,4,,,252|||||]
-|toxicroak|blacksludge|1|gunkshot,drainpunch,suckerpunch,icepunch|Jolly|,252,4,,,252|||||]
-|keldeoresolute|choicespecs||hydropump,secretsword,hiddenpowerbug,icywind|Timid|,,4,252,,252||,30,30,,30,|||]
-|lucario|lifeorb||nastyplot,aurasphere,flashcannon,darkpulse|Timid|,,,252,4,252|||||]
-chesnaught|leftovers|H|leechseed,drainpunch,earthquake,spikyshield|Impish|252,,252,,4,|||||]
-|infernape|leftovers||willowisp,slackoff,blazekick,lowkick|Jolly|248,,88,,124,48|||||
-
-Calrissean|landorustherian|leftovers||knockoff,stealthrock,rockslide,earthquake|Careful|252,4,,,252,|||||]
-Mina|breloom|focussash|H|spore,machpunch,seedbomb,rocktomb|Jolly|,252,,,4,252|F||||]
-Hotaru|umbreon|leftovers||healbell,foulplay,wish,protect|Bold|252,,252,,4,|F|,0,,,,|S||]
-Porthos|terrakion|choicescarf||closecombat,earthquake,stoneedge,zenheadbutt|Jolly|,252,,,4,252|||||]
-d'Artagnan|keldeoresolute|choicespecs||secretsword,scald,icywind,hydropump|Timid|,,,252,4,252||,0,,,,
-
-gen7vgc2017]Untitled31||arcanine|sitrusberry|||Timid|148,,4,164,28,164||,0,,,,||50|]
-|celesteela|leftovers|||Careful|188,4,60,,180,76||||50|]
-|gastrodoneast|sitrusberry|1||Bold|236,,156,12,100,4||,0,,,,||50
-
-
-PERSONAL
-
-http://www.mtgthesource.com/forums/showthread.php?5302-Deck-Solitaire-(Enchantress)
-
-http://www.mtgthesource.com/forums/showthread.php?19745-Deck-Dragon-Stompy
-
-3 Serra's Sanctum
-20 Mox Diamond
-20 Force of Will
-4 Cruel Bargain
-12 Lion's Eye Diamond
-12 Chalice of the Void
-4 All Is Dust
-4 Snapcaster Mage
-12 Cavern of Souls
-4 Ancient Ziggurat
-20 Rishadan Port
-2 Ghostly Prison
-4 Elephant Grass
-4 Vexing Devil
-8 Ensnaring Bridge
-4 Goblin Tinker
-4 Mirri's Guile
-4 Eidolon of the Great Revel
-4 Helm of Obedience
-4 Meddling Mage
-4 Sterling Grove
-4 Chains of Mephistopheles
-4 Steel Overseer
-4 Eldrazi Conscription
-4 Personal Tutor
-4 Argothian Enchantress
-2 Platinum Angel
-4 Summoner's Pact
-4 Carpet of Flowers
-4 Lord of the Undead
-2 Grim Monolith
-4 Fauna Shaman
-4 Koth of the Hammer
-4 Crystalline Sliver
-4 Galerider Sliver
-4 Master of the Pearl Trident
-4 Death Baron
-4 Arcbound Ravager
-4 Lotus Petal
-8 Tarmogoyf
-2 Rest in Peace
-80 Dual Lands
-80 Fetchlands
-The Rack
-Luminarch Ascension
-4 Unmask
-4 Painter's Servant
-3 Tolaria West
-Aether Vial
-4 Utopia Sprawl
-4 Exploration
-Noble Hierarch
-Engineered Explosives
-4 Survival of the Fittest
-Urborg, Tomb of Yawgmoth
-8 Intuition
-4 Infernal Tutor
-4 Simian Spirit Guide
-4 Elvish Spirit Guide
-2 The Chain Veil
-4 Vengevine
-4 Enchantress's Presence
-1 Academy Ruins
-4 Scrying Sheets
-4 Tezzeret, Agent of Bolas
-4 Glimpse of Nature
-2 Dark Depths
-4 Grindstone
-4 Glimpse The Unthinkable
-8 Goblin Guide
-4 Goblin Welder
-12 Wasteland
-2 Phyrexian Tower
-4 Academy Rector
-
