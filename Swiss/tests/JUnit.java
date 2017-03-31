@@ -709,7 +709,43 @@ public class JUnit {
 
 		assertEquals(4, t.players.size());
 	}
-
+	
+	@Test
+	public void testDroppingPlayer_AddsBye_DroppingAnother_RemovesBye_SameRound() {
+		t.addBatch("p1,p2,p3,p4,p5,p6,p7,p8,p9,p0");
+		assertEquals(10, t.players.size());
+		t.generatePairings(0);
+		t.handleBattleWinner(t.currentBattles.remove(4), "2");
+		t.dropPlayer("p9");
+		assertEquals(10, t.players.size());
+		t.dropPlayer("p0");
+		t.updateParticipantStats();
+		assertEquals(8, t.players.size());
+	}
+	
+	@Test
+	public void testDroppingPlayer_AddsBye_DroppingAnother_RemovesBye_NextRound() {
+		t.addBatch("p1,p2,p3,p4,p5,p6,p7,p8,p9,p0");
+		assertEquals(10, t.players.size());
+		t.generatePairings(0);
+		while (t.currentBattles.size() > 1) {
+		t.handleBattleWinner(t.currentBattles.remove(0), "1");
+		}
+		t.dropPlayer("p8");
+		assertEquals(10, t.players.size());
+		t.handleBattleWinner(t.currentBattles.remove(0), "1");
+		t.updateParticipantStats();
+		t.sortRankings();
+		System.out.println(t.rankingsToOneBigString());
+		
+		t.generatePairings(0);
+		while (t.currentBattles.size() > 1) {
+		t.handleBattleWinner(t.currentBattles.remove(0), "1");
+		}
+		t.dropPlayer("p6");
+		assertEquals(8, t.players.size());		
+	}
+	
 	@Test
 	public void testDoubleElimination_EliminatesCorrectly() {
 		Player p1 = new Player("P1");
