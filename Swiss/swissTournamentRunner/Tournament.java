@@ -811,6 +811,9 @@ public class Tournament {
 	}
 
 	private String trimWhitespace(String s) {
+		if (s.length() == 0) {
+			return s;
+		}		
 		if (s.charAt(0) == ' ' || s.charAt(0) == '\t') {
 			return trimWhitespace(s.substring(1));
 		}
@@ -879,6 +882,25 @@ public class Tournament {
 		if (!nameToDrop.equals("BYE") && (players.size() % 2 == 1) && !containsPlayer("BYE")) {
 			addPlayer("BYE");
 		} else if (!nameToDrop.equals("BYE")) {
+			dropPlayer("BYE");
+		}
+
+		if ((players.size() % 2 == 1) && containsPlayer("BYE")) {
+			Battle byeMatch = null;
+			for (Battle b : currentBattles) {
+				if (b.getP1().getName().equals("BYE")) {
+					byeMatch = b;
+					b.getP2().beats(b.getP1());
+					b = null;
+				} else if (b.getP2().getName().equals("BYE")) {
+					byeMatch = b;
+					b.getP1().beats(b.getP2());
+					b = null;
+				}
+			}
+			if (byeMatch != null) {
+				currentBattles.remove(byeMatch);
+			}
 			dropPlayer("BYE");
 		}
 
