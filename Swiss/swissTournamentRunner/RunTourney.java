@@ -18,7 +18,7 @@ public class RunTourney {
 			GUI.wipePane();
 			tourney.shufflePlayers();
 			tourney.updateParticipantStats();
-			tourney.displayInDepthRankings();
+			tourney.print(tourney.displayInDepthRankings());
 			tourney.generatePairings(0);
 			tourney.pollForResults();
 			if (tourney.isElimination) {

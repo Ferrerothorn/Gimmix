@@ -14,10 +14,11 @@ public class Tournament {
 
 	public ArrayList<Player> players = new ArrayList<>();
 	public ArrayList<Battle> currentBattles = new ArrayList<>();
+	public ArrayList<Battle> totallyKosherPairings = new ArrayList<>();
 	public String userSelection = null;
 	boolean allParticipantsIn = false;
 	public int numberOfRounds;
-	int roundNumber = 1;
+	public int roundNumber = 1;
 	public GUI gui;
 	int longestPlayerNameLength = 0;
 	int x_elimination = 99;
@@ -146,18 +147,17 @@ public class Tournament {
 
 		if (currentBattles.size() == 0) {
 
-			while (players.size() > 0 && attempts <= 100 && allParticipantsIn) {
+			while (players.size() > 0 && attempts <= 100) {
 				Player p1 = players.remove(0);
 				pairThisGuyUp(p1, currentBattles, attempts);
 			}
+			currentBattles.addAll(totallyKosherPairings);
+			totallyKosherPairings.clear();
 
 			if (attempts > 100) {
 				abort();
 				print(displayInDepthRankings());
-			}
-
-			else {
-
+			} else {
 				for (Battle b : currentBattles) {
 					players.add(b.getP1());
 					players.add(b.getP2());
@@ -173,7 +173,7 @@ public class Tournament {
 
 			while (!opponentFound) {
 				Player temp = players.get(playerIndex);
-				if (isElimination || (!p1.getOpponentsList().contains(temp) && !temp.getOpponentsList().contains(p1))) {
+				if (!p1.getOpponentsList().contains(temp) && !temp.getOpponentsList().contains(p1)) {
 					temp = players.remove(playerIndex);
 					Battle b = new Battle(p1, temp);
 					targetBattleList.add(b);
@@ -182,17 +182,26 @@ public class Tournament {
 				playerIndex++;
 			}
 		} catch (Exception e) {
-			disseminateBattles(currentBattles);
-			addPlayer(p1);
-			sortRankings(players);
-			Collections.reverse(players);
-			generatePairings(attempts + 1);
-			sortRankings(players);
+			if (attempts >= 100) {
+				players.add(p1);
+				abort();
+			} else {
+				disseminateBattles(currentBattles);
+				players.add(p1);
+				sortRankings(players);
+				players.remove(p1);
+				if (p1.getPositionInRankings() > players.size() / 2) {
+					Collections.reverse(players);
+				}
+				pairThisGuyUp(p1, totallyKosherPairings, attempts + 1);
+				sortRankings(players);
+			}
 		}
 	}
 
 	void abort() {
 		disseminateBattles(currentBattles);
+		disseminateBattles(totallyKosherPairings);
 		sortRankings();
 		allParticipantsIn = false;
 	}
@@ -783,7 +792,7 @@ public class Tournament {
 	private String trimWhitespace(String s) {
 		if (s.length() == 0) {
 			return s;
-		}		
+		}
 		if (s.charAt(0) == ' ' || s.charAt(0) == '\t') {
 			return trimWhitespace(s.substring(1));
 		}
@@ -958,5 +967,12 @@ public class Tournament {
 
 	public void setAllParticipantsIn(boolean b) {
 		allParticipantsIn = b;
+	}
+
+	public void autocompleteRound() {
+		while (currentBattles.size() > 0) {
+			handleBattleWinner(currentBattles.remove(0), "1");
+		}
+		roundNumber++;
 	}
 }
