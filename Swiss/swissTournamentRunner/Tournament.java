@@ -173,7 +173,7 @@ public class Tournament {
 
 			while (!opponentFound) {
 				Player temp = players.get(playerIndex);
-				if (!p1.getOpponentsList().contains(temp) && !temp.getOpponentsList().contains(p1)) {
+				if (isElimination || (!p1.getOpponentsList().contains(temp) && !temp.getOpponentsList().contains(p1))) {
 					temp = players.remove(playerIndex);
 					Battle b = new Battle(p1, temp);
 					targetBattleList.add(b);
