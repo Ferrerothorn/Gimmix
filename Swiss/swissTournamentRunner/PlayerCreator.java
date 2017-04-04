@@ -16,7 +16,7 @@ public class PlayerCreator {
 			switch (t.userSelection.toLowerCase()) {
 			case "help":
 				t.userSelection = null;
-				t.showHelp();
+				Utils.showHelp();
 				break;
 			case "no":
 				t.allParticipantsIn = true;
