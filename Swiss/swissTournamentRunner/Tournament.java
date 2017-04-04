@@ -268,7 +268,9 @@ public class Tournament {
 					if (!((b.getP1().getName().equals("BYE") || (b.getP2().getName().equals("BYE"))))) {
 
 						waitForUserInput();
-						handleBattleWinner(b, userSelection);
+						if (userSelection.equals("1") || userSelection.equals("2") || userSelection.equals("3")) {
+							Utils.handleBattleWinner(b, userSelection);
+						}
 					} else {
 						if (b.getP1().getName().equals("BYE")) {
 							b.getP2().beats(b.getP1());
@@ -297,26 +299,6 @@ public class Tournament {
 		print(displayInDepthRankings());
 		print();
 		print();
-	}
-
-	public void handleBattleWinner(Battle b, String winner) {
-		switch (winner) {
-		case "1":
-			b.getP1().beats(b.getP2());
-			b = null;
-			break;
-		case "2":
-			b.getP2().beats(b.getP1());
-			b = null;
-			break;
-		case "3":
-			b.getP1().tied(b.getP2());
-			b = null;
-			break;
-		default:
-			currentBattles.add(b);
-			break;
-		}
 	}
 
 	public void print() {
@@ -897,12 +879,5 @@ public class Tournament {
 
 	public void setAllParticipantsIn(boolean b) {
 		allParticipantsIn = b;
-	}
-
-	public void autocompleteRound() {
-		while (currentBattles.size() > 0) {
-			handleBattleWinner(currentBattles.remove(0), "1");
-		}
-		roundNumber++;
 	}
 }
