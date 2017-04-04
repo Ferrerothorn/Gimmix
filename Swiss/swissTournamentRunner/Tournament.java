@@ -34,7 +34,6 @@ public class Tournament {
 	}
 
 	public void signUpPlayers() {
-
 		if (activeMetadataFile.equals("TournamentInProgress.tnt")) {
 			print("Enter the name of this tournament.");
 			waitForUserInput();
@@ -54,33 +53,8 @@ public class Tournament {
 				e.printStackTrace();
 			}
 		} else {
-
-			while (!allParticipantsIn) {
-				print("Enter the name of the next participant, or enter 'no' if done.\n");
-				GUI.postString("(You can enter 'help' at any time for some instructions.)");
-				waitForUserInput();
-				switch (userSelection.toLowerCase()) {
-				case "help":
-					userSelection = null;
-					showHelp();
-					break;
-				case "no":
-					allParticipantsIn = true;
-					userSelection = null;
-					break;
-				default:
-					if (userSelection.contains(",")) {
-						addBatch(userSelection);
-					} else if (userSelection.length() > longestPlayerNameLength) {
-						longestPlayerNameLength = userSelection.length();
-						addPlayer(userSelection);
-					} else {
-						addPlayer(userSelection);
-					}
-					userSelection = null;
-				}
-			}
-			addBye();
+			PlayerCreator playerCreator = new PlayerCreator(this);
+			playerCreator.capturePlayers();
 		}
 	}
 
@@ -100,10 +74,6 @@ public class Tournament {
 		while (numberOfRounds < logBase2(players.size())) {
 			numberOfRounds++;
 		}
-	}
-
-	public void newTourney() {
-		players.clear();
 	}
 
 	public void sortRankings(ArrayList<Player> ps) {
@@ -221,7 +191,7 @@ public class Tournament {
 		}
 	}
 
-	private void abort() {
+	void abort() {
 		disseminateBattles(currentBattles);
 		sortRankings();
 		allParticipantsIn = false;
@@ -982,22 +952,8 @@ public class Tournament {
 	}
 
 	public void elimination() {
-		sortRankings();
-		ArrayList<Player> cull = new ArrayList<>();
-		for (Player p : players) {
-			if (p.getOpponentsList().size() - p.getListOfVictories().size() >= x_elimination) {
-				cull.add(p);
-			}
-		}
-		for (Player p : cull) {
-			players.remove(p);
-		}
-		if (players.size() == 1) {
-			abort();
-		} else {
-			dropPlayer("BYE");
-			addBye();
-		}
+		Eliminator elim = new Eliminator(players, this);
+		elim.eliminate();
 	}
 
 	public void setAllParticipantsIn(boolean b) {
