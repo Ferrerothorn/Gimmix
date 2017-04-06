@@ -231,6 +231,8 @@ public class Tournament {
 						waitForUserInput();
 						if (userSelection.equals("1") || userSelection.equals("2") || userSelection.equals("3")) {
 							Utils.handleBattleWinner(b, userSelection);
+						} else {
+							currentBattles.add(b);
 						}
 					} else {
 						if (b.getP1().getName().equals("BYE")) {
