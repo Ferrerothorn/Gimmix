@@ -1,12 +1,7 @@
 package swissTournamentRunner;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -47,7 +42,7 @@ public class Tournament {
 		File file = new File(activeMetadataFile);
 		if (file.exists()) {
 			try {
-				loadTournament(activeMetadataFile);
+				TntFileManager.loadTournament(this, activeMetadataFile);
 				refreshScreen();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -346,7 +341,7 @@ public class Tournament {
 			generateRRpairings();
 			break;
 		case "save":
-			saveTournament();
+			TntFileManager.saveTournament(this);
 			break;
 		case "load":
 			print("Enter the file name to load.\n");
@@ -360,7 +355,7 @@ public class Tournament {
 			File loadFrom = new File(fileName);
 			if (loadFrom.exists()) {
 				try {
-					loadTournament(fileName);
+					TntFileManager.loadTournament(this, fileName);
 					refreshScreen();
 				} catch (IOException e) {
 					print("Error loading file.");
@@ -514,45 +509,6 @@ public class Tournament {
 		return doesntExist;
 	}
 
-	public void loadTournament(String fileName) throws IOException {
-		players.clear();
-		currentBattles.clear();
-
-		activeMetadataFile = fileName;
-		BufferedReader br = new BufferedReader(new FileReader(activeMetadataFile));
-		try {
-			String line = br.readLine();
-
-			if (line.contains("PLAYERS")) {
-				line = br.readLine();
-				while (!line.contains("VICTORIES")) {
-					addBatch(line);
-					line = br.readLine();
-				}
-				line = br.readLine();
-				while (!line.contains("GAMES")) {
-					addGamesToPlayerHistory(line);
-					line = br.readLine();
-				}
-				line = br.readLine();
-				while (!line.contains("PROPERTIES")) {
-					currentBattles.add(parseLineToBattle(line));
-					line = br.readLine();
-				}
-				assignTableNumbers(currentBattles);
-				line = br.readLine();
-				while (line != null) {
-					parseProperties(line);
-					line = br.readLine();
-				}
-
-			}
-		} finally {
-			br.close();
-		}
-		updateParticipantStats();
-	}
-
 	public void parseProperties(String line) {
 		String[] propertyPair = line.split(":");
 		switch (propertyPair[0]) {
@@ -612,45 +568,6 @@ public class Tournament {
 			}
 		}
 		return new Player(s);
-	}
-
-	public void saveTournament() {
-
-		if (!activeMetadataFile.equals("TournamentInProgress.tnt")) {
-			String output = "";
-			File file = new File(activeMetadataFile);
-
-			output += "PLAYERS:\n";
-			for (Player p : players) {
-				output += p.getName() + ",";
-			}
-			output = output.substring(0, output.length() - 1);
-			output += "\nVICTORIES:\n";
-			for (Player p : players) {
-				output += p.getName() + "_" + p.getListOfNamesBeaten().toString() + "_"
-						+ p.getListOfNamesPlayed().toString() + "\n";
-			}
-			output += "GAMES:\n";
-			for (Battle b : currentBattles) {
-				output += b.getP1().getName() + "," + b.getP2().getName() + "\n";
-			}
-			output += "PROPERTIES:\n";
-			output += "On Round:" + roundNumber + "\n";
-			output += "numberOfRounds:" + numberOfRounds + "\n";
-			if (isElimination) {
-				output += "elimination:" + x_elimination;
-			}
-
-			try {
-				PrintWriter writer = new PrintWriter(file, "UTF-8");
-				writer.print(output);
-				writer.close();
-			} catch (FileNotFoundException e) {
-				print("Couldn't write file.");
-			} catch (UnsupportedEncodingException e) {
-				print("Unsupported encoding.");
-			}
-		}
 	}
 
 	public void addBatch(String playerList) {
