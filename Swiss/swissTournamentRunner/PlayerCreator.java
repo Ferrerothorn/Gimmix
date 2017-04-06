@@ -25,9 +25,6 @@ public class PlayerCreator {
 			default:
 				if (t.userSelection.contains(",")) {
 					t.addBatch(t.userSelection);
-				} else if (t.userSelection.length() > t.longestPlayerNameLength) {
-					t.longestPlayerNameLength = t.userSelection.length();
-					t.addPlayer(t.userSelection);
 				} else {
 					t.addPlayer(t.userSelection);
 				}
