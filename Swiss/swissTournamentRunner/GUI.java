@@ -2,6 +2,8 @@ package swissTournamentRunner;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 public class GUI extends JPanel implements ActionListener {
@@ -77,5 +79,54 @@ public class GUI extends JPanel implements ActionListener {
 	public static void wipePane() {
 		textArea.setText("");
 		textArea.setCaretPosition(textArea.getDocument().getLength());
+	}
+
+	public static String generateInDepthRankings(ArrayList<Player> ps) {
+		String participantString = "-=-=-=-Rankings-=-=-=-" + '\n';
+		int longestPlayerNameLength = 0;
+
+		for (Player p : ps) {
+			if (p.getName().length() > longestPlayerNameLength) {
+				longestPlayerNameLength = p.getName().length();
+			}
+		}
+
+		for (int i = 1; i <= ps.size(); i++) {
+			if (!ps.get(i - 1).getName().equals("BYE")) {
+				participantString += Utils.rpad("" + i + ") " + ps.get(i - 1).getName() + "                         ",
+						longestPlayerNameLength + 7) + "   "
+						+ Utils.rpad("Score: " + ps.get(i - 1).getScore() + "                         ", 15) + "   "
+						+ Utils.rpad("TB: " + ps.get(i - 1).getTB() + "                         ", 8) + "   "
+						+ Utils.rpad("Opp WR: " + ps.get(i - 1).getOppWr() + "                         ", 12) + "    "
+						+ Utils.rpad("Opp Opp WR: " + ps.get(i - 1).getOppOppWr() + "                         ", 16)
+						+ '\n';
+			}
+		}
+		return participantString;
+	}
+
+	public static void printCurrentBattles(ArrayList<Battle> battles, String roundString) {
+		int longestPlayerNameLength = 0;
+		for (Battle b : battles) {
+			if (b.getP1().getName().length() > longestPlayerNameLength) {
+				longestPlayerNameLength = b.getP1().getName().length();
+			}
+			if (b.getP2().getName().length() > longestPlayerNameLength) {
+				longestPlayerNameLength = b.getP2().getName().length();
+			}
+		}
+
+		postString(roundString);
+		for (Battle b : battles) {
+			String playerOneString = b.getP1().getName() + " (" + b.getP1().getPositionInRankings()
+					+ ")                          ";
+			String playerTwoString = b.getP2().getName() + " (" + b.getP2().getPositionInRankings()
+					+ ")                          ";
+
+			postString(Utils.rpad("Table " + b.getTableNumber() + ") ", 11)
+					+ Utils.rpad(playerOneString, longestPlayerNameLength + 8) + "vs.    "
+					+ Utils.rpad(playerTwoString, longestPlayerNameLength + 8));
+		}
+		TntFileManager.saveTournament(tourney);
 	}
 }

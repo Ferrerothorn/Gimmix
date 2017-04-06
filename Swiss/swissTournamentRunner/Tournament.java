@@ -131,7 +131,7 @@ public class Tournament {
 
 			if (attempts > 100) {
 				abort();
-				print(displayInDepthRankings());
+				Utils.print(GUI.generateInDepthRankings(players));
 			} else {
 				for (Battle b : currentBattles) {
 					players.add(b.getP1());
@@ -192,20 +192,6 @@ public class Tournament {
 		battles.clear();
 	}
 
-	public void printCurrentBattles(String roundString) {
-		print(roundString);
-		for (Battle b : currentBattles) {
-			String playerOneString = b.getP1().getName() + " (" + b.getP1().getPositionInRankings()
-					+ ")                          ";
-			String playerTwoString = b.getP2().getName() + " (" + b.getP2().getPositionInRankings()
-					+ ")                          ";
-
-			print(rpad("Table " + b.getTableNumber() + ") ", 11) + rpad(playerOneString, longestPlayerNameLength + 8)
-					+ "vs.    " + rpad(playerTwoString, longestPlayerNameLength + 8));
-		}
-		saveTournament();
-	}
-
 	public void pollForResults() {
 		assignTableNumbers(currentBattles);
 
@@ -213,7 +199,7 @@ public class Tournament {
 			String roundString = ("-=-=-=-ROUND " + roundNumber + "/" + numberOfRounds + "-=-=-=-");
 
 			try {
-				printCurrentBattles(roundString);
+				GUI.printCurrentBattles(currentBattles, roundString);
 				print("Which game's result would you like to report?");
 				print();
 
@@ -271,7 +257,7 @@ public class Tournament {
 	public void refreshScreen() {
 		GUI.wipePane();
 		updateParticipantStats();
-		print(displayInDepthRankings());
+		print(GUI.generateInDepthRankings(players));
 		print();
 		print();
 	}
