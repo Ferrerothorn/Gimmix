@@ -9,7 +9,7 @@ public class Utils {
 			handleBattleWinner(battles.remove(0), "1");
 		}
 	}
-	
+
 	public static void handleBattleWinner(Battle b, String winner) {
 		switch (winner) {
 		case "1":
@@ -28,7 +28,6 @@ public class Utils {
 			break;
 		}
 	}
-	
 
 	public static void showHelp() {
 		GUI.wipePane();
@@ -99,7 +98,7 @@ public class Utils {
 		print();
 
 	}
-	
+
 	public static void print() {
 		GUI.postString("");
 	}
@@ -108,5 +107,12 @@ public class Utils {
 		GUI.postString(string);
 	}
 
+	public static String rpad(String inStr, int finalLength) {
+		return (inStr
+				+ "                                                                                                                          ")
+						.substring(0, finalLength);
+	}
 	
+
+
 }
