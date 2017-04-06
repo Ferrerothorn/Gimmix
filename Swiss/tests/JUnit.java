@@ -10,6 +10,7 @@ import org.junit.Test;
 import swissTournamentRunner.Battle;
 import swissTournamentRunner.GUI;
 import swissTournamentRunner.Player;
+import swissTournamentRunner.TntFileManager;
 import swissTournamentRunner.Tournament;
 import swissTournamentRunner.Utils;
 
@@ -46,20 +47,20 @@ public class JUnit {
 		t.generatePairings(0);
 		assertEquals(2, t.currentBattles.size());
 	}
-	
+
 	@Test
 	public void testOverwritingRoundNumberPersists() {
 		t.addBatch("p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16");
 		t.setNumberOfRounds(7);
 		t.generatePairings(0);
 		Utils.autocompleteRound(t.currentBattles);
-		
+
 		t.generatePairings(0);
 		Utils.autocompleteRound(t.currentBattles);
-		
+
 		t.generatePairings(0);
 		Utils.autocompleteRound(t.currentBattles);
-		
+
 		t.generatePairings(0);
 		Utils.autocompleteRound(t.currentBattles);
 
@@ -235,12 +236,11 @@ public class JUnit {
 		t.sortRankings();
 		assertEquals(
 				"-=-=-=-Rankings-=-=-=-\n"
-						+ "1) P1     Score: 9          TB: 0      Opp WR: 0.0     Opp Opp WR: 0.0    \n"
-						+ "2) P3     Score: 6          TB: 0      Opp WR: 0.0     Opp Opp WR: 0.0    \n"
-						+ "3) P2     Score: 3          TB: 0      Opp WR: 0.0     Opp Opp WR: 0.0    \n"
-						+ "4) P4     Score: 0          TB: 0      Opp WR: 0.0     Opp Opp WR: 0.0    \n",
-				t.displayInDepthRankings());
-
+						+ "1) P1       Score: 9          TB: 0      Opp WR: 0.0     Opp Opp WR: 0.0 \n"
+						+ "2) P3       Score: 6          TB: 0      Opp WR: 0.0     Opp Opp WR: 0.0 \n"
+						+ "3) P2       Score: 3          TB: 0      Opp WR: 0.0     Opp Opp WR: 0.0 \n"
+						+ "4) P4       Score: 0          TB: 0      Opp WR: 0.0     Opp Opp WR: 0.0 \n",
+				GUI.generateInDepthRankings(t.players));
 	}
 
 	@Test
@@ -716,7 +716,7 @@ public class JUnit {
 
 		assertEquals(4, t.players.size());
 	}
-	
+
 	@Test
 	public void testDroppingPlayer_AddsBye_DroppingAnother_RemovesBye_SameRound() {
 		t.addBatch("p1,p2,p3,p4,p5,p6,p7,p8,p9,p0");
@@ -729,29 +729,29 @@ public class JUnit {
 		t.updateParticipantStats();
 		assertEquals(8, t.players.size());
 	}
-	
+
 	@Test
 	public void testDroppingPlayer_AddsBye_DroppingAnother_RemovesBye_NextRound() {
 		t.addBatch("p1,p2,p3,p4,p5,p6,p7,p8,p9,p0");
 		assertEquals(10, t.players.size());
 		t.generatePairings(0);
 		while (t.currentBattles.size() > 1) {
-		Utils.handleBattleWinner(t.currentBattles.remove(0), "1");
+			Utils.handleBattleWinner(t.currentBattles.remove(0), "1");
 		}
 		t.dropPlayer("p8");
 		assertEquals(10, t.players.size());
 		Utils.handleBattleWinner(t.currentBattles.remove(0), "1");
 		t.updateParticipantStats();
 		t.sortRankings();
-		
+
 		t.generatePairings(0);
 		while (t.currentBattles.size() > 1) {
-		Utils.handleBattleWinner(t.currentBattles.remove(0), "1");
+			Utils.handleBattleWinner(t.currentBattles.remove(0), "1");
 		}
 		t.dropPlayer("p6");
-		assertEquals(8, t.players.size());		
+		assertEquals(8, t.players.size());
 	}
-	
+
 	@Test
 	public void testDoubleElimination_EliminatesCorrectly() {
 		Player p1 = new Player("P1");
@@ -786,9 +786,9 @@ public class JUnit {
 
 		assertEquals(6, t.players.size());
 	}
-	
+
 	@Test
-	public void testTripleEliminationReachesSingleWinner(){
+	public void testTripleEliminationReachesSingleWinner() {
 		t.addBatch("p1,p2,p3,p4,p5,p6,p7,p8");
 		t.setX_elimination(3);
 		while (t.players.size() > 1) {
@@ -914,11 +914,11 @@ public class JUnit {
 		t.generatePairings(0);
 		t.activeMetadataFile = "test.tnt";
 		Utils.handleBattleWinner(t.currentBattles.remove(0), "1");
-		t.saveTournament();
+		TntFileManager.saveTournament(t);
 		t.currentBattles.clear();
 		t.players.clear();
 		try {
-			t.loadTournament(t.activeMetadataFile);
+			TntFileManager.loadTournament(t, t.activeMetadataFile);
 		} catch (IOException e) {
 		}
 		assertEquals(3, t.getNumberOfRounds());
