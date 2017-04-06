@@ -20,7 +20,6 @@ public class Tournament {
 	public int numberOfRounds;
 	public int roundNumber = 1;
 	public GUI gui;
-	int longestPlayerNameLength = 0;
 	int x_elimination = 99;
 	Boolean isElimination = false;
 	public String activeMetadataFile = "TournamentInProgress.tnt";
@@ -67,9 +66,6 @@ public class Tournament {
 		if (!containsPlayer(p1)) {
 			if (p1.length() > 0) {
 				players.add(new Player(p1));
-			}
-			if (p1.length() > longestPlayerNameLength) {
-				longestPlayerNameLength = p1.length();
 			}
 		}
 		while (numberOfRounds < logBase2(players.size())) {
@@ -125,22 +121,6 @@ public class Tournament {
 		for (Player p : players) {
 			p.updatePositionInRankings(players);
 		}
-	}
-
-	public String displayInDepthRankings() {
-		String participantString = "-=-=-=-Rankings-=-=-=-" + '\n';
-		for (int i = 1; i <= players.size(); i++) {
-			if (!players.get(i - 1).getName().equals("BYE")) {
-				participantString += rpad("" + i + ") " + players.get(i - 1).getName() + "                         ",
-						longestPlayerNameLength + 7) + "   "
-						+ rpad("Score: " + players.get(i - 1).getScore() + "                         ", 15) + "   "
-						+ rpad("TB: " + players.get(i - 1).getTB() + "                         ", 8) + "   "
-						+ rpad("Opp WR: " + players.get(i - 1).getOppWr() + "                         ", 12) + "    "
-						+ rpad("Opp Opp WR: " + players.get(i - 1).getOppOppWr() + "                         ", 16)
-						+ "   " + '\n';
-			}
-		}
-		return participantString;
 	}
 
 	public void generatePairings(int attempts) {
@@ -342,12 +322,6 @@ public class Tournament {
 
 	public void sortRankings() {
 		sortRankings(players);
-	}
-
-	public static String rpad(String inStr, int finalLength) {
-		return (inStr
-				+ "                                                                                                                          ")
-						.substring(0, finalLength);
 	}
 
 	public void setGUI(GUI gui) {
@@ -598,7 +572,7 @@ public class Tournament {
 		}
 	}
 
-	private Battle parseLineToBattle(String line) {
+	Battle parseLineToBattle(String line) {
 		String[] currentCombatants = line.split(",");
 		Player p1 = findPlayerByName(currentCombatants[0]);
 		Player p2 = findPlayerByName(currentCombatants[1]);
@@ -692,9 +666,6 @@ public class Tournament {
 
 		for (String s : newPlayerNames) {
 			addPlayer(trimWhitespace(s));
-			if (s.length() > longestPlayerNameLength) {
-				longestPlayerNameLength = s.length();
-			}
 		}
 		if (allParticipantsIn) {
 			addBye();
@@ -715,9 +686,6 @@ public class Tournament {
 	}
 
 	public void renamePlayer(String renameMe, String newName) {
-		if (newName.length() > longestPlayerNameLength) {
-			longestPlayerNameLength = newName.length();
-		}
 		for (Player p : players) {
 			if (p.getName().equals(renameMe)) {
 				p.setName(newName);
