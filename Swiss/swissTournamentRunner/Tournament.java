@@ -416,14 +416,6 @@ public class Tournament {
 			renamePlayer(renameMe, newName);
 			userSelection = null;
 			break;
-		case "batchadd":
-			print("Enter a list of players, separated by commas.\n");
-			userSelection = null;
-			waitForUserInput();
-			String playerList = userSelection;
-			userSelection = null;
-			addBatch(playerList);
-			break;
 		case "addbatch":
 			print("Enter a list of players, separated by commas.\n");
 			userSelection = null;
@@ -431,6 +423,14 @@ public class Tournament {
 			String playersList = userSelection;
 			userSelection = null;
 			addBatch(playersList);
+			break;
+		case "addplayer":
+			print("Enter a list of players, separated by commas.\n");
+			userSelection = null;
+			waitForUserInput();
+			String playerList = userSelection;
+			userSelection = null;
+			addBatch(playerList);
 			break;
 		case "reopengame":
 			print("To reopen a game, first enter the name of one of the players in the game.\n");
