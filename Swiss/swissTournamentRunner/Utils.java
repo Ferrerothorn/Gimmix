@@ -31,7 +31,7 @@ public class Utils {
 
 	public static void showHelp() {
 		GUI.wipePane();
-		print("Welcome to B-T-C.\n"
+		print("Welcome to BTC.\n"
 				+ "First, use the text bar below to enter the tournament's participants, one at a time.\n"
 				+ "Then, pairings will be automatically generated for you, ordered by each participant's results so far.\n"
 				+ "Enter numbers to the text bar to report scores for each pairing.\n\n");
@@ -52,7 +52,7 @@ public class Utils {
 		print("Scores, etc, of the renamed player are preserved.");
 		print();
 
-		print("batchAdd/addBatch:");
+		print("addBatch/addPlayer:");
 		print("Takes in a comma-separated list of usernames and adds them to the tournament in one transaction.");
 		print("This can be used to insert latecomer players to the tournament - the pairing algorithm will pick up the new players at the beginning of each round.");
 		print("New players start with a score of 0.");
@@ -95,6 +95,11 @@ public class Utils {
 		print("Experimental: Turns a tournament into X-elimination, instead of Swiss.");
 		print("The command will request a value for X. In between rounds, users with X or more losses will be dropped.");
 		print("WARNING: For the time being, use is discouraged, as testing is minimal and there are known fatal bugs.");
+		print();
+		
+		print("roundrobin:");
+		print("Experimental: Aborts all games, pairings and results from the current tournament, replacing them with a Round Robin pairing list.");
+		print("WARNING: Minimal testing of Round Robin functionality so far.");
 		print();
 
 	}
