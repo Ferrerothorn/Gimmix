@@ -335,6 +335,14 @@ public class Tournament {
 		waitForUserInput();
 		switch (userSelection.toLowerCase()) {
 
+		case "matchesof":
+			print("Enter player whose game history you'd like to see.\n");
+			userSelection = null;
+			waitForUserInput();
+			String showHistory = userSelection;
+			printHistory(showHistory);
+			userSelection = null;
+			break;
 		case "roundrobin":
 			generateRRpairings();
 			break;
@@ -476,6 +484,23 @@ public class Tournament {
 			break;
 		}
 		userSelection = null;
+	}
+
+	private void printHistory(String showHistory) {
+		Player p = findPlayerByName(showHistory);
+		if (p.getOpponentsList().size() > 0) {
+			for (String s : p.getListOfNamesPlayed()) {
+				String output = showHistory + " vs. " + s + " (";
+				if (p.getListOfNamesBeaten().contains(s)) {
+					output += p.getName();
+				}
+				else {
+					output += s;
+				}
+				output += " won)";
+				print(output);
+			}
+		}
 	}
 
 	private void generateRRpairings() {
