@@ -90,9 +90,9 @@ public class Player implements Comparable<Player> {
 			return -1;
 		} else if (this.oppOppWr < p.getOppOppWr()) {
 			return 1;
-		} else if (this.trashRating > p.getTrashRating()) {
-			return -1;
 		} else if (this.trashRating < p.getTrashRating()) {
+			return -1;
+		} else if (this.trashRating > p.getTrashRating()) {
 			return 1;
 		}
 
@@ -171,7 +171,7 @@ public class Player implements Comparable<Player> {
 	public void recalculateScore() {
 		score = (3 * victories.size());
 		for (Player p : previousRounds) {
-			if (!victories.contains(p) && !p.victories.contains(this)) {
+			if (!victories.contains(p) && !p.victories.contains(this) && p.previousRounds.contains(this)) {
 				score++;
 			}
 		}

@@ -20,7 +20,7 @@ public class Utils {
 			b.getP2().beats(b.getP1());
 			b = null;
 			break;
-		case "3":
+		case "0":
 			b.getP1().tied(b.getP2());
 			b = null;
 			break;
