@@ -90,8 +90,17 @@ public class Player implements Comparable<Player> {
 			return -1;
 		} else if (this.oppOppWr < p.getOppOppWr()) {
 			return 1;
+		} else if (this.trashRating > p.getTrashRating()) {
+			return -1;
+		} else if (this.trashRating < p.getTrashRating()) {
+			return 1;
 		}
+
 		return 0;
+	}
+
+	int getTrashRating() {
+		return trashRating;
 	}
 
 	public int getTB() {
