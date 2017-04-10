@@ -98,8 +98,8 @@ public class GUI extends JPanel implements ActionListener {
 						+ Utils.rpad("Score: " + ps.get(i - 1).getScore() + "                         ", 15) + "   "
 						+ Utils.rpad("TB: " + ps.get(i - 1).getTB() + "                         ", 8) + "   "
 						+ Utils.rpad("Opp WR: " + ps.get(i - 1).getOppWr() + "                         ", 12) + "    "
-						+ Utils.rpad("Opp Opp WR: " + ps.get(i - 1).getOppOppWr() + "                         ", 16)
-						+ '\n';
+						+ Utils.rpad("Opp Opp WR: " + ps.get(i - 1).getOppOppWr() + "                         ", 16) + "  "
+						+ Utils.rpad("TR: " + ps.get(i - 1).getTrashRating() + "                         ", 10) + '\n';
 			}
 		}
 		return participantString;
