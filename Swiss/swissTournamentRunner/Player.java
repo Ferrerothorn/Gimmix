@@ -171,7 +171,7 @@ public class Player implements Comparable<Player> {
 	public void recalculateScore() {
 		score = (3 * victories.size());
 		for (Player p : previousRounds) {
-			if (!victories.contains(p) && !p.victories.contains(this)) {
+			if (!victories.contains(p) && !p.victories.contains(this) && p.previousRounds.contains(this)) {
 				score++;
 			}
 		}
