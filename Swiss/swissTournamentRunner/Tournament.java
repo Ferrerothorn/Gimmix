@@ -230,12 +230,12 @@ public class Tournament {
 					print("And who won in " + b.getP1().getName() + " vs. " + b.getP2().getName() + "?");
 					print("1) " + b.getP1().getName());
 					print("2) " + b.getP2().getName());
-					print("3) Tied.");
+					print("0) Tied.");
 
 					if (!((b.getP1().getName().equals("BYE") || (b.getP2().getName().equals("BYE"))))) {
 
 						waitForUserInput();
-						if (userSelection.equals("1") || userSelection.equals("2") || userSelection.equals("3")) {
+						if (userSelection.equals("1") || userSelection.equals("2") || userSelection.equals("0")) {
 							Utils.handleBattleWinner(b, userSelection);
 						} else {
 							currentBattles.add(b);
