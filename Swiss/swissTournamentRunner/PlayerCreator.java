@@ -9,14 +9,19 @@ public class PlayerCreator {
 	}
 
 	public void capturePlayers() {
+		GUI.wipePane();
 		while (!t.allParticipantsIn) {
-			t.print("Enter the name of the next participant, or enter 'no' if done.\n");
-			GUI.postString("(You can enter 'help' at any time for some instructions.)");
+			t.print("Enter the name of the next participant, or enter 'no' if done. ");
+			t.print("You can enter 'help' at any time for some instructions.)");
+			t.print("Current Participants: " + t.players.size() + "  Rounds required: " + t.logBase2(t.players.size()));
+			t.print("");
 			t.waitForUserInput();
 			switch (t.userSelection.toLowerCase()) {
 			case "help":
 				t.userSelection = null;
 				Utils.showHelp();
+				break;
+			case "drop":
 				break;
 			case "no":
 				t.allParticipantsIn = true;

@@ -306,7 +306,11 @@ public class Tournament {
 	}
 
 	int logBase2(int x) {
-		return (int) Math.ceil(Math.log(x) / Math.log(2));
+		int base = (int) Math.ceil(Math.log(x) / Math.log(2));
+		if (base > 0) {
+			return (int) Math.ceil(Math.log(x) / Math.log(2));
+		}
+		return 0;
 	}
 
 	public void sortRankings() {
