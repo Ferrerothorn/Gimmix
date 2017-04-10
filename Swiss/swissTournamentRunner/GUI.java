@@ -22,7 +22,7 @@ public class GUI extends JPanel implements ActionListener {
 		textArea = new JTextArea(25, 35);
 		textArea.setEditable(false);
 		textArea.setLineWrap(true);
-		textArea.setFont(new Font("monospaced", Font.PLAIN, 14));
+		textArea.setFont(new Font("monospaced", Font.PLAIN, 16));
 
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		JPanel inputArea = new JPanel();
@@ -98,8 +98,8 @@ public class GUI extends JPanel implements ActionListener {
 						+ Utils.rpad("Score: " + ps.get(i - 1).getScore() + "                         ", 15) + "   "
 						+ Utils.rpad("TB: " + ps.get(i - 1).getTB() + "                         ", 8) + "   "
 						+ Utils.rpad("Opp WR: " + ps.get(i - 1).getOppWr() + "                         ", 12) + "    "
-						+ Utils.rpad("Opp Opp WR: " + ps.get(i - 1).getOppOppWr() + "                         ", 16)
-						+ '\n';
+						+ Utils.rpad("Opp Opp WR: " + ps.get(i - 1).getOppOppWr() + "                         ", 16) + "  "
+						+ Utils.rpad("TR: " + ps.get(i - 1).getTrashRating() + "                         ", 10) + '\n';
 			}
 		}
 		return participantString;
