@@ -22,7 +22,7 @@ public class GUI extends JPanel implements ActionListener {
 		textArea = new JTextArea(25, 35);
 		textArea.setEditable(false);
 		textArea.setLineWrap(true);
-		textArea.setFont(new Font("monospaced", Font.PLAIN, 14));
+		textArea.setFont(new Font("monospaced", Font.PLAIN, 16));
 
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		JPanel inputArea = new JPanel();
