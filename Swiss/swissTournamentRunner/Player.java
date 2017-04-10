@@ -9,6 +9,7 @@ public class Player implements Comparable<Player> {
 	int tb = 0;
 	double oppWr = 0;
 	double oppOppWr = 0;
+	int trashRating = 0;
 	int lastDocumentedPosition = 0;
 	public ArrayList<Player> previousRounds = new ArrayList<>();
 	ArrayList<Player> victories = new ArrayList<>();
@@ -57,6 +58,13 @@ public class Player implements Comparable<Player> {
 		if (people != 0) {
 			oppOppWr = oppOppWr / people;
 			oppOppWr *= 100;
+		}
+	}
+
+	public void recalculateTrashRating() {
+		trashRating = 0;
+		for (Player p : previousRounds) {
+			trashRating += p.getPositionInRankings();
 		}
 	}
 
