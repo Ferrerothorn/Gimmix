@@ -560,6 +560,13 @@ public class Tournament {
 			setX_elimination(Integer.parseInt(propertyPair[1]));
 			elimination();
 			break;
+		case "topCut":
+			int tC = Integer.parseInt(propertyPair[1]);
+			if (tC < players.size()) {
+				setTopCut(tC);
+			}
+			elimination();
+			break;
 		default:
 			break;
 		}
