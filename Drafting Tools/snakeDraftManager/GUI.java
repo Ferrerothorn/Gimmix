@@ -42,8 +42,6 @@ public class GUI extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent evt) {
 		String text = textField.getText();
-		//TODO
-	//	GUI.setUserSelection(text);
 		if (text.length() > 0) {
 			textArea.append(" " + text + newline);
 			textField.setText(null);
