@@ -34,8 +34,9 @@ public class TntFileManager {
 			output += "On Round:" + t.roundNumber + "\n";
 			output += "numberOfRounds:" + t.numberOfRounds + "\n";
 			if (t.isElimination) {
-				output += "elimination:" + t.x_elimination;
+				output += "elimination:" + t.x_elimination + "\n";
 			}
+			output += "topCut:" + t.topCutThreshold + "\n";
 
 			try {
 				PrintWriter writer = new PrintWriter(file, "UTF-8");

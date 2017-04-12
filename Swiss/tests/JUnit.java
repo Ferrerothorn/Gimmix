@@ -125,7 +125,7 @@ public class JUnit {
 		Battle b = t.currentBattles.remove(0);
 		Utils.handleBattleWinner(b, "2");
 		b = t.currentBattles.remove(0);
-		Utils.handleBattleWinner(b, "3");
+		Utils.handleBattleWinner(b, "0");
 		t.updateParticipantStats();
 		assertEquals(0, t.findPlayerByName("P1").getScore());
 		assertEquals(3, t.findPlayerByName("P2").getScore());

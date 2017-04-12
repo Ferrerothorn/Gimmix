@@ -12,6 +12,7 @@ public class Tournament {
 	public ArrayList<Battle> totallyKosherPairings = new ArrayList<>();
 	public String userSelection = null;
 	boolean allParticipantsIn = false;
+	public int topCutThreshold = 0;
 	public int numberOfRounds;
 	public int roundNumber = 1;
 	public GUI gui;
@@ -335,6 +336,20 @@ public class Tournament {
 		waitForUserInput();
 		switch (userSelection.toLowerCase()) {
 
+		case "topcut":
+			print("Enter the number of players that constitutes a Top Cut for this tournament.\n");
+			print("(Must be less than the number of players.)\n");
+			print("Alternatively, enter '0' to remove the Top Cut.\n");
+			userSelection = null;
+			waitForUserInput();
+			int tC = Integer.parseInt(userSelection);
+			if (tC < players.size()) {
+				setTopCut(tC);
+			} else {
+				print("Invalid - Top Cut size is too large.");
+			}
+			userSelection = null;
+			break;
 		case "matchesof":
 			print("Enter player whose game history you'd like to see.\n");
 			userSelection = null;
@@ -493,8 +508,7 @@ public class Tournament {
 				String output = showHistory + " vs. " + s + " (";
 				if (p.getListOfNamesBeaten().contains(s)) {
 					output += p.getName();
-				}
-				else {
+				} else {
 					output += s;
 				}
 				output += " won)";
@@ -546,9 +560,20 @@ public class Tournament {
 			setX_elimination(Integer.parseInt(propertyPair[1]));
 			elimination();
 			break;
+		case "topCut":
+			int tC = Integer.parseInt(propertyPair[1]);
+			if (tC < players.size()) {
+				setTopCut(tC);
+			}
+			elimination();
+			break;
 		default:
 			break;
 		}
+	}
+
+	private void setTopCut(int parseInt) {
+		topCutThreshold = parseInt;
 	}
 
 	Battle parseLineToBattle(String line) {
@@ -678,6 +703,11 @@ public class Tournament {
 				players.remove(toDrop);
 			}
 		}
+		
+		if (topCutThreshold >= players.size()) {
+			topCutThreshold = 0;
+		}
+		
 		if (!nameToDrop.equals("BYE") && (players.size() % 2 == 1) && !containsPlayer("BYE")) {
 			addPlayer("BYE");
 		} else if (!nameToDrop.equals("BYE")) {
