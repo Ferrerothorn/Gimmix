@@ -337,7 +337,7 @@ public class Tournament {
 		switch (userSelection.toLowerCase()) {
 
 		case "topcut":
-			print("Enter the numver of players that constitutes a Top Cut for this tournament.\n");
+			print("Enter the number of players that constitutes a Top Cut for this tournament.\n");
 			print("(Must be less than the number of players.)\n");
 			print("Alternatively, enter '0' to remove the Top Cut.\n");
 			userSelection = null;
