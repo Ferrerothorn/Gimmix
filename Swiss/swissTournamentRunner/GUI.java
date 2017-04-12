@@ -82,7 +82,7 @@ public class GUI extends JPanel implements ActionListener {
 	}
 
 	public static String generateInDepthRankings(ArrayList<Player> ps) {
-		String participantString = "-=-=-=-Rankings-=-=-=-" + '\n';
+		String participantString = "";
 		int longestPlayerNameLength = 0;
 
 		for (Player p : ps) {
@@ -91,15 +91,38 @@ public class GUI extends JPanel implements ActionListener {
 			}
 		}
 
-		for (int i = 1; i <= ps.size(); i++) {
-			if (!ps.get(i - 1).getName().equals("BYE")) {
-				participantString += Utils.rpad("" + i + ") " + ps.get(i - 1).getName() + "                         ",
+		if (tourney.topCutThreshold != 0) {
+			participantString += "===Rankings - Top Cut===" + "\n";
+			for (int i = 1; i <= tourney.topCutThreshold; i++) {
+				if (!ps.get(i - 1).getName().equals("BYE")) {
+					participantString += Utils.rpad(
+							"" + i + ") " + ps.get(i - 1).getName() + "                         ",
+							longestPlayerNameLength + 7) + "   "
+							+ Utils.rpad("Score: " + ps.get(i - 1).getScore() + "                         ", 15) + "   "
+							+ Utils.rpad("TB: " + ps.get(i - 1).getTB() + "                         ", 8) + "   "
+							+ Utils.rpad("Opp WR: " + ps.get(i - 1).getOppWr() + "                         ", 12)
+							+ "    "
+							+ Utils.rpad("Opp Opp WR: " + ps.get(i - 1).getOppOppWr() + "                         ", 16)
+							+ "  "
+							+ Utils.rpad("TR: " + ps.get(i - 1).getTrashRating() + "                         ", 10)
+							+ '\n';
+				}
+			}
+			participantString += "==Rankings - Qualifiers==" + "\n";
+		} else {
+			participantString += "-=-=-=-Rankings-=-=-=-" + '\n';
+		}
+
+		for (int j = tourney.topCutThreshold + 1; j <= ps.size(); j++) {
+			if (!ps.get(j - 1).getName().equals("BYE")) {
+				participantString += Utils.rpad("" + j + ") " + ps.get(j - 1).getName() + "                         ",
 						longestPlayerNameLength + 7) + "   "
-						+ Utils.rpad("Score: " + ps.get(i - 1).getScore() + "                         ", 15) + "   "
-						+ Utils.rpad("TB: " + ps.get(i - 1).getTB() + "                         ", 8) + "   "
-						+ Utils.rpad("Opp WR: " + ps.get(i - 1).getOppWr() + "                         ", 12) + "    "
-						+ Utils.rpad("Opp Opp WR: " + ps.get(i - 1).getOppOppWr() + "                         ", 16) + "  "
-						+ Utils.rpad("TR: " + ps.get(i - 1).getTrashRating() + "                         ", 10) + '\n';
+						+ Utils.rpad("Score: " + ps.get(j - 1).getScore() + "                         ", 15) + "   "
+						+ Utils.rpad("TB: " + ps.get(j - 1).getTB() + "                         ", 8) + "   "
+						+ Utils.rpad("Opp WR: " + ps.get(j - 1).getOppWr() + "                         ", 12) + "    "
+						+ Utils.rpad("Opp Opp WR: " + ps.get(j - 1).getOppOppWr() + "                         ", 16)
+						+ "  " + Utils.rpad("TR: " + ps.get(j - 1).getTrashRating() + "                         ", 10)
+						+ '\n';
 			}
 		}
 		return participantString;
