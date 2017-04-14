@@ -565,7 +565,6 @@ public class Tournament {
 			if (tC < players.size()) {
 				setTopCut(tC);
 			}
-			elimination();
 			break;
 		default:
 			break;

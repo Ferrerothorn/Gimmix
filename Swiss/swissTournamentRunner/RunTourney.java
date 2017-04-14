@@ -21,6 +21,8 @@ public class RunTourney {
 			GUI.postString(GUI.generateInDepthRankings(tourney.players));
 			tourney.generatePairings(0);
 			tourney.pollForResults();
+			// while (!(tourney.confirmPhase())) {
+			// }
 			if (tourney.isElimination) {
 				tourney.elimination();
 			} else {
