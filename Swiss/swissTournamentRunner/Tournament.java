@@ -817,4 +817,31 @@ public class Tournament {
 	public void setAllParticipantsIn(boolean b) {
 		allParticipantsIn = b;
 	}
+
+	public boolean confirmPhase() {
+		print("Round " + roundNumber + " completed.");
+		print("Enter 'next' to progress to the next round, after making sure all scores are correct.");
+
+		waitForUserInput();
+
+		switch (userSelection.toLowerCase()) {
+
+		case "help":
+			userSelection = null;
+			Utils.showHelp();
+			break;
+		case "admintools":
+			userSelection = null;
+			adminTools();
+			break;
+		case "next":
+			userSelection = null;
+			break;
+		default:
+			userSelection = null;
+			confirmPhase();
+			break;
+		}
+		return allParticipantsIn;
+	}
 }
