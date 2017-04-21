@@ -11,7 +11,7 @@ import java.io.UnsupportedEncodingException;
 public class TntFileManager {
 
 	static String line;
-	
+
 	public static void saveTournament(Tournament t) {
 
 		if (!t.activeMetadataFile.equals("TournamentInProgress.tnt")) {
@@ -85,11 +85,10 @@ public class TntFileManager {
 				}
 
 			}
-		} 
-		catch (IOException e) {
-			GUI.postString("Unrecognised character in line \"" + line + "\"");
+		} catch (IOException e) {
+			GUI.postString("Error reading supplied file, starting at line: \"" + line + "\"");
 		}
-		
+
 		finally {
 			br.close();
 		}
