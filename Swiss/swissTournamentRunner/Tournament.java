@@ -584,6 +584,7 @@ public class Tournament {
 	}
 
 	public void addGamesToPlayerHistory(String line) {
+		try {
 		String[] information = line.split("_");
 		Player p = findPlayerByName(information[0]);
 
@@ -605,6 +606,10 @@ public class Tournament {
 			if (s.length() > 0) {
 				p.addToListOfPlayed(findPlayerByName(trimWhitespace(s)));
 			}
+		}
+		}
+		catch (Exception e) {
+			GUI.postString("Error parsing line\"" + line + "\"" + ".");
 		}
 	}
 
