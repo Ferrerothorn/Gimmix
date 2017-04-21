@@ -235,10 +235,10 @@ public class JUnit {
 		t.sortRankings();
 		assertEquals(
 				"-=-=-=-Rankings-=-=-=-\n"
-						+ "1) P1       Score: 9          TB: 0      Opp WR: 0.0     Opp Opp WR: 0.0   TR: 0     \n"
-						+ "2) P3       Score: 6          TB: 0      Opp WR: 0.0     Opp Opp WR: 0.0   TR: 0     \n"
-						+ "3) P2       Score: 3          TB: 0      Opp WR: 0.0     Opp Opp WR: 0.0   TR: 0     \n"
-						+ "4) P4       Score: 0          TB: 0      Opp WR: 0.0     Opp Opp WR: 0.0   TR: 0     \n",
+						+ "1) P1       Score: 9          TB: 0      Opp WR: 0       Opp Opp WR: 0     TR: 0     \n"
+						+ "2) P3       Score: 6          TB: 0      Opp WR: 0       Opp Opp WR: 0     TR: 0     \n"
+						+ "3) P2       Score: 3          TB: 0      Opp WR: 0       Opp Opp WR: 0     TR: 0     \n"
+						+ "4) P4       Score: 0          TB: 0      Opp WR: 0       Opp Opp WR: 0     TR: 0     \n",
 				GUI.generateInDepthRankings(t.players));
 	}
 
