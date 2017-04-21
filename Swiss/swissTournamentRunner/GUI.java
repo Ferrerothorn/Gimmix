@@ -95,17 +95,21 @@ public class GUI extends JPanel implements ActionListener {
 			participantString += "===Rankings - Top Cut===" + "\n";
 			for (int i = 1; i <= tourney.topCutThreshold; i++) {
 				if (!ps.get(i - 1).getName().equals("BYE")) {
+
+					String pScore = Integer.toString(ps.get(i - 1).getScore());
+					String pTB = Integer.toString(ps.get(i - 1).getTB());
+					String pOWR = Integer.toString(ps.get(i - 1).getOppWr()) + "%";
+					String pOOWR = Integer.toString(ps.get(i - 1).getOppOppWr()) + "%";
+					String pTR = Integer.toString(ps.get(i - 1).getTrashRating());
+
 					participantString += Utils.rpad(
 							"" + i + ") " + ps.get(i - 1).getName() + "                         ",
-							longestPlayerNameLength + 7) + "   "
-							+ Utils.rpad("Score: " + ps.get(i - 1).getScore() + "                         ", 15) + "   "
-							+ Utils.rpad("TB: " + ps.get(i - 1).getTB() + "                         ", 8) + "   "
-							+ Utils.rpad("Opp WR: " + ps.get(i - 1).getOppWr() + "                         ", 12)
-							+ "    "
-							+ Utils.rpad("Opp Opp WR: " + ps.get(i - 1).getOppOppWr() + "                         ", 16)
-							+ "  "
-							+ Utils.rpad("TR: " + ps.get(i - 1).getTrashRating() + "                         ", 10)
-							+ '\n';
+							longestPlayerNameLength + 7)
+							+ Utils.rpad("Score: " + pScore + "                         ", 15) + "   "
+							+ Utils.rpad("TB: " + pTB + "                         ", 8) + "   "
+							+ Utils.rpad(("Opp WR: " + pOWR + "  "), 14) + "  "
+							+ Utils.rpad("Opp Opp WR: " + pOOWR + "  ", 18) + "  "
+							+ Utils.rpad("TR: " + pTR + "             ", 10) + '\n';
 				}
 			}
 			participantString += "==Rankings - Qualifiers==" + "\n";
@@ -115,14 +119,20 @@ public class GUI extends JPanel implements ActionListener {
 
 		for (int j = tourney.topCutThreshold + 1; j <= ps.size(); j++) {
 			if (!ps.get(j - 1).getName().equals("BYE")) {
+
+				String pScore = Integer.toString(ps.get(j - 1).getScore());
+				String pTB = Integer.toString(ps.get(j - 1).getTB());
+				String pOWR = Integer.toString(ps.get(j - 1).getOppWr()) + "%";
+				String pOOWR = Integer.toString(ps.get(j - 1).getOppOppWr()) + "%";
+				String pTR = Integer.toString(ps.get(j - 1).getTrashRating());
+
 				participantString += Utils.rpad("" + j + ") " + ps.get(j - 1).getName() + "                         ",
 						longestPlayerNameLength + 7) + "   "
-						+ Utils.rpad("Score: " + ps.get(j - 1).getScore() + "                         ", 15) + "   "
-						+ Utils.rpad("TB: " + ps.get(j - 1).getTB() + "                         ", 8) + "   "
-						+ Utils.rpad("Opp WR: " + ps.get(j - 1).getOppWr() + "                         ", 12) + "    "
-						+ Utils.rpad("Opp Opp WR: " + ps.get(j - 1).getOppOppWr() + "                         ", 16)
-						+ "  " + Utils.rpad("TR: " + ps.get(j - 1).getTrashRating() + "                         ", 10)
-						+ '\n';
+						+ Utils.rpad("Score: " + pScore + "                         ", 15) + "   "
+						+ Utils.rpad("TB: " + pTB + "                         ", 8) + "   "
+						+ Utils.rpad("Opp WR: " + pOWR + "                         ", 12) + "    "
+						+ Utils.rpad("Opp Opp WR: " + pOOWR + "                         ", 16) + "  "
+						+ Utils.rpad("TR: " + pTR + "                         ", 10) + '\n';
 			}
 		}
 		return participantString;

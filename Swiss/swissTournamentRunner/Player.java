@@ -42,12 +42,12 @@ public class Player implements Comparable<Player> {
 			opponentWinRate += (double) p.victories.size() / p.previousRounds.size();
 			people++;
 		}
-
 		if (people != 0) {
-			opponentWinRate = (double) (oppWr / previousRounds.size());
+			opponentWinRate /= previousRounds.size();
 			opponentWinRate *= 100;
 		}
 		oppWr = opponentWinRate.intValue();
+
 	}
 
 	public void recalculateOppOppWr() {
@@ -136,7 +136,6 @@ public class Player implements Comparable<Player> {
 		p2.logOpponent(this);
 		this.recalculateScore();
 		p2.recalculateScore();
-
 	}
 
 	private void logOpponent(Player foe) {
@@ -160,11 +159,11 @@ public class Player implements Comparable<Player> {
 		}
 	}
 
-	public double getOppWr() {
+	public int getOppWr() {
 		return oppWr;
 	}
 
-	public double getOppOppWr() {
+	public int getOppOppWr() {
 		return oppOppWr;
 	}
 

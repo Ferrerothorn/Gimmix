@@ -10,6 +10,8 @@ import java.io.UnsupportedEncodingException;
 
 public class TntFileManager {
 
+	static String line;
+
 	public static void saveTournament(Tournament t) {
 
 		if (!t.activeMetadataFile.equals("TournamentInProgress.tnt")) {
@@ -57,7 +59,7 @@ public class TntFileManager {
 		t.activeMetadataFile = fileName;
 		BufferedReader br = new BufferedReader(new FileReader(t.activeMetadataFile));
 		try {
-			String line = br.readLine();
+			line = br.readLine();
 
 			if (line.contains("PLAYERS")) {
 				line = br.readLine();
@@ -83,7 +85,11 @@ public class TntFileManager {
 				}
 
 			}
-		} finally {
+		} catch (IOException e) {
+			GUI.postString("Error reading supplied file, starting at line: \"" + line + "\"");
+		}
+
+		finally {
 			br.close();
 		}
 		t.updateParticipantStats();

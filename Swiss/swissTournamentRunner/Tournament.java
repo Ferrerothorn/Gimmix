@@ -46,7 +46,7 @@ public class Tournament {
 				TntFileManager.loadTournament(this, activeMetadataFile);
 				refreshScreen();
 			} catch (IOException e) {
-				e.printStackTrace();
+				GUI.postString("Error reading supplied file, starting at line: \"" + "\"");
 			}
 		} else {
 			PlayerCreator playerCreator = new PlayerCreator(this);
@@ -361,9 +361,6 @@ public class Tournament {
 		case "roundrobin":
 			generateRRpairings();
 			break;
-		case "save":
-			TntFileManager.saveTournament(this);
-			break;
 		case "load":
 			print("Enter the file name to load.\n");
 			userSelection = null;
@@ -547,27 +544,31 @@ public class Tournament {
 	}
 
 	public void parseProperties(String line) {
-		String[] propertyPair = line.split(":");
-		switch (propertyPair[0]) {
+		try {
+			String[] propertyPair = line.split(":");
+			switch (propertyPair[0]) {
 
-		case "On Round":
-			roundNumber = Integer.parseInt(propertyPair[1]);
-			break;
-		case "numberOfRounds":
-			numberOfRounds = Integer.parseInt(propertyPair[1]);
-			break;
-		case "elimination":
-			setX_elimination(Integer.parseInt(propertyPair[1]));
-			elimination();
-			break;
-		case "topCut":
-			int tC = Integer.parseInt(propertyPair[1]);
-			if (tC < players.size()) {
-				setTopCut(tC);
+			case "On Round":
+				roundNumber = Integer.parseInt(propertyPair[1]);
+				break;
+			case "numberOfRounds":
+				numberOfRounds = Integer.parseInt(propertyPair[1]);
+				break;
+			case "elimination":
+				setX_elimination(Integer.parseInt(propertyPair[1]));
+				elimination();
+				break;
+			case "topCut":
+				int tC = Integer.parseInt(propertyPair[1]);
+				if (tC < players.size()) {
+					setTopCut(tC);
+				}
+				break;
+			default:
+				break;
 			}
-			break;
-		default:
-			break;
+		} catch (Exception e) {
+			GUI.postString("Error reading supplied file, starting at line: \"" + line + "\".");
 		}
 	}
 
@@ -584,27 +585,31 @@ public class Tournament {
 	}
 
 	public void addGamesToPlayerHistory(String line) {
-		String[] information = line.split("_");
-		Player p = findPlayerByName(information[0]);
+		try {
+			String[] information = line.split("_");
+			Player p = findPlayerByName(information[0]);
 
-		String hasBeaten = information[1];
-		hasBeaten = hasBeaten.replaceAll("\\[", "");
-		hasBeaten = hasBeaten.replaceAll("\\]", "");
-		String[] playersBeaten = hasBeaten.split(",");
-		for (String s : playersBeaten) {
-			if (s.length() > 0) {
-				p.addToListOfVictories(findPlayerByName(trimWhitespace(s)));
+			String hasBeaten = information[1];
+			hasBeaten = hasBeaten.replaceAll("\\[", "");
+			hasBeaten = hasBeaten.replaceAll("\\]", "");
+			String[] playersBeaten = hasBeaten.split(",");
+			for (String s : playersBeaten) {
+				if (s.length() > 0) {
+					p.addToListOfVictories(findPlayerByName(trimWhitespace(s)));
+				}
 			}
-		}
 
-		String hasPlayed = information[2];
-		hasPlayed = hasPlayed.replaceAll("\\[", "");
-		hasPlayed = hasPlayed.replaceAll("\\]", "");
-		String[] playersPlayed = hasPlayed.split(",");
-		for (String s : playersPlayed) {
-			if (s.length() > 0) {
-				p.addToListOfPlayed(findPlayerByName(trimWhitespace(s)));
+			String hasPlayed = information[2];
+			hasPlayed = hasPlayed.replaceAll("\\[", "");
+			hasPlayed = hasPlayed.replaceAll("\\]", "");
+			String[] playersPlayed = hasPlayed.split(",");
+			for (String s : playersPlayed) {
+				if (s.length() > 0) {
+					p.addToListOfPlayed(findPlayerByName(trimWhitespace(s)));
+				}
 			}
+		} catch (Exception e) {
+			GUI.postString("Error reading supplied file, starting at line: \"" + line + "\".");
 		}
 	}
 
