@@ -361,9 +361,6 @@ public class Tournament {
 		case "roundrobin":
 			generateRRpairings();
 			break;
-		case "save":
-			TntFileManager.saveTournament(this);
-			break;
 		case "load":
 			print("Enter the file name to load.\n");
 			userSelection = null;

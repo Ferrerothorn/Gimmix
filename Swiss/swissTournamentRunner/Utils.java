@@ -32,8 +32,7 @@ public class Utils {
 	public static void showHelp() {
 		GUI.wipePane();
 		print("Welcome to BTC.\n"
-				+ "First, use the text bar below to enter the tournament's participants, one at a time.\n"
-				+ "Then, pairings will be automatically generated for you, ordered by each participant's results so far.\n"
+				+ "Pairings will be automatically generated for you, ordered by each participant's results so far.\n"
 				+ "Enter numbers to the text bar to report scores for each pairing.\n\n");
 		print("");
 		print("At any point while polling for game results, you can enter 'admintools' to enter Administrator mode. ");
@@ -42,7 +41,7 @@ public class Utils {
 		print();
 
 		print("drop/dropUser/dropPlayer:");
-		print("Prompts for a player name, then removes the specified player from the tournament.");
+		print("Prompts for a (case sensitive) player name, then removes the specified player from the tournament.");
 		print("This doesn't affect the scores of anyone who beat this player in a previous round.");
 		print("This command can only be performed on players who have no active battle.");
 		print();
@@ -65,22 +64,15 @@ public class Utils {
 		print("Any scores from a reopened game are reset, and the game is re-added to the Open Games list to report anew.");
 		print();
 
-		print("save:");
-		print("Saves a .tnt metadata file of the tournament's current state.");
-		print("The file will be saved to the same directory as the BTC executable.");
-		print("Files can be reloaded by the admin 'load' command, or simply kept for posterity.");
-		print("Currently BTC saves a .tnt backup every time a result is reported - this may change later.");
-		print();
-
 		print("load:");
-		print("Asks for a .tnt metadata file to reload that tournament into memory.");
+		print("Asks for a .tnt metadata file to load that tournament into memory.");
 		print("File names can be supplied either with or without the .tnt suffix.");
 		print();
 
 		print("matches:");
 		print("Produces a list of each result reported thus far - the combatants, and the reported victor.");
 		print();
-		
+
 		print("matchesOf:");
 		print("Prompts the admin for a player's name (case sensitive).");
 		print("Produces a list of each reported match involving the named player, including the outcome.");
@@ -101,7 +93,7 @@ public class Utils {
 		print("The command will request a value for X. In between rounds, users with X or more losses will be dropped.");
 		print("WARNING: For the time being, use is discouraged, as testing is minimal and there are known fatal bugs.");
 		print();
-		
+
 		print("roundrobin:");
 		print("Aborts all games, pairings and results from the current tournament, replacing them with a Round Robin pairing list.");
 		print();
@@ -121,7 +113,4 @@ public class Utils {
 				+ "                                                                                                                          ")
 						.substring(0, finalLength);
 	}
-	
-
-
 }
