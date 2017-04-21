@@ -80,6 +80,11 @@ public class Utils {
 		print("matches:");
 		print("Produces a list of each result reported thus far - the combatants, and the reported victor.");
 		print();
+		
+		print("matchesOf:");
+		print("Prompts the admin for a player's name (case sensitive).");
+		print("Produces a list of each reported match involving the named player, including the outcome.");
+		print();
 
 		print("setrounds/addround:");
 		print("Takes an integer as input to use as the new 'max number of rounds'.");
@@ -98,8 +103,7 @@ public class Utils {
 		print();
 		
 		print("roundrobin:");
-		print("Experimental: Aborts all games, pairings and results from the current tournament, replacing them with a Round Robin pairing list.");
-		print("WARNING: Minimal testing of Round Robin functionality so far.");
+		print("Aborts all games, pairings and results from the current tournament, replacing them with a Round Robin pairing list.");
 		print();
 
 	}
