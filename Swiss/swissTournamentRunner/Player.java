@@ -7,8 +7,8 @@ public class Player implements Comparable<Player> {
 	String name;
 	int score = 0;
 	int tb = 0;
-	double oppWr = 0;
-	double oppOppWr = 0;
+	int oppWr = 0;
+	int oppOppWr = 0;
 	int trashRating = 0;
 	int lastDocumentedPosition = 0;
 	public ArrayList<Player> previousRounds = new ArrayList<>();
@@ -18,7 +18,7 @@ public class Player implements Comparable<Player> {
 		name = string;
 	}
 
-	public Player(String myName, int myScore, int myTb, double myOppWr, int myOppOppWr) {
+	public Player(String myName, int myScore, int myTb, int myOppWr, int myOppOppWr) {
 		name = myName;
 		score = myScore;
 		tb = myTb;
@@ -36,29 +36,37 @@ public class Player implements Comparable<Player> {
 	}
 
 	public void recalculateOppWr() {
-		oppWr = 0;
+		Double opponentWinRate = 0.0;
+		int people = 0;
 		for (Player p : previousRounds) {
-			oppWr += (double) p.victories.size() / p.previousRounds.size();
+			opponentWinRate += (double) p.victories.size() / p.previousRounds.size();
+			people++;
 		}
-		oppWr = oppWr / previousRounds.size();
-		oppWr *= 100;
+
+		if (people != 0) {
+			opponentWinRate = (double) (oppWr / previousRounds.size());
+			opponentWinRate *= 100;
+		}
+		oppWr = opponentWinRate.intValue();
 	}
 
 	public void recalculateOppOppWr() {
-		oppOppWr = 0;
+		Double opponentOpponentWinRate = 0.0;
 		int people = 0;
 		for (Player p : previousRounds) {
 			for (Player q : p.previousRounds) {
 				if (this != q) {
-					oppOppWr += (double) q.victories.size() / q.previousRounds.size();
+					opponentOpponentWinRate += (double) q.victories.size() / q.previousRounds.size();
 					people++;
 				}
 			}
 		}
 		if (people != 0) {
-			oppOppWr = oppOppWr / people;
-			oppOppWr *= 100;
+			opponentOpponentWinRate = (double) (opponentOpponentWinRate / people);
+			opponentOpponentWinRate *= 100;
 		}
+
+		oppOppWr = opponentOpponentWinRate.intValue();
 	}
 
 	public void recalculateTrashRating() {

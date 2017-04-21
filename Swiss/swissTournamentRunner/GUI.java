@@ -19,7 +19,7 @@ public class GUI extends JPanel implements ActionListener {
 		super(new GridBagLayout());
 		tourney = t;
 
-		textArea = new JTextArea(25, 35);
+		textArea = new JTextArea(30, 40);
 		textArea.setEditable(false);
 		textArea.setLineWrap(true);
 		textArea.setFont(new Font("monospaced", Font.PLAIN, 16));
@@ -59,7 +59,7 @@ public class GUI extends JPanel implements ActionListener {
 	}
 
 	public static void createAndShowGUI(Boolean show) {
-		frame.setSize(500, 400);
+		frame.setSize(600, 450);
 		frame.add(new GUI(tourney));
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

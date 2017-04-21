@@ -270,6 +270,36 @@ public class JUnit {
 	}
 
 	@Test
+	public void testSavingThenReloadingPersistsByeRecords() {
+		t.addBatch("1,2,3,4,5,6,7");
+		assertEquals(8, t.players.size());
+		t.activeMetadataFile = "test.tnt";
+		t.generatePairings(0);
+
+		Utils.handleBattleWinner(t.currentBattles.remove(0), "1");
+		TntFileManager.saveTournament(t);
+
+		Utils.handleBattleWinner(t.currentBattles.remove(2), "1");
+		TntFileManager.saveTournament(t);
+
+		t.currentBattles.clear();
+		t.players.clear();
+		try {
+			TntFileManager.loadTournament(t, t.activeMetadataFile);
+		} catch (IOException e) {
+		}
+		assertEquals(3, t.getNumberOfRounds());
+		assertEquals(8, t.players.size());
+		assertEquals(2, t.currentBattles.size());
+		assertEquals(1, t.findPlayerByName("1").getListOfNamesPlayed().size());
+		assertEquals(1, t.findPlayerByName("BYE").getListOfNamesPlayed().size());
+		File file = new File("test.tnt");
+		if (file.exists()) {
+			file.delete();
+		}
+	}
+
+	@Test
 	public void testTiedSoGoToOppOppWr_P1Wins() {
 		Player p1 = new Player("P1", 3, 1, 0, 1);
 		Player p2 = new Player("P2", 3, 1, 0, 0);
