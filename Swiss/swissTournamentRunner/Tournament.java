@@ -565,7 +565,6 @@ public class Tournament {
 			if (tC < players.size()) {
 				setTopCut(tC);
 			}
-			elimination();
 			break;
 		default:
 			break;
@@ -703,11 +702,11 @@ public class Tournament {
 				players.remove(toDrop);
 			}
 		}
-		
+
 		if (topCutThreshold >= players.size()) {
 			topCutThreshold = 0;
 		}
-		
+
 		if (!nameToDrop.equals("BYE") && (players.size() % 2 == 1) && !containsPlayer("BYE")) {
 			addPlayer("BYE");
 		} else if (!nameToDrop.equals("BYE")) {
