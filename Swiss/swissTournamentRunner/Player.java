@@ -9,7 +9,7 @@ public class Player implements Comparable<Player> {
 	int tb = 0;
 	int oppWr = 0;
 	int oppOppWr = 0;
-	int trashRating = 0;
+	int oppositionTBSum = 0;
 	int lastDocumentedPosition = 0;
 	public ArrayList<Player> previousRounds = new ArrayList<>();
 	ArrayList<Player> victories = new ArrayList<>();
@@ -69,13 +69,6 @@ public class Player implements Comparable<Player> {
 		oppOppWr = opponentOpponentWinRate.intValue();
 	}
 
-	public void recalculateTrashRating() {
-		trashRating = 0;
-		for (Player p : previousRounds) {
-			trashRating += p.getPositionInRankings();
-		}
-	}
-
 	@Override
 	public int compareTo(Player p) {
 		if (this.name.equals("BYE")) {
@@ -98,19 +91,21 @@ public class Player implements Comparable<Player> {
 			return -1;
 		} else if (this.oppOppWr < p.getOppOppWr()) {
 			return 1;
-		} else if (this.trashRating < p.getTrashRating()) {
+		} else if (this.oppositionTBSum > p.oppositionTBSum) {
 			return -1;
-		} else if (this.trashRating > p.getTrashRating()) {
+		} else if (this.oppositionTBSum < p.oppositionTBSum) {
 			return 1;
 		}
-
 		return 0;
 	}
 
-	int getTrashRating() {
-		return trashRating;
+	public void recalculateOppositionTBSum() {
+		oppositionTBSum = 0;
+		for (Player p : previousRounds) {
+			oppositionTBSum += p.getTB();
+		}
 	}
-
+	
 	public int getTB() {
 		return tb;
 	}

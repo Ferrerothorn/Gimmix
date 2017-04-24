@@ -1,0 +1,49 @@
+PLAYERS:
+Eldrazi Stompy,High Tide,Shardless,Aluren,Enchantress,ANT,Burn,Dragon Stompy,Painter's Mill,Zombies,Tezzerator,Sneak & Show,Elves,Infect,RUG Delver,Dredge,Miracles,Maverick,Stax,Belcher,Reanimator,Pox,Spanish Inquisition,Sliver Hive,4c Loam,Food Chain,Team Italia,Parfait,NoPro Bant,Merfolk,Punishing Jund,Deadguy Ale,Superfriends,Grixis Delver,Affinity,Lands,Death & Taxes,Nic Fit,UB Mill,Goblins
+VICTORIES:
+Eldrazi Stompy_[Burn, Pox, Aluren, ANT]_[Burn, Pox, Aluren, ANT]
+High Tide_[NoPro Bant, RUG Delver, Dragon Stompy, Enchantress]_[NoPro Bant, RUG Delver, Dragon Stompy, Enchantress]
+Shardless_[Grixis Delver, Punishing Jund, Reanimator, Elves]_[Grixis Delver, Punishing Jund, Reanimator, Elves]
+Aluren_[Tezzerator, Spanish Inquisition, Dredge]_[Tezzerator, Spanish Inquisition, Eldrazi Stompy, Dredge]
+Enchantress_[Parfait, Painter's Mill, Dredge]_[Parfait, Painter's Mill, Dredge, High Tide]
+ANT_[Sneak & Show, Deadguy Ale, Elves]_[Sneak & Show, Deadguy Ale, Elves, Eldrazi Stompy]
+Burn_[Affinity, Pox, Reanimator]_[Eldrazi Stompy, Affinity, Pox, Reanimator]
+Dragon Stompy_[Lands, Miracles, Infect]_[Lands, Miracles, High Tide, Infect]
+Painter's Mill_[Death & Taxes, Parfait, Stax]_[Death & Taxes, Enchantress, Parfait, Stax]
+Zombies_[Stax, Punishing Jund, RUG Delver]_[Stax, Reanimator, Punishing Jund, RUG Delver]
+Tezzerator_[UB Mill, Spanish Inquisition, Sliver Hive]_[Aluren, UB Mill, Spanish Inquisition, Sliver Hive]
+Sneak & Show_[Goblins, Deadguy Ale, Maverick]_[ANT, Goblins, Deadguy Ale, Maverick]
+Elves_[Infect, Belcher]_[Infect, Belcher, ANT, Shardless]
+Infect_[Food Chain, Belcher]_[Elves, Food Chain, Belcher, Dragon Stompy]
+RUG Delver_[Merfolk, Miracles]_[Merfolk, High Tide, Miracles, Zombies]
+Dredge_[Maverick, Superfriends]_[Maverick, Superfriends, Enchantress, Aluren]
+Miracles_[Sliver Hive, Deadguy Ale]_[Sliver Hive, Dragon Stompy, RUG Delver, Deadguy Ale]
+Maverick_[Team Italia, Superfriends]_[Dredge, Team Italia, Superfriends, Sneak & Show]
+Stax_[Nic Fit, 4c Loam]_[Zombies, Nic Fit, 4c Loam, Painter's Mill]
+Belcher_[Food Chain, Superfriends]_[Food Chain, Elves, Infect, Superfriends]
+Reanimator_[Nic Fit, Zombies]_[Nic Fit, Zombies, Shardless, Burn]
+Pox_[Affinity, Punishing Jund]_[Affinity, Eldrazi Stompy, Burn, Punishing Jund]
+Spanish Inquisition_[UB Mill, Grixis Delver]_[UB Mill, Aluren, Tezzerator, Grixis Delver]
+Sliver Hive_[Lands, Merfolk]_[Miracles, Lands, Merfolk, Tezzerator]
+4c Loam_[Grixis Delver, Merfolk]_[Punishing Jund, Grixis Delver, Stax, Merfolk]
+Food Chain_[Goblins, Affinity]_[Belcher, Infect, Goblins, Affinity]
+Team Italia_[Death & Taxes, Nic Fit]_[Superfriends, Maverick, Death & Taxes, Nic Fit]
+Parfait_[Death & Taxes]_[Enchantress, Death & Taxes, Painter's Mill]
+NoPro Bant_[Lands]_[High Tide, Merfolk, Lands]
+Merfolk_[NoPro Bant]_[RUG Delver, NoPro Bant, Sliver Hive, 4c Loam]
+Punishing Jund_[4c Loam]_[4c Loam, Shardless, Zombies, Pox]
+Deadguy Ale_[Goblins]_[Goblins, ANT, Sneak & Show, Miracles]
+Superfriends_[Team Italia]_[Team Italia, Dredge, Maverick, Belcher]
+Grixis Delver_[Nic Fit]_[Shardless, 4c Loam, Nic Fit, Spanish Inquisition]
+Affinity_[UB Mill]_[Pox, Burn, UB Mill, Food Chain]
+Lands_[Goblins]_[Dragon Stompy, Sliver Hive, NoPro Bant, Goblins]
+Death & Taxes_[UB Mill]_[Painter's Mill, Parfait, Team Italia, UB Mill]
+Nic Fit_[]_[Reanimator, Stax, Grixis Delver, Team Italia]
+UB Mill_[]_[Spanish Inquisition, Tezzerator, Affinity, Death & Taxes]
+Goblins_[]_[Deadguy Ale, Sneak & Show, Food Chain, Lands]
+GAMES:
+Parfait,NoPro Bant
+PROPERTIES:
+On Round:4
+numberOfRounds:6
+topCut:8

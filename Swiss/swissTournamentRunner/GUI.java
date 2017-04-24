@@ -100,7 +100,6 @@ public class GUI extends JPanel implements ActionListener {
 					String pTB = Integer.toString(ps.get(i - 1).getTB());
 					String pOWR = Integer.toString(ps.get(i - 1).getOppWr()) + "%";
 					String pOOWR = Integer.toString(ps.get(i - 1).getOppOppWr()) + "%";
-					String pTR = Integer.toString(ps.get(i - 1).getTrashRating());
 
 					participantString += Utils.rpad(
 							"" + i + ") " + ps.get(i - 1).getName() + "                         ",
@@ -109,7 +108,7 @@ public class GUI extends JPanel implements ActionListener {
 							+ Utils.rpad("TB: " + pTB + "                         ", 8) + "   "
 							+ Utils.rpad(("Opp WR: " + pOWR + "  "), 14) + "  "
 							+ Utils.rpad("Opp Opp WR: " + pOOWR + "  ", 18) + "  "
-							+ Utils.rpad("TR: " + pTR + "             ", 10) + '\n';
+							+ Utils.rpad("STB: " + ps.get(i - 1).oppositionTBSum, 9) + '\n';
 				}
 			}
 			participantString += "==Rankings - Qualifiers==" + "\n";
@@ -124,7 +123,6 @@ public class GUI extends JPanel implements ActionListener {
 				String pTB = Integer.toString(ps.get(j - 1).getTB());
 				String pOWR = Integer.toString(ps.get(j - 1).getOppWr()) + "%";
 				String pOOWR = Integer.toString(ps.get(j - 1).getOppOppWr()) + "%";
-				String pTR = Integer.toString(ps.get(j - 1).getTrashRating());
 
 				participantString += Utils.rpad("" + j + ") " + ps.get(j - 1).getName() + "                         ",
 						longestPlayerNameLength + 7) + "   "
@@ -132,7 +130,8 @@ public class GUI extends JPanel implements ActionListener {
 						+ Utils.rpad("TB: " + pTB + "                         ", 8) + "   "
 						+ Utils.rpad("Opp WR: " + pOWR + "                         ", 12) + "    "
 						+ Utils.rpad("Opp Opp WR: " + pOOWR + "                         ", 16) + "  "
-						+ Utils.rpad("TR: " + pTR + "                         ", 10) + '\n';
+						+ Utils.rpad("STB: " + ps.get(j - 1).oppositionTBSum, 9) + '\n';
+				;
 			}
 		}
 		return participantString;
