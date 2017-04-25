@@ -113,13 +113,10 @@ public class Tournament {
 		for (Player p : players) {
 			p.recalculateOppOppWr();
 		}
+		for (Player p : players) {
+			p.recalculateOppositionTBSum();
+		}
 		sortRankings();
-		for (Player p : players) {
-			p.updatePositionInRankings(players);
-		}
-		for (Player p : players) {
-			p.recalculateTrashRating();
-		}
 		for (Player p : players) {
 			p.updatePositionInRankings(players);
 		}
