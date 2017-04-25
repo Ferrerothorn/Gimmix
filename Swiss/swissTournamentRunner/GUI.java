@@ -6,41 +6,51 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-public class GUI extends JPanel implements ActionListener {
+import net.miginfocom.swing.MigLayout;
+
+public class GUI implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private final static String newline = "\n";
 	public static Tournament tourney;
 	public static JTextField textField;
-	public static JTextArea textArea;
+	public static JTextArea pairingsBox;
+	public static JTextArea resultsBox;
 	public static JFrame frame = new JFrame("BTC");
 
 	public GUI(Tournament t) {
-		super(new GridBagLayout());
 		tourney = t;
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setLayout(new MigLayout("wrap 1", "[grow,fill]"));
 
-		textArea = new JTextArea(30, 40);
-		textArea.setEditable(false);
-		textArea.setLineWrap(true);
-		textArea.setFont(new Font("monospaced", Font.PLAIN, 16));
+		JPanel outputArea = new JPanel(new MigLayout());
 
-		JScrollPane scrollPane = new JScrollPane(textArea);
-		JPanel inputArea = new JPanel();
-		inputArea.setLayout(new BorderLayout());
+		pairingsBox = new JTextArea(20, 40);
+		pairingsBox.setEditable(false);
+		pairingsBox.setLineWrap(true);
+		pairingsBox.setFont(new Font("monospaced", Font.PLAIN, 16));
+
+		resultsBox = new JTextArea(20, 20);
+		resultsBox.setEditable(false);
+		resultsBox.setLineWrap(false);
+		resultsBox.setFont(new Font("monospaced", Font.PLAIN, 14));
+
+		JScrollPane pairingsPane = new JScrollPane(pairingsBox);
+		JScrollPane resultsPane = new JScrollPane(resultsBox);
+
+		JPanel overallOutputArea = new JPanel(new MigLayout("wrap 3", "[grow,fill]"));
+		overallOutputArea.add(pairingsPane, "span 2, grow");
+		overallOutputArea.add(resultsPane);
+
+		JPanel inputArea = new JPanel(new MigLayout("wrap 1", "[grow,fill]"));
 		JLabel inputLabel = new JLabel(" Enter options here: ");
-		textField = new JTextField(90);
+		textField = new JTextField(40);
 		textField.addActionListener(this);
-		inputArea.add(inputLabel, "West");
-		inputArea.add(textField, "Center");
+		inputArea.add(inputLabel);
+		inputArea.add(textField);
 
-		GridBagConstraints c = new GridBagConstraints();
-		c.gridwidth = GridBagConstraints.REMAINDER;
-		c.fill = GridBagConstraints.BOTH;
-		c.weightx = 1.0;
-		c.weighty = 1.0;
-		add(scrollPane, c);
-		c.fill = GridBagConstraints.HORIZONTAL;
-		add(inputArea, c);
+		frame.add(overallOutputArea, "wrap, grow");
+		frame.add(inputArea, "grow");
 	}
 
 	@Override
@@ -48,37 +58,35 @@ public class GUI extends JPanel implements ActionListener {
 		String text = textField.getText();
 		tourney.setUserSelection(text);
 		if (text.length() > 0) {
-			textArea.append(" " + text + newline);
+			pairingsBox.append(" " + text + newline);
 			textField.setText(null);
-			textArea.setCaretPosition(textArea.getDocument().getLength());
+			pairingsBox.setCaretPosition(pairingsBox.getDocument().getLength());
 		}
 	}
 
 	public static String getTextFromArea() {
-		return textArea.getText();
+		return pairingsBox.getText();
 	}
 
 	public static void createAndShowGUI(Boolean show) {
-		frame.setSize(600, 450);
-		frame.add(new GUI(tourney));
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(show);
 	}
 
 	public static void postString(String s) {
-		textArea.append(s + newline);
-		textArea.setCaretPosition(textArea.getDocument().getLength());
+		pairingsBox.append(s + newline);
+		pairingsBox.setCaretPosition(pairingsBox.getDocument().getLength());
 	}
 
 	public static void postString() {
-		textArea.append(newline);
-		textArea.setCaretPosition(textArea.getDocument().getLength());
+		pairingsBox.append(newline);
+		pairingsBox.setCaretPosition(pairingsBox.getDocument().getLength());
 	}
 
 	public static void wipePane() {
-		textArea.setText("");
-		textArea.setCaretPosition(textArea.getDocument().getLength());
+		pairingsBox.setText("");
+		pairingsBox.setCaretPosition(pairingsBox.getDocument().getLength());
 	}
 
 	public static String generateInDepthRankings(ArrayList<Player> ps) {
