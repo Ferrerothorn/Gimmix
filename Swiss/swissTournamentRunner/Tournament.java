@@ -204,10 +204,11 @@ public class Tournament {
 
 		while (currentBattles.size() > 0 && allParticipantsIn) {
 			String roundString = ("-=-=-=-ROUND " + roundNumber + "/" + numberOfRounds + "-=-=-=-");
-
+			print("Enter a table number to report a score for the game.");
+			
 			try {
 				GUI.printCurrentBattles(currentBattles, roundString);
-				print("Which game's result would you like to report?");
+				GUI.pairingsBox.setCaretPosition(GUI.pairingsBox.getDocument().getLength());
 				print();
 
 				waitForUserInput();
@@ -266,9 +267,13 @@ public class Tournament {
 	public void refreshScreen() {
 		GUI.wipePane();
 		updateParticipantStats();
-		print(GUI.generateInDepthRankings(players));
+		printRankings(GUI.generateInDepthRankings(players));
 		print();
 		print();
+	}
+
+	private void printRankings(String generateInDepthRankings) {
+		GUI.printRankings(generateInDepthRankings);
 	}
 
 	public void print() {

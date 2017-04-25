@@ -21,36 +21,30 @@ public class GUI implements ActionListener {
 	public GUI(Tournament t) {
 		tourney = t;
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame.setLayout(new MigLayout("wrap 1", "[grow,fill]"));
+		frame.setLayout(new MigLayout("wrap ", "[grow,fill]"));
 
-		JPanel outputArea = new JPanel(new MigLayout());
-
-		pairingsBox = new JTextArea(20, 40);
+		pairingsBox = new JTextArea(20, 60);
 		pairingsBox.setEditable(false);
 		pairingsBox.setLineWrap(true);
 		pairingsBox.setFont(new Font("monospaced", Font.PLAIN, 16));
 
-		resultsBox = new JTextArea(20, 20);
+		resultsBox = new JTextArea(20, 30);
 		resultsBox.setEditable(false);
 		resultsBox.setLineWrap(false);
 		resultsBox.setFont(new Font("monospaced", Font.PLAIN, 14));
 
-		JScrollPane pairingsPane = new JScrollPane(pairingsBox);
-		JScrollPane resultsPane = new JScrollPane(resultsBox);
-
-		JPanel overallOutputArea = new JPanel(new MigLayout("wrap 3", "[grow,fill]"));
-		overallOutputArea.add(pairingsPane, "span 2, grow");
-		overallOutputArea.add(resultsPane);
-
-		JPanel inputArea = new JPanel(new MigLayout("wrap 1", "[grow,fill]"));
 		JLabel inputLabel = new JLabel(" Enter options here: ");
-		textField = new JTextField(40);
+		textField = new JTextField(500);
 		textField.addActionListener(this);
-		inputArea.add(inputLabel);
-		inputArea.add(textField);
 
-		frame.add(overallOutputArea, "wrap, grow");
-		frame.add(inputArea, "grow");
+		JPanel inputPanel = new JPanel();
+		inputPanel.add(inputLabel);
+		inputPanel.add(textField);
+
+		frame.add(new JScrollPane(pairingsBox), "grow, wrap");
+		frame.add(new JScrollPane(resultsBox), "grow, wrap");
+		frame.add(inputLabel, "cell 0 2 1 1, shrink");
+		frame.add(textField, "cell 0 2 6 1");
 	}
 
 	@Override
@@ -76,12 +70,14 @@ public class GUI implements ActionListener {
 
 	public static void postString(String s) {
 		pairingsBox.append(s + newline);
+		// TODO
 		pairingsBox.setCaretPosition(pairingsBox.getDocument().getLength());
 	}
 
-	public static void postString() {
-		pairingsBox.append(newline);
-		pairingsBox.setCaretPosition(pairingsBox.getDocument().getLength());
+	public static void postResultsString(String s) {
+		resultsBox.setText("");
+		resultsBox.append(s + newline);
+		resultsBox.setCaretPosition(pairingsBox.getDocument().getLength());
 	}
 
 	public static void wipePane() {
@@ -169,5 +165,9 @@ public class GUI implements ActionListener {
 					+ Utils.rpad(playerTwoString, longestPlayerNameLength + 8));
 		}
 		TntFileManager.saveTournament(tourney);
+	}
+
+	public static void printRankings(String generateInDepthRankings) {
+		postResultsString(generateInDepthRankings);
 	}
 }

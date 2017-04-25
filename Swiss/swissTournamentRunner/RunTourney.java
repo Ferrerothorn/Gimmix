@@ -18,7 +18,7 @@ public class RunTourney {
 			GUI.wipePane();
 			tourney.shufflePlayers();
 			tourney.updateParticipantStats();
-			GUI.postString(GUI.generateInDepthRankings(tourney.players));
+			GUI.postResultsString(GUI.generateInDepthRankings(tourney.players));
 			tourney.generatePairings(0);
 			tourney.pollForResults();
 			// while (!(tourney.confirmPhase())) {
@@ -32,7 +32,6 @@ public class RunTourney {
 		TntFileManager.saveTournament(tourney);
 		GUI.wipePane();
 		GUI.postString("FINAL STANDINGS");
-		GUI.postString();
 		tourney.updateParticipantStats();
 		GUI.postString(GUI.generateInDepthRankings(tourney.players));
 	}
@@ -42,6 +41,5 @@ public class RunTourney {
 		GUI.postString("(Version 8.2.2 - Made by Steve Dolman)");
 		GUI.postString(
 				"Shoutout to Rachel Dolman, Darren Macey, and Steve Dolman (another one) for help in testing and debug.");
-		GUI.postString();
 	}
 }

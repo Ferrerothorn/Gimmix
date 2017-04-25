@@ -95,8 +95,6 @@ public class JUnit {
 		assertEquals(1, GUI.getTextFromArea().length());
 		t.print("Hi");
 		assertEquals(4, GUI.getTextFromArea().length());
-		GUI.postString();
-		assertEquals(5, GUI.getTextFromArea().length());
 		GUI.wipePane();
 		assertEquals(0, GUI.getTextFromArea().length());
 	}
