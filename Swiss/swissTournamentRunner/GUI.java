@@ -135,7 +135,6 @@ public class GUI implements ActionListener {
 						+ Utils.rpad("Opp WR: " + pOWR + "                         ", 12) + "    "
 						+ Utils.rpad("Opp Opp WR: " + pOOWR + "                         ", 16) + "  "
 						+ Utils.rpad("STB: " + ps.get(j - 1).oppositionTBSum, 9) + '\n';
-				;
 			}
 		}
 		return participantString;

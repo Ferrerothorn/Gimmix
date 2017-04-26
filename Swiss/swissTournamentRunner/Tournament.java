@@ -202,11 +202,10 @@ public class Tournament {
 		while (currentBattles.size() > 0 && allParticipantsIn) {
 			String roundString = ("-=-=-=-ROUND " + roundNumber + "/" + numberOfRounds + "-=-=-=-");
 			print("Enter a table number to report a score for the game.");
-			
+
 			try {
 				GUI.printCurrentBattles(currentBattles, roundString);
 				GUI.pairingsBox.setCaretPosition(GUI.pairingsBox.getDocument().getLength());
-				print();
 
 				waitForUserInput();
 

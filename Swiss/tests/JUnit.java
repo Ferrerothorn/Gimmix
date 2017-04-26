@@ -89,17 +89,6 @@ public class JUnit {
 	}
 
 	@Test
-	public void testGUIisInteractive() {
-		GUI.createAndShowGUI(false);
-		t.print("");
-		assertEquals(1, GUI.getTextFromArea().length());
-		t.print("Hi");
-		assertEquals(4, GUI.getTextFromArea().length());
-		GUI.wipePane();
-		assertEquals(0, GUI.getTextFromArea().length());
-	}
-
-	@Test
 	public void testRecalculateTBs() {
 		Player p1 = new Player("P1");
 		Player p2 = new Player("P2");
@@ -233,10 +222,10 @@ public class JUnit {
 		t.sortRankings();
 		assertEquals(
 				"-=-=-=-Rankings-=-=-=-\n"
-						+ "1) P1       Score: 9          TB: 0      Opp WR: 0%      Opp Opp WR: 0%    TR: 0     \n"
-						+ "2) P3       Score: 6          TB: 0      Opp WR: 0%      Opp Opp WR: 0%    TR: 0     \n"
-						+ "3) P2       Score: 3          TB: 0      Opp WR: 0%      Opp Opp WR: 0%    TR: 0     \n"
-						+ "4) P4       Score: 0          TB: 0      Opp WR: 0%      Opp Opp WR: 0%    TR: 0     \n",
+						+ "1) P1       Score: 9          TB: 0      Opp WR: 0%      Opp Opp WR: 0%    STB: 0   \n"
+						+ "2) P3       Score: 6          TB: 0      Opp WR: 0%      Opp Opp WR: 0%    STB: 0   \n"
+						+ "3) P2       Score: 3          TB: 0      Opp WR: 0%      Opp Opp WR: 0%    STB: 0   \n"
+						+ "4) P4       Score: 0          TB: 0      Opp WR: 0%      Opp Opp WR: 0%    STB: 0   \n",
 				GUI.generateInDepthRankings(t.players));
 	}
 

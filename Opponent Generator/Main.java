@@ -3,12 +3,12 @@ import java.util.Random;
 
 public class Main {
 
-	static ArrayList<String> tierPool = new ArrayList<String>();
+	static ArrayList<String> tierPool = new ArrayList<>();
 
 	public static void main(String[] args) {
 		populatePool();
-		ArrayList<String> p1 = new ArrayList<String>();
-		ArrayList<String> p2 = new ArrayList<String>();
+		ArrayList<String> p1 = new ArrayList<>();
+		ArrayList<String> p2 = new ArrayList<>();
 		Random r = new Random();
 
 		for (int i = 0; i < 6; i++) {
