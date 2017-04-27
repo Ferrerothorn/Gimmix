@@ -16,6 +16,7 @@ public class GUI implements ActionListener {
 	public static JTextField textField;
 	public static JTextArea textOutputBox;
 	public static JTextArea resultsBox;
+	public static JPanel buttonWindow;
 	public static JFrame frame = new JFrame("BTC");
 
 	public GUI(Tournament t) {
@@ -33,6 +34,8 @@ public class GUI implements ActionListener {
 		resultsBox.setLineWrap(false);
 		resultsBox.setFont(new Font("monospaced", Font.PLAIN, 14));
 
+		buttonWindow = new CombatantPanel(tourney.currentBattles);
+
 		JLabel inputLabel = new JLabel(" Enter options here: ");
 		textField = new JTextField(500);
 		textField.addActionListener(this);
@@ -41,10 +44,26 @@ public class GUI implements ActionListener {
 		inputPanel.add(inputLabel);
 		inputPanel.add(textField);
 
-		frame.add(new JScrollPane(pairingsBox), "grow, wrap");
+		frame.add(new JScrollPane(textOutputBox), "grow");
+		frame.add(buttonWindow, "grow, wrap");
 		frame.add(new JScrollPane(resultsBox), "grow, wrap");
 		frame.add(inputLabel, "cell 0 2 1 1, shrink");
 		frame.add(textField, "cell 0 2 6 1");
+	}
+
+	static void paintButtons() {
+		buttonWindow.removeAll();
+		for (Battle b : tourney.currentBattles) {
+			JPanel b1Panel = new JPanel();
+			JButton b1 = new JButton(b.getP1().getName());
+			JPanel b2Panel = new JPanel();
+			JButton b2 = new JButton(b.getP2().getName());
+			b1Panel.add(b1);
+			buttonWindow.add(b1Panel);
+			b2Panel.add(b2);
+			buttonWindow.add(b2Panel);
+		}
+		frame.repaint();
 	}
 
 	@Override
@@ -52,14 +71,14 @@ public class GUI implements ActionListener {
 		String text = textField.getText();
 		tourney.setUserSelection(text);
 		if (text.length() > 0) {
-			pairingsBox.append(" " + text + newline);
+			textOutputBox.append(" " + text + newline);
 			textField.setText(null);
-			pairingsBox.setCaretPosition(pairingsBox.getDocument().getLength());
+			textOutputBox.setCaretPosition(textOutputBox.getDocument().getLength());
 		}
 	}
 
 	public static String getTextFromArea() {
-		return pairingsBox.getText();
+		return textOutputBox.getText();
 	}
 
 	public static void createAndShowGUI(Boolean show) {
@@ -69,9 +88,9 @@ public class GUI implements ActionListener {
 	}
 
 	public static void postString(String s) {
-		pairingsBox.append(s + newline);
+		textOutputBox.append(s + newline);
 		// TODO
-		pairingsBox.setCaretPosition(pairingsBox.getDocument().getLength());
+		textOutputBox.setCaretPosition(textOutputBox.getDocument().getLength());
 	}
 
 	public static void postResultsString(String s) {
@@ -81,8 +100,8 @@ public class GUI implements ActionListener {
 	}
 
 	public static void wipePane() {
-		pairingsBox.setText("");
-		pairingsBox.setCaretPosition(pairingsBox.getDocument().getLength());
+		textOutputBox.setText("");
+		textOutputBox.setCaretPosition(textOutputBox.getDocument().getLength());
 	}
 
 	public static String generateInDepthRankings(ArrayList<Player> ps) {

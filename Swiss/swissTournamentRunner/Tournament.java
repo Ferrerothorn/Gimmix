@@ -262,6 +262,7 @@ public class Tournament {
 
 	public void refreshScreen() {
 		GUI.wipePane();
+		GUI.paintButtons();
 		updateParticipantStats();
 		printRankings(GUI.generateInDepthRankings(players));
 		print();
