@@ -205,7 +205,7 @@ public class Tournament {
 
 			try {
 				GUI.printCurrentBattles(currentBattles, roundString);
-				GUI.pairingsBox.setCaretPosition(GUI.pairingsBox.getDocument().getLength());
+				GUI.textOutputBox.setCaretPosition(GUI.textOutputBox.getDocument().getLength());
 
 				waitForUserInput();
 
