@@ -143,6 +143,7 @@ public class Tournament {
 				}
 			}
 		}
+		GUI.refresh();
 	}
 
 	public void pairThisGuyUp(Player p1, ArrayList<Battle> targetBattleList, int attempts) {
