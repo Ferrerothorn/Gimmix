@@ -143,6 +143,7 @@ public class Tournament {
 				}
 			}
 		}
+		GUI.refresh();
 	}
 
 	public void pairThisGuyUp(Player p1, ArrayList<Battle> targetBattleList, int attempts) {
@@ -205,7 +206,7 @@ public class Tournament {
 
 			try {
 				GUI.printCurrentBattles(currentBattles, roundString);
-				GUI.pairingsBox.setCaretPosition(GUI.pairingsBox.getDocument().getLength());
+				GUI.textOutputBox.setCaretPosition(0);
 
 				waitForUserInput();
 
@@ -262,6 +263,7 @@ public class Tournament {
 
 	public void refreshScreen() {
 		GUI.wipePane();
+		GUI.paintButtons();
 		updateParticipantStats();
 		printRankings(GUI.generateInDepthRankings(players));
 		print();
@@ -849,5 +851,10 @@ public class Tournament {
 			break;
 		}
 		return allParticipantsIn;
+	}
+
+	public void reportBattleWinner(String text) {
+		// TODO Auto-generated method stub
+		
 	}
 }

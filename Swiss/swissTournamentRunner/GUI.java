@@ -14,37 +14,57 @@ public class GUI implements ActionListener {
 	private final static String newline = "\n";
 	public static Tournament tourney;
 	public static JTextField textField;
-	public static JTextArea pairingsBox;
+	public static JTextArea textOutputBox;
 	public static JTextArea resultsBox;
+	public static JPanel buttonWindow;
 	public static JFrame frame = new JFrame("BTC");
 
 	public GUI(Tournament t) {
 		tourney = t;
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame.setLayout(new MigLayout("wrap ", "[grow,fill]"));
+		frame.setLayout(new MigLayout("wrap 2"));
 
-		pairingsBox = new JTextArea(20, 60);
-		pairingsBox.setEditable(false);
-		pairingsBox.setLineWrap(true);
-		pairingsBox.setFont(new Font("monospaced", Font.PLAIN, 16));
+		textOutputBox = new JTextArea(20, 60);
+		textOutputBox.setEditable(false);
+		textOutputBox.setLineWrap(true);
+		textOutputBox.setFont(new Font("monospaced", Font.PLAIN, 16));
 
 		resultsBox = new JTextArea(20, 30);
 		resultsBox.setEditable(false);
 		resultsBox.setLineWrap(false);
 		resultsBox.setFont(new Font("monospaced", Font.PLAIN, 14));
 
+		buttonWindow = new CombatantPanel(tourney.currentBattles, tourney);
+		paintButtons();
+		buttonWindow.setVisible(true);
+
 		JLabel inputLabel = new JLabel(" Enter options here: ");
 		textField = new JTextField(500);
 		textField.addActionListener(this);
 
-		JPanel inputPanel = new JPanel();
-		inputPanel.add(inputLabel);
-		inputPanel.add(textField);
+		JPanel inputPanel = new JPanel(new MigLayout());
+		inputPanel.add(inputLabel, "shrink, span 2");
+		inputPanel.add(textField, "span 4");
 
-		frame.add(new JScrollPane(pairingsBox), "grow, wrap");
-		frame.add(new JScrollPane(resultsBox), "grow, wrap");
-		frame.add(inputLabel, "cell 0 2 1 1, shrink");
-		frame.add(textField, "cell 0 2 6 1");
+		frame.add(new JScrollPane(textOutputBox));
+		frame.add(new JScrollPane(buttonWindow), "span 2, grow, wrap");
+		frame.add(new JScrollPane(resultsBox), "span 3, grow, wrap");
+		frame.add(inputPanel, "span 3");
+	}
+
+	static void paintButtons() {
+		buttonWindow.removeAll();
+		for (Battle b : tourney.currentBattles) {
+			JPanel b1Panel = new JPanel();
+			JButton b1 = new JButton(b.getP1().getName());
+			JPanel b2Panel = new JPanel();
+			JButton b2 = new JButton(b.getP2().getName());
+			b1Panel.add(b1);
+			buttonWindow.add(b1Panel);
+			b2Panel.add(b2);
+			buttonWindow.add(b2Panel);
+		}
+		buttonWindow.repaint();
 	}
 
 	@Override
@@ -52,14 +72,14 @@ public class GUI implements ActionListener {
 		String text = textField.getText();
 		tourney.setUserSelection(text);
 		if (text.length() > 0) {
-			pairingsBox.append(" " + text + newline);
+			textOutputBox.append(" " + text + newline);
 			textField.setText(null);
-			pairingsBox.setCaretPosition(pairingsBox.getDocument().getLength());
+			textOutputBox.setCaretPosition(textOutputBox.getDocument().getLength());
 		}
 	}
 
 	public static String getTextFromArea() {
-		return pairingsBox.getText();
+		return textOutputBox.getText();
 	}
 
 	public static void createAndShowGUI(Boolean show) {
@@ -69,20 +89,19 @@ public class GUI implements ActionListener {
 	}
 
 	public static void postString(String s) {
-		pairingsBox.append(s + newline);
-		// TODO
-		pairingsBox.setCaretPosition(pairingsBox.getDocument().getLength());
+		textOutputBox.append(s + newline);
+		textOutputBox.setCaretPosition(textOutputBox.getDocument().getLength());
 	}
 
 	public static void postResultsString(String s) {
 		resultsBox.setText("");
 		resultsBox.append(s + newline);
-		resultsBox.setCaretPosition(pairingsBox.getDocument().getLength());
+		resultsBox.setCaretPosition(0);
 	}
 
 	public static void wipePane() {
-		pairingsBox.setText("");
-		pairingsBox.setCaretPosition(pairingsBox.getDocument().getLength());
+		textOutputBox.setText("");
+		textOutputBox.setCaretPosition(textOutputBox.getDocument().getLength());
 	}
 
 	public static String generateInDepthRankings(ArrayList<Player> ps) {
@@ -167,5 +186,11 @@ public class GUI implements ActionListener {
 
 	public static void printRankings(String generateInDepthRankings) {
 		postResultsString(generateInDepthRankings);
+	}
+	public static void refresh() {
+		for (Component c : frame.getContentPane().getComponents()) {
+			c.validate();
+			c.repaint();
+		}
 	}
 }
