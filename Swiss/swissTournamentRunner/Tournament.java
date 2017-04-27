@@ -852,4 +852,9 @@ public class Tournament {
 		}
 		return allParticipantsIn;
 	}
+
+	public void reportBattleWinner(String text) {
+		// TODO Auto-generated method stub
+		
+	}
 }
