@@ -14,7 +14,7 @@ public class GUI implements ActionListener {
 	private final static String newline = "\n";
 	public static Tournament tourney;
 	public static JTextField textField;
-	public static JTextArea pairingsBox;
+	public static JTextArea textOutputBox;
 	public static JTextArea resultsBox;
 	public static JFrame frame = new JFrame("BTC");
 
@@ -23,10 +23,10 @@ public class GUI implements ActionListener {
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setLayout(new MigLayout("wrap ", "[grow,fill]"));
 
-		pairingsBox = new JTextArea(20, 60);
-		pairingsBox.setEditable(false);
-		pairingsBox.setLineWrap(true);
-		pairingsBox.setFont(new Font("monospaced", Font.PLAIN, 16));
+		textOutputBox = new JTextArea(20, 60);
+		textOutputBox.setEditable(false);
+		textOutputBox.setLineWrap(true);
+		textOutputBox.setFont(new Font("monospaced", Font.PLAIN, 16));
 
 		resultsBox = new JTextArea(20, 30);
 		resultsBox.setEditable(false);
