@@ -22,7 +22,7 @@ public class GUI implements ActionListener {
 	public GUI(Tournament t) {
 		tourney = t;
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame.setLayout(new MigLayout("wrap ", "[grow,fill]"));
+		frame.setLayout(new MigLayout("wrap 2"));
 
 		textOutputBox = new JTextArea(20, 60);
 		textOutputBox.setEditable(false);
@@ -34,21 +34,22 @@ public class GUI implements ActionListener {
 		resultsBox.setLineWrap(false);
 		resultsBox.setFont(new Font("monospaced", Font.PLAIN, 14));
 
-		buttonWindow = new CombatantPanel(tourney.currentBattles);
+		buttonWindow = new CombatantPanel(tourney.currentBattles, tourney);
+		paintButtons();
+		buttonWindow.setVisible(true);
 
 		JLabel inputLabel = new JLabel(" Enter options here: ");
 		textField = new JTextField(500);
 		textField.addActionListener(this);
 
-		JPanel inputPanel = new JPanel();
-		inputPanel.add(inputLabel);
-		inputPanel.add(textField);
+		JPanel inputPanel = new JPanel(new MigLayout());
+		inputPanel.add(inputLabel, "shrink, span 2");
+		inputPanel.add(textField, "span 4");
 
-		frame.add(new JScrollPane(textOutputBox), "grow");
-		frame.add(buttonWindow, "grow, wrap");
-		frame.add(new JScrollPane(resultsBox), "grow, wrap");
-		frame.add(inputLabel, "cell 0 2 1 1, shrink");
-		frame.add(textField, "cell 0 2 6 1");
+		frame.add(new JScrollPane(textOutputBox));
+		frame.add(new JScrollPane(buttonWindow), "span 2, grow, wrap");
+		frame.add(new JScrollPane(resultsBox), "span 3, grow, wrap");
+		frame.add(inputPanel, "span 3");
 	}
 
 	static void paintButtons() {
@@ -63,7 +64,7 @@ public class GUI implements ActionListener {
 			b2Panel.add(b2);
 			buttonWindow.add(b2Panel);
 		}
-		frame.repaint();
+		buttonWindow.repaint();
 	}
 
 	@Override
@@ -89,14 +90,13 @@ public class GUI implements ActionListener {
 
 	public static void postString(String s) {
 		textOutputBox.append(s + newline);
-		// TODO
 		textOutputBox.setCaretPosition(textOutputBox.getDocument().getLength());
 	}
 
 	public static void postResultsString(String s) {
 		resultsBox.setText("");
 		resultsBox.append(s + newline);
-		resultsBox.setCaretPosition(pairingsBox.getDocument().getLength());
+		resultsBox.setCaretPosition(0);
 	}
 
 	public static void wipePane() {
@@ -186,5 +186,11 @@ public class GUI implements ActionListener {
 
 	public static void printRankings(String generateInDepthRankings) {
 		postResultsString(generateInDepthRankings);
+	}
+	public static void refresh() {
+		for (Component c : frame.getContentPane().getComponents()) {
+			c.validate();
+			c.repaint();
+		}
 	}
 }
