@@ -27,4 +27,8 @@ public class Battle {
 		return tableNumber;
 	}
 
+	public boolean contains(Player winner) {
+		return (p1 == winner || p2 == winner);
+	}
+
 }
