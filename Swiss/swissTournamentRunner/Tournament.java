@@ -206,7 +206,7 @@ public class Tournament {
 
 			try {
 				GUI.printCurrentBattles(currentBattles, roundString);
-				GUI.textOutputBox.setCaretPosition(0);
+				GUI.resultsBox.setCaretPosition(0);
 
 				waitForUserInput();
 
