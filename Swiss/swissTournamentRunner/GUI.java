@@ -13,7 +13,6 @@ public class GUI implements ActionListener {
 	private final static String newline = "\n";
 	public static Tournament tourney;
 	public static JTextField textField;
-	public static JTextArea textOutputBox;
 	public static JTextArea resultsBox;
 	public static JPanel buttonWindow;
 	public static JFrame frame = new JFrame("BTC");
