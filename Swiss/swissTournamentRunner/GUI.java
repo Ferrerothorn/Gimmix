@@ -10,11 +10,9 @@ import net.miginfocom.swing.MigLayout;
 
 public class GUI implements ActionListener {
 
-	private static final long serialVersionUID = 1L;
 	private final static String newline = "\n";
 	public static Tournament tourney;
 	public static JTextField textField;
-	public static JTextArea textOutputBox;
 	public static JTextArea resultsBox;
 	public static JPanel buttonWindow;
 	public static JFrame frame = new JFrame("BTC");
@@ -22,14 +20,9 @@ public class GUI implements ActionListener {
 	public GUI(Tournament t) {
 		tourney = t;
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame.setLayout(new MigLayout("wrap 2"));
+		frame.setLayout(new MigLayout("fill, wrap"));
 
-		textOutputBox = new JTextArea(20, 60);
-		textOutputBox.setEditable(false);
-		textOutputBox.setLineWrap(true);
-		textOutputBox.setFont(new Font("monospaced", Font.PLAIN, 16));
-
-		resultsBox = new JTextArea(20, 30);
+		resultsBox = new JTextArea();
 		resultsBox.setEditable(false);
 		resultsBox.setLineWrap(false);
 		resultsBox.setFont(new Font("monospaced", Font.PLAIN, 14));
@@ -42,14 +35,13 @@ public class GUI implements ActionListener {
 		textField = new JTextField(500);
 		textField.addActionListener(this);
 
-		JPanel inputPanel = new JPanel(new MigLayout());
+		JPanel inputPanel = new JPanel(new MigLayout("fill"));
 		inputPanel.add(inputLabel, "shrink, span 2");
 		inputPanel.add(textField, "span 4");
 
-		frame.add(new JScrollPane(textOutputBox));
-		frame.add(new JScrollPane(buttonWindow), "span 2, grow, wrap");
-		frame.add(new JScrollPane(resultsBox), "span 3, grow, wrap");
-		frame.add(inputPanel, "span 3");
+		frame.add(new JScrollPane(buttonWindow), "span 5 5, grow, wrap");
+		frame.add(new JScrollPane(resultsBox), "span 2 2, grow, wrap");
+		frame.add(inputPanel, "span 1 1, bottom, growx");
 	}
 
 	static void paintButtons() {
@@ -72,14 +64,14 @@ public class GUI implements ActionListener {
 		String text = textField.getText();
 		tourney.setUserSelection(text);
 		if (text.length() > 0) {
-			textOutputBox.append(" " + text + newline);
+			resultsBox.append(" " + text + newline);
 			textField.setText(null);
-			textOutputBox.setCaretPosition(textOutputBox.getDocument().getLength());
+			resultsBox.setCaretPosition(resultsBox.getDocument().getLength());
 		}
 	}
 
 	public static String getTextFromArea() {
-		return textOutputBox.getText();
+		return resultsBox.getText();
 	}
 
 	public static void createAndShowGUI(Boolean show) {
@@ -89,8 +81,8 @@ public class GUI implements ActionListener {
 	}
 
 	public static void postString(String s) {
-		textOutputBox.append(s + newline);
-		textOutputBox.setCaretPosition(textOutputBox.getDocument().getLength());
+		resultsBox.append(s + newline);
+		resultsBox.setCaretPosition(0);
 	}
 
 	public static void postResultsString(String s) {
@@ -100,8 +92,8 @@ public class GUI implements ActionListener {
 	}
 
 	public static void wipePane() {
-		textOutputBox.setText("");
-		textOutputBox.setCaretPosition(textOutputBox.getDocument().getLength());
+		resultsBox.setText("");
+		resultsBox.setCaretPosition(resultsBox.getDocument().getLength());
 	}
 
 	public static String generateInDepthRankings(ArrayList<Player> ps) {
