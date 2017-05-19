@@ -10,7 +10,6 @@ import net.miginfocom.swing.MigLayout;
 
 public class GUI implements ActionListener {
 
-	private static final long serialVersionUID = 1L;
 	private final static String newline = "\n";
 	public static Tournament tourney;
 	public static JTextField textField;
