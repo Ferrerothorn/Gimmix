@@ -850,4 +850,20 @@ public class Tournament {
 		}
 		return allParticipantsIn;
 	}
+
+	public void reportBattleWinner(String text) {
+		Player winner = findPlayerByName(text);
+		for (Battle b : currentBattles) {
+			if (b.contains(winner)) {
+				if (b.getP1() == winner) {
+					Utils.handleBattleWinner(b, "1");
+				}
+				else {
+					Utils.handleBattleWinner(b, "2");	
+				}
+				currentBattles.remove(b);
+				break;
+			}
+		}
+	}
 }
