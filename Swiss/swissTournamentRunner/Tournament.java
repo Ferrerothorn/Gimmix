@@ -10,7 +10,6 @@ public class Tournament {
 	public ArrayList<Player> players = new ArrayList<>();
 	public ArrayList<Battle> currentBattles = new ArrayList<>();
 	public ArrayList<Battle> totallyKosherPairings = new ArrayList<>();
-	public String userSelection = null;
 	boolean allParticipantsIn = false;
 	public int topCutThreshold = 0;
 	public int numberOfRounds;
@@ -32,12 +31,14 @@ public class Tournament {
 	public void signUpPlayers() {
 		if (activeMetadataFile.equals("TournamentInProgress.tnt")) {
 			print("Enter the name of this tournament.");
-			waitForUserInput();
-			activeMetadataFile = userSelection;
+
+			while (!allParticipantsIn) {
+
+			}
+			activeMetadataFile = GUI.textField.getText();
 			if (!activeMetadataFile.contains(".tnt")) {
 				activeMetadataFile += ".tnt";
 			}
-			userSelection = null;
 		}
 
 		File file = new File(activeMetadataFile);
@@ -202,60 +203,14 @@ public class Tournament {
 
 		while (currentBattles.size() > 0 && allParticipantsIn) {
 			String roundString = ("-=-=-=-ROUND " + roundNumber + "/" + numberOfRounds + "-=-=-=-");
-			print("Enter a table number to report a score for the game.");
+
+			print("Click a button above to report that player as the game winner.");
 
 			try {
-				GUI.printCurrentBattles(currentBattles, roundString);
 				GUI.resultsBox.setCaretPosition(0);
 
-				waitForUserInput();
-
-				switch (userSelection.toLowerCase()) {
-
-				case "help":
-					userSelection = null;
-					Utils.showHelp();
-					break;
-				case "admintools":
-					userSelection = null;
-					adminTools();
-					break;
-				default:
-					int reportUpon = Integer.parseInt(userSelection);
-					userSelection = null;
-					Battle b = fetchBattle(reportUpon, currentBattles);
-					currentBattles.remove(b);
-
-					print("And who won in " + b.getP1().getName() + " vs. " + b.getP2().getName() + "?");
-					print("1) " + b.getP1().getName());
-					print("2) " + b.getP2().getName());
-					print("0) Tied.");
-
-					if (!((b.getP1().getName().equals("BYE") || (b.getP2().getName().equals("BYE"))))) {
-
-						waitForUserInput();
-						if (userSelection.equals("1") || userSelection.equals("2") || userSelection.equals("0")) {
-							Utils.handleBattleWinner(b, userSelection);
-						} else {
-							currentBattles.add(b);
-						}
-					} else {
-						if (b.getP1().getName().equals("BYE")) {
-							b.getP2().beats(b.getP1());
-							b = null;
-						} else if (b.getP2().getName().equals("BYE")) {
-							b.getP1().beats(b.getP2());
-							b = null;
-						}
-					}
-
-					userSelection = null;
-					refreshScreen();
-					break;
-				}
 			} catch (Exception e) {
 				print("Illegal input.");
-				userSelection = null;
 				pollForResults();
 			}
 		}
@@ -264,6 +219,7 @@ public class Tournament {
 	public void refreshScreen() {
 		GUI.wipePane();
 		GUI.paintButtons();
+		GUI.refresh();
 		updateParticipantStats();
 		printRankings(GUI.generateInDepthRankings(players));
 		print();
@@ -280,25 +236,6 @@ public class Tournament {
 
 	public void print(String string) {
 		GUI.postString(string);
-	}
-
-	public void waitForUserInput() {
-		while (userSelection == null) {
-			System.out.println();
-		}
-		if (userSelection.length() <= 0) {
-			userSelection = null;
-			waitForUserInput();
-		}
-	}
-
-	private Battle fetchBattle(int reportUpon, ArrayList<Battle> cB) {
-		for (Battle b : cB) {
-			if (b.getTableNumber() == reportUpon) {
-				return b;
-			}
-		}
-		return null;
 	}
 
 	public void assignTableNumbers(ArrayList<Battle> bIP) {
@@ -325,51 +262,27 @@ public class Tournament {
 		this.gui = gui;
 	}
 
-	public String getUserSelection() {
-		return userSelection;
-	}
-
-	public void setUserSelection(String userSelection) {
-		this.userSelection = userSelection;
-	}
-
-	public void adminTools() {
-		userSelection = null;
+	public void adminTools(String[] command) {
 		print("Admin functions enabled.");
-		waitForUserInput();
-		switch (userSelection.toLowerCase()) {
+		switch (command[1].toLowerCase()) {
 
 		case "topcut":
-			print("Enter the number of players that constitutes a Top Cut for this tournament.\n");
-			print("(Must be less than the number of players.)\n");
-			print("Alternatively, enter '0' to remove the Top Cut.\n");
-			userSelection = null;
-			waitForUserInput();
-			int tC = Integer.parseInt(userSelection);
+			int tC = Integer.parseInt(command[2]);
 			if (tC < players.size()) {
 				setTopCut(tC);
 			} else {
 				print("Invalid - Top Cut size is too large.");
 			}
-			userSelection = null;
 			break;
 		case "matchesof":
-			print("Enter player whose game history you'd like to see.\n");
-			userSelection = null;
-			waitForUserInput();
-			String showHistory = userSelection;
+			String showHistory = command[2];
 			printHistory(showHistory);
-			userSelection = null;
 			break;
 		case "roundrobin":
 			generateRRpairings();
 			break;
 		case "load":
-			print("Enter the file name to load.\n");
-			userSelection = null;
-			waitForUserInput();
-			String fileName = userSelection;
-			userSelection = null;
+			String fileName = command[2];
 			if (!fileName.contains(".tnt")) {
 				fileName += ".tnt";
 			}
@@ -388,11 +301,8 @@ public class Tournament {
 		case "matches":
 			print(getResultsOfAllMatchesSoFar());
 			break;
-		case "setrounds":
-			print("Enter the new number of desired rounds for the tournament.\n");
-			userSelection = null;
-			waitForUserInput();
-			int newNoOfRounds = Integer.parseInt(userSelection);
+		case "addround":
+			int newNoOfRounds = Integer.parseInt(command[2]);
 			if (newNoOfRounds < players.size() && newNoOfRounds >= logBase2(players.size())) {
 				setNumberOfRounds(newNoOfRounds);
 				print("Number of rounds updated to " + getNumberOfRounds() + ".");
@@ -400,83 +310,25 @@ public class Tournament {
 				print("Invalid number of rounds for a Swiss tournament.");
 				print("We need to have less rounds than the number of players, and at least logBase2(number of players).");
 			}
-			userSelection = null;
-			break;
-		case "addround":
-			print("Enter the new number of desired rounds for the tournament.\n");
-			userSelection = null;
-			waitForUserInput();
-			int newNumOfRounds = Integer.parseInt(userSelection);
-			if (newNumOfRounds < players.size() && newNumOfRounds >= logBase2(players.size())) {
-				setNumberOfRounds(newNumOfRounds);
-				print("Number of rounds updated to " + getNumberOfRounds() + ".");
-			} else {
-				print("Invalid number of rounds for a Swiss tournament.");
-				print("We need to have less rounds than the number of players, and at least logBase2(number of players).");
-			}
-			userSelection = null;
 			break;
 		case "drop":
-			print("Enter player name to drop.\n");
-			userSelection = null;
-			waitForUserInput();
-			dropPlayer(userSelection);
-			userSelection = null;
-			break;
-		case "dropplayer":
-			print("Enter player name to drop.\n");
-			userSelection = null;
-			waitForUserInput();
-			dropPlayer(userSelection);
-			userSelection = null;
-			break;
-		case "dropuser":
-			print("Enter player name to drop.\n");
-			userSelection = null;
-			waitForUserInput();
-			dropPlayer(userSelection);
-			userSelection = null;
+			String dropMe = command[2];
+			dropPlayer(dropMe);
 			break;
 		case "editname":
-			print("Enter player whose name should be changed.\n");
-			userSelection = null;
-			waitForUserInput();
-			String renameMe = userSelection;
-			print("Enter player's new name.\n");
-			userSelection = null;
-			waitForUserInput();
-			String newName = userSelection;
+			String renameMe = command[2];
+			String newName = command[3];
 			renamePlayer(renameMe, newName);
-			userSelection = null;
 			break;
-		case "addbatch":
-			print("Enter a list of players, separated by commas.\n");
-			userSelection = null;
-			waitForUserInput();
-			String playersList = userSelection;
-			userSelection = null;
+		case "add":
+			String playersList = command[2];
 			addBatch(playersList);
 			break;
-		case "addplayer":
-			print("Enter a list of players, separated by commas.\n");
-			userSelection = null;
-			waitForUserInput();
-			String playerList = userSelection;
-			userSelection = null;
-			addBatch(playerList);
-			break;
 		case "reopengame":
-			print("To reopen a game, first enter the name of one of the players in the game.\n");
-			print("(Case sensitive)\n");
-			userSelection = null;
-			waitForUserInput();
-			Player p1 = findPlayerByName(userSelection);
-			userSelection = null;
-			print("Enter the name of the other player in that game.\n");
-			print("(Case sensitive)\n");
-			waitForUserInput();
-			Player p2 = findPlayerByName(userSelection);
-			userSelection = null;
+			String p1name = command[2];
+			String p2name = command[3];
+			Player p1 = findPlayerByName(p1name);
+			Player p2 = findPlayerByName(p2name);
 			if (p1 != null && p2 != null) {
 				reopenBattle(p1, p2);
 			}
@@ -486,19 +338,14 @@ public class Tournament {
 			players.clear();
 			break;
 		case "elimination":
-			print("To convert to X-Elimination, please first enter the number of losses after which a player is eliminated.\n");
-			userSelection = null;
-			waitForUserInput();
-			setX_elimination(Integer.parseInt(userSelection));
+			setX_elimination(Integer.parseInt(command[2]));
 			print("Players will be eliminated after " + getX_elimination() + " losses.");
-			userSelection = null;
 			currentBattles.clear();
 			break;
 		default:
 			print("Invalid admin command. Returning to tournament...\n");
 			break;
 		}
-		userSelection = null;
 	}
 
 	private void printHistory(String showHistory) {
@@ -747,10 +594,6 @@ public class Tournament {
 		}
 	}
 
-	public int size() {
-		return players.size();
-	}
-
 	public void addPlayer(Player p) {
 		players.add(p);
 	}
@@ -826,45 +669,46 @@ public class Tournament {
 		allParticipantsIn = b;
 	}
 
-	public boolean confirmPhase() {
-		print("Round " + roundNumber + " completed.");
-		print("Enter 'next' to progress to the next round, after making sure all scores are correct.");
-
-		waitForUserInput();
-
-		switch (userSelection.toLowerCase()) {
-
-		case "help":
-			userSelection = null;
-			Utils.showHelp();
-			break;
-		case "admintools":
-			userSelection = null;
-			adminTools();
-			break;
-		case "next":
-			userSelection = null;
-			break;
-		default:
-			userSelection = null;
-			confirmPhase();
-			break;
-		}
-		return allParticipantsIn;
-	}
-
 	public void reportBattleWinner(String text) {
 		Player winner = findPlayerByName(text);
 		for (Battle b : currentBattles) {
 			if (b.contains(winner)) {
 				if (b.getP1() == winner) {
 					Utils.handleBattleWinner(b, "1");
-				}
-				else {
-					Utils.handleBattleWinner(b, "2");	
+				} else {
+					Utils.handleBattleWinner(b, "2");
 				}
 				currentBattles.remove(b);
 				break;
+			}
+		}
+	}
+
+	public void parseLine(String text) {
+		String[] command = text.split(" ");
+
+		for (String s : command) {
+			s = trimWhitespace(s);
+		}
+
+		if (allParticipantsIn) {
+			switch (command[0].toLowerCase()) {
+			case "admintools":
+				adminTools(command);
+				break;
+			case "help":
+				Utils.showHelp();
+				break;
+			}
+		} else {
+			if(text.toLowerCase().equals("no")){
+				allParticipantsIn = true;
+			}
+			else if(text.contains(",")) {
+				addBatch(text);
+			}
+			else {
+				addPlayer(text);
 			}
 		}
 	}

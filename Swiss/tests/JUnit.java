@@ -460,7 +460,7 @@ public class JUnit {
 		t.addBye();
 		p1.beats(p2);
 		t.dropPlayer("P2");
-		assertEquals(2, t.size());
+		assertEquals(2, t.players.size());
 	}
 
 	@Test
@@ -470,7 +470,7 @@ public class JUnit {
 		t.addPlayer("P3");
 		t.addPlayer("P4");
 		t.dropPlayer("P2");
-		assertEquals(4, t.size());
+		assertEquals(4, t.players.size());
 	}
 
 	@Test
@@ -490,7 +490,7 @@ public class JUnit {
 		t.generatePairings(0);
 		assertEquals(true, t.containsPlayer("BYE"));
 		t.addBatch("P4,P5,P6");
-		assertEquals(6, t.size());
+		assertEquals(6, t.players.size());
 		assertEquals(false, t.containsPlayer("BYE"));
 	}
 
@@ -514,7 +514,7 @@ public class JUnit {
 		t.addBye();
 		t.addBatch("P4,P5,P6,P7");
 		assertEquals(true, t.containsPlayer("BYE"));
-		assertEquals(8, t.size());
+		assertEquals(8, t.players.size());
 	}
 
 	@Test
@@ -525,7 +525,7 @@ public class JUnit {
 		t.addBye();
 		t.addBatch("P4,P5,P6,P7,P8");
 		assertEquals(false, t.containsPlayer("BYE"));
-		assertEquals(8, t.size());
+		assertEquals(8, t.players.size());
 	}
 
 	@Test
@@ -534,10 +534,10 @@ public class JUnit {
 		t.addPlayer("Dick");
 		t.addPlayer("Harry");
 		t.addPlayer("Sally");
-		assertEquals(4, t.size());
+		assertEquals(4, t.players.size());
 		t.addPlayer("Sally");
 		assertEquals(false, t.containsPlayer("BYE"));
-		assertEquals(4, t.size());
+		assertEquals(4, t.players.size());
 	}
 
 	@Test
@@ -548,7 +548,7 @@ public class JUnit {
 		t.addPlayer("P4");
 		t.addBatch("P5,P6,P7,P8");
 		assertEquals(false, t.containsPlayer("BYE"));
-		assertEquals(8, t.size());
+		assertEquals(8, t.players.size());
 	}
 
 	@Test
@@ -559,7 +559,7 @@ public class JUnit {
 		t.addPlayer("P3");
 		t.addPlayer("P4");
 		t.addBatch("P5,P6,P7");
-		assertEquals(8, t.size());
+		assertEquals(8, t.players.size());
 		assertEquals(true, t.containsPlayer("BYE"));
 	}
 

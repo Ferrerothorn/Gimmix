@@ -15,7 +15,6 @@ public class PlayerCreator {
 			t.print("You can enter 'help' at any time for some instructions.)");
 			t.print("Current Participants: " + t.players.size() + "  Rounds required: " + t.logBase2(t.players.size()));
 			t.print("");
-			t.waitForUserInput();
 			switch (t.userSelection.toLowerCase()) {
 			case "help":
 				t.userSelection = null;

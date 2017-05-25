@@ -56,17 +56,16 @@ public class GUI implements ActionListener {
 			b2Panel.add(b2);
 			buttonWindow.add(b2Panel);
 		}
-		buttonWindow.repaint();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent evt) {
 		String text = textField.getText();
-		tourney.setUserSelection(text);
 		if (text.length() > 0) {
 			resultsBox.append(" " + text + newline);
 			textField.setText(null);
 			resultsBox.setCaretPosition(resultsBox.getDocument().getLength());
+			tourney.parseLine(text);
 		}
 	}
 
