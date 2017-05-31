@@ -11,8 +11,6 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
-import swissTournamentRunner.GUI;
-
 public class RunSnakeDraft {
 
 	public static ArrayList<Player> players = new ArrayList<>();
@@ -23,8 +21,8 @@ public class RunSnakeDraft {
 
 	public static void main(String[] args) throws Exception {
 
-		Interface gui = new Interface();
-		gui.createAndShowGUI(true);
+		Interface Interface = new Interface();
+		Interface.createAndShowGUI(true);
 
 		fillPools();
 		for (ArrayList a : pools) {
@@ -40,19 +38,34 @@ public class RunSnakeDraft {
 
 	private static void draftManager(ArrayList<ArrayList<String>> pools2) {
 		for (ArrayList<String> tier : pools2) {
-		//	while ()
+
+			int maxFromTier = Math.floorDiv((tier.size()), players.size());
+
+			int counter = 0;
+			while (counter < maxFromTier && tier.size() > 0) {
+				for (int i = 0; i < players.size(); i++) {
+					wipeScreen();
+					Interface.postString(printSnekAndPools());
+					System.out.println();
+					askPlayerToPickOne(players.get(i), tier, (maxFromTier - counter));
+				}
+				Collections.reverse(players);
+				counter++;
+			}
+			processUnclaimedPokemon(tier, "" + counter);
 		}
 	}
 
 	private static void fillPools() throws IOException {
-
 		File file = new File("Pools.txt");
 		if (file.exists()) {
 			loadPools(file);
 		} else {
-			GUI.postString("Error reading supplied file, starting at line: \"" + "\"");
+			Interface.postString("Couldn't find the file to load tiers from.");
+			Interface.postString(
+					"Please ensure that the file is called 'Pools.txt', and is in the same folder or location as this application.");
+			waitForUserInput();
 		}
-
 	}
 
 	private static void loadPools(File file) throws IOException {
@@ -62,10 +75,10 @@ public class RunSnakeDraft {
 			String line = br.readLine();
 			while (line != null) {
 				pools.add(parseLine(line));
-				br.readLine();
+				line = br.readLine();
 			}
 		} catch (IOException e) {
-			GUI.postString("Error reading supplied file.");
+			Interface.postString("Error reading supplied file.");
 		}
 
 		finally {
@@ -100,13 +113,14 @@ public class RunSnakeDraft {
 	private static void capturePlayers() throws Exception {
 		try {
 			Scanner scanner = new Scanner(System.in);
-			GUI.postString("Enter the number of players in this draft!");
+			Interface.postString("Enter the number of players in this draft!");
 			waitForUserInput();
 			int numberOfPlayers = Integer.parseInt(input);
 			input = null;
 			generatePlayers(numberOfPlayers);
 		} catch (Exception e) {
-			GUI.postString("I said *number*, you " + freshInsult() + ".");
+			input = null;
+			Interface.postString("I said *number*, you " + freshInsult() + ".");
 			capturePlayers();
 		}
 	}
@@ -124,7 +138,7 @@ public class RunSnakeDraft {
 	private static void generatePlayers(int numberOfPlayers) {
 		Scanner scanner = new Scanner(System.in);
 		for (int i = 0; i < numberOfPlayers; i++) {
-			GUI.postString("Enter the name of the player in position " + (i + 1) + " of the snake.");
+			Interface.postString("Enter the name of the player in position " + (i + 1) + " of the snake.");
 			waitForUserInput();
 			String pName = input;
 			input = null;
@@ -133,8 +147,8 @@ public class RunSnakeDraft {
 	}
 
 	private static void draftManager(ArrayList<String> pool, String tierLabel) {
-		GUI.postString("Time to draft " + tierLabel + ".");
-		GUI.postString("");
+		Interface.postString("Time to draft " + tierLabel + ".");
+		Interface.postString("");
 
 		int maxFromTier = Math.floorDiv((pool.size()), players.size());
 
@@ -143,7 +157,7 @@ public class RunSnakeDraft {
 			for (int i = 0; i < players.size(); i++) {
 				wipeScreen();
 				printEachPlayersArsenal();
-				GUI.postString("");
+				Interface.postString("");
 				askPlayerToPickOne(players.get(i), pool, (maxFromTier - counter));
 			}
 			Collections.reverse(players);
@@ -153,9 +167,7 @@ public class RunSnakeDraft {
 	}
 
 	private static void wipeScreen() {
-		for (int i = 0; i < 100; i++) {
-			System.out.print('\n');
-		}
+		Interface.wipePane();
 	}
 
 	private static String printEachPlayersArsenal() {
@@ -170,18 +182,18 @@ public class RunSnakeDraft {
 	private static void askPlayerToPickOne(Player p, ArrayList<String> tier, int amountFromTier) {
 		Scanner sc = new Scanner(System.in);
 		try {
-			GUI.postString(p.getName() + ", your picks are as follows!" + '\n' + "(Already in your arsenal: "
+			Interface.postString(p.getName() + ", your picks are as follows!" + '\n' + "(Already in your arsenal: "
 					+ p.getPoolAsString() + ")" + '\n');
-			GUI.postString("Your have " + amountFromTier + " pick(s) left from this tier." + '\n');
+			Interface.postString("Your have " + amountFromTier + " pick(s) left from this tier." + '\n');
 			printPicks(tier);
-			GUI.postString("");
-			GUI.postString("Which do you want?");
-			GUI.postString("Alternatively, enter 999 to see the drafted picks.");
+			Interface.postString("");
+			Interface.postString("Which do you want?");
+			Interface.postString("Alternatively, enter 999 to see the drafted picks.");
 			waitForUserInput();
 			int pick = Integer.parseInt(input);
 			input = null;
 			if (pick == 999) {
-				GUI.postString(printSnekAndPools());
+				Interface.postString(printSnekAndPools());
 				askPlayerToPickOne(p, tier, amountFromTier);
 			} else {
 				p.claimsPick(tier.remove(pick - 1));
@@ -189,8 +201,8 @@ public class RunSnakeDraft {
 			saveFile();
 		} catch (Exception e) {
 			input = null;
-			GUI.postString("Well that's just wrong, you " + freshInsult() + ".");
-			GUI.postString("I wanted a number, not " + listPhrase());
+			Interface.postString("Well that's just wrong, you " + freshInsult() + ".");
+			Interface.postString("I wanted a number, not " + listPhrase());
 			askPlayerToPickOne(p, tier, amountFromTier);
 		}
 	}
@@ -201,17 +213,18 @@ public class RunSnakeDraft {
 		while (!allSatisfiedWithTrades) {
 
 			int playerIndex = 0;
-			GUI.postString(printSnekAndPools());
-			GUI.postString("");
-			GUI.postString("Anyone looking to instigate a trade?");
+			Interface.postString(printSnekAndPools());
+			Interface.postString("");
+			Interface.postString("Anyone looking to instigate a trade?");
 			for (Player p : players) {
-				GUI.postString("" + (playerIndex + 1) + ") " + p.getName());
+				Interface.postString("" + (playerIndex + 1) + ") " + p.getName());
 				playerIndex++;
 			}
-			GUI.postString("0) No thanks.");
+			Interface.postString("0) No thanks.");
 
-			Scanner inputs1 = new Scanner(System.in);
-			int buyerIndex = inputs1.nextInt();
+			waitForUserInput();
+			int buyerIndex = Integer.parseInt(input);
+			input = null;
 
 			switch (buyerIndex) {
 			case 0:
@@ -220,21 +233,22 @@ public class RunSnakeDraft {
 			default:
 				if (buyerIndex <= players.size()) {
 					Player buyer = players.get(buyerIndex - 1);
-					GUI.postString("");
-					GUI.postString("And, you're wanting to trade with whom?");
+					Interface.postString("");
+					Interface.postString("And, you're wanting to trade with whom?");
 
 					for (int i = 0; i < players.size(); i++) {
 						if (players.get(i) != buyer) {
-							GUI.postString("" + (i + 1) + ") " + players.get(i).getName());
+							Interface.postString("" + (i + 1) + ") " + players.get(i).getName());
 						}
 					}
-					int sellerIndex = inputs1.nextInt();
+					waitForUserInput();
+					int sellerIndex = Integer.parseInt(input);
+					input = null;
 					sellerIndex--;
 					Player seller = null;
 					if (sellerIndex <= players.size()) {
 						seller = players.get(sellerIndex);
 					}
-
 					if (buyer != null && seller != null && buyer != seller) {
 						try {
 							transaction(buyer, seller);
@@ -265,35 +279,38 @@ public class RunSnakeDraft {
 
 	private static void transaction(Player p1, Player p2) throws Exception {
 
-		GUI.postString(p1.getName() + "'s pool:");
+		Interface.postString(p1.getName() + "'s pool:");
 		int index = 1;
 		for (String s : p1.getPool()) {
-			GUI.postString("" + index + ") " + s);
+			Interface.postString("" + index + ") " + s);
 			index++;
 		}
-		GUI.postString("999) Cancel transaction" + '\n');
+		Interface.postString("999) Cancel transaction" + '\n');
 
+		waitForUserInput();
 		int decision = Integer.parseInt(input);
+		input = null;
 		if (decision == 999) {
 			wipeScreen();
-			GUI.postString("Trade cancelled.");
+			Interface.postString("Trade cancelled.");
 			return;
 		}
 		String trading = p1.getPool().get(decision - 1);
 
-		GUI.postString("Trade " + trading + " for what?");
+		Interface.postString("Trade " + trading + " for what?");
 		index = 1;
 		for (String s : p2.getPool()) {
-			GUI.postString("" + index + ") " + s);
+			Interface.postString("" + index + ") " + s);
 			index++;
 		}
-		GUI.postString("999) Cancel transaction" + '\n');
+		Interface.postString("999) Cancel transaction" + '\n');
 
 		waitForUserInput();
 		decision = Integer.parseInt(input);
+		input = null;
 		if (decision == 999) {
 			wipeScreen();
-			GUI.postString("Trade cancelled.");
+			Interface.postString("Trade cancelled.");
 			return;
 		}
 		String tradeBack = p2.getPool().get(decision - 1);
@@ -304,7 +321,7 @@ public class RunSnakeDraft {
 		p2.getPool().remove(tradeBack);
 
 		wipeScreen();
-		GUI.postString("Trade completed. (" + trading + " -> " + tradeBack + ")." + '\n');
+		Interface.postString("Trade completed. (" + trading + " -> " + tradeBack + ")." + '\n');
 		saveFile();
 	}
 
@@ -325,6 +342,7 @@ public class RunSnakeDraft {
 		firsts.add("crumbling");
 		firsts.add("toxic");
 		firsts.add("hopeless");
+		firsts.add("questionable");
 		firsts.add("dopey");
 		firsts.add("hideous");
 		firsts.add("weak-minded");
@@ -350,16 +368,20 @@ public class RunSnakeDraft {
 		seconds.add("Sunkern");
 		seconds.add("piglet");
 		seconds.add("mongrel");
+		seconds.add("subhuman");
+		seconds.add("decoy");
 		seconds.add("refuse");
 		seconds.add("accident");
 		seconds.add("caveman");
 		seconds.add("excuse");
 		seconds.add("mushroom");
+		seconds.add("landfill");
+		seconds.add("plaguespitter");
 		seconds.add("vermin");
 		seconds.add("kernel");
 		seconds.add("cad");
 		seconds.add("ragamuffin");
-		seconds.add("flaw-cauldron");
+		seconds.add("flawbasket");
 		seconds.add("cauldron");
 		seconds.add("wafer");
 		seconds.add("scrapmound");
@@ -380,12 +402,14 @@ public class RunSnakeDraft {
 
 		lists.add("your Tesco shopping list");
 		lists.add("your murder confessions");
+		lists.add("your repeat prescription from a dyslexic chemist");
 		lists.add("your passing thoughts on communism");
 		lists.add("a detailed log of your affections for " + players.get(r.nextInt(players.size())).getName());
 		lists.add("your diary's back pages");
 		lists.add("the daily tabloids as dictated by Stevie Wonder");
 		lists.add("a badly written Twilight fanfiction");
 		lists.add("your face rubbed across the keyboard");
+		lists.add("the lyrics to Ting Tang Walla Walla Bing Bang in Urdu");
 		lists.add("your letter to Santa");
 
 		int index = r.nextInt(lists.size());
@@ -412,7 +436,7 @@ public class RunSnakeDraft {
 				line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
 				i++;
 				line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
-				GUI.postString(line);
+				Interface.postString(line);
 				line = "";
 			}
 		} else {
@@ -423,11 +447,11 @@ public class RunSnakeDraft {
 					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
 					i++;
 					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
-					GUI.postString(line);
+					Interface.postString(line);
 					line = "";
 				}
 				line += "" + (tier.size()) + ") " + tier.get(tier.size() - 1);
-				GUI.postString(line);
+				Interface.postString(line);
 			} else {
 				for (int i = 0; i < tier.size() - 2; i++) {
 					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
@@ -435,12 +459,12 @@ public class RunSnakeDraft {
 					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
 					i++;
 					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
-					GUI.postString(line);
+					Interface.postString(line);
 					line = "";
 				}
 				line += rpad("" + (tier.size() - 1) + ") " + tier.get(tier.size() - 2), 40);
 				line += "" + (tier.size()) + ") " + tier.get(tier.size() - 1);
-				GUI.postString(line);
+				Interface.postString(line);
 			}
 		}
 	}
