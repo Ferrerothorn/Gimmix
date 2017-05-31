@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class GUI extends JPanel implements ActionListener {
+public class Interface extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private final static String newline = "\n";
@@ -12,7 +12,7 @@ public class GUI extends JPanel implements ActionListener {
 	public static JTextArea textArea;
 	public static JFrame frame = new JFrame("BTC");
 
-	public GUI() {
+	public Interface() {
 		super(new GridBagLayout());
 
 		textArea = new JTextArea(25, 35);
@@ -56,7 +56,7 @@ public class GUI extends JPanel implements ActionListener {
 
 	public static void createAndShowGUI(Boolean show) {
 		frame.setSize(500, 400);
-		frame.add(new GUI());
+		frame.add(new Interface());
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(show);

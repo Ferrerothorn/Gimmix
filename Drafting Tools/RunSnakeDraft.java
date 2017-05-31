@@ -1,7 +1,9 @@
 
-
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -9,153 +11,90 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
+import swissTournamentRunner.GUI;
+
 public class RunSnakeDraft {
 
 	public static ArrayList<Player> players = new ArrayList<>();
-	public static ArrayList<String> ouPool = new ArrayList<>();
-	public static ArrayList<String> blPool = new ArrayList<>();
-	public static ArrayList<String> uuPool = new ArrayList<>();
-	public static ArrayList<String> bl2Pool = new ArrayList<>();
-	public static ArrayList<String> ruPool = new ArrayList<>();
+	public static ArrayList<ArrayList<String>> pools = new ArrayList<ArrayList<String>>();
+	public static String swappingPools = "Swapping pools:" + '\n';
 
-	public static String swappingPool = "Swapping pool:" + '\n';
-
-	public static Scanner inputs = new Scanner(System.in);
 	public static String input;
 
 	public static void main(String[] args) throws Exception {
 
-		GUI gui = new GUI();
+		Interface gui = new Interface();
 		gui.createAndShowGUI(true);
-		
+
 		fillPools();
-		Collections.sort(ouPool);
-		Collections.sort(blPool);
-		Collections.sort(uuPool);
+		for (ArrayList a : pools) {
+			Collections.sort(a);
+		}
 		capturePlayers();
-		draftManager(ouPool, "OU");
-		draftManager(blPool, "BL");
-		draftManager(uuPool, "UU");
+
+		draftManager(pools);
 
 		tradingPost();
 		saveFile();
-		inputs.close();
 	}
 
-	private static void fillPools() {
+	private static void draftManager(ArrayList<ArrayList<String>> pools2) {
+		for (ArrayList<String> tier : pools2) {
+		//	while ()
+		}
+	}
 
-		ouPool.add("Alakazam (*)");
-		ouPool.add("Buzzwole");
-		ouPool.add("Celesteela");
-		ouPool.add("Chansey");
-		ouPool.add("Charizard (*)");
-		ouPool.add("Dugtrio");
-		ouPool.add("Excadrill");
-		ouPool.add("Ferrothorn");
-		ouPool.add("Garchomp (*)");
-		ouPool.add("Greninja (*)");
-		ouPool.add("Gyarados (*)");
-		ouPool.add("Heatran");
-		ouPool.add("Hoopa-U");
-		ouPool.add("Jirachi");
-		ouPool.add("Kartana");
-		ouPool.add("Landorus-T");
-		ouPool.add("Latios (*)");
-		ouPool.add("Magearna");
-		ouPool.add("Magnezone");
-		ouPool.add("Mamoswine");
-		ouPool.add("Manaphy");
-		ouPool.add("Marowak-Alola");
-		ouPool.add("Mimikyu");
-		ouPool.add("Muk-Alola");
-		ouPool.add("Nihilego");
-		ouPool.add("Pelipper");
-		ouPool.add("Pheromosa");
-		ouPool.add("Pinsir (*)");
-		ouPool.add("Rotom (*)");
-		ouPool.add("Sableye (*)");
-		ouPool.add("Salamence");
-		ouPool.add("Scizor (*)");
-		ouPool.add("Scolipede");
-		ouPool.add("Skarmory");
-		ouPool.add("Tangrowth");
-		ouPool.add("Tapu Bulu");
-		ouPool.add("Tapu Fini");
-		ouPool.add("Tapu Koko");
-		ouPool.add("Tapu Lele");
-		ouPool.add("Toxapex");
-		ouPool.add("Tyranitar");
-		ouPool.add("Venusaur (*)");
-		ouPool.add("Volcarona");
-		ouPool.add("Xurkitree");
-		ouPool.add("Zapdos");
-		ouPool.add("Zygarde");
+	private static void fillPools() throws IOException {
 
-		blPool.add("Azumarill");
-		blPool.add("Breloom");
-		blPool.add("Diggersby");
-		blPool.add("Dragonite");
-		blPool.add("Kyurem-B");
-		blPool.add("Porygon-Z");
-		blPool.add("Serperior");
-		blPool.add("Slowbro (*)");
-		blPool.add("Staraptor");
-		blPool.add("Terrakion");
-		blPool.add("Thundurus (*)");
-		blPool.add("Tornadus (*)");
-		blPool.add("Victini");
-		blPool.add("Weavile");
+		File file = new File("Pools.txt");
+		if (file.exists()) {
+			loadPools(file);
+		} else {
+			GUI.postString("Error reading supplied file, starting at line: \"" + "\"");
+		}
 
-		uuPool.add("Absol (*)");
-		uuPool.add("Aerodactyl (*)");
-		uuPool.add("Amoonguss");
-		uuPool.add("Arcanine");
-		uuPool.add("Azelf");
-		uuPool.add("Bewear");
-		uuPool.add("Bisharp");
-		uuPool.add("Blastoise (*)");
-		uuPool.add("Blissey");
-		uuPool.add("Celebi");
-		uuPool.add("Chandelure");
-		uuPool.add("Clefable");
-		uuPool.add("Cobalion");
-		uuPool.add("Conkeldurr");
-		uuPool.add("Crobat");
-		uuPool.add("Decidueye");
-		uuPool.add("Dhelmise");
-		uuPool.add("Empoleon");
-		uuPool.add("Flygon");
-		uuPool.add("Forretress");
-		uuPool.add("Gengar");
-		uuPool.add("Gliscor");
-		uuPool.add("Hippowdon");
-		uuPool.add("Hydreigon");
-		uuPool.add("Infernape");
-		uuPool.add("Keldeo");
-		uuPool.add("Kingdra");
-		uuPool.add("Klefki");
-		uuPool.add("Kommo-o");
-		uuPool.add("Krookodile");
-		uuPool.add("Latias");
-		uuPool.add("Magneton");
-		uuPool.add("Mandibuzz");
-		uuPool.add("Mantine");
-		uuPool.add("Metagross");
-		uuPool.add("Mew");
-		uuPool.add("Mienshao");
-		uuPool.add("Necrozma");
-		uuPool.add("Ninetales-Alola");
-		uuPool.add("Primarina");
-		uuPool.add("Raikou");
-		uuPool.add("Sharpedo (*)");
-		uuPool.add("Starmie");
-		uuPool.add("Swampert (*)");
-		uuPool.add("Sylveon");
-		uuPool.add("Tentacruel");
-		uuPool.add("Togekiss");
-		uuPool.add("Tsareena");
-		uuPool.add("Volcanion");
-		uuPool.add("Zygarde 10%");
+	}
+
+	private static void loadPools(File file) throws IOException {
+
+		BufferedReader br = new BufferedReader(new FileReader(file));
+		try {
+			String line = br.readLine();
+			while (line != null) {
+				pools.add(parseLine(line));
+				br.readLine();
+			}
+		} catch (IOException e) {
+			GUI.postString("Error reading supplied file.");
+		}
+
+		finally {
+			br.close();
+		}
+	}
+
+	private static ArrayList<String> parseLine(String line) {
+		ArrayList<String> tier = new ArrayList<String>();
+
+		String[] pokemonInTier = line.split(",");
+		for (String s : pokemonInTier) {
+			s = trimWhitespace(s);
+			tier.add(s);
+		}
+		return tier;
+	}
+
+	private static String trimWhitespace(String s) {
+		if (s.length() == 0) {
+			return s;
+		}
+		if (s.charAt(0) == ' ' || s.charAt(0) == '\t') {
+			return trimWhitespace(s.substring(1));
+		}
+		if (s.charAt(s.length() - 1) == ' ' || s.charAt(s.length() - 1) == '\t') {
+			return trimWhitespace(s.substring(0, s.length() - 1));
+		}
+		return s;
 	}
 
 	private static void capturePlayers() throws Exception {
@@ -195,7 +134,7 @@ public class RunSnakeDraft {
 
 	private static void draftManager(ArrayList<String> pool, String tierLabel) {
 		GUI.postString("Time to draft " + tierLabel + ".");
-		GUI.postString();
+		GUI.postString("");
 
 		int maxFromTier = Math.floorDiv((pool.size()), players.size());
 
@@ -204,7 +143,7 @@ public class RunSnakeDraft {
 			for (int i = 0; i < players.size(); i++) {
 				wipeScreen();
 				printEachPlayersArsenal();
-				GUI.postString();
+				GUI.postString("");
 				askPlayerToPickOne(players.get(i), pool, (maxFromTier - counter));
 			}
 			Collections.reverse(players);
@@ -235,7 +174,7 @@ public class RunSnakeDraft {
 					+ p.getPoolAsString() + ")" + '\n');
 			GUI.postString("Your have " + amountFromTier + " pick(s) left from this tier." + '\n');
 			printPicks(tier);
-			GUI.postString();
+			GUI.postString("");
 			GUI.postString("Which do you want?");
 			GUI.postString("Alternatively, enter 999 to see the drafted picks.");
 			waitForUserInput();
@@ -249,6 +188,7 @@ public class RunSnakeDraft {
 			}
 			saveFile();
 		} catch (Exception e) {
+			input = null;
 			GUI.postString("Well that's just wrong, you " + freshInsult() + ".");
 			GUI.postString("I wanted a number, not " + listPhrase());
 			askPlayerToPickOne(p, tier, amountFromTier);
@@ -262,7 +202,7 @@ public class RunSnakeDraft {
 
 			int playerIndex = 0;
 			GUI.postString(printSnekAndPools());
-			GUI.postString();
+			GUI.postString("");
 			GUI.postString("Anyone looking to instigate a trade?");
 			for (Player p : players) {
 				GUI.postString("" + (playerIndex + 1) + ") " + p.getName());
@@ -280,7 +220,7 @@ public class RunSnakeDraft {
 			default:
 				if (buyerIndex <= players.size()) {
 					Player buyer = players.get(buyerIndex - 1);
-					GUI.postString();
+					GUI.postString("");
 					GUI.postString("And, you're wanting to trade with whom?");
 
 					for (int i = 0; i < players.size(); i++) {
@@ -309,7 +249,7 @@ public class RunSnakeDraft {
 	private static void saveFile() {
 
 		String output = printEachPlayersArsenal();
-		output += swappingPool;
+		output += swappingPools;
 
 		File file = new File("FinalDraftPools.txt");
 		try {
@@ -333,13 +273,13 @@ public class RunSnakeDraft {
 		}
 		GUI.postString("999) Cancel transaction" + '\n');
 
-		int input = inputs.nextInt();
-		if (input == 999) {
+		int decision = Integer.parseInt(input);
+		if (decision == 999) {
 			wipeScreen();
 			GUI.postString("Trade cancelled.");
 			return;
 		}
-		String trading = p1.getPool().get(input - 1);
+		String trading = p1.getPool().get(decision - 1);
 
 		GUI.postString("Trade " + trading + " for what?");
 		index = 1;
@@ -349,13 +289,14 @@ public class RunSnakeDraft {
 		}
 		GUI.postString("999) Cancel transaction" + '\n');
 
-		input = inputs.nextInt();
-		if (input == 999) {
+		waitForUserInput();
+		decision = Integer.parseInt(input);
+		if (decision == 999) {
 			wipeScreen();
 			GUI.postString("Trade cancelled.");
 			return;
 		}
-		String tradeBack = p2.getPool().get(input - 1);
+		String tradeBack = p2.getPool().get(decision - 1);
 
 		p1.getPool().add(tradeBack);
 		p1.getPool().remove(trading);
@@ -408,14 +349,17 @@ public class RunSnakeDraft {
 		seconds.add("surplus");
 		seconds.add("Sunkern");
 		seconds.add("piglet");
+		seconds.add("mongrel");
 		seconds.add("refuse");
 		seconds.add("accident");
+		seconds.add("caveman");
 		seconds.add("excuse");
 		seconds.add("mushroom");
 		seconds.add("vermin");
 		seconds.add("kernel");
 		seconds.add("cad");
 		seconds.add("ragamuffin");
+		seconds.add("flaw-cauldron");
 		seconds.add("cauldron");
 		seconds.add("wafer");
 		seconds.add("scrapmound");
@@ -455,7 +399,7 @@ public class RunSnakeDraft {
 		Collections.sort(pool);
 		if (pool.size() > 0) {
 			String tierBin = tierLabel + ": " + pool.toString();
-			swappingPool += tierBin + '\n';
+			swappingPools += tierBin + '\n';
 		}
 	}
 
@@ -526,8 +470,4 @@ public class RunSnakeDraft {
 						.substring(0, finalLength);
 	}
 
-	public static  void process(String text) {
-		// TODO Auto-generated method stub
-		
-	}
 }
