@@ -1,4 +1,4 @@
-package snakeDraftManager;
+
 
 import java.util.ArrayList;
 

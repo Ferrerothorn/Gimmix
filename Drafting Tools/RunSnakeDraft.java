@@ -1,4 +1,4 @@
-package snakeDraftManager;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
-
-import snakeDraftManager.Player;
 
 public class RunSnakeDraft {
 
@@ -23,9 +21,13 @@ public class RunSnakeDraft {
 	public static String swappingPool = "Swapping pool:" + '\n';
 
 	public static Scanner inputs = new Scanner(System.in);
+	public static String input;
 
 	public static void main(String[] args) throws Exception {
 
+		GUI gui = new GUI();
+		gui.createAndShowGUI(true);
+		
 		fillPools();
 		Collections.sort(ouPool);
 		Collections.sort(blPool);
@@ -34,7 +36,6 @@ public class RunSnakeDraft {
 		draftManager(ouPool, "OU");
 		draftManager(blPool, "BL");
 		draftManager(uuPool, "UU");
-		// draftManager(ruPool, "RU");
 
 		tradingPost();
 		saveFile();
@@ -155,70 +156,46 @@ public class RunSnakeDraft {
 		uuPool.add("Tsareena");
 		uuPool.add("Volcanion");
 		uuPool.add("Zygarde 10%");
-
-		/*
-		 * bl2Pool.add("Abomasnow (*)"); bl2Pool.add("Dragalge");
-		 * bl2Pool.add("Durant"); bl2Pool.add("Froslass");
-		 * bl2Pool.add("Honchkrow"); bl2Pool.add("Houndoom (*)");
-		 * bl2Pool.add("Kingdra"); bl2Pool.add("Kyurem (Base only)");
-		 * bl2Pool.add("Moltres"); bl2Pool.add("Noivern");
-		 * bl2Pool.add("Pangoro"); bl2Pool.add("Shaymin");
-		 * bl2Pool.add("Shuckle"); bl2Pool.add("Slurpuff");
-		 * bl2Pool.add("Steelix (*)"); bl2Pool.add("Tyrantrum");
-		 * bl2Pool.add("Venomoth"); bl2Pool.add("Yanmega");
-		 * bl2Pool.add("Zoroark");
-		 * 
-		 * ruPool.add("Accelgor"); ruPool.add("Alomomola");
-		 * ruPool.add("Ambipom"); ruPool.add("Aromatisse");
-		 * ruPool.add("Banette (*)"); ruPool.add("Braviary");
-		 * ruPool.add("Bronzong"); ruPool.add("Camerupt (*)");
-		 * ruPool.add("Cinccino"); ruPool.add("Clawitzer");
-		 * ruPool.add("Cofagrigus"); ruPool.add("Delphox");
-		 * ruPool.add("Diancie"); ruPool.add("Drapion");
-		 * ruPool.add("Druddigon"); ruPool.add("Dugtrio");
-		 * ruPool.add("Eelektross"); ruPool.add("Emboar");
-		 * ruPool.add("Escavalier"); ruPool.add("Exploud");
-		 * ruPool.add("Fletchinder"); ruPool.add("Flygon");
-		 * ruPool.add("Glalie (*)"); ruPool.add("Golbat");
-		 * ruPool.add("Granbull"); ruPool.add("Hitmonlee");
-		 * ruPool.add("Hitmontop"); ruPool.add("Hoopa");
-		 * ruPool.add("Jellicent"); ruPool.add("Jolteon");
-		 * ruPool.add("Magneton"); ruPool.add("Medicham");
-		 * ruPool.add("Meloetta"); ruPool.add("Quagsire");
-		 * ruPool.add("Qwilfish"); ruPool.add("Registeel");
-		 * ruPool.add("Rhyperior"); ruPool.add("Sawk"); ruPool.add("Scrafty");
-		 * ruPool.add("Seismitoad"); ruPool.add("Sigilyph");
-		 * ruPool.add("Slowking"); ruPool.add("Sneasel");
-		 * ruPool.add("Spiritomb"); ruPool.add("Togetic");
-		 * ruPool.add("Typhlosion"); ruPool.add("Uxie"); ruPool.add("Venusaur");
-		 * ruPool.add("Virizion");
-		 */
 	}
 
 	private static void capturePlayers() throws Exception {
 		try {
 			Scanner scanner = new Scanner(System.in);
-			System.out.println("Enter the number of players in this draft!");
-			int numberOfPlayers = scanner.nextInt();
+			GUI.postString("Enter the number of players in this draft!");
+			waitForUserInput();
+			int numberOfPlayers = Integer.parseInt(input);
+			input = null;
 			generatePlayers(numberOfPlayers);
 		} catch (Exception e) {
-			System.out.println("I said *number*, you " + freshInsult() + ".");
+			GUI.postString("I said *number*, you " + freshInsult() + ".");
 			capturePlayers();
+		}
+	}
+
+	public static void waitForUserInput() {
+		while (input == null) {
+			System.out.println();
+		}
+		if (input.length() <= 0) {
+			input = null;
+			waitForUserInput();
 		}
 	}
 
 	private static void generatePlayers(int numberOfPlayers) {
 		Scanner scanner = new Scanner(System.in);
 		for (int i = 0; i < numberOfPlayers; i++) {
-			System.out.println("Enter the name of the player in position " + (i + 1) + " of the snake.");
-			String pName = scanner.nextLine();
+			GUI.postString("Enter the name of the player in position " + (i + 1) + " of the snake.");
+			waitForUserInput();
+			String pName = input;
+			input = null;
 			players.add(new Player(pName));
 		}
 	}
 
 	private static void draftManager(ArrayList<String> pool, String tierLabel) {
-		System.out.println("Time to draft " + tierLabel + ".");
-		System.out.println();
+		GUI.postString("Time to draft " + tierLabel + ".");
+		GUI.postString();
 
 		int maxFromTier = Math.floorDiv((pool.size()), players.size());
 
@@ -227,7 +204,7 @@ public class RunSnakeDraft {
 			for (int i = 0; i < players.size(); i++) {
 				wipeScreen();
 				printEachPlayersArsenal();
-				System.out.println();
+				GUI.postString();
 				askPlayerToPickOne(players.get(i), pool, (maxFromTier - counter));
 			}
 			Collections.reverse(players);
@@ -254,24 +231,26 @@ public class RunSnakeDraft {
 	private static void askPlayerToPickOne(Player p, ArrayList<String> tier, int amountFromTier) {
 		Scanner sc = new Scanner(System.in);
 		try {
-			System.out.println(p.getName() + ", your picks are as follows!" + '\n' + "(Already in your arsenal: "
+			GUI.postString(p.getName() + ", your picks are as follows!" + '\n' + "(Already in your arsenal: "
 					+ p.getPoolAsString() + ")" + '\n');
-			System.out.println("Your have " + amountFromTier + " pick(s) left from this tier." + '\n');
+			GUI.postString("Your have " + amountFromTier + " pick(s) left from this tier." + '\n');
 			printPicks(tier);
-			System.out.println();
-			System.out.println("Which do you want?");
-			System.out.println("Alternatively, enter 999 to see the drafted picks.");
-			int pick = sc.nextInt();
+			GUI.postString();
+			GUI.postString("Which do you want?");
+			GUI.postString("Alternatively, enter 999 to see the drafted picks.");
+			waitForUserInput();
+			int pick = Integer.parseInt(input);
+			input = null;
 			if (pick == 999) {
-				System.out.println(printSnekAndPools());
+				GUI.postString(printSnekAndPools());
 				askPlayerToPickOne(p, tier, amountFromTier);
 			} else {
 				p.claimsPick(tier.remove(pick - 1));
 			}
 			saveFile();
 		} catch (Exception e) {
-			System.out.println("Well that's just wrong, you " + freshInsult() + ".");
-			System.out.println("I wanted a number, not " + listPhrase());
+			GUI.postString("Well that's just wrong, you " + freshInsult() + ".");
+			GUI.postString("I wanted a number, not " + listPhrase());
 			askPlayerToPickOne(p, tier, amountFromTier);
 		}
 	}
@@ -282,14 +261,14 @@ public class RunSnakeDraft {
 		while (!allSatisfiedWithTrades) {
 
 			int playerIndex = 0;
-			System.out.println(printSnekAndPools());
-			System.out.println();
-			System.out.println("Anyone looking to instigate a trade?");
+			GUI.postString(printSnekAndPools());
+			GUI.postString();
+			GUI.postString("Anyone looking to instigate a trade?");
 			for (Player p : players) {
-				System.out.println("" + (playerIndex + 1) + ") " + p.getName());
+				GUI.postString("" + (playerIndex + 1) + ") " + p.getName());
 				playerIndex++;
 			}
-			System.out.println("0) No thanks.");
+			GUI.postString("0) No thanks.");
 
 			Scanner inputs1 = new Scanner(System.in);
 			int buyerIndex = inputs1.nextInt();
@@ -301,12 +280,12 @@ public class RunSnakeDraft {
 			default:
 				if (buyerIndex <= players.size()) {
 					Player buyer = players.get(buyerIndex - 1);
-					System.out.println();
-					System.out.println("And, you're wanting to trade with whom?");
+					GUI.postString();
+					GUI.postString("And, you're wanting to trade with whom?");
 
 					for (int i = 0; i < players.size(); i++) {
 						if (players.get(i) != buyer) {
-							System.out.println("" + (i + 1) + ") " + players.get(i).getName());
+							GUI.postString("" + (i + 1) + ") " + players.get(i).getName());
 						}
 					}
 					int sellerIndex = inputs1.nextInt();
@@ -346,34 +325,34 @@ public class RunSnakeDraft {
 
 	private static void transaction(Player p1, Player p2) throws Exception {
 
-		System.out.println(p1.getName() + "'s pool:");
+		GUI.postString(p1.getName() + "'s pool:");
 		int index = 1;
 		for (String s : p1.getPool()) {
-			System.out.println("" + index + ") " + s);
+			GUI.postString("" + index + ") " + s);
 			index++;
 		}
-		System.out.println("999) Cancel transaction" + '\n');
+		GUI.postString("999) Cancel transaction" + '\n');
 
 		int input = inputs.nextInt();
 		if (input == 999) {
 			wipeScreen();
-			System.out.println("Trade cancelled.");
+			GUI.postString("Trade cancelled.");
 			return;
 		}
 		String trading = p1.getPool().get(input - 1);
 
-		System.out.println("Trade " + trading + " for what?");
+		GUI.postString("Trade " + trading + " for what?");
 		index = 1;
 		for (String s : p2.getPool()) {
-			System.out.println("" + index + ") " + s);
+			GUI.postString("" + index + ") " + s);
 			index++;
 		}
-		System.out.println("999) Cancel transaction" + '\n');
+		GUI.postString("999) Cancel transaction" + '\n');
 
 		input = inputs.nextInt();
 		if (input == 999) {
 			wipeScreen();
-			System.out.println("Trade cancelled.");
+			GUI.postString("Trade cancelled.");
 			return;
 		}
 		String tradeBack = p2.getPool().get(input - 1);
@@ -384,7 +363,7 @@ public class RunSnakeDraft {
 		p2.getPool().remove(tradeBack);
 
 		wipeScreen();
-		System.out.println("Trade completed. (" + trading + " -> " + tradeBack + ")." + '\n');
+		GUI.postString("Trade completed. (" + trading + " -> " + tradeBack + ")." + '\n');
 		saveFile();
 	}
 
@@ -489,7 +468,7 @@ public class RunSnakeDraft {
 				line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
 				i++;
 				line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
-				System.out.println(line);
+				GUI.postString(line);
 				line = "";
 			}
 		} else {
@@ -500,11 +479,11 @@ public class RunSnakeDraft {
 					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
 					i++;
 					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
-					System.out.println(line);
+					GUI.postString(line);
 					line = "";
 				}
 				line += "" + (tier.size()) + ") " + tier.get(tier.size() - 1);
-				System.out.println(line);
+				GUI.postString(line);
 			} else {
 				for (int i = 0; i < tier.size() - 2; i++) {
 					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
@@ -512,12 +491,12 @@ public class RunSnakeDraft {
 					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
 					i++;
 					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
-					System.out.println(line);
+					GUI.postString(line);
 					line = "";
 				}
 				line += rpad("" + (tier.size() - 1) + ") " + tier.get(tier.size() - 2), 40);
 				line += "" + (tier.size()) + ") " + tier.get(tier.size() - 1);
-				System.out.println(line);
+				GUI.postString(line);
 			}
 		}
 	}
@@ -545,5 +524,10 @@ public class RunSnakeDraft {
 		return (inStr
 				+ "                                                                                                                          ")
 						.substring(0, finalLength);
+	}
+
+	public static  void process(String text) {
+		// TODO Auto-generated method stub
+		
 	}
 }

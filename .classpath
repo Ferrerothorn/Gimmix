@@ -8,7 +8,11 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" path="Genetic Maple"/>
-	<classpathentry kind="src" path="Drafting Tools"/>
+	<classpathentry kind="src" path="Drafting Tools">
+		<attributes>
+			<attribute name="ignore_optional_problems" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="src" path="Opponent Generator"/>
 	<classpathentry kind="lib" path="C:/Users/sdolman/Downloads/miglayout-4.0.jar"/>
 	<classpathentry kind="output" path="bin"/>

@@ -1,4 +1,4 @@
-package snakeDraftManager;
+
 
 import java.awt.*;
 import java.awt.event.*;
@@ -46,6 +46,7 @@ public class GUI extends JPanel implements ActionListener {
 			textArea.append(" " + text + newline);
 			textField.setText(null);
 			textArea.setCaretPosition(textArea.getDocument().getLength());
+			RunSnakeDraft.input = text;
 		}
 	}
 
