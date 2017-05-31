@@ -14,29 +14,26 @@ import java.util.Scanner;
 public class RunSnakeDraft {
 
 	public static ArrayList<Player> players = new ArrayList<>();
-	public static ArrayList<ArrayList<String>> pools = new ArrayList<ArrayList<String>>();
-	public static String swappingPools = "Swapping pools:" + '\n';
-
+	public static ArrayList<ArrayList<String>> tiers = new ArrayList<ArrayList<String>>();
+	public static String tierLeftovers = "Swapping pools:" + '\n';
 	public static String input;
 
 	public static void main(String[] args) throws Exception {
 
 		Interface Interface = new Interface();
 		Interface.createAndShowGUI(true);
-
+		
 		fillPools();
-		for (ArrayList a : pools) {
+		for (ArrayList a : tiers) {
 			Collections.sort(a);
 		}
 		capturePlayers();
-
-		draftManager(pools);
-
-		tradingPost();
+		handleDraft(tiers);
+		offerTrades();
 		saveFile();
 	}
 
-	private static void draftManager(ArrayList<ArrayList<String>> pools2) {
+	private static void handleDraft(ArrayList<ArrayList<String>> pools2) {
 		for (ArrayList<String> tier : pools2) {
 
 			int maxFromTier = Math.floorDiv((tier.size()), players.size());
@@ -52,18 +49,22 @@ public class RunSnakeDraft {
 				Collections.reverse(players);
 				counter++;
 			}
-			processUnclaimedPokemon(tier, "" + counter);
+			processUnclaimedPokemon(tier);
 		}
 	}
 
 	private static void fillPools() throws IOException {
-		File file = new File("Pools.txt");
+		File file = new File("Tiers.txt");
 		if (file.exists()) {
 			loadPools(file);
 		} else {
 			Interface.postString("Couldn't find the file to load tiers from.");
 			Interface.postString(
-					"Please ensure that the file is called 'Pools.txt', and is in the same folder or location as this application.");
+					"Please ensure that the file is called 'Tiers.txt', and is in the same folder or location as this application.");
+			Interface.postString("Each tier should be on a separate line, separated by commas.");
+			
+			
+			
 			waitForUserInput();
 		}
 	}
@@ -74,7 +75,7 @@ public class RunSnakeDraft {
 		try {
 			String line = br.readLine();
 			while (line != null) {
-				pools.add(parseLine(line));
+				tiers.add(parseLine(line));
 				line = br.readLine();
 			}
 		} catch (IOException e) {
@@ -163,7 +164,7 @@ public class RunSnakeDraft {
 			Collections.reverse(players);
 			counter++;
 		}
-		processUnclaimedPokemon(pool, tierLabel);
+		processUnclaimedPokemon(pool);
 	}
 
 	private static void wipeScreen() {
@@ -207,7 +208,7 @@ public class RunSnakeDraft {
 		}
 	}
 
-	private static void tradingPost() throws Exception {
+	private static void offerTrades() throws Exception {
 		boolean allSatisfiedWithTrades = false;
 
 		while (!allSatisfiedWithTrades) {
@@ -263,7 +264,7 @@ public class RunSnakeDraft {
 	private static void saveFile() {
 
 		String output = printEachPlayersArsenal();
-		output += swappingPools;
+		output += tierLeftovers;
 
 		File file = new File("FinalDraftPools.txt");
 		try {
@@ -419,11 +420,11 @@ public class RunSnakeDraft {
 
 	}
 
-	private static void processUnclaimedPokemon(ArrayList<String> pool, String tierLabel) {
+	private static void processUnclaimedPokemon(ArrayList<String> pool) {
 		Collections.sort(pool);
 		if (pool.size() > 0) {
-			String tierBin = tierLabel + ": " + pool.toString();
-			swappingPools += tierBin + '\n';
+			String tierBin = pool.toString();
+			tierLeftovers += tierBin + '\n';
 		}
 	}
 

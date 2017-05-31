@@ -10,7 +10,7 @@ public class Interface extends JPanel implements ActionListener {
 	private final static String newline = "\n";
 	public static JTextField textField;
 	public static JTextArea textArea;
-	public static JFrame frame = new JFrame("BTC");
+	public static JFrame frame = new JFrame("Snek Drafter");
 
 	public Interface() {
 		super(new GridBagLayout());
