@@ -15,6 +15,7 @@ public class RunSnakeDraft {
 
 	public static ArrayList<Player> players = new ArrayList<>();
 	public static ArrayList<ArrayList<String>> tiers = new ArrayList<ArrayList<String>>();
+	public static ArrayList<Integer> overwriteTierCap = new ArrayList<Integer>();
 	public static String tierLeftovers = "Swapping pools:" + '\n';
 	public static String input;
 
@@ -22,7 +23,7 @@ public class RunSnakeDraft {
 
 		Interface Interface = new Interface();
 		Interface.createAndShowGUI(true);
-		
+
 		fillPools();
 		for (ArrayList a : tiers) {
 			Collections.sort(a);
@@ -34,9 +35,18 @@ public class RunSnakeDraft {
 	}
 
 	private static void handleDraft(ArrayList<ArrayList<String>> pools2) {
+		int tierIndex = 0;
 		for (ArrayList<String> tier : pools2) {
 
 			int maxFromTier = Math.floorDiv((tier.size()), players.size());
+
+			if (overwriteTierCap.size() >= tierIndex + 1) {
+				if (overwriteTierCap.get(tierIndex) != null) {
+					if (overwriteTierCap.get(tierIndex) <= maxFromTier) {
+						maxFromTier = overwriteTierCap.get(tierIndex);
+					}
+				}
+			}
 
 			int counter = 0;
 			while (counter < maxFromTier && tier.size() > 0) {
@@ -50,6 +60,7 @@ public class RunSnakeDraft {
 				counter++;
 			}
 			processUnclaimedPokemon(tier);
+			tierIndex++;
 		}
 	}
 
@@ -62,9 +73,7 @@ public class RunSnakeDraft {
 			Interface.postString(
 					"Please ensure that the file is called 'Tiers.txt', and is in the same folder or location as this application.");
 			Interface.postString("Each tier should be on a separate line, separated by commas.");
-			
-			
-			
+
 			waitForUserInput();
 		}
 	}
@@ -90,7 +99,18 @@ public class RunSnakeDraft {
 	private static ArrayList<String> parseLine(String line) {
 		ArrayList<String> tier = new ArrayList<String>();
 
-		String[] pokemonInTier = line.split(",");
+		String[] split = line.split(",");
+		ArrayList<String> pokemonInTier = new ArrayList<String>();
+		for (String s : split) {
+			pokemonInTier.add(s);
+		}
+
+		if (pokemonInTier.get(0).matches("[0-9]+")) {
+			overwriteTierCap.add(Integer.parseInt(pokemonInTier.remove(0)));
+		} else {
+			overwriteTierCap.add(null);
+		}
+
 		for (String s : pokemonInTier) {
 			s = trimWhitespace(s);
 			tier.add(s);
@@ -188,8 +208,8 @@ public class RunSnakeDraft {
 			Interface.postString("Your have " + amountFromTier + " pick(s) left from this tier." + '\n');
 			printPicks(tier);
 			Interface.postString("");
-			Interface.postString("Which do you want?");
-			Interface.postString("Alternatively, enter 999 to see the drafted picks.");
+			Interface.postString("Which do you want, " + p.getName() + "?");
+			Interface.postString("Alternatively, enter 999 to see eac player's pools so far.");
 			waitForUserInput();
 			int pick = Integer.parseInt(input);
 			input = null;
