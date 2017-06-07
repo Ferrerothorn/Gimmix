@@ -76,4 +76,8 @@ public class Interface extends JPanel implements ActionListener {
 		textArea.setText("");
 		textArea.setCaretPosition(textArea.getDocument().getLength());
 	}
+
+	public static void close() {
+		frame.dispose();
+	}
 }

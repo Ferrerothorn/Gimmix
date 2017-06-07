@@ -21,8 +21,8 @@ public class RunSnakeDraft {
 
 	public static void main(String[] args) throws Exception {
 
-		Interface Interface = new Interface();
-		Interface.createAndShowGUI(true);
+		Interface gui = new Interface();
+		gui.createAndShowGUI(true);
 
 		fillPools();
 		for (ArrayList a : tiers) {
@@ -74,10 +74,12 @@ public class RunSnakeDraft {
 					"Please ensure that the file is called 'Tiers.txt', and is in the same folder or location as this application.");
 			Interface.postString("Each tier should be on a separate line, separated by commas.");
 
-			
-			Interface.postString("By default, each player will be given as many picks from each tier as evenly possible.");
-			Interface.postString("To overwrite this with a specific limit per tier, add the desired maxiumum number of picks to the start of the tier line.");
-			Interface.postString("Eg: '4,ABC,DEF,GHI...' mandates that each player gets four picks from this tier, even if there's a significant surplus.");			
+			Interface.postString(
+					"By default, each player will be given as many picks from each tier as evenly possible.");
+			Interface.postString(
+					"To overwrite this with a specific limit per tier, add the desired maxiumum number of picks to the start of the tier line.");
+			Interface.postString(
+					"Eg: '4,ABC,DEF,GHI...' mandates that each player gets four picks from this tier, even if there's a significant surplus.");
 			waitForUserInput();
 		}
 	}
@@ -195,7 +197,7 @@ public class RunSnakeDraft {
 		Interface.wipePane();
 	}
 
-	private static String printEachPlayersArsenal() {
+	public static String printEachPlayersArsenal() {
 		String output = "";
 		for (Player p : players) {
 			Collections.sort(p.getPool());
@@ -207,22 +209,15 @@ public class RunSnakeDraft {
 	private static void askPlayerToPickOne(Player p, ArrayList<String> tier, int amountFromTier) {
 		Scanner sc = new Scanner(System.in);
 		try {
-			Interface.postString(p.getName() + ", your picks are as follows!" + '\n' + "(Already in your arsenal: "
-					+ p.getPoolAsString() + ")" + '\n');
-			Interface.postString("Your have " + amountFromTier + " pick(s) left from this tier." + '\n');
+			Interface.postString(p.getName() + ", you have " + amountFromTier + " pick(s) left from this tier." + '\n');
 			printPicks(tier);
 			Interface.postString("");
 			Interface.postString("Which do you want, " + p.getName() + "?");
-			Interface.postString("Alternatively, enter 999 to see each player's pools so far.");
+			Interface.postString("(Already in your arsenal: " + p.getPoolAsString() + ")" + '\n');
 			waitForUserInput();
 			int pick = Integer.parseInt(input);
 			input = null;
-			if (pick == 999) {
-				Interface.postString(printSnekAndPools());
-				askPlayerToPickOne(p, tier, amountFromTier);
-			} else {
-				p.claimsPick(tier.remove(pick - 1));
-			}
+			p.claimsPick(tier.remove(pick - 1));
 			saveFile();
 		} catch (Exception e) {
 			input = null;
@@ -254,6 +249,7 @@ public class RunSnakeDraft {
 			switch (buyerIndex) {
 			case 0:
 				allSatisfiedWithTrades = true;
+				Interface.close();
 				break;
 			default:
 				if (buyerIndex <= players.size()) {
@@ -360,13 +356,16 @@ public class RunSnakeDraft {
 		firsts.add("spindly");
 		firsts.add("ceaseless");
 		firsts.add("vile");
+		firsts.add("wet");
 		firsts.add("fleshy");
 		firsts.add("window-licking");
 		firsts.add("ruinous");
 		firsts.add("devoid");
 		firsts.add("crumbling");
+		firsts.add("capricious");
 		firsts.add("toxic");
 		firsts.add("hopeless");
+		firsts.add("festering");
 		firsts.add("questionable");
 		firsts.add("dopey");
 		firsts.add("hideous");
@@ -380,6 +379,8 @@ public class RunSnakeDraft {
 		firsts.add("skeletal");
 		firsts.add("worn-out");
 		firsts.add("regrettable");
+		firsts.add("excessive");
+		firsts.add("whiny");
 
 		seconds.add("wreckage");
 		seconds.add("vessel");
@@ -387,24 +388,30 @@ public class RunSnakeDraft {
 		seconds.add("error");
 		seconds.add("aberration");
 		seconds.add("mistake");
+		seconds.add("misuse of birth control");
 		seconds.add("husk");
+		seconds.add("gecko");
 		seconds.add("pebble");
 		seconds.add("surplus");
 		seconds.add("Sunkern");
+		seconds.add("latrine");
 		seconds.add("piglet");
 		seconds.add("mongrel");
 		seconds.add("subhuman");
 		seconds.add("decoy");
 		seconds.add("refuse");
 		seconds.add("accident");
+		seconds.add("bedsore");
 		seconds.add("caveman");
 		seconds.add("excuse");
+		seconds.add("lesion");
 		seconds.add("mushroom");
 		seconds.add("landfill");
 		seconds.add("plaguespitter");
 		seconds.add("vermin");
 		seconds.add("kernel");
 		seconds.add("cad");
+		seconds.add("runt");
 		seconds.add("ragamuffin");
 		seconds.add("flawbasket");
 		seconds.add("cauldron");
@@ -425,16 +432,20 @@ public class RunSnakeDraft {
 		ArrayList<String> lists = new ArrayList<>();
 		Random r = new Random();
 
-		lists.add("your Tesco shopping list");
+		lists.add("your Ann Summers shopping list");
 		lists.add("your murder confessions");
 		lists.add("your repeat prescription from a dyslexic chemist");
 		lists.add("your passing thoughts on communism");
+		lists.add("your failure of a dissertation's murky first draft");
 		lists.add("a detailed log of your affections for " + players.get(r.nextInt(players.size())).getName());
 		lists.add("your diary's back pages");
 		lists.add("the daily tabloids as dictated by Stevie Wonder");
 		lists.add("a badly written Twilight fanfiction");
 		lists.add("your face rubbed across the keyboard");
-		lists.add("the lyrics to Ting Tang Walla Walla Bing Bang in Urdu");
+		lists.add("a left-handed toilet cubicle scrawl");
+		lists.add("the GPS co-ordinates to the cardboard box you call home");
+		lists.add("last year's Eviolite Spoink download code");
+		lists.add("the lyrics to Ting Tang Walla Walla Bing Bang in broken Afrikaans");
 		lists.add("your letter to Santa");
 
 		int index = r.nextInt(lists.size());
