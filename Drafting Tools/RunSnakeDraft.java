@@ -74,6 +74,10 @@ public class RunSnakeDraft {
 					"Please ensure that the file is called 'Tiers.txt', and is in the same folder or location as this application.");
 			Interface.postString("Each tier should be on a separate line, separated by commas.");
 
+			
+			Interface.postString("By default, each player will be given as many picks from each tier as evenly possible.");
+			Interface.postString("To overwrite this with a specific limit per tier, add the desired maxiumum number of picks to the start of the tier line.");
+			Interface.postString("Eg: '4,ABC,DEF,GHI...' mandates that each player gets four picks from this tier, even if there's a significant surplus.");			
 			waitForUserInput();
 		}
 	}
@@ -209,7 +213,7 @@ public class RunSnakeDraft {
 			printPicks(tier);
 			Interface.postString("");
 			Interface.postString("Which do you want, " + p.getName() + "?");
-			Interface.postString("Alternatively, enter 999 to see eac player's pools so far.");
+			Interface.postString("Alternatively, enter 999 to see each player's pools so far.");
 			waitForUserInput();
 			int pick = Integer.parseInt(input);
 			input = null;
