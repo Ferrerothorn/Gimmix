@@ -454,43 +454,72 @@ public class RunSnakeDraft {
 
 	private static void printPicks(ArrayList<String> tier) {
 		String line = "";
-		if (tier.size() % 3 == 0) {
+		if (tier.size() % 4 == 0) {
 			for (int i = 0; i < tier.size(); i++) {
-				line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 30);
 				i++;
-				line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 30);
 				i++;
-				line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 30);
+				i++;
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 30);
 				Interface.postString(line);
 				line = "";
 			}
-		} else {
-			if (tier.size() % 3 == 1) {
-				for (int i = 0; i < tier.size() - 1; i++) {
-					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
-					i++;
-					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
-					i++;
-					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
-					Interface.postString(line);
-					line = "";
-				}
-				line += "" + (tier.size()) + ") " + tier.get(tier.size() - 1);
+		}
+
+		else if (tier.size() % 4 == 1) {
+			for (int i = 0; i < tier.size() - 1; i++) {
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 30);
+				i++;
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 30);
+				i++;
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 30);
+				i++;
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 30);
 				Interface.postString(line);
-			} else {
-				for (int i = 0; i < tier.size() - 2; i++) {
-					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
-					i++;
-					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
-					i++;
-					line += rpad("" + (i + 1) + ") " + tier.get(i), 40);
-					Interface.postString(line);
-					line = "";
-				}
-				line += rpad("" + (tier.size() - 1) + ") " + tier.get(tier.size() - 2), 40);
-				line += "" + (tier.size()) + ") " + tier.get(tier.size() - 1);
-				Interface.postString(line);
+				line = "";
 			}
+			line += "" + (tier.size()) + ") " + tier.get(tier.size() - 1);
+			Interface.postString(line);
+			line = "";
+		}
+
+		else if (tier.size() % 4 == 2) {
+			for (int i = 0; i < tier.size() - 2; i++) {
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 30);
+				i++;
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 30);
+				i++;
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 30);
+				i++;
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 30);
+				Interface.postString(line);
+				line = "";
+			}
+			line += rpad("" + (tier.size() - 1) + ") " + tier.get(tier.size() - 2), 30);
+			line += "" + (tier.size()) + ") " + tier.get(tier.size() - 1);
+			Interface.postString(line);
+			line = "";
+		}
+
+		else if (tier.size() % 4 == 3) {
+			for (int i = 0; i < tier.size() - 3; i++) {
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 30);
+				i++;
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 30);
+				i++;
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 30);
+				i++;
+				line += rpad("" + (i + 1) + ") " + tier.get(i), 30);
+				Interface.postString(line);
+				line = "";
+			}
+			line += rpad("" + (tier.size() - 2) + ") " + tier.get(tier.size() - 3), 30);
+			line += rpad("" + (tier.size() - 1) + ") " + tier.get(tier.size() - 2), 30);
+			line += "" + (tier.size()) + ") " + tier.get(tier.size() - 1);
+			Interface.postString(line);
+			line = "";
 		}
 	}
 
