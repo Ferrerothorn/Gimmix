@@ -10,7 +10,7 @@ public class Interface extends JPanel implements ActionListener {
 	private final static String newline = "\n";
 	public static JTextField textField;
 	public static JTextArea textArea;
-	public static JFrame frame = new JFrame("Snek Drafter");
+	public static JFrame frame = new JFrame("Snek Drafter <========(  :)-<");
 
 	public Interface() {
 		super(new GridBagLayout());
@@ -58,7 +58,7 @@ public class Interface extends JPanel implements ActionListener {
 		frame.setSize(500, 400);
 		frame.add(new Interface());
 		frame.pack();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.setVisible(show);
 	}
 
