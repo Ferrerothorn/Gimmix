@@ -59,6 +59,9 @@ public class RunSnakeDraft {
 				Collections.reverse(players);
 				counter++;
 			}
+			if (players.get(0).getPool().size() % 2 == 0) {
+				Collections.reverse(players);
+			}
 			processUnclaimedPokemon(tier);
 			tierIndex++;
 		}
