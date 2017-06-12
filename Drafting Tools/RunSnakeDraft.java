@@ -59,7 +59,7 @@ public class RunSnakeDraft {
 				Collections.reverse(players);
 				counter++;
 			}
-			if (players.get(0).getPool().size() % 2 == 0) {
+			if (maxFromTier % 2 == 0) {
 				Collections.reverse(players);
 			}
 			processUnclaimedPokemon(tier);
@@ -219,9 +219,13 @@ public class RunSnakeDraft {
 			Interface.postString("(Already in your arsenal: " + p.getPoolAsString() + ")" + '\n');
 			waitForUserInput();
 			int pick = Integer.parseInt(input);
-			input = null;
-			p.claimsPick(tier.remove(pick - 1));
-			saveFile();
+			if (pick == 999) {
+
+			} else {
+				input = null;
+				p.claimsPick(tier.remove(pick - 1));
+				saveFile();
+			}
 		} catch (Exception e) {
 			input = null;
 			Interface.postString("Well that's just wrong, you " + freshInsult() + ".");
