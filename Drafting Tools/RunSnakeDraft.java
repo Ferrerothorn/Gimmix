@@ -18,6 +18,7 @@ public class RunSnakeDraft {
 	public static ArrayList<Integer> overwriteTierCap = new ArrayList<Integer>();
 	public static String tierLeftovers = "Swapping pools:" + '\n';
 	public static String input;
+	public static int tierPointer = 0;
 
 	public static void main(String[] args) throws Exception {
 
@@ -59,6 +60,7 @@ public class RunSnakeDraft {
 				Collections.reverse(players);
 				counter++;
 			}
+			tierPointer++;
 			if (maxFromTier % 2 == 0) {
 				Collections.reverse(players);
 			}
@@ -74,7 +76,7 @@ public class RunSnakeDraft {
 		} else {
 			Interface.postString("Couldn't find the file to load tiers from.");
 			Interface.postString(
-					"Please ensure that the file is called 'Tiers.txt', and is in the same folder or location as this application.");
+					"Please ensure that the file is called 'Tiers' (.txt), and is in the same folder or location as this application.");
 			Interface.postString("Each tier should be on a separate line, separated by commas.");
 
 			Interface.postString(
@@ -219,10 +221,11 @@ public class RunSnakeDraft {
 			Interface.postString("(Already in your arsenal: " + p.getPoolAsString() + ")" + '\n');
 			waitForUserInput();
 			int pick = Integer.parseInt(input);
+			input = null;
 			if (pick == 999) {
-
+				reversePick();
+				askPlayerToPickOne(p, tier, amountFromTier);
 			} else {
-				input = null;
 				p.claimsPick(tier.remove(pick - 1));
 				saveFile();
 			}
@@ -232,6 +235,39 @@ public class RunSnakeDraft {
 			Interface.postString("I wanted a number, not " + listPhrase());
 			askPlayerToPickOne(p, tier, amountFromTier);
 		}
+	}
+
+	private static void reversePick() {
+		Interface.postString("Which player's pick do you want to reverse?");
+		int index = 1;
+		for (Player p : players) {
+			Interface.postString("" + index + ") " + p.getName());
+			index++;
+		}
+		waitForUserInput();
+		int pickedPlayer = Integer.parseInt(input);
+		input = null;
+		index = 1;
+		Interface.postString("Undo which pick?");
+		for (String s : players.get(pickedPlayer - 1).getPool()) {
+			Interface.postString("" + index + ") " + s);
+			index++;
+		}
+		waitForUserInput();
+		int returnMon = Integer.parseInt(input);
+		input = null;
+		tiers.get(tierPointer).add(players.get(pickedPlayer - 1).getPool().remove(returnMon - 1));
+
+		Interface.postString("What did you intend to claim?");
+		printPicks(tiers.get(tierPointer));
+		waitForUserInput();
+		int repick = Integer.parseInt(input);
+		players.get(pickedPlayer - 1).claimsPick(tiers.get(tierPointer).remove(repick - 1));
+		for (ArrayList<String> ss : tiers) {
+			Collections.sort(ss);
+		}
+		saveFile();
+		input = null;
 	}
 
 	private static void offerTrades() throws Exception {
