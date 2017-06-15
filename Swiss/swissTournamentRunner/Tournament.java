@@ -873,7 +873,7 @@ public class Tournament {
 
 		output += "Congratulations to " + players.get(0).getName() + " on winning this tournament!\n";
 		output += "Props to " + p1.getName() + " for enduring the toughest range of opponents.\n";
-		output += "Shoutout to " + p2.getName() + " for having a notable advantage over tied opponents.\n";
+		output += "Shoutout to " + p2.getName() + " for having a notable advantage over tied opponents.";
 
 		return output;
 	}

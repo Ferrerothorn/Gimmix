@@ -76,7 +76,7 @@ public class GUI implements ActionListener {
 	public static void postResultsString(String s) {
 		resultsBox.setText("");
 		resultsBox.append(s + newline);
-		resultsBox.setCaretPosition(pairingsBox.getDocument().getLength());
+		resultsBox.setCaretPosition(0);
 	}
 
 	public static void wipePane() {

@@ -58,7 +58,7 @@ public class Interface extends JPanel implements ActionListener {
 		frame.setSize(500, 400);
 		frame.add(new Interface());
 		frame.pack();
-		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(show);
 	}
 
