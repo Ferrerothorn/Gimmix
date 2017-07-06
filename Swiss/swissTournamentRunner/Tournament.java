@@ -123,7 +123,20 @@ public class Tournament {
 		}
 	}
 
-	public void generatePairings(int attempts) {
+	public String displayInDepthRankings() {
+		String participantString = "-=-=-=-Rankings-=-=-=-" + '\n';
+		for (int i = 1; i <= players.size(); i++) {
+			participantString += rpad("" + i + ") " + players.get(i - 1).getName() + "                         ",
+					longestPlayerNameLength + 7) + "   "
+					+ rpad("Score: " + players.get(i - 1).getScore() + "                         ", 15) + "   "
+					+ rpad("TB: " + players.get(i - 1).getTB() + "                         ", 8) + "   "
+					+ rpad("Opp WR: " + players.get(i - 1).getOppWr() + "                         ", 12) + "    "
+					+ rpad("Opp Opp WR: " + players.get(i - 1).getOppOppWr() + "                         ", 16) + "   "
+					+ '\n';
+		}
+		print(participantString);
+		return participantString;
+	}
 
 		if (currentBattles.size() == 0) {
 
@@ -238,7 +251,26 @@ public class Tournament {
 		GUI.postString(string);
 	}
 
-	public void assignTableNumbers(ArrayList<Battle> bIP) {
+	private void waitForUserInput() {
+		while (userSelection == null) {
+			System.out.println(userSelection);
+		}
+		if (userSelection.length() <= 0) {
+			userSelection = null;
+			waitForUserInput();
+		}
+	}
+
+	private Battle fetchBattle(int reportUpon, ArrayList<Battle> cB) {
+		for (Battle b : cB) {
+			if (b.getTableNumber() == reportUpon) {
+				return b;
+			}
+		}
+		return null;
+	}
+
+	private void assignTableNumbers(ArrayList<Battle> bIP) {
 		int index = 1;
 		for (Battle b : bIP) {
 			b.setTableNumber(index);
@@ -463,7 +495,7 @@ public class Tournament {
 		}
 	}
 
-	public Player findPlayerByName(String s) {
+	private Player findPlayerByName(String s) {
 		for (Player p : players) {
 			if (p.getName().equals(s)) {
 				return p;
