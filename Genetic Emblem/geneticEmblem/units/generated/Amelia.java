@@ -8,14 +8,14 @@ public class Amelia extends Unit {
 	public Amelia() {
 		this.setJob("Amelia");
 		this.setWeapon(new IronLance());
-		this.setHpBase(23);
+		this.setHpBase(24);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(8);
+		this.setStrBase(9);
 		this.setSkillBase(8);
 		this.setSpeedBase(9);
-		this.setLuckBase(10);
+		this.setLuckBase(11);
 		this.setDefBase(7);
-		this.setResBase(4);
+		this.setResBase(5);
 
 		this.setHpGr(60);
 		this.setStrGr(35);

@@ -24,6 +24,7 @@ public class List {
 	static CustomUnitGenerator customUnitGenerator;
 	static ClassList classList;
 	static int defaultLevelForExperiments = 25;
+
 	public static void main(String[] args) {
 
 		while (on) {
@@ -128,7 +129,7 @@ public class List {
 					if (newStDev <= initialStDev) {
 
 						String fileName = "" + newStDev;
-						String filePath = "C:\\Users\\sdolman\\Desktop\\Gimmix\\Gimmix\\Genetic Emblem\\geneticEmblem\\units\\newfags\\";
+						String filePath = "C:\\Users\\sdolman\\git\\Gimmix\\Genetic Emblem\\geneticEmblem\\newfags\\";
 						String output = customUnitGenerator.generateCode(newStDev);
 
 						File file = new File(filePath + fileName + ".java");

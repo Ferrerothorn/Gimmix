@@ -40,20 +40,6 @@ public class JUnit {
 	}
 
 	@Test
-	public void testGUIisInteractive() {
-		GUI gui = new GUI(t);
-		GUI.createAndShowGUI(false);
-		t.print("");
-		assertEquals(1, GUI.getTextFromArea().length());
-		t.print("Hi");
-		assertEquals(4, GUI.getTextFromArea().length());
-		GUI.postString();
-		assertEquals(5, GUI.getTextFromArea().length());
-		GUI.wipePane();
-		assertEquals(0, GUI.getTextFromArea().length());
-	}
-
-	@Test
 	public void testRecalculateTBs() {
 		Player p1 = new Player("P1");
 		Player p2 = new Player("P2");
@@ -153,7 +139,7 @@ public class JUnit {
 		assertEquals(0, p1.previousRounds.size());
 		assertEquals(0, p2.previousRounds.size());
 	}
-	
+
 	@Test
 	public void testDropPlayers() {
 		GUI gui = new GUI(t);

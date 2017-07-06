@@ -154,7 +154,7 @@ public class Tournament {
 		}
 	}
 
-	public void displayInDepthRankings() {
+	public String displayInDepthRankings() {
 		String participantString = "-=-=-=-Rankings-=-=-=-" + '\n';
 		for (int i = 1; i <= players.size(); i++) {
 			participantString += rpad("" + i + ") " + players.get(i - 1).getName() + "                         ",
@@ -166,6 +166,7 @@ public class Tournament {
 					+ '\n';
 		}
 		print(participantString);
+		return participantString;
 	}
 
 	public void generatePairings() {
@@ -425,7 +426,7 @@ public class Tournament {
 		return null;
 	}
 
-	private void assignTableNumbers(ArrayList<Battle> bIP) {
+	void assignTableNumbers(ArrayList<Battle> bIP) {
 		int index = 1;
 		for (Battle b : bIP) {
 			b.setTableNumber(index);
@@ -708,7 +709,7 @@ public class Tournament {
 		}
 	}
 
-	private Player findPlayerByName(String s) {
+	Player findPlayerByName(String s) {
 		for (Player p : players) {
 			if (p.getName().equals(s)) {
 				return p;
