@@ -1,14 +1,13 @@
 package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
-import geneticEmblem.weapons.SteelSword;
+import geneticEmblem.weapons.Rapier;
 
 public class Eirika extends Unit {
 
 	public Eirika() {
 		this.setJob("Eirika");
-		this.setWeapon(new SteelSword());
-		this.setTrait("Mounted");
+		this.setWeapon(new Rapier());
 		this.setHpBase(16);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(4);

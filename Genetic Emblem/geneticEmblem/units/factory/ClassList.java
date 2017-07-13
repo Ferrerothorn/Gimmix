@@ -10,7 +10,9 @@ public class ClassList {
 
 	public ClassList() {
 		releasedClasses.add(new Amelia());
-	}
+		releasedClasses.add(new Eirika());
+		releasedClasses.add(new Garcia());
+		}
 
 	public ArrayList<Unit> getReleasedUnits() {
 		return releasedClasses;

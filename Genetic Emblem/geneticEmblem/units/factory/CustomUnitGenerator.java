@@ -36,15 +36,9 @@ public class CustomUnitGenerator {
 	Weapon weapon;
 
 	private void fillWeaponLists() {
-		armory.add(new Fire());
-		armory.add(new Flux());
-		armory.add(new IronAxe());
-		armory.add(new IronBow());
 		armory.add(new IronLance());
-		armory.add(new SteelSword());
-		armory.add(new Javelin());
-		armory.add(new Lightning());
 		armory.add(new Rapier());
+		armory.add(new IronAxe());
 	}
 
 	public void generateNewUnitStats() {
@@ -188,55 +182,55 @@ public class CustomUnitGenerator {
 		defCap += 20;
 		resCap = r.nextInt(11);
 		resCap += 20;
-		// int sumCaps = strCap + speedCap + skillCap + defCap + resCap;
+		int sumCaps = strCap + speedCap + skillCap + defCap + resCap;
 
-		// if (sumCaps < 127 || sumCaps > 131) {
-		// generateCaps(r);
-		// }
+		if (sumCaps < 123 || sumCaps > 135) {
+			generateCaps(r);
+		}
 
 	}
 
 	private void generateGRs(Random r) {
 
-		hpGr = r.nextInt(13);
-		hpGr += 4;
+		hpGr = r.nextInt(10);
+		hpGr += 9;
 		hpGr *= 5;
-		strGr = r.nextInt(13);
-		strGr += 4;
+		strGr = r.nextInt(9);
+		strGr += 5;
 		strGr *= 5;
-		skillGr = r.nextInt(13);
-		skillGr += 4;
+		skillGr = r.nextInt(8);
+		skillGr += 5;
 		skillGr *= 5;
-		speedGr = r.nextInt(13);
+		speedGr = r.nextInt(10);
 		speedGr += 4;
 		speedGr *= 5;
-		luckGr = r.nextInt(13);
-		luckGr += 4;
+		luckGr = r.nextInt(11);
+		luckGr += 3;
 		luckGr *= 5;
-		defGr = r.nextInt(13);
-		defGr += 4;
+		defGr = r.nextInt(10);
+		defGr += 2;
 		defGr *= 5;
-		resGr = r.nextInt(13);
-		resGr += 4;
+		resGr = r.nextInt(9);
+		resGr += 3;
 		resGr *= 5;
 		int sumGRs = hpGr + strGr + skillGr + speedGr + luckGr + defGr + resGr;
 
-		if (sumGRs < 290 || sumGRs > 360) {
+		if (sumGRs < 250 || sumGRs > 375) {
 			generateGRs(r);
 		}
 	}
 
 	public String generateCode(double stDev) {
-		return ("package geneticEmblem.units.generated;" + '\n' + '\n' + "import geneticEmblem.units.factory.Unit;" + '\n' + "import geneticEmblem.weapons.*;" + '\n'
-				+ '\n' + "public class " + stDev + " extends Unit { " + '\n' + '\n' + "public " + stDev + "() {" + '\n'
-				+ '\n' + "    this.setJob(\"" + stDev + "\");" + '\n' + "    this.setWeapon(new " + weapon.getName()
-				+ "());" + '\n' + "    this.setHpBase(" + baseHP + ");" + '\n'
-				+ "    this.setCurrentHp(this.getHpBase());" + '\n' + "    this.setStrBase(" + strBase + ");" + '\n'
-				+ "    this.setSkillBase(" + skillBase + ");" + '\n' + "    this.setSpeedBase(" + speedBase + ");"
-				+ '\n' + "    this.setLuckBase(" + luckBase + ");" + '\n' + "    this.setDefBase(" + defBase + ");"
-				+ '\n' + "    this.setResBase(" + resBase + ");" + '\n' + '\n' + "    this.setHpGr(" + hpGr + ");"
-				+ '\n' + "    this.setStrGr(" + strGr + ");" + '\n' + "    this.setSkillGr(" + skillGr + ");" + '\n'
-				+ "    this.setSpeedGr(" + speedGr + ");" + '\n' + "    this.setLuckGr(" + luckGr + ");" + '\n'
+		return ("package geneticEmblem.units.generated;" + '\n' + '\n' + "import geneticEmblem.units.factory.Unit;"
+				+ '\n' + "import geneticEmblem.weapons.*;" + '\n' + '\n' + "public class " + stDev + " extends Unit { "
+				+ '\n' + '\n' + "public " + stDev + "() {" + '\n' + '\n' + "    this.setJob(\"" + stDev + "\");" + '\n'
+				+ "    this.setWeapon(new " + weapon.getName() + "());" + '\n' + "    this.setHpBase(" + baseHP + ");"
+				+ '\n' + "    this.setCurrentHp(this.getHpBase());" + '\n' + "    this.setStrBase(" + strBase + ");"
+				+ '\n' + "    this.setSkillBase(" + skillBase + ");" + '\n' + "    this.setSpeedBase(" + speedBase
+				+ ");" + '\n' + "    this.setLuckBase(" + luckBase + ");" + '\n' + "    this.setDefBase(" + defBase
+				+ ");" + '\n' + "    this.setResBase(" + resBase + ");" + '\n' + '\n' + "    this.setHpGr(" + hpGr
+				+ ");" + '\n' + "    this.setStrGr(" + strGr + ");" + '\n' + "    this.setSkillGr(" + skillGr + ");"
+				+ '\n' + "    this.setSpeedGr(" + speedGr + ");" + '\n' + "    this.setLuckGr(" + luckGr + ");" + '\n'
 				+ "    this.setDefGr(" + defGr + ");" + '\n' + "    this.setResGr(" + resGr + ");" + '\n' + '\n'
 				+ "    this.setStrCap(" + strCap + ");" + '\n' + "    this.setSkillCap(" + skillCap + ");" + '\n'
 				+ "    this.setSpeedCap(" + speedCap + ");" + '\n' + "    this.setDefCap(" + defCap + ");" + '\n'
