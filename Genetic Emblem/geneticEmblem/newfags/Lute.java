@@ -8,14 +8,14 @@ public class Lute extends Unit {
 	public Lute() {
 		this.setJob("Lute");
 		this.setWeapon(new IronLance());
-		this.setHpBase(0);
+		this.setHpBase(17);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
-		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setStrBase(6);
+		this.setSkillBase(6);
+		this.setSpeedBase(7);
+		this.setLuckBase(8);
+		this.setDefBase(3);
+		this.setResBase(5);
 
 		this.setHpGr(45);
 		this.setStrGr(65);

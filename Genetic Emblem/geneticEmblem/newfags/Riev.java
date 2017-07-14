@@ -6,16 +6,16 @@ import geneticEmblem.weapons.IronLance;
 public class Riev extends Unit {
 
 	public Riev() {
-		this.setJob("");
+		this.setJob("Riev");
 		this.setWeapon(new IronLance());
-		this.setHpBase(0);
+		this.setHpBase(24);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
-		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setStrBase(-1);
+		this.setSkillBase(4);
+		this.setSpeedBase(6);
+		this.setLuckBase(4);
+		this.setDefBase(9);
+		this.setResBase(3);
 
 		this.setHpGr(75);
 		this.setStrGr(45);

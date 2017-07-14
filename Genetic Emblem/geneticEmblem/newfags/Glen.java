@@ -8,22 +8,22 @@ public class Glen extends Unit {
 	public Glen() {
 		this.setJob("Glen");
 		this.setWeapon(new IronLance());
-		this.setHpBase(0);
+		this.setHpBase(21);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
+		this.setStrBase(7);
+		this.setSkillBase(3);
 		this.setSpeedBase(0);
-		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setLuckBase(1);
+		this.setDefBase(8);
+		this.setResBase(-7);
 
-		this.setHpGr(0);
-		this.setStrGr(0);
-		this.setSkillGr(0);
-		this.setSpeedGr(0);
-		this.setLuckGr(0);
-		this.setDefGr(0);
-		this.setResGr(0);
+		this.setHpGr(85);
+		this.setStrGr(45);
+		this.setSkillGr(50);
+		this.setSpeedGr(45);
+		this.setLuckGr(20);
+		this.setDefGr(35);
+		this.setResGr(40);
 
 		this.setStrCap(27);
 		this.setSkillCap(25);

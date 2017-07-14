@@ -8,22 +8,22 @@ public class Natasha extends Unit {
 	public Natasha() {
 		this.setJob("Natasha");
 		this.setWeapon(new IronLance());
-		this.setHpBase(0);
+		this.setHpBase(18);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
-		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setStrBase(2);
+		this.setSkillBase(4);
+		this.setSpeedBase(8);
+		this.setLuckBase(6);
+		this.setDefBase(2);
+		this.setResBase(6);
 
-		this.setHpGr(0);
-		this.setStrGr(0);
-		this.setSkillGr(0);
-		this.setSpeedGr(0);
-		this.setLuckGr(0);
-		this.setDefGr(0);
-		this.setResGr(0);
+		this.setHpGr(50);
+		this.setStrGr(60);
+		this.setSkillGr(25);
+		this.setSpeedGr(40);
+		this.setLuckGr(60);
+		this.setDefGr(15);
+		this.setResGr(55);
 
 		this.setStrCap(25);
 		this.setSkillCap(24);

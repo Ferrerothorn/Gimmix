@@ -6,16 +6,17 @@ import geneticEmblem.weapons.IronLance;
 public class Lyon extends Unit {
 
 	public Lyon() {
-		this.setJob("");
+		this.setJob("Lyon");
 		this.setWeapon(new IronLance());
-		this.setHpBase(0);
+		this.setHpBase(18);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
-		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setStrBase(7);
+		this.setSkillBase(-4);
+		
+		this.setSpeedBase(-6);
+		this.setLuckBase(-5);
+		this.setDefBase(3);
+		this.setResBase(2);
 
 		this.setHpGr(85);
 		this.setStrGr(50);

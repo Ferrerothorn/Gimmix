@@ -6,16 +6,16 @@ import geneticEmblem.weapons.IronLance;
 public class Artur extends Unit {
 
 	public Artur() {
-		this.setJob("");
+		this.setJob("Artur");
 		this.setWeapon(new IronLance());
-		this.setHpBase(0);
+		this.setHpBase(18);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
-		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setStrBase(6);
+		this.setSkillBase(6);
+		this.setSpeedBase(8);
+		this.setLuckBase(2);
+		this.setDefBase(2);
+		this.setResBase(5);
 
 		this.setHpGr(55);
 		this.setStrGr(50);

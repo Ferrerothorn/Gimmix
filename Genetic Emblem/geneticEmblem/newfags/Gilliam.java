@@ -6,24 +6,24 @@ import geneticEmblem.weapons.IronLance;
 public class Gilliam extends Unit {
 
 	public Gilliam() {
-		this.setJob("Fado");
+		this.setJob("Gilliam");
 		this.setWeapon(new IronLance());
-		this.setHpBase(0);
+		this.setHpBase(22);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
-		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setStrBase(8);
+		this.setSkillBase(5);
+		this.setSpeedBase(2);
+		this.setLuckBase(2);
+		this.setDefBase(7);
+		this.setResBase(2);
 
-		this.setHpGr(0);
-		this.setStrGr(0);
-		this.setSkillGr(0);
-		this.setSpeedGr(0);
-		this.setLuckGr(0);
-		this.setDefGr(0);
-		this.setResGr(0);
+		this.setHpGr(90);
+		this.setStrGr(45);
+		this.setSkillGr(35);
+		this.setSpeedGr(30);
+		this.setLuckGr(30);
+		this.setDefGr(55);
+		this.setResGr(20);
 
 		this.setStrCap(29);
 		this.setSkillCap(27);

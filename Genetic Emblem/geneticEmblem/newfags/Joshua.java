@@ -8,14 +8,14 @@ public class Joshua extends Unit {
 	public Joshua() {
 		this.setJob("Joshua");
 		this.setWeapon(new IronLance());
-		this.setHpBase(0);
+		this.setHpBase(21);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
-		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setStrBase(7);
+		this.setSkillBase(11);
+		this.setSpeedBase(12);
+		this.setLuckBase(6);
+		this.setDefBase(4);
+		this.setResBase(1);
 
 		this.setHpGr(80);
 		this.setStrGr(35);

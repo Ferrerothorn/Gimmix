@@ -8,14 +8,14 @@ public class Valter extends Unit {
 	public Valter() {
 		this.setJob("Valter");
 		this.setWeapon(new IronLance());
-		this.setHpBase(0);
+		this.setHpBase(21);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
-		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setStrBase(7);
+		this.setSkillBase(1);
+		this.setSpeedBase(2);
+		this.setLuckBase(-1);
+		this.setDefBase(7);
+		this.setResBase(6);
 
 		this.setHpGr(80);
 		this.setStrGr(40);

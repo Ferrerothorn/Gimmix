@@ -1,4 +1,4 @@
-package geneticEmblem.newfags;
+package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.IronAxe;
@@ -8,14 +8,15 @@ public class Ross extends Unit {
 	public Ross() {
 		this.setJob("Ross");
 		this.setWeapon(new IronAxe());
-		this.setHpBase(0);
+		this.setHpBase(23);
+		this.setBaseCrit(15);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
-		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setStrBase(12);
+		this.setSkillBase(5);
+		this.setSpeedBase(3);
+		this.setLuckBase(12);
+		this.setDefBase(6);
+		this.setResBase(2);
 
 		this.setHpGr(70);
 		this.setStrGr(50);

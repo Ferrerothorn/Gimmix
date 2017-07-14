@@ -11,6 +11,5 @@ public class Rapier extends Weapon {
 		super.setCrit(10);
 		super.setPhys(true);
 		super.setName("Rapier");
-		super.setCrit(5);
 	}
 }

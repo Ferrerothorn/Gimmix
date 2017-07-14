@@ -6,24 +6,24 @@ import geneticEmblem.weapons.IronLance;
 public class Marisa extends Unit {
 
 	public Marisa() {
-		this.setJob("Ismaire");
+		this.setJob("Marisa");
 		this.setWeapon(new IronLance());
-		this.setHpBase(0);
+		this.setHpBase(20);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
-		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setStrBase(6);
+		this.setSkillBase(10);
+		this.setSpeedBase(11);
+		this.setLuckBase(7);
+		this.setDefBase(3);
+		this.setResBase(2);
 
-		this.setHpGr(0);
-		this.setStrGr(0);
-		this.setSkillGr(0);
-		this.setSpeedGr(0);
-		this.setLuckGr(0);
-		this.setDefGr(0);
-		this.setResGr(0);
+		this.setHpGr(75);
+		this.setStrGr(30);
+		this.setSkillGr(55);
+		this.setSpeedGr(60);
+		this.setLuckGr(50);
+		this.setDefGr(15);
+		this.setResGr(25);
 
 		this.setStrCap(22);
 		this.setSkillCap(29);

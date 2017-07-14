@@ -8,14 +8,14 @@ public class Ewan extends Unit {
 	public Ewan() {
 		this.setJob("Ewan");
 		this.setWeapon(new IronLance());
-		this.setHpBase(0);
+		this.setHpBase(20);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
-		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setStrBase(9);
+		this.setSkillBase(5);
+		this.setSpeedBase(9);
+		this.setLuckBase(9);
+		this.setDefBase(2);
+		this.setResBase(8);
 
 		this.setHpGr(50);
 		this.setStrGr(45);

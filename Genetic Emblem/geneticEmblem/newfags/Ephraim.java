@@ -8,14 +8,14 @@ public class Ephraim extends Unit {
 	public Ephraim() {
 		this.setJob("Ephraim");
 		this.setWeapon(new IronLance());
-		this.setHpBase(0);
+		this.setHpBase(21);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
-		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setStrBase(6);
+		this.setSkillBase(7);
+		this.setSpeedBase(10);
+		this.setLuckBase(7);
+		this.setDefBase(6);
+		this.setResBase(1);
 
 		this.setHpGr(80);
 		this.setStrGr(55);

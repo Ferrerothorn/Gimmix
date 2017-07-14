@@ -8,14 +8,14 @@ public class Knoll extends Unit {
 	public Knoll() {
 		this.setJob("Knoll");
 		this.setWeapon(new IronLance());
-		this.setHpBase(0);
+		this.setHpBase(15);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
-		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setStrBase(8);
+		this.setSkillBase(5);
+		this.setSpeedBase(5);
+		this.setLuckBase(-2);
+		this.setDefBase(1);
+		this.setResBase(6);
 
 		this.setHpGr(70);
 		this.setStrGr(50);
