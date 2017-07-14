@@ -23,7 +23,7 @@ public class List {
 	static Scanner input = new Scanner(System.in);
 	static CustomUnitGenerator customUnitGenerator;
 	static ClassList classList;
-	static int defaultLevelForExperiments = 25;
+	static int defaultLevelForExperiments = 20;
 
 	public static void main(String[] args) {
 
@@ -33,11 +33,12 @@ public class List {
 			System.out.println("0: The usual (Add 25k each, 2048 remain, report).");
 			System.out.println("1: Add a number of each class to the arena.");
 			System.out.println("2: View a single match.");
+			System.out.println("22: Run until 2048 remain.");
 			System.out.println("22: Run until specified number remain.");
 			System.out.println("3: See the top 8 in the arena.");
 			System.out.println("456: Clear arena.");
 			System.out.println("5: Report on the surviving units.");
-			System.out.println("55: Report statistics on surviving race.");
+			System.out.println("55: Report standard deviation.");
 			System.out.println("69: Genetically modify a new unit.");
 			System.out.println("88: Determine which class is healthiest to cull.");
 			System.out.println("999: Quit.");
@@ -47,7 +48,7 @@ public class List {
 			switch (choice) {
 
 			case 0:
-				addEachClass(20000, arena);
+				addEachClass(25000, arena);
 				levelTheDudesTo(defaultLevelForExperiments, arena);
 				deathmatch(2048, arena);
 				System.out.println();
@@ -126,7 +127,7 @@ public class List {
 					sortByValues(toBeSorted);
 					populate(metagamePairs, toBeSorted);
 
-					if (newStDev <= initialStDev) {
+					if (newStDev <= initialStDev && toBeSorted.containsKey("Custom")) {
 
 						String fileName = "" + newStDev;
 						String filePath = "C:\\Users\\sdolman\\git\\Gimmix\\Genetic Emblem\\geneticEmblem\\newfags\\";

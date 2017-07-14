@@ -11,7 +11,7 @@ public abstract class Weapon {
 	public int acc;
 	public int pow;
 	public int wepCrit;
-	
+
 	public boolean isPhys() {
 		return phys;
 	}
@@ -63,8 +63,8 @@ public abstract class Weapon {
 	public ArrayList<String> getTraits() {
 		return traits;
 	}
-	
-	public void setTraits(String trait) {
+
+	public void addTrait(String trait) {
 		traits.add(trait);
 	}
 }

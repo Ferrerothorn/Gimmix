@@ -1,13 +1,13 @@
-package geneticEmblem.newfags;
+package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
-import geneticEmblem.weapons.IronLance;
+import geneticEmblem.weapons.IronAxe;
 
 public class Duessel extends Unit {
 
 	public Duessel() {
 		this.setJob("Duessel");
-		this.setWeapon(new IronLance());
+		this.setWeapon(new IronAxe());
 		this.setHpBase(20);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(3);

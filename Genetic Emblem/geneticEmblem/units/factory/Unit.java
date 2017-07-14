@@ -383,6 +383,11 @@ public abstract class Unit {
 			return this;
 		}
 		int turnCounter = 1;
+
+		if (opponent.getWeapon().getTraits().contains("Ranged") && !this.getWeapon().getTraits().contains("Ranged")) {
+			return opponent.fight(this);
+		}
+
 		while (this.isAlive() && opponent.isAlive() && turnCounter < 51) {
 			if (this.isAlive() && opponent.isAlive()) {
 				this.swingAt(opponent);
@@ -408,8 +413,7 @@ public abstract class Unit {
 			int thistotal = this.getHpBase() + this.getStrBase() + this.getSkillBase() + this.getLuckBase()
 					+ this.getSpeedBase() + this.getDefBase() + this.getResBase();
 			int unit2total = opponent.getHpBase() + opponent.getStrBase() + opponent.getSkillBase()
-					+ opponent.getLuckBase() + opponent.getSpeedBase() + opponent.getDefBase()
-					+ opponent.getResBase();
+					+ opponent.getLuckBase() + opponent.getSpeedBase() + opponent.getDefBase() + opponent.getResBase();
 			if (unit2total > thistotal) {
 				return opponent;
 			}

@@ -2,7 +2,6 @@ package geneticEmblem.newfags;
 
 import geneticEmblem.units.factory.Unit;
 import geneticEmblem.weapons.IronAxe;
-import geneticEmblem.weapons.IronLance;
 
 public class Caellach extends Unit {
 

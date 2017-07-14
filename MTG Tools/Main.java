@@ -1,4 +1,3 @@
-package openingHandSimulator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -67,44 +66,6 @@ public class Main {
 	}
 
 	private static void populateDeck() {
-		// Dark Dwellers
-		// addThisCard("Arbor Elf", 4);
-		// addThisCard("Birds of Paradise", 2);
-		// addThisCard("Avalanche Riders", 1);
-		// addThisCard("Acidic Slime", 2);
-		// addThisCard("Goblin Dark-Dwellers", 4);
-		// addThisCard("Thragtusk", 3);
-		// addThisCard("Inferno Titan", 4);
-		// addThisCard("Utopia Sprawl", 4);
-		// addThisCard("Beast Within", 3);
-		// addThisCard("Dismember", 1);
-		// addThisCard("Molten Rain", 4);
-		// addThisCard("Stone Rain", 4);
-		// addThisCard("Mwonvuli Acid-Moss", 2);
-		// addThisCard("Evolving Wilds", 4);
-		// addThisCard("Forest", 11);
-		// addThisCard("Mountain", 7);
-
-		// NRG
-		// addThisCard("Aether Hub", 4);
-		// addThisCard("Cinder Glade", 3);
-		// addThisCard("Game Trail", 4);
-		// addThisCard("Forest", 6);
-		// addThisCard("Mountain", 6);
-		// addThisCard("Kessig Prowler", 4);
-		// addThisCard("Voltaic Brawler", 4);
-		// addThisCard("Longtusk Cub", 4);
-		// addThisCard("Servant of the Conduit", 3);
-		// addThisCard("Lathnu Hellion", 4);
-		// addThisCard("Brazen Scourge", 3);
-		// addThisCard("Bristling Hydra", 3);
-		// addThisCard("Multiform Wonder", 2);
-		// addThisCard("Fleetwheel Cruiser", 2);
-		// addThisCard("Harnessed Lightning", 4);
-		// addThisCard("Collective Defiance", 3);
-		// addThisCard("Renegade Tactics", 2);
-		// addThisCard("Attune with Aether", 2);
-
 		// Belcher
 //		addThisCard("Taiga", 1);
 //		addThisCard("Elvish Spirit Guide", 4);

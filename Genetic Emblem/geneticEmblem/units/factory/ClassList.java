@@ -2,7 +2,6 @@ package geneticEmblem.units.factory;
 
 import java.util.ArrayList;
 
-import geneticEmblem.newfags.Garcia;
 import geneticEmblem.units.generated.*;
 
 public class ClassList {
@@ -12,8 +11,11 @@ public class ClassList {
 	public ClassList() {
 		releasedClasses.add(new Amelia());
 		releasedClasses.add(new Eirika());
+		releasedClasses.add(new Forde());
 		releasedClasses.add(new Ross());
-		}
+		releasedClasses.add(new Duessel());
+		releasedClasses.add(new Neimi());
+	}
 
 	public ArrayList<Unit> getReleasedUnits() {
 		return releasedClasses;
