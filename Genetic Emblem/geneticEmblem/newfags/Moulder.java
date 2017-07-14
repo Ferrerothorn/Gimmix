@@ -8,14 +8,14 @@ public class Moulder extends Unit {
 	public Moulder() {
 		this.setJob("Moulder");
 		this.setWeapon(new IronLance());
-		this.setHpBase(0);
+		this.setHpBase(19);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
-		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setStrBase(3);
+		this.setSkillBase(5);
+		this.setSpeedBase(8);
+		this.setLuckBase(1);
+		this.setDefBase(2);
+		this.setResBase(5);
 
 		this.setHpGr(70);
 		this.setStrGr(40);

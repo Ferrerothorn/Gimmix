@@ -8,14 +8,14 @@ public class Ismaire extends Unit {
 	public Ismaire() {
 		this.setJob("Ismaire");
 		this.setWeapon(new IronLance());
-		this.setHpBase(0);
+		this.setHpBase(14);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
-		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setStrBase(9);
+		this.setSkillBase(4);
+		this.setSpeedBase(9);
+		this.setLuckBase(4);
+		this.setDefBase(3);
+		this.setResBase(9);
 
 		this.setHpGr(75);
 		this.setStrGr(30);

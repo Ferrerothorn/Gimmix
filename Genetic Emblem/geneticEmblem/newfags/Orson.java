@@ -8,22 +8,22 @@ public class Orson extends Unit {
 	public Orson() {
 		this.setJob("Orson");
 		this.setWeapon(new IronLance());
-		this.setHpBase(0);
+		this.setHpBase(24);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
-		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setStrBase(5);
+		this.setSkillBase(2);
+		this.setSpeedBase(2);
+		this.setLuckBase(-1);
+		this.setDefBase(1);
+		this.setResBase(2);
 
-		this.setHpGr(0);
-		this.setStrGr(0);
-		this.setSkillGr(0);
-		this.setSpeedGr(0);
-		this.setLuckGr(0);
-		this.setDefGr(0);
-		this.setResGr(0);
+		this.setHpGr(80);
+		this.setStrGr(45);
+		this.setSkillGr(45);
+		this.setSpeedGr(40);
+		this.setLuckGr(25);
+		this.setDefGr(45);
+		this.setResGr(30);
 
 		this.setStrCap(25);
 		this.setSkillCap(26);

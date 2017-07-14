@@ -8,14 +8,15 @@ public class Selena extends Unit {
 	public Selena() {
 		this.setJob("Selena");
 		this.setWeapon(new IronLance());
-		this.setHpBase(0);
+		this.setHpBase(13);
+		this.setLv(1);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
-		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setStrBase(1);
+		this.setSkillBase(-3);
+		this.setSpeedBase(4);
+		this.setLuckBase(3);
+		this.setDefBase(5);
+		this.setResBase(8);
 
 		this.setHpGr(85);
 		this.setStrGr(40);

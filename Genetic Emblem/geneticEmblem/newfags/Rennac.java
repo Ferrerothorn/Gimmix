@@ -8,14 +8,14 @@ public class Rennac extends Unit {
 	public Rennac() {
 		this.setJob("Rennac");
 		this.setWeapon(new IronLance());
-		this.setHpBase(0);
+		this.setHpBase(16);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
+		this.setStrBase(5);
+		this.setSkillBase(7);
+		this.setSpeedBase(6);
 		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setDefBase(4);
+		this.setResBase(5);
 
 		this.setHpGr(65);
 		this.setStrGr(25);

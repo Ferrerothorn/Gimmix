@@ -8,22 +8,22 @@ public class Colm extends Unit {
 	public Colm() {
 		this.setJob("Colm");
 		this.setWeapon(new IronLance());
-		this.setHpBase(0);
+		this.setHpBase(17);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
-		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setStrBase(4);
+		this.setSkillBase(4);
+		this.setSpeedBase(9);
+		this.setLuckBase(8);
+		this.setDefBase(3);
+		this.setResBase(1);
 
-		this.setHpGr(0);
-		this.setStrGr(0);
-		this.setSkillGr(0);
-		this.setSpeedGr(0);
-		this.setLuckGr(0);
-		this.setDefGr(0);
-		this.setResGr(0);
+		this.setHpGr(75);
+		this.setStrGr(40);
+		this.setSkillGr(40);
+		this.setSpeedGr(65);
+		this.setLuckGr(45);
+		this.setDefGr(25);
+		this.setResGr(20);
 
 		this.setStrCap(20);
 		this.setSkillCap(30);

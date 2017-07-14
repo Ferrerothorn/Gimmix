@@ -8,22 +8,22 @@ public class LArachel extends Unit {
 	public LArachel() {
 		this.setJob("LArachel");
 		this.setWeapon(new IronLance());
-		this.setHpBase(0);
+		this.setHpBase(17);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
-		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setStrBase(5);
+		this.setSkillBase(5);
+		this.setSpeedBase(9);
+		this.setLuckBase(11);
+		this.setDefBase(5);
+		this.setResBase(7);
 
-		this.setHpGr(0);
-		this.setStrGr(0);
-		this.setSkillGr(0);
-		this.setSpeedGr(0);
-		this.setLuckGr(0);
-		this.setDefGr(0);
-		this.setResGr(0);
+		this.setHpGr(45);
+		this.setStrGr(50);
+		this.setSkillGr(45);
+		this.setSpeedGr(45);
+		this.setLuckGr(65);
+		this.setDefGr(15);
+		this.setResGr(50);
 
 		this.setStrCap(25);
 		this.setSkillCap(24);

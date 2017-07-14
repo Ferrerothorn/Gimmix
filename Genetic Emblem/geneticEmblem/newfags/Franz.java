@@ -8,22 +8,22 @@ public class Franz extends Unit {
 	public Franz() {
 		this.setJob("Franz");
 		this.setWeapon(new IronLance());
-		this.setHpBase(0);
+		this.setHpBase(20);
 		this.setCurrentHp(this.getHpBase());
-		this.setStrBase(0);
-		this.setSkillBase(0);
-		this.setSpeedBase(0);
-		this.setLuckBase(0);
-		this.setDefBase(0);
-		this.setResBase(0);
+		this.setStrBase(7);
+		this.setSkillBase(5);
+		this.setSpeedBase(7);
+		this.setLuckBase(2);
+		this.setDefBase(6);
+		this.setResBase(1);
 
-		this.setHpGr(0);
-		this.setStrGr(0);
-		this.setSkillGr(0);
-		this.setSpeedGr(0);
-		this.setLuckGr(0);
-		this.setDefGr(0);
-		this.setResGr(0);
+		this.setHpGr(80);
+		this.setStrGr(40);
+		this.setSkillGr(40);
+		this.setSpeedGr(50);
+		this.setLuckGr(40);
+		this.setDefGr(25);
+		this.setResGr(20);
 
 		this.setStrCap(25);
 		this.setSkillCap(26);
