@@ -1,13 +1,13 @@
-package geneticEmblem.newfags;
+package geneticEmblem.units.generated;
 
 import geneticEmblem.units.factory.Unit;
-import geneticEmblem.weapons.IronLance;
+import geneticEmblem.weapons.IronBow;
 
 public class Neimi extends Unit {
 
 	public Neimi() {
 		this.setJob("Neimi");
-		this.setWeapon(new IronLance());
+		this.setWeapon(new IronBow());
 		this.setHpBase(17);
 		this.setCurrentHp(this.getHpBase());
 		this.setStrBase(4);
