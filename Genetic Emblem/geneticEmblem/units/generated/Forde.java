@@ -7,6 +7,7 @@ public class Forde extends Unit {
 
 	public Forde() {
 		this.setJob("Forde");
+		this.setTrait("Mounted");
 		this.setWeapon(new IronLance());
 		this.setHpBase(21);
 		this.setCurrentHp(this.getHpBase());

@@ -250,7 +250,12 @@ public abstract class Unit {
 		int thisPower = this.StrBase + weapon.getPow() + this.triangleDamageBonus(target);
 
 		if (target.getTraits().contains("Flying") && this.getWeapon().getTraits().contains("Arrow")) {
-			thisPower += (weapon.getPow() * 2);
+			thisPower += (weapon.getPow() * 3);
+		}
+
+		if ((target.getTraits().contains("Mounted") && this.getWeapon().getTraits().contains("Horseslayer"))
+				|| (target.getTraits().contains("Armor") && this.getWeapon().getTraits().contains("Armorslayer"))) {
+			thisPower += (weapon.getPow() * 3);
 		}
 
 		int thisCrit = this.SkillBase / 2 + this.getBaseCrit() + this.weapon.getCrit() - target.getLuckBase();
@@ -271,6 +276,15 @@ public abstract class Unit {
 		int hit = r.nextInt(100);
 
 		if (hit < overallHitRate) {
+
+			if (this.getTraits().contains("Assassin")) {
+				int killingBlow = r.nextInt(100);
+				if (killingBlow <= (thisCrit / 2)) {
+					target.currentHp = 0;
+					return;
+				}
+			}
+
 			int isCrit = r.nextInt(100);
 			if (isCrit <= thisCrit) {
 				hitDamage *= 3;
@@ -453,33 +467,39 @@ public abstract class Unit {
 	public void levelUp() {
 		if (lv < 40) {
 			lv++;
+			
+			int metisBonus = 0;
+			if (this.getTraits().contains("Metis")) {
+				metisBonus = 5;
+			}
+			
 			Random r = new Random();
 
-			int growthPerc = r.nextInt(100);
+			int growthPerc = r.nextInt(100) - metisBonus; 
 			if (growthPerc < HpGr && HpBase < HpCap) {
 				HpBase++;
 			}
-			growthPerc = r.nextInt(100);
+			growthPerc = r.nextInt(100) - metisBonus;  
 			if (growthPerc < StrGr && StrBase < StrCap) {
 				StrBase++;
 			}
-			growthPerc = r.nextInt(100);
+			growthPerc = r.nextInt(100) - metisBonus; 
 			if (growthPerc < SkillGr && SkillBase < SkillCap) {
 				SkillBase++;
 			}
-			growthPerc = r.nextInt(100);
+			growthPerc = r.nextInt(100) - metisBonus; 
 			if (growthPerc < SpeedGr && SpeedBase < SpeedCap) {
 				SpeedBase++;
 			}
-			growthPerc = r.nextInt(100);
+			growthPerc = r.nextInt(100) - metisBonus; 
 			if (growthPerc < LuckGr && LuckBase < LuckCap) {
 				LuckBase++;
 			}
-			growthPerc = r.nextInt(100);
+			growthPerc = r.nextInt(100) - metisBonus; 
 			if (growthPerc < DefGr && DefBase < DefCap) {
 				DefBase++;
 			}
-			growthPerc = r.nextInt(100);
+			growthPerc = r.nextInt(100) - metisBonus; 
 			if (growthPerc < ResGr && ResBase < ResCap) {
 				ResBase++;
 			}

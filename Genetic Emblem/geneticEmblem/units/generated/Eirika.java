@@ -7,6 +7,7 @@ public class Eirika extends Unit {
 
 	public Eirika() {
 		this.setJob("Eirika");
+		this.setTrait("Mounted");
 		this.setWeapon(new Rapier());
 		this.setHpBase(16);
 		this.setCurrentHp(this.getHpBase());

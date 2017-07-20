@@ -30,7 +30,6 @@ public class CustomUnitGenerator {
 	int resCap = 0;
 
 	ArrayList<Weapon> armory = new ArrayList<>();
-
 	ArrayList<Weapon> weaponList = new ArrayList<>();
 
 	Weapon weapon;
@@ -39,6 +38,9 @@ public class CustomUnitGenerator {
 		armory.add(new IronLance());
 		armory.add(new Rapier());
 		armory.add(new IronAxe());
+		armory.add(new IronSword());
+		armory.add(new Lightning());
+		armory.add(new IronBow());
 	}
 
 	public void generateNewUnitStats() {
@@ -49,39 +51,16 @@ public class CustomUnitGenerator {
 		generateCaps(r);
 		chooseWeapon(r);
 
-		if (strGr <= 30 && strCap > 21) {
+		if (strGr <= 30 && strCap > 24) {
 			generateNewUnitStats();
 		}
 		if (skillCap > speedCap && skillGr < speedGr) {
-			generateNewUnitStats();
-		}
-		if ((defGr > 45 || resGr > 45) && hpGr < 40) {
-			generateNewUnitStats();
-		}
-		if (resGr < speedGr && speedCap < resCap) {
 			generateNewUnitStats();
 		}
 		if (defGr < speedGr && speedCap < defCap) {
 			generateNewUnitStats();
 		}
 		if (skillBase > strBase && skillCap < strCap) {
-			generateNewUnitStats();
-		}
-		if (strBase > skillBase && strCap < skillCap) {
-			generateNewUnitStats();
-		}
-		if ((luckBase >= strBase || luckBase >= skillBase || luckBase >= speedBase || luckBase >= defBase
-				|| luckBase >= resBase)
-				&& (luckGr < strGr || luckGr < skillGr || luckGr < speedGr || luckGr < defGr || luckGr < resGr)) {
-			generateNewUnitStats();
-		}
-		if (skillGr > speedGr && speedCap > skillCap) {
-			generateNewUnitStats();
-		}
-		if (strGr > defGr && defCap > strCap) {
-			generateNewUnitStats();
-		}
-		if (skillBase > strBase && skillBase > speedBase && (skillGr < strGr || skillGr < speedGr)) {
 			generateNewUnitStats();
 		}
 		if (strBase > speedBase && speedGr > strGr) {
@@ -157,12 +136,6 @@ public class CustomUnitGenerator {
 		defBase += 2;
 		resBase = r.nextInt(6);
 		resBase += 1;
-		// int sumBases = strBase + skillBase + speedBase + luckBase + defBase +
-		// resBase;
-
-		// if (sumBases != 37) {
-		// generateBases(r);
-		// }
 	}
 
 	public void chooseWeapon(Random r) {

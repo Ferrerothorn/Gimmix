@@ -102,26 +102,46 @@ public class Main {
 //		addThisCard("Goblin Ringleader", 4); 
 //		
 		
-		addThisCard("Mother of Runes", 4); 
-		addThisCard("Phyrexian Revoker", 3); 
-		addThisCard("Serra Avenger", 1); 
-		addThisCard("Stoneforge Mystic", 4); 
-		addThisCard("Thalia, Guardian of Thraben", 4); 
-		addThisCard("Flickerwisp", 4); 
-		addThisCard("Mirran Crusader", 3); 
-		addThisCard("Recruiter of the Guard", 2); 
-		addThisCard("Sanctum Prelate", 1); 
-	//	addThisCard("Thalia", 2); 
-		addThisCard("Swords to Plowshares", 4); 
-		addThisCard("Aether Vial", 4); 
-		addThisCard("Umezawa's Jitte", 1); 
-		addThisCard("Sword of Fire and Ice", 1); 
-		addThisCard("Batterskull", 1); 
-		addThisCard("Cavern of Souls", 2); 
-		addThisCard("Karakas", 3); 
-		addThisCard("Plains", 10); 
-		addThisCard("Wasteland", 4); 
-		addThisCard("Rishadan Port", 4); 
+//		addThisCard("Mother of Runes", 4); 
+//		addThisCard("Phyrexian Revoker", 3); 
+//		addThisCard("Serra Avenger", 1); 
+//		addThisCard("Stoneforge Mystic", 4); 
+//		addThisCard("Thalia, Guardian of Thraben", 4); 
+//		addThisCard("Flickerwisp", 4); 
+//		addThisCard("Mirran Crusader", 3); 
+//		addThisCard("Recruiter of the Guard", 2); 
+//		addThisCard("Sanctum Prelate", 1); 
+//	//	addThisCard("Thalia", 2); 
+//		addThisCard("Swords to Plowshares", 4); 
+//		addThisCard("Aether Vial", 4); 
+//		addThisCard("Umezawa's Jitte", 1); 
+//		addThisCard("Sword of Fire and Ice", 1); 
+//		addThisCard("Batterskull", 1); 
+//		addThisCard("Cavern of Souls", 2); 
+//		addThisCard("Karakas", 3); 
+//		addThisCard("Plains", 10); 
+//		addThisCard("Wasteland", 4); 
+//		addThisCard("Rishadan Port", 4); 
+		
+		addThisCard("Burning Wish", 4);
+		addThisCard("Goblin Charbelcher", 4);
+		addThisCard("Empty The Warrens", 3);
+		addThisCard("Land Grant", 4);
+		addThisCard("Taiga", 1);
+		addThisCard("Bayou", 1);
+		addThisCard("Seething Song", 4);
+		addThisCard("Desperate Ritual", 4);
+		addThisCard("Pyretic Ritual", 4);
+		addThisCard("Rite of Flame", 4);
+		addThisCard("Lotus Petal", 4);
+		addThisCard("Chrome Mox", 4);
+		addThisCard("Lion's Eye Diamond", 4);
+		addThisCard("Elvish Spirit Guide", 4);
+		addThisCard("Simian Spirit Guide", 4);
+		addThisCard("Tinder Wall", 3);
+		addThisCard("Dark Ritual", 4);
+
+
 		
 //		addThisCard("Emrakul", 4); 
 //		addThisCard("Griselbrand", 4); 

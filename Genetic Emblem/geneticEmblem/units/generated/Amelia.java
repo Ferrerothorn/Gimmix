@@ -7,6 +7,7 @@ public class Amelia extends Unit {
 
 	public Amelia() {
 		this.setJob("Amelia");
+		this.setTrait("Armor");
 		this.setWeapon(new IronLance());
 		this.setHpBase(21);
 		this.setCurrentHp(this.getHpBase());
