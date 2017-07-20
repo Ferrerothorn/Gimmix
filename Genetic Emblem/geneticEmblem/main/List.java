@@ -127,7 +127,7 @@ public class List {
 					sortByValues(toBeSorted);
 					populate(metagamePairs, toBeSorted);
 
-					if (newStDev <= initialStDev && toBeSorted.containsKey("Custom")) {
+					if (newStDev <= initialStDev && containsJob(arena, "Custom")) {
 
 						String fileName = "" + newStDev;
 						String filePath = "C:\\Users\\sdolman\\git\\Gimmix\\Genetic Emblem\\geneticEmblem\\newfags\\";
@@ -162,6 +162,20 @@ public class List {
 				break;
 			}
 		}
+	}
+
+	private static boolean containsJob(ArrayList<Unit> arena2, String string) {
+		Boolean foundJob = false;
+		int index = 0;
+
+		while (!foundJob && index < arena.size()) {
+			if (arena.get(index).getJob().equals(string)) {
+				foundJob = true;
+			} else {
+				index++;
+			}
+		}
+		return foundJob;
 	}
 
 	private static void analyseDisposableClasses(ArrayList<Unit> counter, boolean firstIteration) {
@@ -308,6 +322,9 @@ public class List {
 
 	private static void deathmatch(int i, ArrayList<Unit> u) {
 
+		int cullSize = u.size() - i;
+		
+		
 		if (i > 0) {
 			while (u.size() > i) {
 				Unit unit1 = u.remove(0);
@@ -316,7 +333,8 @@ public class List {
 
 				victor.levelUp();
 				u.add(victor);
-				System.out.println("" + arena.size());
+			//	System.out.println("" + arena.size());
+				System.out.println("" + 100      + "%");
 			}
 		}
 	}
