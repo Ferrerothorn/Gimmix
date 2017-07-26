@@ -712,4 +712,55 @@ public class Tournament {
 			}
 		}
 	}
+
+	public void reportBattleWinner(String text) {
+		Player winner = findPlayerByName(text);
+		for (Battle b : currentBattles) {
+			if (b.contains(winner)) {
+				if (b.getP1() == winner) {
+					Utils.handleBattleWinner(b, "1");
+				} else {
+					Utils.handleBattleWinner(b, "2");
+				}
+				currentBattles.remove(b);
+				break;
+			}
+		}
+	}
+
+	public String postTournamentProcessing() {
+		String output = "";
+		Player p1 = fetchHardestFoughtPlayer();
+		Player p2 = fetchHighestTBPlayer();
+
+		output += "Congratulations to " + players.get(0).getName() + " on winning this tournament!\n";
+		output += "Props to " + p1.getName() + " for enduring the toughest range of opponents.\n";
+		output += "Shoutout to " + p2.getName() + " for having a notable advantage over tied opponents.";
+
+		return output;
+	}
+
+	private Player fetchHighestTBPlayer() {
+		int highestTB = 0;
+		Player topTB = null;
+		for (Player p : players) {
+			if (p.getTB() > highestTB) {
+				topTB = p;
+				highestTB = p.getTB();
+			}
+		}
+		return topTB;
+	}
+
+	private Player fetchHardestFoughtPlayer() {
+		int highestOWR = 0;
+		Player hardest = null;
+		for (Player p : players) {
+			if (p.getOppWr() > highestOWR) {
+				hardest = p;
+				highestOWR = p.getOppWr();
+			}
+		}
+		return hardest;
+	}
 }

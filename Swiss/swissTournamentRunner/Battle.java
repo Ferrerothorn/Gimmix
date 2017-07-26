@@ -28,7 +28,10 @@ public class Battle {
 	}
 
 	public boolean contains(Player winner) {
-		return (p1 == winner || p2 == winner);
+		if (p1 == winner || p2 == winner) {
+			return true;
+		}
+		return false;
 	}
 
 }
